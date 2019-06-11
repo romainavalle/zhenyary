@@ -11,7 +11,7 @@ import Emitter from '~/assets/js/events/EventsEmitter'
 import ResizeHelper from '~/assets/js/utils/ResizeHelper'
 import ScrollHelper from '~/assets/js/utils/ScrollHelper'
 import { mapGetters } from 'vuex';
-import vTurn from '~/components/common/Turn.vue'
+import vTurn from '~/components/common/turn.vue'
 export default {
   data() {
     return {

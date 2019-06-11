@@ -4,8 +4,10 @@
     <no-ssr>
       <v-turn v-if="isDevice"></v-turn>
     </no-ssr>
+    <v-nav ref="nav"/>
     <div class="scroll" ref="scroll">
-      <nuxt ref="page" :key="route.params.slug || route.name"/>
+      <nuxt :key="route.params.slug || route.name"  ref="page"/>
+      <v-footer />
     </div>
   </main>
 </template>
@@ -13,8 +15,10 @@
 import Emitter from '~/assets/js/events/EventsEmitter'
 import ResizeHelper from '~/assets/js/utils/ResizeHelper'
 import ScrollHelper from '~/assets/js/utils/ScrollHelper'
-import vTurn from '~/components/common/Turn.vue'
-import vLoader from '~/components/common/Loader.vue'
+import vTurn from '~/components/common/turn.vue'
+import vLoader from '~/components/common/loader.vue'
+import vFooter from '~/components/common/footer.vue'
+import vNav from '~/components/common/nav.vue'
 import loop from 'raf-loop'
 import transform from 'dom-transform'
 import { mapState, mapGetters } from 'vuex';
@@ -30,7 +34,7 @@ export default {
     ...mapGetters(['isDevice', 'isPhone', 'work'])
   },
   components: {
-    vLoader, vTurn
+    vLoader, vTurn, vNav, vFooter
   },
   methods:{
      resize(){
@@ -43,7 +47,8 @@ export default {
     },
     tick(){
       ScrollHelper.tick()
-      if(this.$refs.page.$children[0])this.$refs.page.$children[0].tick && this.$refs.page.$children[0].tick(scrollTop,realScrollTop)
+      const scrollTop = ScrollHelper.scrollTop
+      if(this.$refs.page.$children[0])this.$refs.page.$children[0].tick && this.$refs.page.$children[0].tick(scrollTop)
       if(!this.isDevice)transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
     },
 
@@ -72,12 +77,16 @@ export default {
       })
       this.$router.afterEach((to, from) => {
         ScrollHelper.goTo(0)
-        this.pageFadeIn(300)
       })
+    },
+    onPageMounted(){
+      this.resize()
+      this.pageFadeIn(0)
     }
   },
   mounted() {
     Emitter.on('GLOBAL:RESIZE', this.resize.bind(this))
+    Emitter.on('PAGE:MOUNTED', this.onPageMounted.bind(this))
     this.$nextTick(()=>{
       this.resize()
     })
@@ -91,20 +100,13 @@ export default {
 main
   position relative
   height 100%
-  background #fff
+  background $brown
+  color black
   &.no-touch .scroll
     position fixed
     top 0
     left 0
     right 0
     will-change transform
-.white-layer
-  position fixed
-  top 0
-  left 0
-  right 0
-  bottom 0
-  background white
-  pointer-events none
 </style>
 

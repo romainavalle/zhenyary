@@ -1,65 +1,50 @@
 <template>
-  <section class="container">
-    <div>
-      <app-logo/>
-      <h1 class="title">
-        zhenya
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
-    </div>
+  <section class="index">
+    <v-home ref="home"/>
+    <v-gems ref="gems"/>
+    <v-works ref="works"/>
   </section>
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
-
+import Emitter from '~/assets/js/events/EventsEmitter'
+import vHome from '~/components/index/home.vue'
+import vGems from '~/components/index/gems.vue'
+import vWorks from '~/components/index/works.vue'
 export default {
+  data() {
+    return {
+      w: 0,
+      h:0
+    }
+  },
   components: {
-    AppLogo
-  }
+    vHome, vGems, vWorks
+  },
+  methods: {
+    resize(w, h) {
+      if(w && h) {
+        this.w = w
+        this.h = h
+      }
+      //this.$refs.home.resize(this.w, this.h)
+      this.$refs.gems.resize(this.w, this.h)
+      this.$refs.works.resize(this.w, this.h)
+    },
+    tick(scrollTop) {
+      //this.$refs.home.tick(scrollTop)
+      this.$refs.gems.tick(scrollTop)
+      this.$refs.works.tick(scrollTop)
+    }
+  },
+  mounted() {
+    Emitter.emit('PAGE:MOUNTED')
+  },
 }
 </script>
 
-<style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
+<style lang="stylus" scoped>
+.index
+  position relative
 </style>
 
