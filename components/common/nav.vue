@@ -1,5 +1,5 @@
 <template>
-  <nav :class="{'sml': isMinimized}">
+  <nav :class="[{'sml': isMinimized}, color]">
     <div class="container">
       <nuxt-link :to="{name: 'index'}">
         Z.
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -30,6 +31,9 @@ export default {
       w: 0,
       h: 0
     }
+  },
+  computed:{
+    ...mapState(['color'])
   },
   methods: {
     resize(w, h) {
@@ -59,12 +63,15 @@ nav
   width 100%
   z-index 5
   &.sml
+    transition transform .4s ease-in-quad
     transform translateY(-9vh)
     .container
+      transition transform .4s ease-in-quad
       transform translateY(6vh)
     span
       opacity 0
       transform translateY(-20px)
+      transition transform .4s ease-in-quad, opacity .4s ease-in-quad
   .container
     display flex
     padding 5vh 0
@@ -85,6 +92,6 @@ nav
     font-size 12px
     padding-top 1.5em
     text-transform uppercase
-    transition transform .4s ease-out-quad, opacity .4s ease-out-quad
+    transition transform .4s ease-out-quad .2s, opacity .4s ease-out-quad .2s
 
 </style>

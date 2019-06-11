@@ -21,6 +21,7 @@ import vFooter from '~/components/common/footer.vue'
 import vNav from '~/components/common/nav.vue'
 import loop from 'raf-loop'
 import transform from 'dom-transform'
+import anime from 'animejs'
 import { mapState, mapGetters } from 'vuex';
 export default {
 

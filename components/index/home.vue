@@ -15,11 +15,25 @@
     </h1>
     <img src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk">
     <v-top-layer />
+    <button class="play" aria-label="play video">Play<br>Video</button>
+    <div class="click">
+     <button aria-label="click" @click="scrollTo"><v-svg></v-svg><span>Click click</span></button>
+      <ul>
+        <li>Art Direction</li>
+        <li>Digital production</li>
+        <li>Branding</li>
+      </ul>
+    </div>
+    <v-home-footer />
   </article>
 </template>
 <script>
 import vTopLayer from '~/components/index/homeTopLayer.vue'
 import vBottomLayer from '~/components/index/homeBottomLayer.vue'
+import vHomeFooter from '~/components/index/homeFooter.vue'
+import vSvg from "~/assets/svgs/star.svg?inline";
+import ScrollHelper from '~/assets/js/utils/ScrollHelper'
+
 export default {
   data() {
     return {
@@ -29,7 +43,7 @@ export default {
     }
   },
   components:{
-    vBottomLayer, vTopLayer
+    vBottomLayer, vTopLayer, vHomeFooter, vSvg
   },
   methods: {
     resize(w, h) {
@@ -40,6 +54,10 @@ export default {
     },
     tick(scrollTop) {
 
+    },
+    scrollTo() {
+
+      ScrollHelper.scrollTo(this.h)
     }
   },
   mounted() {
@@ -56,33 +74,44 @@ export default {
   position relative
   height 100vh
   width 100vw
-  .vertical
-    background #C5C0B5
-    height 100%
+  button.play
+    position absolute
+    top 68vh
     left 50%
+    transform translateX(-32vw)
+    font-size 11px
+    text-transform uppercase
+    letter-spacing 6px
+    text-align left
+  .click
     position absolute
-    top 0
-    width 1px
-  .horizontal
-    background $black
-    height 1px
-    left 0
-    opacity 0.2
-    position absolute
-    top 65vh
-    width 100%
-    z-index 5
-  .circle
-    border solid 1px $black
-    border-radius 50%
-    height 70vh
-    left 50%
-    opacity 0.2
-    position absolute
-    top 14vh
-    transform translateX(-80%)
-    width 70vh
-    z-index 5
+    text-align left
+    left 75vw
+    top 70vh
+    ul
+      font-size 18px
+      font-family $schnyder
+      line-height 1.5
+      font-weight $demi
+    button
+      width 42px
+      height 42px
+      margin-left -42px
+      position relative
+      svg
+        display block
+        width 42px
+        height 42px
+        fill $red
+      span
+        color $red
+        font-size 10px
+        text-transform uppercase
+        position absolute
+        white-space nowrap
+        top 0
+        transform-origin 0 0%
+        transform translateX(20px) rotate(-30deg)
   img
     position absolute
     top 50%

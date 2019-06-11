@@ -31,7 +31,7 @@ export default {
         this.w = w
         this.h = h
       }
-      //this.$refs.home.resize(this.w, this.h)
+      this.$refs.home.resize(this.w, this.h)
       this.$refs.gems.resize(this.w, this.h)
       this.$refs.works.resize(this.w, this.h)
       this.$refs.contact.resize(this.w, this.h)

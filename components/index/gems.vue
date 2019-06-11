@@ -1,7 +1,10 @@
 <template>
   <article class="gems">
-    <div>
-      <v-gems-line v-for="(item, index) in 3" :key="`line-${index}`" ref="lines"/>
+    <strong>My main services</strong>
+    <div class="d-f">
+      <div>
+        <v-gems-line v-for="(item, index) in 3" :key="`line-${index}`" ref="lines"/>
+      </div>
     </div>
   </article>
 </template>
@@ -48,11 +51,21 @@ export default {
   overflow hidden
   height 100vh
   width 100vw
-  font-size 6vw
   position relative
-  display flex
-  align-items center
-  font-family $schnyder
-  font-weight $demi
+  .d-f
+    font-size 6vw
+    display flex
+    align-items center
+    font-family $schnyder
+    font-weight $demi
+    height 100%
+  strong
+    position absolute
+    top 2vh
+    text-align center
+    left 50%
+    transform translateX(-50%)
+    font-weight normal
+    text-transform uppercase
 
 </style>
