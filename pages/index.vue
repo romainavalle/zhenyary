@@ -3,6 +3,8 @@
     <v-home ref="home"/>
     <v-gems ref="gems"/>
     <v-works ref="works"/>
+    <v-works-link/>
+    <v-contact ref="contact"/>
   </section>
 </template>
 
@@ -11,6 +13,8 @@ import Emitter from '~/assets/js/events/EventsEmitter'
 import vHome from '~/components/index/home.vue'
 import vGems from '~/components/index/gems.vue'
 import vWorks from '~/components/index/works.vue'
+import vWorksLink from '~/components/index/worksLink.vue'
+import vContact from '~/components/index/contact.vue'
 export default {
   data() {
     return {
@@ -19,7 +23,7 @@ export default {
     }
   },
   components: {
-    vHome, vGems, vWorks
+    vHome, vGems, vWorks, vWorksLink, vContact
   },
   methods: {
     resize(w, h) {
@@ -30,11 +34,13 @@ export default {
       //this.$refs.home.resize(this.w, this.h)
       this.$refs.gems.resize(this.w, this.h)
       this.$refs.works.resize(this.w, this.h)
+      this.$refs.contact.resize(this.w, this.h)
     },
     tick(scrollTop) {
       //this.$refs.home.tick(scrollTop)
       this.$refs.gems.tick(scrollTop)
       this.$refs.works.tick(scrollTop)
+      this.$refs.contact.tick(scrollTop)
     }
   },
   mounted() {

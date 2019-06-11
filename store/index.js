@@ -6,8 +6,8 @@ if(process.browser){
 export const state = () => ({
   datas,
   color: 'nude',
-  path: process.env.NODE_ENV === 'production' ? 'https://res.cloudinary.com/dqeh75j4f/image/upload/f_auto/romainavalle.dev/' : '/images/',
-  vPath: process.env.NODE_ENV === 'production' ? 'https://romainavalle.s3.us-east-2.amazonaws.com/images/' : '/images/'
+  path: process.env.NODE_ENV === 'production' ? '/images/' : '/images/',
+  vPath: process.env.NODE_ENV === 'production' ? '/images/' : '/images/'
 })
 export const mutations = {
   SET_COLOR (state, color) {

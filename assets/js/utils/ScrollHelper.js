@@ -7,7 +7,6 @@ class ScrollHelper {
       this.scrollTop = 0
       this._preventDefault = this.preventDefault.bind(this)
       this._onScroll = this.onScroll.bind(this)
-      this.easeSlow = 0
       this.tempScroll = 0
 
       if(process.browser){
@@ -40,7 +39,6 @@ class ScrollHelper {
       this.scrollTo(0, y)
       this.scrollTop = y
       this.ease = y
-      this.easeSlow = y
       this.isForceScrolling = true
 
     }
@@ -52,10 +50,8 @@ class ScrollHelper {
       this.tick()
       if(y>this.scrollTop) {
         this.ease = this.ease + y
-        this.easeSlow = this.easeSlow + y
       }else{
         this.ease = this.ease-this.scrollTop
-        this.easeSlow = this.easeSlow-this.scrollTop
       }
 
       this.scrollTop = y
@@ -66,7 +62,6 @@ class ScrollHelper {
     tick() {
       this.tempScroll = this.scrollTop
       this.ease = Math.round(this.lerp(this.ease, this.scrollTop, 0.07)*100)/100
-      this.easeSlow = Math.round(this.lerp(this.easeSlow, this.scrollTop, 0.05)*100)/100
     }
     lerp(x, y, r) {
       return x + ((y - x) * r);

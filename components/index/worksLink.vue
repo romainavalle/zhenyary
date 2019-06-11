@@ -1,7 +1,7 @@
 <template>
-  <article class="works">
-
-  </article>
+  <div class="worksLink">
+    <nuxt-link :to="{name: 'index'}">All cases here</nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -30,12 +30,16 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.works
-  background $white
-  overflow hidden
-  height 200vh
+.worksLink
+  height 50vh
   width 100vw
-  font-size 6vw
   position relative
   display flex
+  justify-content center
+  align-items center
+  a
+    border-bottom 0.4vw solid $white
+    color $white
+    font-size 11vw
+    line-height 1.1
 </style>

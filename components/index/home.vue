@@ -110,7 +110,7 @@ export default {
       overflow hidden
       width 70%
       span
-        transition transform .8s ease-in-out-quad
+        transition transform 2s ease-out-quad
     .left
       left -20%
       span

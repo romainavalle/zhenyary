@@ -43,11 +43,13 @@ export default {
       const h = ResizeHelper.height()
       const pageHeight = this.$refs.scroll.clientHeight
       if(this.$refs.page && this.$refs.page.$children[0])this.$refs.page.$children[0].resize && this.$refs.page.$children[0].resize(w, h, pageHeight)
+      this.$refs.nav.resize(w, h, pageHeight)
       if(!this.isDevice)document.body.style.height = pageHeight + 'px'
     },
     tick(){
       ScrollHelper.tick()
-      const scrollTop = ScrollHelper.scrollTop
+      const scrollTop = this.isDevice ? ScrollHelper.scrollTop : ScrollHelper.ease
+      this.$refs.nav.tick(scrollTop)
       if(this.$refs.page.$children[0])this.$refs.page.$children[0].tick && this.$refs.page.$children[0].tick(scrollTop)
       if(!this.isDevice)transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
     },

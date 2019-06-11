@@ -55,10 +55,8 @@ export default {
     width 2vw
     height 2vw
     display block
-  .italic
-    font-style italic
   .underline
-    border-bottom 4px solid $red
+    border-bottom .2vw solid $red
   .section
     display flex
   .screen
@@ -72,5 +70,5 @@ export default {
     font-size 20px
     text-align center
     line-height 1.6
-    border-bottom 4px solid $black
+    border-bottom .2vw solid $black
 </style>
