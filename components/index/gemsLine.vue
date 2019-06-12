@@ -63,7 +63,7 @@ export default {
     align-items center
     display flex
     justify-content space-between
-    padding 0 4vw
+    padding 0 6vw
     width 100vw
   .and
     width 10vw

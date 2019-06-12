@@ -1,10 +1,10 @@
 <template>
   <article class="contact">
-    <p>Let's make something great!<br><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a>  for collaborations.</p>
+    <p>Let’s make something great!<br><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a>  for collaborations.</p>
     <no-ssr>
       <div>
         <div class="line"><v-svg-smiley class="smiley" /></div>
-        <div class="line">Let's make <strong class="italic">something</strong> great!</div>
+        <div class="line">Let’s make <strong class="italic">something</strong> great!</div>
         <div class="line"><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a><v-svg-arrow class="arrow" /> <span class="italic">for</span></div>
         <div class="line"><v-svg-arrow class="arrow" /><v-svg-arrow class="arrow" /><v-svg-arrow class="arrow" /><span>collaborations.</span><v-svg-star class="star" /></div>
       </div>
