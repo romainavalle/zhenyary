@@ -1,5 +1,5 @@
 <template>
-  <nav :class="[{'sml': isMinimized}, color]">
+  <nav :class="[{'sml': isMinimized}, color, $route.name]">
     <nuxt-link :to="{name: 'index'}" class="home strong" v-if="$route.name !== 'index'">Go home</nuxt-link>
     <div class="container">
       <nuxt-link :to="{name: 'index'}" v-if="isTablet && $route.name !== 'index'">Home</nuxt-link>
@@ -59,8 +59,12 @@ nav
   transition transform .4s ease-out-quad
   width 100%
   z-index 5
-  .no-touch & a:hover
+  &.works .container:before
+    background $pink
+  .no-touch &.nude a:hover
     color $red
+  .no-touch &.red a:hover
+    color $white
   .home
     position absolute
     top 5vh
@@ -79,15 +83,31 @@ nav
     .container
       transition transform .4s ease-in-quad
       transform translateY(6vh)
+      &:before
+        transform translateY(0%)
+        transition transform .4s ease-in-quad
     span
       opacity 0
       transform translateY(-20px)
       transition transform .4s ease-in-quad, opacity .4s ease-in-quad
   .container
     display flex
+    position relative
     padding 5vh 2vw
     transition transform .4s ease-out-quad
     width 100%
+    &:before
+      background $brown
+      bottom 0
+      content ''
+      display block
+      left 0
+      position absolute
+      right 0
+      top 0
+      transform translateY(-100%)
+      transition transform .4s ease-out-quad
+      z-index -1
     a
       font-size 2.2vw
       display block

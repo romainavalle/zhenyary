@@ -39,14 +39,11 @@ export default {
   },
   methods:{
     resize(){
-
       const w = ResizeHelper.width()
       const h = ResizeHelper.height()
       const pageHeight = this.$refs.scroll.clientHeight
       if(this.$refs.page && this.$refs.page.$children[0])this.$refs.page.$children[0].resize && this.$refs.page.$children[0].resize(w, h, pageHeight)
       this.$refs.nav.resize(w, h, pageHeight)
-      console.log(this.$refs.scroll.children);
-
       if(!this.isDevice)document.body.style.height = pageHeight + 'px'
     },
     tick(){

@@ -48,9 +48,9 @@ footer
       position absolute
       bottom 0
       left 0
-      transform translateY(3px)
-      transition transform .3s ease-out-quad
-    &.active:after
+      transition transform .7s ease-out-quad
+    &.active.red:after,
+    &.active.nude:after
       transform translateY(0)
     &.red
       color $black
@@ -58,12 +58,14 @@ footer
         color $white
       &:after
         background $white
+        transform translateX(-100%)
     &.nude
       color $black
       &.active
         color $red
       &:after
         background $red
+        transform translateX(100%)
 
 
 
