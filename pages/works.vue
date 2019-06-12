@@ -248,12 +248,10 @@ export default {
     });
     this._onMouseLeave = this.onMouseLeave.bind(this)
     Emitter.on('WORKS:MOUSELEAVE', this._onMouseLeave)
-    anime({
-      targets: lines,
+    anime.set(lines, {
       translateY: 200,
       scaleY: 1.5,
       transformOrigin: '0 0',
-      duration: 0,
       opacity: 0
     })
     this.$nextTick(()=>{

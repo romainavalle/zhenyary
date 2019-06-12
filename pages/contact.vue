@@ -5,7 +5,7 @@
       <div>
         <div class="line">Let’s make <strong class="italic">something</strong> great!</div>
         <div class="line"><span class="rounded">Reach out</span><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a></div>
-        <div class="line">for <span class="underline">wonderfull</span> <span class="slider-container"><span class="slider"><span>collaborations</span><span>cooool stories</span><span>new projects</span></span>.</span><v-svg-star class="star" /></div>
+        <div class="line">for <span class="underline">wonderfull</span> <span class="slider-container"><span class="slider"><span v-for="(word, index) in words" :key="`word-${index}`" v-text="word"></span></span>.</span><v-svg-star class="star" /></div>
       </div>
     </no-ssr>
   </section>
@@ -14,12 +14,15 @@
 <script>
 import Emitter from '~/assets/js/events/EventsEmitter'
 import vSvgStar from "~/assets/svgs/star.svg?inline";
+import anime from 'animejs'
 import { mapState } from 'vuex'
 export default {
   data() {
     return {
       w: 0,
-      h:0
+      h:0,
+      id:0,
+      words: ['collaborations', 'cooool stories', 'new projects', 'collaborations']
     }
   },
   computed: {
@@ -35,12 +38,35 @@ export default {
       }
     },
     tick(scrollTop) {
+    },
+    show() {
+      this.timer = setTimeout(this.show.bind(this),8000)
+      anime({
+        targets: this.slider ,
+        translateY: this.id *  -(.08 *this.w) ,
+        easing: 'easeInOutQuad',
+        duration: 700,
+        complete: ()=>{
+          if(this.id === this.words.length) {
+            this.id = 1
+            anime.set(this.slider, { translateY: 0 })
+          }
+        }
+      })
+      this.id++
     }
+  },
+  beforeDestroy() {
+    clearTimeout(this.timer)
   },
   mounted() {
     this.$el.querySelector('p').style.display = 'none'
     Emitter.emit('PAGE:MOUNTED')
-  },
+    this.show()
+    this.$nextTick(()=>{
+      this.slider = this.$el.querySelector('.slider')
+    })
+  }
 }
 </script>
 
@@ -81,12 +107,15 @@ export default {
     border-bottom 0.3vw solid $red
   .slider-container
     display flex
-  .slider
+    height 8vw
     overflow hidden
+    line-height 1
+  .slider
     display block
-    height 9vw
     span
       display block
+      height 8vw
+      text-align right
   svg
     display block
   .arrow
