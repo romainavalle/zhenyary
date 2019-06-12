@@ -38,20 +38,23 @@ export default {
     vLoader, vTurn, vNav, vFooter
   },
   methods:{
-     resize(){
+    resize(){
 
       const w = ResizeHelper.width()
       const h = ResizeHelper.height()
       const pageHeight = this.$refs.scroll.clientHeight
       if(this.$refs.page && this.$refs.page.$children[0])this.$refs.page.$children[0].resize && this.$refs.page.$children[0].resize(w, h, pageHeight)
       this.$refs.nav.resize(w, h, pageHeight)
+      console.log(this.$refs.scroll.children);
+
       if(!this.isDevice)document.body.style.height = pageHeight + 'px'
     },
     tick(){
       ScrollHelper.tick()
       const scrollTop = this.isDevice ? ScrollHelper.scrollTop : ScrollHelper.ease
+      const scrollTopEase = this.isDevice ? ScrollHelper.ease : ScrollHelper.easeSlow
       this.$refs.nav.tick(scrollTop)
-      if(this.$refs.page.$children[0])this.$refs.page.$children[0].tick && this.$refs.page.$children[0].tick(scrollTop)
+      if(this.$refs.page.$children[0])this.$refs.page.$children[0].tick && this.$refs.page.$children[0].tick(scrollTop, scrollTopEase)
       if(!this.isDevice)transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
     },
 
@@ -83,7 +86,9 @@ export default {
       })
     },
     onPageMounted(){
-      this.resize()
+      setTimeout(()=>{
+        this.resize()
+      }, 100)
       this.pageFadeIn(0)
     }
   },

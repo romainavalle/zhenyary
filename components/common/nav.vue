@@ -1,14 +1,15 @@
 <template>
   <nav :class="[{'sml': isMinimized}, color]">
+    <nuxt-link :to="{name: 'index'}" class="home strong" v-if="$route.name !== 'index'">Go home</nuxt-link>
     <div class="container">
       <nuxt-link :to="{name: 'index'}" v-if="isTablet && $route.name !== 'index'">Home</nuxt-link>
-      <nuxt-link :to="{name: 'index'}">Z.<span>about me</span></nuxt-link>
-      <nuxt-link :to="{name: 'index'}">Works<span>some cases</span></nuxt-link>
+      <nuxt-link :to="{name: 'z'}">Z.<span>about me</span></nuxt-link>
+      <nuxt-link :to="{name: 'works'}">Works<span>some cases</span></nuxt-link>
       <no-ssr>
-        <span class="spacer" v-if="!isTablet"></span>
+        <div class="spacer" v-if="!isTablet"></div>
       </no-ssr>
-      <nuxt-link :to="{name: 'index'}">Workflow<span>All the processes</span></nuxt-link>
-      <nuxt-link :to="{name: 'index'}">Contact Me<span>For any collaborations</span></nuxt-link>
+      <nuxt-link :to="{name: 'workflow'}">Workflow<span>All the processes</span></nuxt-link>
+      <nuxt-link :to="{name: 'contact'}">Contact Me<span>For any collaborations</span></nuxt-link>
     </div>
   </nav>
 </template>
@@ -44,8 +45,6 @@ export default {
     },
   },
   mounted(){
-    console.log(this.isDevice);
-
     if(this.isDevice) this.isMinimized = true
   }
 }
@@ -60,9 +59,23 @@ nav
   transition transform .4s ease-out-quad
   width 100%
   z-index 5
+  .no-touch & a:hover
+    color $red
+  .home
+    position absolute
+    top 5vh
+    line-height 2
+    text-align center
+    left 50%
+    transform translateX(-50%)
+    transition transform .4s ease-out-quad
+    z-index 2
   &.sml
     transition transform .4s ease-in-quad
     transform translateY(-9vh)
+    .home
+      transform translate(-50%, 6vh)
+      transition transform .4s ease-in-quad
     .container
       transition transform .4s ease-in-quad
       transform translateY(6vh)
@@ -75,15 +88,19 @@ nav
     padding 5vh 2vw
     transition transform .4s ease-out-quad
     width 100%
+    a
+      font-size 2.2vw
+      display block
+      margin 0 2vw
+      line-height 1
+      white-space nowrap
+      transition color .5s ease-in-out-quad
+      &.nuxt-link-exact-active
+        color $red
   .spacer
     display block
     width 100%
-  a
-    font-size 2.2vw
-    display block
-    margin 0 2vw
-    line-height 1
-    white-space nowrap
+
   span
     display block
     font-weight $light

@@ -5,16 +5,35 @@ if(process.browser){
 }
 export const state = () => ({
   datas,
+  works: [],
+  worksById: {},
   color: 'nude',
   path: process.env.NODE_ENV === 'production' ? '/images/' : '/images/',
   vPath: process.env.NODE_ENV === 'production' ? '/images/' : '/images/'
 })
 export const mutations = {
+  SET_WORKS (state, works) {
+    state.works = works
+  },
+  SET_WORKS_BY_ID (state, worksById) {
+    state.worksById = worksById
+  },
   SET_COLOR (state, color) {
     state.color = color
   }
 }
 export const actions = {
+  nuxtServerInit({state, commit}) {
+    const works = []
+    const worksById = {}
+    state.datas.works.forEach(el => {
+      const json = require(`~/assets/datas/works/${el}.json`)
+      works.push(json)
+      worksById[el]  = json
+    })
+    commit('SET_WORKS', works)
+    commit('SET_WORKS_BY_ID', worksById)
+  },
   setColor ({ commit }, color) {
     commit('SET_COLOR', color)
   }

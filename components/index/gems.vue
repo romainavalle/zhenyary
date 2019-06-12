@@ -1,6 +1,6 @@
 <template>
   <article class="gems">
-    <strong>My main services</strong>
+    <strong class="strong">My main services</strong>
     <div class="d-f">
       <div>
         <v-gems-line v-for="(item, index) in 3" :key="`line-${index}`" ref="lines"/>
@@ -67,7 +67,4 @@ export default {
     text-align center
     left 50%
     transform translateX(-50%)
-    font-weight normal
-    text-transform uppercase
-
 </style>
