@@ -32,9 +32,11 @@ export default {
       });
     },
     tick(scrollTop) {
+      const dist =  (scrollTop - this.h) / this.h * this.w
       this.$refs.lines.forEach((line, i) => {
         const multiplier = (i === 1) ? -1 : 1
-        const x = (scrollTop - this.h)/this.h * this.w * multiplier + this.w * i
+        const offset = this.w * i
+        const x = dist * multiplier - offset
         line.tick(x)
       });
     }

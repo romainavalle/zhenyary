@@ -1,5 +1,5 @@
 <template>
-  <main :class="{ 'no-touch': !isTouch, 'device': isDevice, 'mobile': isPhone}">
+  <main :class="{ 'no-touch': !isTouch, 'device': isDevice, 'bigTablet': isDevice && w > 1024, 'smlTablet': isDevice && w <= 1024, 'mobile': isPhone}">
     <v-loader/>
     <no-ssr>
       <v-turn v-if="isDevice"></v-turn>
