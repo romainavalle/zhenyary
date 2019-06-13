@@ -1,6 +1,9 @@
 {
-  "slug": "limnia-jewellery",
-  "title": "Limnia Jewellery",
+  "slug": "espn",
+  "title": "ESPN",
+  "menuUnderline": false,
+  "menuNumberUnderline": false,
+  "menuItalic": false,
   "type": "Ecommerce Website",
   "skills" : ["Art direction", "interface design", "photography"],
   "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",

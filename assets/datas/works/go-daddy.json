@@ -1,6 +1,9 @@
 {
   "slug": "go-daddy",
   "title": "Go Daddy",
+  "menuUnderline": false,
+  "menuNumberUnderline": true,
+  "menuItalic": true,
   "type": "Ecommerce Website",
   "skills" : ["Art direction", "interface design", "photography"],
   "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",

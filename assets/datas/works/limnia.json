@@ -1,9 +1,9 @@
 {
-  "slug": "adobe-xd",
-  "title": "Adobe XD kit",
+  "slug": "limnia",
+  "title": "Limnia",
   "menuUnderline": false,
   "menuNumberUnderline": false,
-  "menuItalic": true,
+  "menuItalic": false,
   "type": "Ecommerce Website",
   "skills" : ["Art direction", "interface design", "photography"],
   "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",

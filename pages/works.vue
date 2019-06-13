@@ -4,62 +4,32 @@
         <div>
           <div class="line">
             <div class="work">
-              <span class="number" v-text="getId(0)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(0).title" class="underline" @mouseover.native="onMouseEnter(0)"></nuxt-link>
+              <span class="number" v-text="getId(0)"  :class="{'underline': getWork(0).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(0).title" :class="{'underline': getWork(0).menuUnderline, 'italic': getWork(0).menuItalic}" @mouseover.native="onMouseEnter(0)"></nuxt-link>
             </div>
             <div class="work">
-              <span class="number wide" v-text="getId(1)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(1).title" class="italic" @mouseover.native="onMouseEnter(1)"></nuxt-link>
-            </div>
-          </div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(2)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(2).title" @mouseover.native="onMouseEnter(2)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(3)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(3).title" @mouseover.native="onMouseEnter(3)"></nuxt-link>
+              <span class="number" v-text="getId(1)" :class="{'wide': getWork(1).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(1).title" :class="{'underline': getWork(1).menuUnderline, 'italic': getWork(1).menuItalic}" @mouseover.native="onMouseEnter(1)"></nuxt-link>
             </div>
           </div>
           <div class="line">
             <div class="work">
-              <span class="number" v-text="getId(4)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(4).title" class="italic" @mouseover.native="onMouseEnter(4)"></nuxt-link>
+              <span class="number" v-text="getId(2)" :class="{'wide': getWork(2).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(2).title" :class="{'underline': getWork(2).menuUnderline, 'italic': getWork(2).menuItalic}" @mouseover.native="onMouseEnter(2)"></nuxt-link>
             </div>
             <div class="work">
-              <span class="number" v-text="getId(5)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(5).title" @mouseover.native="onMouseEnter(5)"></nuxt-link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="screen">
-        <div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(6)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(6).title" class="italic" @mouseover.native="onMouseEnter(6)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(7)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(7).title" @mouseover.native="onMouseEnter(7)"></nuxt-link>
+              <span class="number" v-text="getId(3)" :class="{'wide': getWork(3).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(3).title" :class="{'underline': getWork(3).menuUnderline, 'italic': getWork(3).menuItalic}" @mouseover.native="onMouseEnter(3)"></nuxt-link>
             </div>
           </div>
           <div class="line">
             <div class="work">
-              <span class="number" v-text="getId(8)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(8).title" class="underline" @mouseover.native="onMouseEnter(8)"></nuxt-link>
+              <span class="number" v-text="getId(4)" :class="{'wide': getWork(4).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(4).title" :class="{'underline': getWork(4).menuUnderline, 'italic': getWork(4).menuItalic}" @mouseover.native="onMouseEnter(4)"></nuxt-link>
             </div>
             <div class="work">
-              <span class="number" v-text="getId(9)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(9).title" class="italic" @mouseover.native="onMouseEnter(9)"></nuxt-link>
-            </div>
-          </div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(10)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(10).title" class="italic" @mouseover.native="onMouseEnter(10)"></nuxt-link>
+              <span class="number" v-text="getId(5)" :class="{'wide': getWork(5).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(5).title" :class="{'underline': getWork(5).menuUnderline, 'italic': getWork(5).menuItalic}" @mouseover.native="onMouseEnter(5)"></nuxt-link>
             </div>
           </div>
         </div>
@@ -68,22 +38,66 @@
         <div>
           <div class="line">
             <div class="work">
-              <span class="number" v-text="getId(11)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(11).title" class="underline" @mouseover.native="onMouseEnter(11)"></nuxt-link>
+              <span class="number" v-text="getId(6)" :class="{'wide': getWork(6).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(6).title" :class="{'underline': getWork(6).menuUnderline, 'italic': getWork(6).menuItalic}" @mouseover.native="onMouseEnter(6)"></nuxt-link>
             </div>
             <div class="work">
-              <span class="number wide" v-text="getId(12)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(12).title" class="italic" @mouseover.native="onMouseEnter(12)"></nuxt-link>
+              <span class="number" v-text="getId(7)" :class="{'wide': getWork(7).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(7).title" :class="{'underline': getWork(7).menuUnderline, 'italic': getWork(7).menuItalic}" @mouseover.native="onMouseEnter(7)"></nuxt-link>
             </div>
           </div>
           <div class="line">
             <div class="work">
-              <span class="number" v-text="getId(13)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(13).title" @mouseover.native="onMouseEnter(13)"></nuxt-link>
+              <span class="number" v-text="getId(8)" :class="{'wide': getWork(8).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(8).title" :class="{'underline': getWork(8).menuUnderline, 'italic': getWork(8).menuItalic}" @mouseover.native="onMouseEnter(8)"></nuxt-link>
             </div>
             <div class="work">
-              <span class="number" v-text="getId(14)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(14).title" @mouseover.native="onMouseEnter(14)"></nuxt-link>
+              <span class="number" v-text="getId(9)" :class="{'wide': getWork(9).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(9).title" :class="{'underline': getWork(9).menuUnderline, 'italic': getWork(9).menuItalic}" @mouseover.native="onMouseEnter(9)"></nuxt-link>
+            </div>
+          </div>
+          <div class="line">
+            <div class="work">
+              <span class="number" v-text="getId(10)" :class="{'wide': getWork(10).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(10).title" :class="{'underline': getWork(10).menuUnderline, 'italic': getWork(10).menuItalic}" @mouseover.native="onMouseEnter(10)"></nuxt-link>
+            </div>
+            <div class="work">
+              <span class="number" v-text="getId(11)" :class="{'wide': getWork(11).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(11).title" :class="{'underline': getWork(11).menuUnderline, 'italic': getWork(11).menuItalic}" @mouseover.native="onMouseEnter(11)"></nuxt-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="screen">
+        <div>
+          <div class="line">
+            <div class="work">
+              <span class="number" v-text="getId(12)" :class="{'wide': getWork(12).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(12).title" :class="{'underline': getWork(12).menuUnderline, 'italic': getWork(12).menuItalic}" @mouseover.native="onMouseEnter(12)"></nuxt-link>
+            </div>
+            <div class="work">
+              <span class="number" v-text="getId(13)" :class="{'wide': getWork(13).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(13).title" :class="{'underline': getWork(13).menuUnderline, 'italic': getWork(13).menuItalic}" @mouseover.native="onMouseEnter(13)"></nuxt-link>
+            </div>
+          </div>
+          <div class="line">
+            <div class="work">
+              <span class="number" v-text="getId(14)" :class="{'wide': getWork(14).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(14).title" :class="{'underline': getWork(14).menuUnderline, 'italic': getWork(14).menuItalic}" @mouseover.native="onMouseEnter(14)"></nuxt-link>
+            </div>
+            <div class="work">
+              <span class="number" v-text="getId(15)" :class="{'wide': getWork(15).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(15).title" :class="{'underline': getWork(15).menuUnderline, 'italic': getWork(15).menuItalic}" @mouseover.native="onMouseEnter(15)"></nuxt-link>
+            </div>
+          </div>
+          <div class="line">
+            <div class="work">
+              <span class="number" v-text="getId(16)" :class="{'wide': getWork(16).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(16).title" :class="{'underline': getWork(16).menuUnderline, 'italic': getWork(16).menuItalic}" @mouseover.native="onMouseEnter(16)"></nuxt-link>
+            </div>
+            <div class="work">
+              <span class="number" v-text="getId(17)" :class="{'wide': getWork(17).menuNumberUnderline}"></span>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(17).title" :class="{'underline': getWork(17).menuUnderline, 'italic': getWork(17).menuItalic}" @mouseover.native="onMouseEnter(17)"></nuxt-link>
             </div>
           </div>
         </div>
