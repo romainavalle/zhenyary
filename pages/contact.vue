@@ -39,13 +39,13 @@ export default {
     },
     tick(scrollTop) {
     },
-    show() {
-      this.timer = setTimeout(this.show.bind(this),8000)
+    showWord() {
+      this.timer = setTimeout(this.showWord.bind(this),1000)
       anime({
         targets: this.slider ,
         translateY: this.id *  -(.08 *this.w) ,
         easing: 'easeInOutQuad',
-        duration: 700,
+        duration: 0,
         complete: ()=>{
           if(this.id === this.words.length) {
             this.id = 1
@@ -54,6 +54,18 @@ export default {
         }
       })
       this.id++
+
+    },
+    show(){
+      anime({
+        targets: this.lines,
+        translateY: 0,
+        opacity: 1,
+        scaleY: 1,
+        durration: 700,
+        easing: 'easeOutQuad',
+        delay: anime.stagger(500)
+      })
     }
   },
   beforeDestroy() {
@@ -62,9 +74,17 @@ export default {
   mounted() {
     this.$el.querySelector('p').style.display = 'none'
     Emitter.emit('PAGE:MOUNTED')
-    this.show()
     this.$nextTick(()=>{
       this.slider = this.$el.querySelector('.slider')
+      this.lines = [].slice.call(this.$el.querySelectorAll('.line'))
+      anime.set( this.lines, {
+        translateY: 200,
+        opacity: 0,
+        scaleY: 1.5,
+        transformOrigin: '50% 100%'
+      })
+      this.showWord()
+      this.show()
     })
   }
 }

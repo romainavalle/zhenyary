@@ -17,7 +17,7 @@
     <v-top-layer />
     <button class="play" aria-label="play video">Play<br>Video</button>
     <div class="click">
-     <button aria-label="click" @click="scrollTo"><v-svg></v-svg><span>Click click</span></button>
+     <button aria-label="click" @click="scrollTo"><v-svg class="star"></v-svg><span>Click click</span></button>
       <ul>
         <li>Art Direction</li>
         <li>Digital production</li>
