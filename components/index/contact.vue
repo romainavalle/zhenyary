@@ -3,10 +3,10 @@
     <p>Let’s make something great!<br><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a>  for collaborations.</p>
     <no-ssr>
       <div>
-        <div class="line"><v-svg-smiley class="smiley" /></div>
-        <div class="line">Let’s make <strong class="italic">something</strong> great!</div>
-        <div class="line"><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a><v-svg-arrow class="arrow" /> <span class="italic">for</span></div>
-        <div class="line"><v-svg-arrow class="arrow" /><v-svg-arrow class="arrow" /><v-svg-arrow class="arrow" /><span>collaborations.</span><v-svg-star class="star" /></div>
+        <div class="line" :class="{'ready': linesReady[0]}"><v-svg-smiley class="smiley" /></div>
+        <div class="line" :class="{'ready': linesReady[1]}">Let’s make <strong class="italic">something</strong> great!</div>
+        <div class="line" :class="{'ready': linesReady[2]}"><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a><v-svg-arrow class="arrow" /> <span class="italic">for</span></div>
+        <div class="line" :class="{'ready': linesReady[3]}"><v-svg-arrow class="arrow" /><v-svg-arrow class="arrow" /><v-svg-arrow class="arrow" /><span>collaborations.</span><v-svg-star class="star" /></div>
       </div>
     </no-ssr>
   </article>
@@ -23,7 +23,8 @@ export default {
     return {
       w:0,
       h:0,
-      isShown: false
+      isShown: false,
+      linesReady: [false, false, false, false]
     }
   },
   components: {
@@ -50,6 +51,15 @@ export default {
             coef = this.easeInOutQuad(Math.min(1,(scrollTop-start) / duration))
             transform(line, {translateY: 100 - 100 * coef, scaleY: 1.5 - .5 * coef})
             line.style.opacity = coef
+            if(coef > .8 && !this.linesReady[i]){
+              this.$set(this.linesReady,i, true)
+              console.log('true');
+            }
+          }
+          if(coef ===0 && this.linesReady[i]){
+            this.$set(this.linesReady,i, false)
+            console.log('false');
+
           }
         });
       }else{
@@ -102,15 +112,33 @@ export default {
     &:first-child
       justify-content center
   strong
-    color $white
+    transition color .5s ease-out-quad
   a
     color $red
-    border-bottom 0.3vw solid $red
+    position relative
+    &:after
+      content ''
+      display block
+      bottom 0
+      width 100%
+      height .3vw
+      left 0
+      background $red
+      transform scale(0)
+      transform-origin 0 0
+      transition transform .5s ease-out-quad
   svg
     display block
   .arrow
     width 6.8vw
     height 4.5vw
+    opacity 0
+    transform translateX(-3vw)
+    transition transform .5s ease-out-quad, opacity .5s ease-out-quad
+    & + .arrow
+      transition transform .5s ease-out-quad .2s, opacity .5s ease-out-quad .2s
+      & + .arrow
+        transition transform .5s ease-out-quad .3s, opacity .5s ease-out-quad .3s
   .star
     width 4.5vw
     height 4.5vw
@@ -118,4 +146,23 @@ export default {
   .smiley
     width 4.1vw
     height 4.1vw
+    animation-name smiley
+    animation-duration 1s
+    animation-timing-function ease-in-out-quad
+    animation-iteration-count infinite
+    animation-direction alternate
+  .ready
+    a:after
+      transform scale(1)
+    .arrow
+      opacity 1
+      transform translateX(0)
+    strong
+      color $white
+
+@keyframes smiley
+  0%
+    transform rotate(-10deg)
+  100%
+    transform rotate(30deg)
 </style>

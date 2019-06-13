@@ -4,8 +4,8 @@
     <no-ssr>
       <div>
         <div class="line">Let’s make <strong class="italic">something</strong> great!</div>
-        <div class="line"><span class="rounded">Reach out</span><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a></div>
-        <div class="line">for <span class="underline">wonderfull</span> <span class="slider-container"><span class="slider"><span v-for="(word, index) in words" :key="`word-${index}`" v-text="word"></span></span>.</span><v-svg-star class="star" /></div>
+        <div class="line" :class="{'ready': lineTwo}"><span class="rounded">Reach out</span><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank" class="underline">hey@zhenyary.com</a></div>
+        <div class="line" :class="{'ready': lineThree}">for <span class="underline wide">wonderfull</span> <span class="slider-container"><span class="slider"><span v-for="(word, index) in words" :key="`word-${index}`" v-text="word"></span></span>.</span><v-svg-star class="star" /></div>
       </div>
     </no-ssr>
   </section>
@@ -22,6 +22,8 @@ export default {
       w: 0,
       h:0,
       id:0,
+      lineTwo: false,
+      lineThree: false,
       words: ['collaborations', 'cooool stories', 'new projects', 'collaborations']
     }
   },
@@ -66,10 +68,17 @@ export default {
         easing: 'easeOutQuad',
         delay: anime.stagger(500)
       })
+      this.lineTimer = setTimeout(()=>{
+        this.lineTwo = true
+        this.lineTimer = setTimeout(()=>{
+          this.lineThree = true
+        }, 700)
+      }, 700)
     }
   },
   beforeDestroy() {
     clearTimeout(this.timer)
+    if(this.lineTimer)clearTimeout(this.lineTimer)
   },
   mounted() {
     this.$el.querySelector('p').style.display = 'none'
@@ -92,15 +101,16 @@ export default {
 
 <style lang="stylus" scoped>
 .contact
+  align-items center
+  background $grey
+  display flex
+  font-family $schnyder
+  font-size 7.6vw
+  font-weight $demi
+  height 100vh
+  position relative
   position relative
   width 100vw
-  height 100vh
-  font-size 7.6vw
-  position relative
-  display flex
-  align-items center
-  font-family $schnyder
-  font-weight $demi
   .line
     width 100vw
     padding 1vh 6vw
@@ -108,23 +118,37 @@ export default {
     display flex
     justify-content space-between
     align-items baseline
-    &:llast-child
-      overflow hidden
-      height 9vw
   .rounded
     border .15vw solid $black
     border-radius 50%
     font-size 2.9vw
     padding 2.9vw 5vw
   .underline
+    position relative
+    &:after
+      content ''
+      display block
+      bottom 0
+      width 100%
+      height .3vw
+      left 0
+      background $black
+      transform scale(0)
+      transition transform .5s ease-out-quad
+  .wide
     font-size 1.5vw
     line-height 2
-    padding 0 10vw
+    width 20vw
     align-self center
-    border-bottom .3vw solid black
+    text-align center
   a
     color $red
-    border-bottom 0.3vw solid $red
+    &.underline:after
+      background $red
+      transform-origin 0 0
+  .line.ready
+    .underline:after
+      transform scale(1)
   .slider-container
     display flex
     height 8vw

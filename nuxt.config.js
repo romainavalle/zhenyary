@@ -50,6 +50,7 @@ module.exports = {
       [].concat(...config.module.rules.find(e => e.test.toString().match(/\.styl/)).oneOf.map(e => e.use.filter(e => e.loader == 'stylus-loader'))).forEach(stylus => {
         Object.assign(stylus.options, {
             import: [
+              '~assets/stylus/rupture.styl',
               '~assets/stylus/vars/index.styl'
             ]
         })
