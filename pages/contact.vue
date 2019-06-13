@@ -2,7 +2,17 @@
   <section class="contact">
     <p>Let’s make something great!<br>Reach out <a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a>  for wonderfull collaborations. <v-svg-star class="star" /></p>
     <no-ssr>
-      <div>
+      <div v-if="isDevice">
+        <div class="line">Let’s make</div>
+        <div class="line"><strong class="italic">something</strong> great!</div>
+        <div class="line" :class="{'ready': lineThree}"><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank" class="underline">hey@zhenyary.com</a></div>
+        <div class="line" :class="{'ready': lineTwo}"><strong class="italic">Reach out</strong> for</div>
+        <div class="line"><span class="slider-container"><span class="slider"><span v-for="(word, index) in words" :key="`word-${index}`" v-text="word"></span></span>.</span></div>
+        <div class="line"><v-svg-star class="star" /></div>
+      </div>
+    </no-ssr>
+    <no-ssr>
+      <div  v-if="!isDevice">
         <div class="line">Let’s make <strong class="italic">something</strong> great!</div>
         <div class="line" :class="{'ready': lineTwo}"><span class="rounded">Reach out</span><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank" class="underline">hey@zhenyary.com</a></div>
         <div class="line" :class="{'ready': lineThree}">for <span class="underline wide">wonderfull</span> <span class="slider-container"><span class="slider"><span v-for="(word, index) in words" :key="`word-${index}`" v-text="word"></span></span>.</span><v-svg-star class="star" /></div>
@@ -15,7 +25,7 @@
 import Emitter from '~/assets/js/events/EventsEmitter'
 import vSvgStar from "~/assets/svgs/star.svg?inline";
 import anime from 'animejs'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -28,6 +38,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['isDevice'])
   },
   components: {
     vSvgStar
@@ -45,7 +56,7 @@ export default {
       this.timer = setTimeout(this.showWord.bind(this),1000)
       anime({
         targets: this.slider ,
-        translateY: this.id *  -(.08 *this.w) ,
+        translateY: this.id *  this.isDevice ? -( .12 * this.w) : -(.08 *this.w) ,
         easing: 'easeInOutQuad',
         duration: 0,
         complete: ()=>{
@@ -169,6 +180,27 @@ export default {
     width 4.5vw
     height 4.5vw
     fill $red
+  .device &
+    font-size 12vw
+    height calc(100vh - 50px)
+    padding-top 20vh
+    .line
+      display block
+      text-align center
+      padding-top 0
+      padding-bottom 0
+    a
+      display inline-block
+      font-size 10vw
+      padding-bottom 2vh
+    .slider-container
+      display block
+      height 12vw
+      .slider span
+        text-align center
+        height 12vw
+    .star
+      margin 3vh auto
 </style>
 
 

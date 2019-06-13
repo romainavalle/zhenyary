@@ -66,6 +66,9 @@ footer
       &:after
         background $red
         transform translateX(100%)
+  .device &
+    button
+      display none
 
 
 

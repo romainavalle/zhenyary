@@ -1,5 +1,5 @@
 <template>
-  <div class="work">
+  <div class="work work-over">
   </div>
 </template>
 
@@ -40,7 +40,7 @@ export default {
       if(this.workOpacity)this.workOpacity.pause()
       this.workOpacity = anime({
         targets: this.$el,
-        opacity: 1,
+        opacity: [0,1],
         duration: 500,
         easing: 'easeOutQuad'
       })

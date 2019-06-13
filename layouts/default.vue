@@ -1,12 +1,12 @@
 <template>
-  <main :class="{ 'no-touch': !isTouch, 'device': isDevice, 'bigTablet': isDevice && w > 1024, 'smlTablet': isDevice && w <= 1024, 'mobile': isPhone}">
+  <main :class="{ 'no-touch': !isTouch, 'device': isDevice, 'tablet': isTablet, 'mobile': isPhone}">
     <v-loader/>
     <no-ssr>
       <v-turn v-if="isDevice"></v-turn>
     </no-ssr>
     <v-nav ref="nav"/>
     <div class="scroll" ref="scroll">
-      <nuxt :key="route.params.slug || route.name"  ref="page"/>
+      <nuxt :key="route.params.slug || route.name"  ref="page" class="page"/>
       <v-footer />
     </div>
   </main>
@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     ...mapState(['route']),
-    ...mapGetters(['isDevice', 'isPhone', 'work'])
+    ...mapGetters(['isDevice', 'isPhone', 'isTablet'])
   },
   components: {
     vLoader, vTurn, vNav, vFooter
@@ -104,14 +104,19 @@ export default {
 <style lang="stylus" scoped>
 main
   position relative
-  height 100%
   background $brown
   color black
-  &.no-touch .scroll
-    position fixed
-    top 0
-    left 0
-    right 0
-    will-change transform
+  .page
+    padding-bottom 150px
+  &.no-touch
+    height 100%
+    .page
+      padding-bottom 0
+    .scroll
+      position fixed
+      top 0
+      left 0
+      right 0
+      will-change transform
 </style>
 

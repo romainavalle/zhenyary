@@ -28,4 +28,8 @@ export default {
       color $nude
     &.red
       color $red
+  +below('l')
+    a
+      margin 0 20px
+
 </style>

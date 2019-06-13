@@ -5,31 +5,31 @@
           <div class="line">
             <div class="work">
               <span class="number" v-text="getId(0)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(0).title" class="underline" @mouseenter.native="onMouseEnter(0)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(0).title" class="underline" @mouseover.native="onMouseEnter(0)"></nuxt-link>
             </div>
             <div class="work">
               <span class="number wide" v-text="getId(1)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(1).title" class="italic" @mouseenter.native="onMouseEnter(1)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(1).title" class="italic" @mouseover.native="onMouseEnter(1)"></nuxt-link>
             </div>
           </div>
           <div class="line">
             <div class="work">
               <span class="number" v-text="getId(2)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(2).title" @mouseenter.native="onMouseEnter(2)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(2).title" @mouseover.native="onMouseEnter(2)"></nuxt-link>
             </div>
             <div class="work">
               <span class="number" v-text="getId(3)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(3).title" @mouseenter.native="onMouseEnter(3)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(3).title" @mouseover.native="onMouseEnter(3)"></nuxt-link>
             </div>
           </div>
           <div class="line">
             <div class="work">
               <span class="number" v-text="getId(4)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(4).title" class="italic" @mouseenter.native="onMouseEnter(4)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(4).title" class="italic" @mouseover.native="onMouseEnter(4)"></nuxt-link>
             </div>
             <div class="work">
               <span class="number" v-text="getId(5)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(5).title" @mouseenter.native="onMouseEnter(5)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(5).title" @mouseover.native="onMouseEnter(5)"></nuxt-link>
             </div>
           </div>
         </div>
@@ -39,27 +39,27 @@
           <div class="line">
             <div class="work">
               <span class="number" v-text="getId(6)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(6).title" class="italic" @mouseenter.native="onMouseEnter(6)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(6).title" class="italic" @mouseover.native="onMouseEnter(6)"></nuxt-link>
             </div>
             <div class="work">
               <span class="number" v-text="getId(7)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(7).title" @mouseenter.native="onMouseEnter(7)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(7).title" @mouseover.native="onMouseEnter(7)"></nuxt-link>
             </div>
           </div>
           <div class="line">
             <div class="work">
               <span class="number" v-text="getId(8)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(8).title" class="underline" @mouseenter.native="onMouseEnter(8)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(8).title" class="underline" @mouseover.native="onMouseEnter(8)"></nuxt-link>
             </div>
             <div class="work">
               <span class="number" v-text="getId(9)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(9).title" class="italic" @mouseenter.native="onMouseEnter(9)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(9).title" class="italic" @mouseover.native="onMouseEnter(9)"></nuxt-link>
             </div>
           </div>
           <div class="line">
             <div class="work">
               <span class="number" v-text="getId(10)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(10).title" class="italic" @mouseenter.native="onMouseEnter(10)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(10).title" class="italic" @mouseover.native="onMouseEnter(10)"></nuxt-link>
             </div>
           </div>
         </div>
@@ -69,21 +69,21 @@
           <div class="line">
             <div class="work">
               <span class="number" v-text="getId(11)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(11).title" class="underline" @mouseenter.native="onMouseEnter(11)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(11).title" class="underline" @mouseover.native="onMouseEnter(11)"></nuxt-link>
             </div>
             <div class="work">
               <span class="number wide" v-text="getId(12)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(12).title" class="italic" @mouseenter.native="onMouseEnter(12)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(12).title" class="italic" @mouseover.native="onMouseEnter(12)"></nuxt-link>
             </div>
           </div>
           <div class="line">
             <div class="work">
               <span class="number" v-text="getId(13)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(13).title" @mouseenter.native="onMouseEnter(13)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(13).title" @mouseover.native="onMouseEnter(13)"></nuxt-link>
             </div>
             <div class="work">
               <span class="number" v-text="getId(14)"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(14).title" @mouseenter.native="onMouseEnter(14)"></nuxt-link>
+              <nuxt-link :to="{name: 'works'}" v-html="getWork(14).title" @mouseover.native="onMouseEnter(14)"></nuxt-link>
             </div>
           </div>
         </div>
@@ -94,7 +94,9 @@
       <no-ssr>
         <v-work-over ref="work"></v-work-over>
       </no-ssr>
-      <div class="strong" ref="strong">scroll down for all cases</div>
+      <no-ssr>
+        <button class="strong" ref="strong" @click="scrollTo" v-if="!isDevice">scroll down for all cases</button>
+      </no-ssr>
   </section>
 </template>
 
@@ -102,9 +104,10 @@
 import Emitter from '~/assets/js/events/EventsEmitter'
 import vWorkOver from '~/components/works/workOver.vue'
 import vWorkImg from '~/components/works/workImg.vue'
+import ScrollHelper from '~/assets/js/utils/ScrollHelper'
 import anime from 'animejs'
 import transform from 'dom-transform'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -118,13 +121,38 @@ export default {
     }
   },
   computed: {
-    ...mapState(['works'])
+    ...mapState(['works']),
+    ...mapGetters(['isDevice'])
   },
   components: {
     vWorkOver, vWorkImg
   },
   methods: {
+    resize(w, h) {
+      if(w && h) {
+        this.w = w
+        this.h = h
+      }
+      if(this.isDevice)return
+      this.screens.forEach((screen, i) => {
+        transform(screen.el, {translateY:  i * this.h *.2})
+      });
+      this.$refs.img.resize(this.w, this.h)
+      this.$refs.work.resize(this.w, this.h)
+    },
+    tick(scrollTop, easeScrollTop) {
+      if(this.isDevice) return
+      transform(this.$el, {translateY: easeScrollTop - easeScrollTop/this.h * this.h *.2})
+      this.screenId = (Math.floor(.5 + scrollTop/this.h))
+      if(scrollTop > 10 && !this.isScrolled) this.hideScrollIndication()
+    },
+    scrollTo(){
+      if(this.isDevice) return
+      this.hideScrollIndication()
+      ScrollHelper.scrollTo(this.h)
+    },
     onMouseEnter(id) {
+      if(this.isDevice) return
       this.showId = id
       this.$refs.work.setWork(this.worksEl[this.showId], id)
       if(this.worksOpacity)this.worksOpacity.pause()
@@ -138,6 +166,7 @@ export default {
 
     },
     onMouseLeave() {
+      if(this.isDevice) return
       this.showId = -1
       this.$refs.work.hide()
       if(this.worksOpacity)this.worksOpacity.pause()
@@ -155,23 +184,8 @@ export default {
     getWork(id) {
       return this.works[id]
     },
-    resize(w, h) {
-      if(w && h) {
-        this.w = w
-        this.h = h
-      }
-      this.screens.forEach((screen, i) => {
-        transform(screen.el, {translateY:  i * this.h *.2})
-      });
-      this.$refs.img.resize(this.w, this.h)
-      this.$refs.work.resize(this.w, this.h)
-    },
-    tick(scrollTop, easeScrollTop) {
-      transform(this.$el, {translateY: easeScrollTop - easeScrollTop/this.h * this.h *.2})
-      this.screenId = (Math.floor(.5 + scrollTop/this.h))
-      if(scrollTop > 10 && !this.isScrolled) this.hideScrollIndication()
-    },
     hideScrollIndication() {
+      if(this.isDevice) return
       this.isScrolled = true
       anime({
           targets: this.$refs.strong,
@@ -181,6 +195,7 @@ export default {
         })
     },
     showLines(id = 0) {
+      if(this.isDevice) return
       if(this.isAnimating)return
       const screen = this.screens[id]
       this.isAnimating = true
@@ -201,6 +216,7 @@ export default {
       })
     },
     hideLines(id) {
+      if(this.isDevice) return
       if(this.isAnimating)return
       let start = 0
       if(this.showId !== 1) {
@@ -233,31 +249,36 @@ export default {
     }
   },
   beforeDestroy() {
-    Emitter.removeListener('WORKS:MOUSELEAVE', this._onMouseLeave)
+    if(!this.isDevice)Emitter.removeListener('WORKS:MOUSELEAVE', this._onMouseLeave)
   },
   mounted() {
-    this.worksEl = [].slice.call(this.$el.querySelectorAll('.screen .work'))
-    const lines = [].slice.call(this.$el.querySelectorAll('.line'))
-    this.screens = []
-    const screens = [].slice.call(this.$el.querySelectorAll('.screen'))
-
-    screens.forEach(el => {
-      const lines = [].slice.call(el.querySelectorAll('.line'))
-      el.style.pointerEvents = 'none'
-      this.screens.push({el,lines})
-    });
-    this._onMouseLeave = this.onMouseLeave.bind(this)
-    Emitter.on('WORKS:MOUSELEAVE', this._onMouseLeave)
-    anime.set(lines, {
-      translateY: 200,
-      scaleY: 1.5,
-      transformOrigin: '0 0',
-      opacity: 0
-    })
-    this.$nextTick(()=>{
-      Emitter.emit('PAGE:MOUNTED')
-      this.showLines(0)
-    })
+    if(this.isDevice){
+      this.$nextTick(()=>{
+        Emitter.emit('PAGE:MOUNTED')
+      })
+    }else{
+      this.worksEl = [].slice.call(this.$el.querySelectorAll('.screen .work'))
+      const lines = [].slice.call(this.$el.querySelectorAll('.line'))
+      this.screens = []
+      const screens = [].slice.call(this.$el.querySelectorAll('.screen'))
+      screens.forEach(el => {
+        const lines = [].slice.call(el.querySelectorAll('.line'))
+        el.style.pointerEvents = 'none'
+        this.screens.push({el, lines})
+      });
+      this._onMouseLeave = this.onMouseLeave.bind(this)
+      Emitter.on('WORKS:MOUSELEAVE', this._onMouseLeave)
+      anime.set(lines, {
+        translateY: 200,
+        scaleY: 1.5,
+        transformOrigin: '0 0',
+        opacity: 0
+      })
+      this.$nextTick(()=>{
+        Emitter.emit('PAGE:MOUNTED')
+        this.showLines(0)
+      })
+    }
   },
 }
 </script>
@@ -291,7 +312,10 @@ export default {
     display flex
     justify-content space-between
     align-items baseline
-  span.number
+    overflow hidden
+    & + .line
+      margin-top 5vh
+  .number
     font-size 1vw
     margin-right 2vw
     line-height 2
@@ -305,13 +329,63 @@ export default {
     display flex
     align-items center
     font-size 8.8vw
-    line-height 1.1
+    line-height 1
     color $red
     a
       display flex
       align-items baseline
   .underline
     border-bottom 0.2vw solid $red
+  +below('l')
+    background $pink
+    position relative
+    width 100vw
+    height auto
+    padding 10vh 0
+    .screen
+      width 100%
+      height auto
+      position relative
+      top auto
+      left auto
+      display block
+      padding 0 12vw
+      margin-left -4vw
+    .line
+      padding 0
+      display block
+      width auto
+      &.line
+        margin 0
+      .work
+        margin-top 3vh
+        font-size 10vw
+        display block
+        text-align center
+        .number,
+        a
+          display inline
+        .number
+          vertical-align bottom
+    .number
+      font-size 14px
+    .number.wide
+      border-bottom none
+      width auto
+      text-align left
+      margin-right 2vw
+
+  +below('s')
+    padding 10vh 0
+    .screen
+      margin-left 0
+    .line .work
+      display flex
+      align-items baseline
+      text-align left
+      .number
+        display block
+        margin-right 4vw
 </style>
 
 <style lang="stylus" >

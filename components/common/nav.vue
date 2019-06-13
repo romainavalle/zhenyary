@@ -51,7 +51,6 @@ export default {
     },
   },
   mounted(){
-    if(this.isDevice) this.isMinimized = true
   }
 }
 </script>
@@ -67,6 +66,8 @@ nav
   z-index 5
   &.works .container:before
     background $pink
+  &.contact .container:before
+    background none
   .no-touch & a:hover
     color $red
   .no-touch &.index.red a:hover
@@ -157,19 +158,22 @@ nav
       transform translateY(-20px)
       transition transform .4s ease-in-quad, opacity .4s ease-in-quad
   +below('l')
-    transform translateY(-9vh)
+    transform translateY(-6vh)
+    transition none
     .spacer
       display none
     .home
       display none
     .container
+      transition none
       justify-content space-between
-      transform translateY(6vh)
+      transform translateY(3vh)
       &:before
-        transform translateY(0%)
+        transform translateY(0)
       .home-main
         display block
     .label
-      opacity 0
+      opacity .2
+      display none
 
 </style>
