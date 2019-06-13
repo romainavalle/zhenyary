@@ -34,7 +34,7 @@ export default {
     showWork() {
       if(this.worksOpacity)this.worksOpacity.pause()
       this.worksOpacity = anime({
-        targets: this.worksEl,
+        targets: this.$el,
         opacity: 1,
         duration: 300,
         easing: 'easeInQuad'

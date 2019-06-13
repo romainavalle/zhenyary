@@ -1,6 +1,6 @@
 <template>
   <section class="works">
-      <v-screen v-for="(lines, index) in datas.worksMenu" :key="`screen-${index}`" :id="index" :lines="lines" ref="screens"/>
+      <v-screen v-for="(lines, index) in datas.works" :key="`screen-${index}`" :id="index" :lines="lines" ref="screens"/>
       <no-ssr>
         <v-work-img ref="img" :id="showId"></v-work-img>
       </no-ssr>
@@ -72,11 +72,11 @@ export default {
       this.$refs.work.show()
       this.$refs.screens[this.screenId].hideWorks()
     },
-    onWorkLeave() {
+    onWorkLeave(screenId = -1) {
       if(this.isDevice) return
       this.showId = -1
       this.$refs.work.hide()
-      this.$refs.screens[this.screenId].showWorks()
+      this.$refs.screens[screenId === -1 ? this.screenId : screenId].showWorks()
     },
     hideScrollIndication() {
       if(this.isDevice) return
@@ -98,7 +98,7 @@ export default {
       if(this.isDevice) return
       if(this.isAnimating)return
       const start = this.showId === -1 ? 0 : 200
-      if(this.showId !== -1)this.onWorkLeave()
+      if(this.showId !== -1)this.onWorkLeave(id)
       this.isAnimating = true
       this.$refs.screens[id].hideLines(this.direction, start)
     },

@@ -26,10 +26,14 @@ export const actions = {
   nuxtServerInit({state, commit}) {
     const works = []
     const worksById = {}
-    state.datas.works.forEach(el => {
-      const json = require(`~/assets/datas/works/${el}.json`)
-      works.push(json)
-      worksById[el]  = json
+    state.datas.works.forEach(screen => {
+      screen.forEach(line => {
+        line.forEach(work => {
+            const json = require(`~/assets/datas/works/${work}.json`)
+            works.push(json)
+            worksById[work]  = json
+        })
+      })
     })
     commit('SET_WORKS', works)
     commit('SET_WORKS_BY_ID', worksById)
