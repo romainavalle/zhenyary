@@ -1,5 +1,5 @@
 <template>
-  <div class="work work-over">
+  <div class="work-link">
   </div>
 </template>
 
@@ -61,7 +61,7 @@ export default {
       })
     },
     onMouseLeave(){
-      Emitter.emit('WORKS:MOUSELEAVE')
+      Emitter.emit('WORK:MOUSELEAVE')
     }
   },
   beforeDestroy() {
@@ -74,6 +74,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.work
+.work-link
   position absolute
 </style>

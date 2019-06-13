@@ -32,5 +32,22 @@
     "espn",
     "huckleberry",
     "archieve"
+  ],
+  "worksMenu": [
+    [
+      [ "limnia", "dennis-berti"],
+      [ "epicurrence", "m-shkret"],
+      [ "adobe-kit", "cure"]
+    ],
+    [
+      [ "aeditor", "rafal-bojar"],
+      [ "il-makiage", "honey-pot"],
+      [ "adobe-xd", "uruoi"]
+    ],
+    [
+      [ "allure", "go-daddy"],
+      [ "glo", "espn"],
+      [ "huckleberry", "archieve"]
+    ]
   ]
 }

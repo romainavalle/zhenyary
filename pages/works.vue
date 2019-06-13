@@ -1,107 +1,6 @@
 <template>
   <section class="works">
-      <div class="screen">
-        <div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(0)"  :class="{'underline': getWork(0).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(0).title" :class="{'underline': getWork(0).menuUnderline, 'italic': getWork(0).menuItalic}" @mouseover.native="onMouseEnter(0)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(1)" :class="{'wide': getWork(1).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(1).title" :class="{'underline': getWork(1).menuUnderline, 'italic': getWork(1).menuItalic}" @mouseover.native="onMouseEnter(1)"></nuxt-link>
-            </div>
-          </div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(2)" :class="{'wide': getWork(2).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(2).title" :class="{'underline': getWork(2).menuUnderline, 'italic': getWork(2).menuItalic}" @mouseover.native="onMouseEnter(2)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(3)" :class="{'wide': getWork(3).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(3).title" :class="{'underline': getWork(3).menuUnderline, 'italic': getWork(3).menuItalic}" @mouseover.native="onMouseEnter(3)"></nuxt-link>
-            </div>
-          </div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(4)" :class="{'wide': getWork(4).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(4).title" :class="{'underline': getWork(4).menuUnderline, 'italic': getWork(4).menuItalic}" @mouseover.native="onMouseEnter(4)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(5)" :class="{'wide': getWork(5).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(5).title" :class="{'underline': getWork(5).menuUnderline, 'italic': getWork(5).menuItalic}" @mouseover.native="onMouseEnter(5)"></nuxt-link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="screen">
-        <div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(6)" :class="{'wide': getWork(6).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(6).title" :class="{'underline': getWork(6).menuUnderline, 'italic': getWork(6).menuItalic}" @mouseover.native="onMouseEnter(6)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(7)" :class="{'wide': getWork(7).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(7).title" :class="{'underline': getWork(7).menuUnderline, 'italic': getWork(7).menuItalic}" @mouseover.native="onMouseEnter(7)"></nuxt-link>
-            </div>
-          </div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(8)" :class="{'wide': getWork(8).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(8).title" :class="{'underline': getWork(8).menuUnderline, 'italic': getWork(8).menuItalic}" @mouseover.native="onMouseEnter(8)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(9)" :class="{'wide': getWork(9).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(9).title" :class="{'underline': getWork(9).menuUnderline, 'italic': getWork(9).menuItalic}" @mouseover.native="onMouseEnter(9)"></nuxt-link>
-            </div>
-          </div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(10)" :class="{'wide': getWork(10).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(10).title" :class="{'underline': getWork(10).menuUnderline, 'italic': getWork(10).menuItalic}" @mouseover.native="onMouseEnter(10)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(11)" :class="{'wide': getWork(11).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(11).title" :class="{'underline': getWork(11).menuUnderline, 'italic': getWork(11).menuItalic}" @mouseover.native="onMouseEnter(11)"></nuxt-link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="screen">
-        <div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(12)" :class="{'wide': getWork(12).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(12).title" :class="{'underline': getWork(12).menuUnderline, 'italic': getWork(12).menuItalic}" @mouseover.native="onMouseEnter(12)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(13)" :class="{'wide': getWork(13).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(13).title" :class="{'underline': getWork(13).menuUnderline, 'italic': getWork(13).menuItalic}" @mouseover.native="onMouseEnter(13)"></nuxt-link>
-            </div>
-          </div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(14)" :class="{'wide': getWork(14).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(14).title" :class="{'underline': getWork(14).menuUnderline, 'italic': getWork(14).menuItalic}" @mouseover.native="onMouseEnter(14)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(15)" :class="{'wide': getWork(15).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(15).title" :class="{'underline': getWork(15).menuUnderline, 'italic': getWork(15).menuItalic}" @mouseover.native="onMouseEnter(15)"></nuxt-link>
-            </div>
-          </div>
-          <div class="line">
-            <div class="work">
-              <span class="number" v-text="getId(16)" :class="{'wide': getWork(16).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(16).title" :class="{'underline': getWork(16).menuUnderline, 'italic': getWork(16).menuItalic}" @mouseover.native="onMouseEnter(16)"></nuxt-link>
-            </div>
-            <div class="work">
-              <span class="number" v-text="getId(17)" :class="{'wide': getWork(17).menuNumberUnderline}"></span>
-              <nuxt-link :to="{name: 'works'}" v-html="getWork(17).title" :class="{'underline': getWork(17).menuUnderline, 'italic': getWork(17).menuItalic}" @mouseover.native="onMouseEnter(17)"></nuxt-link>
-            </div>
-          </div>
-        </div>
-      </div>
+      <v-screen v-for="(lines, index) in datas.worksMenu" :key="`screen-${index}`" :id="index" :lines="lines" ref="screens"/>
       <no-ssr>
         <v-work-img ref="img" :id="showId"></v-work-img>
       </no-ssr>
@@ -118,6 +17,7 @@
 import Emitter from '~/assets/js/events/EventsEmitter'
 import vWorkOver from '~/components/works/workOver.vue'
 import vWorkImg from '~/components/works/workImg.vue'
+import vScreen from '~/components/works/screen.vue'
 import ScrollHelper from '~/assets/js/utils/ScrollHelper'
 import anime from 'animejs'
 import transform from 'dom-transform'
@@ -135,11 +35,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['works']),
+    ...mapState(['datas']),
     ...mapGetters(['isDevice'])
   },
   components: {
-    vWorkOver, vWorkImg
+    vWorkOver, vWorkImg, vScreen
   },
   methods: {
     resize(w, h) {
@@ -165,38 +65,18 @@ export default {
       this.hideScrollIndication()
       ScrollHelper.scrollTo(this.h)
     },
-    onMouseEnter(id) {
+    onWorkEnter(id) {
       if(this.isDevice) return
       this.showId = id
       this.$refs.work.setWork(this.worksEl[this.showId], id)
-      if(this.worksOpacity)this.worksOpacity.pause()
-      this.worksOpacity = anime({
-        targets: this.worksEl,
-        opacity: .3,
-        duration: 500,
-        easing: 'easeOutQuad'
-      })
       this.$refs.work.show()
-
+      this.$refs.screens[this.screenId].hideWorks()
     },
-    onMouseLeave() {
+    onWorkLeave() {
       if(this.isDevice) return
       this.showId = -1
       this.$refs.work.hide()
-      if(this.worksOpacity)this.worksOpacity.pause()
-      this.worksOpacity = anime({
-        targets: this.worksEl,
-        opacity: 1,
-        duration: 300,
-        easing: 'easeInQuad'
-      })
-    },
-    getId(id) {
-      const thisId = id + 1
-      return thisId < 10 ? `0${thisId}` : thisId
-    },
-    getWork(id) {
-      return this.works[id]
+      this.$refs.screens[this.screenId].showWorks()
     },
     hideScrollIndication() {
       if(this.isDevice) return
@@ -208,62 +88,43 @@ export default {
           easing: 'easeInQuad'
         })
     },
-    showLines(id = 0) {
+    showScreen(id){
       if(this.isDevice) return
       if(this.isAnimating)return
-      const screen = this.screens[id]
       this.isAnimating = true
-      anime({
-        targets: screen.lines,
-        translateY: [this.direction === 1 ? 200 : -200, 0],
-        scaleY: 1,
-        transformOrigin:  [this.direction === 1 ? '0 0' : '0 100%','0 50%'],
-        duration: 500,
-        opacity: 1,
-        easing: 'easeOutQuad',
-        delay: anime.stagger(200, {from: this.direction === 1 ? 'first' : 'last'}),
-        complete: ()=>{
-          screen.el.style.pointerEvents = 'auto'
-          this.isAnimating = false
-          if(id !== this.screenId) this.hideLines(id)
-        }
-      })
+      this.$refs.screens[id].showLines(this.direction)
     },
-    hideLines(id) {
+    hideScreen(id){
       if(this.isDevice) return
       if(this.isAnimating)return
-      let start = 0
-      if(this.showId !== 1) {
-        this.onMouseLeave()
-        start = 200
-      }
-      const screen = this.screens[id]
-      screen.el.style.pointerEvents = 'none'
+      const start = this.showId === -1 ? 0 : 200
+      if(this.showId !== -1)this.onWorkLeave()
       this.isAnimating = true
-      anime({
-        targets: screen.lines,
-        translateY: this.direction === 1 ? -200 : 200,
-        scaleY: 1.5,
-        transformOrigin: this.direction === 1 ? '0 100%' : '0 0',
-        duration: 300,
-        opacity: 0,
-        easing: 'easeInQuad',
-        delay: anime.stagger(100, {start, from: this.direction === 1 ? 'first' : 'last'}),
-        complete: ()=>{
-          this.isAnimating = false
-          this.showLines(this.screenId)
-        }
-      })
+      this.$refs.screens[id].hideLines(this.direction, start)
+    },
+    onScreenHideComplete(){
+      this.isAnimating = false
+      this.showScreen(this.screenId)
+    },
+    onScreenShowComplete(id){
+      this.isAnimating = false
+      if(id !== this.screenId) this.hideScreen(id)
     }
+
   },
   watch: {
     screenId(val, old) {
       this.direction = val - old
-      this.hideLines(old)
+      this.hideScreen(old)
     }
   },
   beforeDestroy() {
-    if(!this.isDevice)Emitter.removeListener('WORKS:MOUSELEAVE', this._onMouseLeave)
+    if(!this.isDevice) {
+      Emitter.removeListener('WORK:MOUSELEAVE', this._onWorkLeave)
+      Emitter.removeListener('WORK:MOUSEENTER', this._onWorkEnter)
+    }
+    Emitter.removeListener('SCREEN:HIDECOMPLETE', this._onScreenHideComplete)
+    Emitter.removeListener('SCREEN:SHOWCOMPLETE', this._onScreenShowComplete)
   },
   mounted() {
     if(this.isDevice){
@@ -271,7 +132,7 @@ export default {
         Emitter.emit('PAGE:MOUNTED')
       })
     }else{
-      this.worksEl = [].slice.call(this.$el.querySelectorAll('.screen .work'))
+      this.worksEl = [].slice.call(this.$el.querySelectorAll('.screen .work-link'))
       const lines = [].slice.call(this.$el.querySelectorAll('.line'))
       this.screens = []
       const screens = [].slice.call(this.$el.querySelectorAll('.screen'))
@@ -280,17 +141,20 @@ export default {
         el.style.pointerEvents = 'none'
         this.screens.push({el, lines})
       });
-      this._onMouseLeave = this.onMouseLeave.bind(this)
-      Emitter.on('WORKS:MOUSELEAVE', this._onMouseLeave)
-      anime.set(lines, {
-        translateY: 200,
-        scaleY: 1.5,
-        transformOrigin: '0 0',
-        opacity: 0
-      })
+      this._onWorkLeave = this.onWorkLeave.bind(this)
+      this._onWorkEnter = this.onWorkEnter.bind(this)
+      this._onScreenHideComplete = this.onScreenHideComplete.bind(this)
+      this._onScreenShowComplete = this.onScreenShowComplete.bind(this)
+      if(!this.isDevice) {
+        Emitter.on('WORK:MOUSEENTER', this._onWorkEnter)
+        Emitter.on('WORK:MOUSELEAVE', this._onWorkLeave)
+      }
+      Emitter.on('SCREEN:HIDECOMPLETE', this._onScreenHideComplete)
+      Emitter.on('SCREEN:SHOWCOMPLETE', this._onScreenShowComplete)
+
       this.$nextTick(()=>{
         Emitter.emit('PAGE:MOUNTED')
-        this.showLines(0)
+        this.showScreen(this.screenId)
       })
     }
   },
@@ -311,105 +175,16 @@ export default {
     left 50%
     text-align center
     transform translateX(-50%)
-
-  .screen
-    width 100%
-    height 100vh
-    position absolute
-    top 0
-    left 0
-    display flex
-    align-items center
-  .line
-    width 100vw
-    padding 1vh 6vw
-    display flex
-    justify-content space-between
-    align-items baseline
-    overflow hidden
-    & + .line
-      margin-top 5vh
-  .number
-    font-size 1vw
-    margin-right 2vw
-    line-height 2
-    display block
-    &.wide
-      border-bottom 0.2vw solid $red
-      width 15vw
-      text-align center
-      margin-right 4vw
-  .work
-    display flex
-    align-items center
-    font-size 8.8vw
-    line-height 1
-    color $red
-    a
-      display flex
-      align-items baseline
-  .underline
-    border-bottom 0.2vw solid $red
   +below('l')
     background $pink
     position relative
     width 100vw
     height auto
     padding 10vh 0
-    .screen
-      width 100%
-      height auto
-      position relative
-      top auto
-      left auto
-      display block
-      padding 0 12vw
-      margin-left -4vw
-    .line
-      padding 0
-      display block
-      width auto
-      &.line
-        margin 0
-      .work
-        margin-top 3vh
-        font-size 10vw
-        display block
-        text-align center
-        .number,
-        a
-          display inline
-        .number
-          vertical-align bottom
-    .number
-      font-size 14px
-    .number.wide
-      border-bottom none
-      width auto
-      text-align left
-      margin-right 2vw
-
   +below('s')
     padding 10vh 0
-    .screen
-      margin-left 0
-    .line .work
-      display flex
-      align-items baseline
-      text-align left
-      .number
-        display block
-        margin-right 4vw
 </style>
 
-<style lang="stylus" >
-section.works .work a
-  span
-    font-size 3.6vw
-  span.slash
-    font-size 7vw
-    align-self flex-end
-</style>
 
 
 
