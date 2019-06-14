@@ -68,7 +68,7 @@ nav
     background $pink
   &.contact .container:before
     background none
-  &.work-slug .container:before
+  &.works-slug .container:before
     background none
   .no-touch & a:hover
     color $red
@@ -109,7 +109,7 @@ nav
       line-height 1
       white-space nowrap
       transition color .5s ease-in-out-quad
-      &.nuxt-link-exact-active
+      &.nuxt-link-active
         color $red
       &.z .title
         padding-right 5.4vw

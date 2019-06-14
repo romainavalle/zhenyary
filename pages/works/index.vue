@@ -68,8 +68,7 @@ export default {
     onWorkEnter(id) {
       if(this.isDevice) return
       this.showId = id
-      this.$refs.work.setWork(this.worksEl[this.showId], id)
-      this.$refs.work.show()
+      this.$refs.work.setWork(this.worksEl[this.showId], this.showId, this.screenId)
       this.$refs.screens[this.screenId].hideWorks()
     },
     onWorkLeave(screenId = -1) {

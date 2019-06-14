@@ -90,6 +90,8 @@ export default {
     }
   },
   mounted() {
+    console.log('lalzllazd');
+
     Emitter.on('GLOBAL:RESIZE', this.resize.bind(this))
     Emitter.on('PAGE:MOUNTED', this.onPageMounted.bind(this))
     this.$nextTick(()=>{

@@ -1,5 +1,7 @@
 <template>
-  <div class="work-link">
+  <div class="work-link" v-if="work">
+    <span class="number" v-text="getId"  :class="{'wide': work.menuNumberUnderline}"></span>
+    <div v-html="work.title" class="label" :class="{'underline': work.menuUnderline, 'italic': work.menuItalic}"></div>
   </div>
 </template>
 
@@ -7,7 +9,21 @@
 import offset from '~/assets/js/utils/offset'
 import anime from 'animejs'
 import Emitter from '~/assets/js/events/EventsEmitter'
+import { mapState } from 'vuex';
 export default {
+  data() {
+    return {
+      work: null,
+      id: -1
+    }
+  },
+  computed: {
+    ...mapState(['works']),
+    getId() {
+      const thisId = this.id + 1
+      return thisId < 10 ? `0${thisId}` : thisId
+    }
+  },
   methods: {
     resize(w, h) {
       if(w && h) {
@@ -15,28 +31,20 @@ export default {
         this.h = h
       }
     },
-    setWork(work ,id) {
-      this.$el.innerHTML = work.innerHTML
-      this.$nextTick(()=>{
-        this.$el.querySelector('a').addEventListener('mouseleave', this._onMouseLeave, false)
-      })
-      const workOffset = offset(work)
-      this.$el.style.left = workOffset.left + 'px'
-      let left = workOffset.left
-      let top = workOffset.top
-      if(id>5) {
-        top +=  this.h *.2
-      }
-      if(id>10) {
-        top +=  this.h *.2
-      }
-      this.$el.style.top = top + 'px'
-    },
-    setPosition(x,y) {
+    setWork(workEl,id ,screenId) {
+      this.work = this.works[id]
 
+      this.id = id
+      this.$nextTick(()=>{
+        const workOffset = offset(workEl)
+        this.$el.style.left = workOffset.left + 'px'
+        const left = workOffset.left
+        const top = workOffset.top + screenId * this.h *.2
+        this.$el.style.top = top + 'px'
+        this.show()
+      })
     },
     show() {
-      this.$el.style.pointerEvents = 'auto'
       if(this.workOpacity)this.workOpacity.pause()
       this.workOpacity = anime({
         targets: this.$el,
@@ -47,28 +55,23 @@ export default {
 
     },
     hide(){
-      this.$el.style.pointerEvents = 'none'
       if(this.workOpacity)this.workOpacity.pause()
-      if(this.$el.querySelector('a'))this.$el.querySelector('a').removeEventListener('mouseleave', this._onMouseLeave, false)
       this.workOpacity = anime({
         targets: this.$el,
         opacity: 0,
         duration: 300,
         easing: 'easeInQuad',
         complete:()=>{
-          this.$el.innerHTML = ''
+          this.work = null
         }
       })
     },
     onMouseLeave(){
-      Emitter.emit('WORK:MOUSELEAVE')
     }
   },
   beforeDestroy() {
-    if(this.$el.querySelector('a'))this.$el.querySelector('a').removeEventListener('mouseleave', this._onMouseLeave, false)
   },
   mounted(){
-    this._onMouseLeave = this.onMouseLeave.bind(this)
   }
 }
 </script>
@@ -76,4 +79,6 @@ export default {
 <style lang="stylus" scoped>
 .work-link
   position absolute
+  pointer-events none
 </style>
+

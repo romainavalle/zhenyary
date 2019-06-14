@@ -11,7 +11,7 @@
         <ul>
           <li v-for="(skill, index) in nextWork.skills" :key="`skill-${index}`" v-text="index === 0 ? skill : ` / ${skill}`" class="strong"></li>
         </ul>
-        <nuxt-link :to="{name: 'work-slug', params: {slug: nextWork.slug}}" :aria-label="nextWork.title"><v-svg-arrow class="arrow"/></nuxt-link>
+        <nuxt-link :to="{name: 'works-slug', params: {slug: nextWork.slug}}" :aria-label="nextWork.title"><v-svg-arrow class="arrow"/></nuxt-link>
       </div>
     </div>
   </footer>

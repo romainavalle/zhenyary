@@ -72,6 +72,7 @@ export default {
 .work
   position relative
   width 100vw
+  min-height 100vh
   background $grey
 h3
   font-size 20px
