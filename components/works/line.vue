@@ -1,6 +1,6 @@
 <template>
   <div class="line">
-    <v-work v-for="(work, index) in works" :key="`work-${index}`" :work="work" :id="id * works.length + index " ref="works"/>
+    <v-work v-for="(workId, index) in works" :key="`work-${index}`" :workId="workId" :id="id * works.length + index " ref="works"/>
   </div>
 </template>
 

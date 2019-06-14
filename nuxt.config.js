@@ -58,7 +58,21 @@ module.exports = {
     }
   },
   generate: {
-    dir: '../zhenya'
+    dir: '../zhenya',
+    routes: function () {
+      const routes = []
+      var datas = JSON.parse(require('fs').readFileSync(`./assets/datas/datas.json`, 'utf-8'))
+      datas.works.forEach(screen => {
+        screen.forEach(line => {
+          line.forEach(work => {
+            routes.push('/work/' + work)
+          })
+        })
+      })
+      console.log(routes);
+
+      return routes
+    }
   }
 }
 

@@ -10,10 +10,14 @@
 import Emitter from '~/assets/js/events/EventsEmitter'
 import vLine from '~/components/works/line.vue'
 import anime from 'animejs'
+import { mapGetters } from 'vuex';
 export default {
   props: {'id': Number, 'lines': Array},
   components: {
     vLine
+  },
+  computed: {
+    ...mapGetters(['isDevice'])
   },
   methods: {
     hideWorks() {
@@ -60,6 +64,7 @@ export default {
     }
   },
   mounted() {
+    if(this.isDevice)return
      anime.set( this.$refs.lines.map(el => el.$el), {
         translateY: 200,
         scaleY: 1.5,

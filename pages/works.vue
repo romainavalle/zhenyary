@@ -122,9 +122,9 @@ export default {
     if(!this.isDevice) {
       Emitter.removeListener('WORK:MOUSELEAVE', this._onWorkLeave)
       Emitter.removeListener('WORK:MOUSEENTER', this._onWorkEnter)
+      Emitter.removeListener('SCREEN:HIDECOMPLETE', this._onScreenHideComplete)
+      Emitter.removeListener('SCREEN:SHOWCOMPLETE', this._onScreenShowComplete)
     }
-    Emitter.removeListener('SCREEN:HIDECOMPLETE', this._onScreenHideComplete)
-    Emitter.removeListener('SCREEN:SHOWCOMPLETE', this._onScreenShowComplete)
   },
   mounted() {
     if(this.isDevice){

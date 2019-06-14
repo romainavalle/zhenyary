@@ -68,6 +68,8 @@ nav
     background $pink
   &.contact .container:before
     background none
+  &.work-slug .container:before
+    background none
   .no-touch & a:hover
     color $red
   .no-touch &.index.red a:hover

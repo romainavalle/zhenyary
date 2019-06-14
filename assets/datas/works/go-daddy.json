@@ -4,43 +4,92 @@
   "menuUnderline": false,
   "menuNumberUnderline": true,
   "menuItalic": true,
+  "subtitle": "Rafal Bojar Photographer",
+  "link": {
+    "label": "Rafalbojar.com",
+    "url": "https://rafalbojar.com/"
+  },
   "type": "Ecommerce Website",
   "skills": ["Art direction", "interface design", "photography"],
   "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
-  "header": "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date.",
+  "header": [
+    "Cure is a unique nail and wax boutique.",
+    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
+    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+  ],
   "cover": "rafal-bojar/cover.jpg",
   "content": [
     {
-      "type": "image",
-      "background": "",
-      "url": "rafal-bojar/img-0.jpg"
+      "type": "vImageBackground",
+      "url": "rafal-bojar/img-0.jpg",
+      "alt": "alternative text"
     },
     {
-      "type": "image",
-      "background": "",
-      "url": "rafal-bojar/img-1.jpg"
+      "type": "vImage",
+      "width": 80,
+      "url": "rafal-bojar/img-1.jpg",
+      "alt": "alternative text"
     },
     {
-      "type": "texts",
+      "type": "vText",
       "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
-      "text": "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+      "paragraphs": [
+        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+      ]
     },
     {
-      "type": "image",
-      "background": "",
-      "url": "rafal-bojar/img-2.jpg"
+      "type": "vImage",
+      "width": 80,
+      "url": "rafal-bojar/img-2.jpg",
+      "alt": "alternative text"
     },
     {
-      "type": "imageText",
-      "background": "",
+      "type": "vImageBackground",
       "url": "rafal-bojar/img-3.jpg",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
-      "text": "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+      "alt": "alternative text"
     },
     {
-      "type": "image",
-      "background": "",
-      "url": "rafal-bojar/img-4.jpg"
+      "type": "vImageText",
+      "url": "rafal-bojar/img-4.jpg",
+      "alt": "alternative text",
+      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "paragraphs": [
+        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+      ]
+    },
+    {
+      "type": "vImage",
+      "width": 80,
+      "url": "rafal-bojar/img-5.jpg",
+      "alt": "alternative text"
+    },
+    {
+      "type": "vImage",
+      "width": 60,
+      "background": "#D4D1CB",
+      "shadow": true,
+      "url": "rafal-bojar/img-6.jpg",
+      "alt": "alternative text"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "rafal-bojar/img-7.jpg",
+      "alt": "alternative text"
+    },
+    {
+      "type": "vImages",
+      "images":[
+        {
+          "url": "rafal-bojar/img-8.jpg",
+          "alt": "alternative text"
+        },
+        {
+          "url": "rafal-bojar/img-9.jpg",
+          "background": "#CECAC7",
+          "width": 60,
+          "alt": "alternative text"
+        }
+      ]
     }
   ]
 }

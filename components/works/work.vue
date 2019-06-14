@@ -1,7 +1,7 @@
 <template>
   <div class="work-link">
-    <span class="number" v-text="getId"  :class="{'wide': worksById[work].menuNumberUnderline}"></span>
-    <nuxt-link :to="{name: 'works'}" v-html="worksById[work].title" :class="{'underline': worksById[work].menuUnderline, 'italic': worksById[work].menuItalic}" @mouseover.native="onMouseEnter(id)"></nuxt-link>
+    <span class="number" v-text="getId"  :class="{'wide': work.menuNumberUnderline}"></span>
+    <nuxt-link :to="{name: 'work-slug', params: {slug: workId}}" v-html="work.title" :class="{'underline': work.menuUnderline, 'italic': work.menuItalic}" @mouseover.native="onMouseEnter(id)"></nuxt-link>
   </div>
 </template>
 
@@ -10,9 +10,12 @@ import Emitter from '~/assets/js/events/EventsEmitter'
 import { mapState } from 'vuex';
 import anime from 'animejs'
 export default {
-  props: ['work', 'id'],
+  props: ['workId', 'id'],
   computed:{
     ...mapState(['worksById']),
+    work() {
+      return this.worksById[this.workId]
+    },
     getId() {
       const thisId = this.id + 1
       return thisId < 10 ? `0${thisId}` : thisId
@@ -40,8 +43,6 @@ export default {
         easing: 'easeInQuad'
       })
     }
-  },
-  mounted() {
   }
 }
 </script>
