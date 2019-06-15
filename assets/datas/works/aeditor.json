@@ -1,6 +1,6 @@
 {
   "slug": "aeditor",
-  "title": "aeditor <span class=\"slash\">/</span> <span>APP</span></span>",
+  "title": "Aeditor <span class=\"slash\">/</span> <span>APP</span></span>",
   "menuUnderline": false,
   "menuNumberUnderline": false,
   "menuItalic": false,
@@ -14,10 +14,10 @@
   "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
   "header": [
     "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
+    "It is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
     "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
   ],
-  "cover": "rafal-bojar/cover.jpg",
+  "cover": "rafal-bojar/rafal-bojar.jpg",
   "content": [
     {
       "type": "vImageBackground",

@@ -1,6 +1,6 @@
 <template>
   <main :class="{ 'no-touch': !isTouch, 'device': isDevice, 'tablet': isTablet, 'mobile': isPhone}">
-    <v-loader/>
+    <v-loader ref="loader"/>
     <no-ssr>
       <v-turn v-if="isDevice"></v-turn>
     </no-ssr>
@@ -44,6 +44,7 @@ export default {
       const pageHeight = this.$refs.scroll.clientHeight
       if(this.$refs.page && this.$refs.page.$children[0])this.$refs.page.$children[0].resize && this.$refs.page.$children[0].resize(w, h, pageHeight)
       this.$refs.nav.resize(w, h, pageHeight)
+      this.$refs.loader.resize(w, h)
       if(!this.isDevice)document.body.style.height = pageHeight + 'px'
     },
     tick(){
@@ -58,9 +59,9 @@ export default {
     pageFadeOut(cb) {
       this.animation = anime({
         targets: this.$refs.scroll,
-        opacity: 0,
-        duration: 800,
-        easing: 'easeInQuad',
+        //opacity: 0,
+        duration: 500,
+        //easing: 'easeInQuad',
         complete: cb
       });
     },
@@ -76,7 +77,7 @@ export default {
     setRouterHooks () {
       this.$router.beforeEach((to, from, next) => {
           this.pageFadeOut(next)
-          ScrollHelper.scrollTo(0)
+          this.$refs.loader.show()
       })
       this.$router.afterEach((to, from) => {
         ScrollHelper.goTo(0)
@@ -86,12 +87,11 @@ export default {
       setTimeout(()=>{
         this.resize()
       }, 100)
-      this.pageFadeIn(0)
+      //this.pageFadeIn(0)
+      this.$refs.loader.hide()
     }
   },
   mounted() {
-    console.log('lalzllazd');
-
     Emitter.on('GLOBAL:RESIZE', this.resize.bind(this))
     Emitter.on('PAGE:MOUNTED', this.onPageMounted.bind(this))
     this.$nextTick(()=>{
@@ -100,6 +100,7 @@ export default {
     const engine = loop(this.tick.bind(this)).start()
     this.setRouterHooks()
     this.isTouch = this.isDevice
+    this.$refs.loader.hide()
   }
 }
 </script>
