@@ -69,7 +69,4 @@ footer
   .device &
     button
       display none
-
-
-
 </style>

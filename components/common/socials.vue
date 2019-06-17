@@ -31,5 +31,7 @@ export default {
   +below('l')
     a
       margin 0 20px
-
+.red &
+  a
+    color $white
 </style>

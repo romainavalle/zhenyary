@@ -24,6 +24,10 @@ class MouseHelper {
     }
     this.isFirst = false
   }
+  setMouse() {
+    this.easeMouseX = this.easeSlowX = this.easeX = this.x
+    this.easeMouseY = this.easeSlowY = this.easeY = this.y
+  }
   tick() {
     const dX = this.x - this.easeX
     const dY = this.y - this.easeY

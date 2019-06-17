@@ -5,8 +5,8 @@
 </template>
 <script>
 if (process.client) {
-  var bodymovin = require('lottie-web/build/player/lottie_svg.js')
-  var datas = require('~/assets/datas/bodymovin/data.json')
+  //var bodymovin = require('lottie-web/build/player/lottie_svg.js')
+  var bodymovin = require('lottie-web')
 }
 import anime from 'animejs'
 export default {
@@ -15,7 +15,8 @@ export default {
     return {
       w: 0,
       h: 0,
-      isReady: false
+      isReady: false,
+      isFirstResize: true
     }
   },
   components: {
@@ -28,24 +29,12 @@ export default {
         this.w = w
         this.h = h
       }
-      return
-      const ratio = 1920 / 1080
-      let width, height, top, left
-      if(this.w / this.h > ratio) {
-        width = this.w
-        height = this.w / ratio
-      }else{
-        height = this.h
-        width = this.h * ratio
-      }
-      this.$refs.animation.style.width = width + 'px'
-      this.$refs.animation.style.height = height + 'px'
-      this.$refs.animation.style.top = this.w / 2 - width / 2 + 'px'
-      this.$refs.animation.style.left = this.h / 2 - height / 2  + 'px'
+
     },
     show() {
+      this.$el.style.display = 'block'
+      this.$el.style.mixBlendMode = 'multiply'
       this.animation.goToAndStop(0, true)
-      this.$el.style.visibility = 'visible'
       anime({
         targets: this.$el,
         opacity: [0, 1],
@@ -54,6 +43,8 @@ export default {
       })
     },
     hide() {
+      this.$el.style.mixBlendMode = 'multiply'
+      this.$el.style.opacity = 1
       this.animation.play()
     }
   },
@@ -62,20 +53,28 @@ export default {
   beforeDestroy(){
   },
   mounted() {
+    //if(process.env.NODE_ENV === "development") this.$el.style.display = 'none'
     this.animation = bodymovin.loadAnimation({
       container: this.$refs.animation,
-      renderer: 'svg',
+      renderer: 'canvas',
       loop: false,
       autoplay: false,
-      prerender: true,
-      animationData: datas
+      animationData: require('~/assets/datas/bodymovin/data.json'),
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
     })
+
     this.animation.addEventListener('complete', () => {
-        this.$el.style.visibility = 'hidden'
+      this.$el.style.display = 'none'
+      this.$el.style.mixBlendMode = ''
     })
     this.animation.addEventListener('DOMLoaded', () => {
-      this.isReady = true
-       this.$el.querySelector('svg').setAttribute("preserveAspectRatio","xMaxYMax slice");
+      //this.$el.querySelector('svg').setAttribute("preserveAspectRatio","xMaxYMax slice");
+      setTimeout(()=>{
+        this.isReady = true
+
+      }, 500)
     })
 
   }
@@ -101,11 +100,6 @@ export default {
     right 0
     bottom 0
     position absolute
+</style>
 
-</style>
-<style lang="stylus" >
-.Loader
-  .animation svg
-    width 100%
-    height 100%
-</style>
+

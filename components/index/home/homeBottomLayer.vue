@@ -1,8 +1,5 @@
 <template>
   <div class="bottom-layer">
-    <transition name="fade">
-      <div class="bg" v-show="color === 'red'"></div>
-    </transition>
     <div class="vertical" />
     <ul class="numbers">
       <li v-for="(item, index) in 9" :key="index">0{{index + 1}}</li>
@@ -11,11 +8,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 export default {
-  computed: {
-    ...mapState(['color'])
-  },
 }
 </script>
 
@@ -51,10 +44,6 @@ export default {
     li
       padding 0 4vw
       letter-spacing 6px
-  .fade-enter-active, .fade-leave-active
-    transition opacity .5s
-  .fade-enter, .fade-leave-to
-    opacity 0
   .device &
     .numbers
       display none

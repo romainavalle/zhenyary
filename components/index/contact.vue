@@ -5,8 +5,8 @@
       <div>
         <div class="line" :class="{'ready': linesReady[0]}"><v-svg-smiley class="smiley" /></div>
         <div class="line" :class="{'ready': linesReady[1]}">Let’s make <strong class="italic">something</strong> great!</div>
-        <div class="line" :class="{'ready': linesReady[2]}"><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a><v-svg-arrow class="arrow" /> <span class="italic">for</span></div>
-        <div class="line" :class="{'ready': linesReady[3]}"><v-svg-arrow class="arrow" /><v-svg-arrow class="arrow" /><v-svg-arrow class="arrow" /><span>collaborations.</span><v-svg-star class="star" /></div>
+        <div class="line" :class="{'ready': linesReady[2]}"><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank" class="link">hey@zhenyary.com</a><v-svg-arrow class="arrow" /> <span class="italic">for</span></div>
+        <div class="line" :class="{'ready': linesReady[3]}"><v-svg-arrow class="arrow" :class="{'red': arrow[0]}" /><v-svg-arrow class="arrow"  :class="{'red': arrow[1]}"/><v-svg-arrow class="arrow"  :class="{'red': arrow[2]}"/><span>collaborations.</span><v-svg-star class="star" /></div>
       </div>
     </no-ssr>
   </article>
@@ -24,7 +24,9 @@ export default {
       w:0,
       h:0,
       isShown: false,
-      linesReady: [false, false, false, false]
+      linesReady: [false, false, false, false],
+      arrow: [false, false, false],
+      currentArrow: 0
     }
   },
   components: {
@@ -53,13 +55,11 @@ export default {
             line.style.opacity = coef
             if(coef > .8 && !this.linesReady[i]){
               this.$set(this.linesReady,i, true)
-              console.log('true');
+              if(i === 3)this.switchArrow()
             }
           }
-          if(coef ===0 && this.linesReady[i]){
+          if(coef === 0 && this.linesReady[i]){
             this.$set(this.linesReady,i, false)
-            console.log('false');
-
           }
         });
       }else{
@@ -73,7 +73,24 @@ export default {
         transform(line, {translateY: 100, scaleY: 1.5})
         line.style.opacity = 0
       });
+      clearTimeout(this.arrowTimer)
+      this.currentArrow = 0
+      for (let index = 0; index < 3; index++) {
+          this.$set(this.arrow,index, false)
+      }
+    },
+    switchArrow() {
+      this.$set(this.arrow, this.currentArrow++, false)
+      if(this.currentArrow === 3) {
+        this.currentArrow = -1
+      }else{
+        this.$set(this.arrow, this.currentArrow, true)
+      }
+      this.arrowTimer = setTimeout(this.switchArrow.bind(this), 200)
     }
+  },
+  beforeDestroy() {
+    clearTimeout(this.arrowTimer)
   },
   mounted() {
     this.$el.querySelector('p').style.display = 'none'
@@ -135,6 +152,8 @@ export default {
     opacity 0
     transform translateX(-3vw)
     transition transform .5s ease-out-quad, opacity .5s ease-out-quad
+    &.red
+      fill $red
     & + .arrow
       transition transform .5s ease-out-quad .2s, opacity .5s ease-out-quad .2s
       & + .arrow
@@ -147,7 +166,7 @@ export default {
     width 4.1vw
     height 4.1vw
     animation-name smiley
-    animation-duration 1s
+    animation-duration 5s
     animation-timing-function ease-in-out-quad
     animation-iteration-count infinite
     animation-direction alternate
@@ -162,7 +181,21 @@ export default {
 
 @keyframes smiley
   0%
+    transform rotate(-15deg)
+  5%
+    transform rotate(25deg)
+  10%
     transform rotate(-10deg)
-  100%
+  40%
+    transform rotate(380deg)
+  50%
+    transform rotate(330deg)
+  55%
+    transform rotate(370deg)
+  80%
+    transform rotate(-20deg)
+  90%
     transform rotate(30deg)
+  100%
+    transform rotate(-15deg)
 </style>

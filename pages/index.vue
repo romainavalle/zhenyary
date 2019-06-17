@@ -3,7 +3,7 @@
     <v-home ref="home"/>
     <v-gems ref="gems"/>
     <v-works ref="works"/>
-    <v-works-link/>
+    <v-works-link ref="link"/>
     <v-contact ref="contact"/>
   </section>
 </template>
@@ -34,12 +34,14 @@ export default {
       this.$refs.home.resize(this.w, this.h)
       this.$refs.gems.resize(this.w, this.h)
       this.$refs.works.resize(this.w, this.h)
+      this.$refs.link.resize(this.w, this.h)
       this.$refs.contact.resize(this.w, this.h)
     },
-    tick(scrollTop) {
-      //this.$refs.home.tick(scrollTop)
+    tick(scrollTop, ease) {
+      this.$refs.home.tick(scrollTop)
       this.$refs.gems.tick(scrollTop)
-      this.$refs.works.tick(scrollTop)
+      this.$refs.works.tick(scrollTop, ease)
+      this.$refs.link.tick(scrollTop, ease)
       this.$refs.contact.tick(scrollTop)
     }
   },
