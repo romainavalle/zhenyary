@@ -196,6 +196,7 @@ a
     .right .text
       position relative
       width 70%
+      padding-top 10vh
       left auto
       top auto
       height auto
@@ -221,6 +222,7 @@ a
       top auto
       height auto
       margin 10px auto
+      padding-top 0
     .title
       display none
     .h3, .type

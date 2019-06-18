@@ -1,7 +1,7 @@
 <template>
   <div class="bottom-layer">
     <div class="vertical" ref="bar"/>
-    <ul class="numbers">
+    <ul class="numbers" >
       <li v-for="(item, index) in 9" :key="index" ref="numbers">0{{index + 1}}</li>
     </ul>
   </div>
@@ -10,6 +10,8 @@
 <script>
 import anime from 'animejs'
 export default {
+  computed: {
+  },
   methods: {
     show(){
       anime({
@@ -80,8 +82,10 @@ export default {
     li
       padding 0 4vw
       letter-spacing 6px
-  .device &
+  +below('l')
     .numbers
       display none
-
+  +between('m', 'l')
+    .vertical
+      display none
 </style>

@@ -54,7 +54,7 @@ export default {
   beforeDestroy(){
   },
   mounted() {
-    if(process.env.NODE_ENV === "development") this.$el.style.display = 'none'
+    //if(process.env.NODE_ENV === "development") this.$el.style.display = 'none'
     this.animation = bodymovin.loadAnimation({
       container: this.$refs.animation,
       renderer: 'canvas',

@@ -64,12 +64,6 @@ nav
   transition transform .4s ease-out-quad
   width 100%
   z-index 5
- /* &.works .container:before
-    background $pink
-  &.contact .container:before
-    background none
-  &.works-slug .container:before
-    background none*/
   .no-touch & a:hover
     color $red
   &.index.red a
@@ -85,25 +79,12 @@ nav
     transform translateX(-50%)
     transition transform .4s ease-out-quad
     z-index 2
-
   .container
     display flex
     position relative
     padding 5vh 0 5vh 4vw
     transition transform .4s ease-out-quad
     width 100%
-    /*&:before
-      background $brown
-      bottom 0
-      content ''
-      display block
-      left 0
-      position absolute
-      right 0
-      top 0
-      transform translateY(-100%)
-      transition transform .4s ease-out-quad
-      z-index -1*/
     a
       font-size 2.2vw
       display block
@@ -154,9 +135,6 @@ nav
     .container
       transition transform .4s ease-in-quad
       transform translateY(6vh)
-      /*&:before
-        transform translateY(0%)
-        transition transform .4s ease-in-quad*/
     .label
       opacity 0
       transform translateY(-20px)
@@ -172,12 +150,9 @@ nav
       transition none
       justify-content space-between
       transform translateY(3vh)
-      /*&:before
-        transform translateY(0)*/
       .home-main
         display block
     .label
-      opacity .2
       display none
 
 </style>

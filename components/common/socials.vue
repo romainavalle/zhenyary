@@ -49,7 +49,7 @@ export default {
       color $red
   +below('l')
     a
-      margin 0 20px
+      margin 0 30px
 .red &
   a
     color $white

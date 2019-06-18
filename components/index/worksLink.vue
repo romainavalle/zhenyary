@@ -1,6 +1,6 @@
 <template>
   <div class="worksLink">
-    <nuxt-link :to="{name: 'index'}" class="link" ref="link">All cases here</nuxt-link>
+    <nuxt-link :to="{name: 'works'}" class="link" ref="link">All cases here</nuxt-link>
   </div>
 </template>
 

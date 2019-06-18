@@ -1,7 +1,9 @@
 <template>
   <div class="top-layer">
     <div class="horizontal" ref="bar"/>
-    <div class="circle" ref="circle"/>
+    <div class="circle-container">
+      <div class="circle" ref="circle"/>
+    </div>
   </div>
 </template>
 
@@ -13,8 +15,6 @@ export default {
 
       anime({
         targets: this.$refs.circle,
-        translateX: '-95%',
-        translateY: '-50%',
         scaleX: 1,
         scaleY: 1,
         opacity: .1,
@@ -35,8 +35,6 @@ export default {
     anime.set(
       this.$refs.circle,
       {
-        translateX: '-95%',
-        translateY: '-50%',
         scaleX: .5,
         scaleY: .5,
         opacity: 0
@@ -69,12 +67,29 @@ export default {
     position absolute
     top 65vh
     width 100%
-  .circle
-    border solid 1px $black
-    border-radius 50%
-    height 45vw
+  .circle-container
     left 50%
     position absolute
     top 50%
+    height 45vw
     width 45vw
+    transform translate(-95%, -50%)
+  .circle
+    border solid 1px $black
+    border-radius 50%
+    width 100%
+    height 100%
+  +below('l')
+    z-index -1
+    .horizontal
+      top 50vh
+    .circle-container
+      width 25vw
+      height 25vw
+      transform translate(18vw, -42vw)
+  +below('s')
+    .circle
+      display none
+    .horizontal
+      display none
 </style>

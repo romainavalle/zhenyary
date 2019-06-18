@@ -1,5 +1,9 @@
 <template>
   <main :class="{ 'no-touch': !isTouch, 'device': isDevice, 'tablet': isTablet, 'mobile': isPhone}">
+
+    <no-ssr>
+      <v-progress ref="progress" v-if="!isDevice" />
+    </no-ssr>
     <v-loader ref="loader"/>
     <no-ssr>
       <v-turn v-if="isDevice"></v-turn>
@@ -19,6 +23,7 @@ import vTurn from '~/components/common/turn.vue'
 import vLoader from '~/components/common/loader.vue'
 import vFooter from '~/components/common/footer.vue'
 import vNav from '~/components/common/nav.vue'
+import vProgress from '~/components/common/progress.vue'
 import loop from 'raf-loop'
 import transform from 'dom-transform'
 import anime from 'animejs'
@@ -35,7 +40,7 @@ export default {
     ...mapGetters(['isDevice', 'isPhone', 'isTablet'])
   },
   components: {
-    vLoader, vTurn, vNav, vFooter
+    vLoader, vTurn, vNav, vFooter,vProgress
   },
   methods:{
     resize(){
@@ -44,6 +49,7 @@ export default {
       const pageHeight = this.$refs.scroll.clientHeight
       if(this.$refs.page && this.$refs.page.$children[0])this.$refs.page.$children[0].resize && this.$refs.page.$children[0].resize(w, h, pageHeight)
       this.$refs.nav.resize(w, h, pageHeight)
+      if(this.$refs.progress) this.$refs.progress.resize(w, h, pageHeight)
       this.$refs.loader.resize(w, h)
       if(!this.isDevice)document.body.style.height = pageHeight + 'px'
     },
@@ -54,6 +60,7 @@ export default {
       this.$refs.nav.tick(scrollTop)
       if(this.$refs.page.$children[0])this.$refs.page.$children[0].tick && this.$refs.page.$children[0].tick(scrollTop, scrollTopEase)
       if(!this.isDevice)transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
+      if(this.$refs.progress) this.$refs.progress.tick(scrollTop, scrollTopEase)
     },
 
     pageFadeOut(cb) {
@@ -101,6 +108,7 @@ export default {
     this.setRouterHooks()
     this.isTouch = this.isDevice
     this.$refs.loader.hide()
+   if(!this.isTouch)  document.body.className = "no-touch"
   }
 }
 </script>

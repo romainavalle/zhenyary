@@ -1,7 +1,7 @@
 <template>
   <div class="work-link" v-if="work">
     <span class="number" v-text="getId"  :class="{'wide': work.menuNumberUnderline}"></span>
-    <div v-html="work.title" class="label" :class="{'underline': work.menuUnderline, 'italic': work.menuItalic}"></div>
+    <div v-html="work.title" class="label" :class="{'italic': work.menuItalic}"></div>
   </div>
 </template>
 

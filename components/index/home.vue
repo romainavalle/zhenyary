@@ -34,7 +34,7 @@
     <no-ssr>
       <v-top-layer ref="topLayer"/>
     </no-ssr>
-    <button class="play" aria-label="play video" ref="play">Play<br>Video</button>
+    <button class="play" aria-label="play video" ref="play">Play<br>Showreel</button>
     <div class="click">
      <button aria-label="click" @click="showCircles" ref="click"><v-svg class="star"></v-svg><span>Click click</span></button>
       <ul ref="skills">
@@ -91,8 +91,9 @@ export default {
     },
     tick(scrollTop) {
       const coef = scrollTop / this.h
+      const direction = this.w > 768 ? 1 : -1
       transform(this.$refs.topLayer.$el, { translate3d: [0, coef * 100, 0] })
-      transform(this.$refs.title, { translate3d: [0, coef * 300, 0] })
+      transform(this.$refs.title, { translate3d: [0, direction * coef * 300, 0] })
       transform(this.$refs.imgBack, { translate3d: [0, coef * 200, 0] })
       transform(this.$refs.imgFront, { translate3d: [0, coef * 200, 0] })
       this.$refs.title.style.opacity = 1 - coef * 2
@@ -159,6 +160,10 @@ export default {
   left 50%
   transform translate(-50%, -50%)
   width 30vw
+  +below('l')
+    width 50vw
+  +below('s')
+    width 90vw
 h1
   color white
   font-family $schnyder
@@ -196,12 +201,45 @@ h1
     span
       transform translateX(-100%)
   &.ready
+    .left, .right
+      span
+        transform translateX(0)
+  +below('l')
+    font-size 10vw
+    height 55vw
+    width 50vw
+    z-index 3
+    .right, .left
+      top auto
+      right auto
+      left 50%
+      bottom auto
+      text-align center
+      span
+        opacity 0
+        transition transform 1s ease-out-quad,  opacity 1s ease-out-quad
     .left
+      top 0
+      left 50%
+      transform translate(-50%, -60%)
       span
-        transform translateX(0)
+        transform translate(0, 100%)
     .right
+      bottom 0
+      transform translate(-50%, 40%)
       span
-        transform translateX(0)
+        opacity 0
+        transform translate(0, -100%)
+    &.ready
+      .left, .right
+        span
+          opacity 1
+          transform translate(0, 0)
+
+  +below('s')
+    height 100vw
+    width 90vw
+
 .play
   position absolute
   top 68vh
@@ -211,6 +249,11 @@ h1
   text-transform uppercase
   letter-spacing 6px
   text-align left
+  +below('l')
+    transform translate(25vw, -33vw)
+    top 50%
+  +below('s')
+    display none
 
 .click
   position absolute
@@ -241,6 +284,23 @@ h1
     top 0
     transform-origin 0 0%
     transform translateX(20px) rotate(-30deg)
+
+  +below('l')
+    text-align center
+    left 50vw
+    transform translateX(-50%)
+    font-size 21px
+    top 75vh
+    button
+      pointer-events none
+      margin-left 0
+      width 100%
+    span
+      display none
+    svg
+      margin 0 auto
+  +below('s')
+    display none
 .red .click
   svg
     fill $brown

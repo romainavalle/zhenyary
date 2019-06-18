@@ -81,7 +81,8 @@ export default {
     color $black
     padding-left 8.5vw
     transform translate(-50%, -50%)
-
+  +below('l')
+    display none
 .mobile &.works
   height auto
   .dot-container

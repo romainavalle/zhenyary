@@ -88,7 +88,9 @@ footer
       &:after
         background $red
         transform translateX(100%)
-  .device &
+  +below('l')
+    justify-content center
+    padding-bottom 2vh
     button
       display none
 </style>
