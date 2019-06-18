@@ -3,7 +3,7 @@
     <div class="section" v-for="(item, index) in 3" :key="`section-${index}`">
       <div class="screen">
         <span>Art direction</span>
-        <v-svg />
+        <v-svg class="star"/>
         <span class="italic">Product Design</span>
       </div>
       <div class="screen">

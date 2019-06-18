@@ -1,12 +1,20 @@
 <template>
   <article class="home" :class="color">
-    <v-background />
-    <v-circles :circles="homeCircles[0]" :id="0" ref="circles-0"/>
-    <v-bottom-layer />
+    <no-ssr>
+      <v-background />
+    </no-ssr>
+    <no-ssr>
+      <v-circles :circles="homeCircles[0]" :id="0" ref="circles-0"/>
+    </no-ssr>
+    <no-ssr>
+      <v-bottom-layer ref="bottomLayer"/>
+    </no-ssr>
     <div class="img-container">
       <img src="/images/home/zhenya-bg.jpg" alt="Zhenya Rynzhuk" ref="imgBack">
     </div>
-    <v-circles :circles="homeCircles[1]" :id="1"  ref="circles-1"/>
+    <no-ssr>
+      <v-circles :circles="homeCircles[1]" :id="1"  ref="circles-1"/>
+    </no-ssr>
     <h1 :class="{'ready': isReady }">
       <span class="label">Zhenya Rynzhuk</span>
       <no-ssr>
@@ -23,18 +31,22 @@
     <div class="img-container">
       <img src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" ref="imgFront">
     </div>
-    <v-top-layer ref="topLayer"/>
-    <button class="play" aria-label="play video">Play<br>Video</button>
+    <no-ssr>
+      <v-top-layer ref="topLayer"/>
+    </no-ssr>
+    <button class="play" aria-label="play video" ref="play">Play<br>Video</button>
     <div class="click">
-     <button aria-label="click" @click="showCircles"><v-svg class="star"></v-svg><span>Click click</span></button>
-      <ul>
+     <button aria-label="click" @click="showCircles" ref="click"><v-svg class="star"></v-svg><span>Click click</span></button>
+      <ul ref="skills">
         <li>Art Direction</li>
         <li>Digital production</li>
         <li>Branding</li>
       </ul>
     </div>
-    <v-circles :circles="homeCircles[2]" :id="2"  ref="circles-2"/>
-    <v-home-footer />
+    <no-ssr>
+      <v-circles :circles="homeCircles[2]" :id="2"  ref="circles-2"/>
+    </no-ssr>
+    <v-home-footer ref="footer"/>
   </article>
 </template>
 <script>
@@ -47,6 +59,7 @@ import vSvg from "~/assets/svgs/star.svg?inline";
 import MouseHelper from '~/assets/js/utils/MouseHelper'
 import homeCircles from '~/assets/datas/homeCircles.json';
 import transform from 'dom-transform'
+import anime from 'animejs'
 import { mapState } from 'vuex';
 
 export default {
@@ -95,15 +108,40 @@ export default {
       this.circles.forEach(circle => {
         circle.toggleShow(this.circlesShown)
       })
+    },
+    show() {
+      this.isReady = true
+      this.$refs.topLayer.show()
+      this.$refs.bottomLayer.show()
+      this.$refs.footer.show()
+      anime({
+        targets: [this.$refs.play, this.$refs.click],
+        opacity: 1,
+        easing: 'easeOutQuad',
+        duration: 700,
+        delay: anime.stagger(400, {start: 1000})
+      })
+      anime({
+        targets: this.skills,
+        opacity: 1,
+        translateY: '0%',
+        easing: 'easeOutQuad',
+        duration: 700,
+        delay: anime.stagger(100, {start: 1300})
+      })
     }
   },
   mounted() {
     this.$el.querySelector('.label').style.opacity = 0
-    this.circles = [this.$refs['circles-0'],this.$refs['circles-1'],this.$refs['circles-2']]
+    this.$nextTick(()=>{
+      this.circles = [this.$refs['circles-0'],this.$refs['circles-1'],this.$refs['circles-2']]
+    })
+    this.skills = [].slice.call(this.$refs.skills.querySelectorAll('li'))
+    anime.set(this.$refs.play,{opacity: 0})
+    anime.set(this.$refs.click,{opacity: 0})
+    anime.set(this.skills,{opacity: 0, translateY: '100%'})
 
-    setTimeout(()=>{
-      this.isReady = true
-    }, 3000)
+    setTimeout(this.show.bind(this), 3000)
   }
 }
 </script>

@@ -1,13 +1,14 @@
 <template>
   <footer>
-    <button @click="setColor('red')" :class="{'active' : color === 'red'}" class="red">In red</button>
-    <v-socials />
-    <button @click="setColor('nude')" :class="{'active' : color === 'nude'}" class="nude">In nude</button>
+    <button @click="setColor('red')" :class="{'active' : color === 'red'}" class="red" ref="buttonRed">In red</button>
+    <v-socials  ref="socials"/>
+    <button @click="setColor('nude')" :class="{'active' : color === 'nude'}" class="nude" ref="buttonNude">In nude</button>
   </footer>
 </template>
 <script>
 import vSocials from '~/components/common/socials.vue'
 import { mapState, mapActions } from 'vuex';
+import anime from 'animejs'
 export default {
   data() {
     return {
@@ -20,9 +21,30 @@ export default {
     ...mapState(['color'])
   },
   methods: {
-    ...mapActions(['setColor'])
+    ...mapActions(['setColor']),
+    show() {
+      this.$refs.socials.show()
+      anime({
+        targets: [this.$refs.buttonRed, this.$refs.buttonNude],
+        translateX: '0%',
+        duration: 700,
+        easing: 'easeOutQuad',
+        delay: anime.stagger(900, {start:500})
+      })
+    }
   },
   mounted() {
+    anime.set(
+      this.$refs.buttonRed, {
+        translateX: '-100%'
+      }
+    )
+    anime.set(
+      this.$refs.buttonNude, {
+        translateX: '100%'
+      }
+    )
+    this.$refs.socials.hide()
   }
 }
 </script>

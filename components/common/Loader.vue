@@ -5,8 +5,8 @@
 </template>
 <script>
 if (process.client) {
-  //var bodymovin = require('lottie-web/build/player/lottie_svg.js')
-  var bodymovin = require('lottie-web')
+  var bodymovin = require('lottie-web/build/player/lottie_canvas.js')
+  //var bodymovin = require('lottie-web')
 }
 import anime from 'animejs'
 export default {
@@ -43,6 +43,7 @@ export default {
       })
     },
     hide() {
+      this.$el.style.display = 'block'
       this.$el.style.mixBlendMode = 'multiply'
       this.$el.style.opacity = 1
       this.animation.play()
@@ -53,7 +54,7 @@ export default {
   beforeDestroy(){
   },
   mounted() {
-    //if(process.env.NODE_ENV === "development") this.$el.style.display = 'none'
+    if(process.env.NODE_ENV === "development") this.$el.style.display = 'none'
     this.animation = bodymovin.loadAnimation({
       container: this.$refs.animation,
       renderer: 'canvas',
@@ -70,11 +71,7 @@ export default {
       this.$el.style.mixBlendMode = ''
     })
     this.animation.addEventListener('DOMLoaded', () => {
-      //this.$el.querySelector('svg').setAttribute("preserveAspectRatio","xMaxYMax slice");
-      setTimeout(()=>{
-        this.isReady = true
-
-      }, 500)
+      this.isReady = true
     })
 
   }

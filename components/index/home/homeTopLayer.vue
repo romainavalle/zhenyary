@@ -1,12 +1,54 @@
 <template>
   <div class="top-layer">
-    <div class="horizontal" />
-    <div class="circle" />
+    <div class="horizontal" ref="bar"/>
+    <div class="circle" ref="circle"/>
   </div>
 </template>
 
 <script>
+import anime from 'animejs'
 export default {
+  methods: {
+    show(){
+
+      anime({
+        targets: this.$refs.circle,
+        translateX: '-95%',
+        translateY: '-50%',
+        scaleX: 1,
+        scaleY: 1,
+        opacity: .1,
+        easing: 'easeOutQuad',
+        delay: 500,
+        duration: 1500
+      })
+      anime({
+        targets: this.$refs.bar,
+        scaleX: 1,
+        easing: 'easeOutQuad',
+        duration: 1500,
+        delay: 700,
+      })
+    }
+  },
+  mounted() {
+    anime.set(
+      this.$refs.circle,
+      {
+        translateX: '-95%',
+        translateY: '-50%',
+        scaleX: .5,
+        scaleY: .5,
+        opacity: 0
+      }
+    )
+    anime.set(
+      this.$refs.bar,
+      {
+        scaleX: 0
+      }
+    )
+  }
 }
 </script>
 
@@ -23,6 +65,7 @@ export default {
     border-bottom 1px solid $black
     left 0
     opacity 0.1
+    transform-origin 0% 50%
     position absolute
     top 65vh
     width 100%
@@ -31,9 +74,7 @@ export default {
     border-radius 50%
     height 45vw
     left 50%
-    opacity 0.1
     position absolute
     top 50%
-    transform translate(-95%, -50%)
     width 45vw
 </style>
