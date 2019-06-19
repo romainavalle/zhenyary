@@ -9,13 +9,13 @@
           <nuxt-link :to="{name: 'index'}" >Home</nuxt-link>
         </span>
       </transition>
-      <nuxt-link :to="{name: 'z'}" class="z"><span class="title">Z.</span><span class="label">about me</span></nuxt-link>
+      <nuxt-link :to="{name: 'about'}" class="z"><span class="title">Z.</span><span class="label">about me</span></nuxt-link>
       <nuxt-link :to="{name: 'works'}"><span class="title">Works</span><span class="label">some cases</span></nuxt-link>
       <no-ssr>
         <div class="spacer" v-if="!isTablet"></div>
       </no-ssr>
       <nuxt-link :to="{name: 'workflow'}"><span class="title">Workflow</span><span class="label">All the processes</span></nuxt-link>
-      <nuxt-link :to="{name: 'contact'}"><span class="title">Contact Me</span><span class="label">For any collaborations</span></nuxt-link>
+      <nuxt-link :to="{name: 'contact'}"><span class="title">Connect</span><span class="label">For any collaborations</span></nuxt-link>
     </div>
   </nav>
 </template>
@@ -42,7 +42,7 @@ export default {
       }
     },
     tick(scrollTop) {
-      if(this.isDevice) return
+      if(this.w < 1024) return
       if(scrollTop > this.h * .3 ) {
         if(!this.isMinimized) this.isMinimized = true
       }else{
@@ -64,6 +64,8 @@ nav
   transition transform .4s ease-out-quad
   width 100%
   z-index 5
+  .mobile &
+    display none
   .no-touch & a:hover
     color $red
   &.index.red a

@@ -15,8 +15,7 @@ export default {
     return {
       w: 0,
       h: 0,
-      isReady: false,
-      isFirstResize: true
+      isReady: false
     }
   },
   components: {
@@ -38,7 +37,7 @@ export default {
       anime({
         targets: this.$el,
         opacity: [0, 1],
-        duration: 500,
+        duration: 300,
         easing: 'easeOutQuad'
       })
     },
@@ -47,7 +46,7 @@ export default {
       this.$el.style.mixBlendMode = 'multiply'
       this.$el.style.opacity = 1
       this.animation.play()
-    }
+    },
   },
   watch: {
   },
@@ -66,6 +65,7 @@ export default {
       }
     })
 
+
     this.animation.addEventListener('complete', () => {
       this.$el.style.display = 'none'
       this.$el.style.mixBlendMode = ''
@@ -73,7 +73,6 @@ export default {
     this.animation.addEventListener('DOMLoaded', () => {
       this.isReady = true
     })
-
   }
 }
 

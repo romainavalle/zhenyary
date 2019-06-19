@@ -8,6 +8,7 @@ export const state = () => ({
   works: [],
   worksById: {},
   color: 'nude',
+  navMobile: false,
   path: process.env.NODE_ENV === 'production' ? '/images/' : '/images/',
   vPath: process.env.NODE_ENV === 'production' ? '/images/' : '/images/'
 })
@@ -20,6 +21,9 @@ export const mutations = {
   },
   SET_COLOR (state, color) {
     state.color = color
+  },
+  SET_NAV_MOBILE (state, navMobile) {
+    state.navMobile = navMobile
   }
 }
 export const actions = {
@@ -40,6 +44,9 @@ export const actions = {
   },
   setColor ({ commit }, color) {
     commit('SET_COLOR', color)
+  },
+  setNavMobile ({ commit }, navMobile) {
+    commit('SET_NAV_MOBILE', navMobile)
   }
 }
 export const getters = {

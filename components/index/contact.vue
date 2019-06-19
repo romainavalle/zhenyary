@@ -1,8 +1,11 @@
 <template>
   <article class="contact">
-    <p>Let’s make something great!<br><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a>  for collaborations.</p>
     <no-ssr>
-      <div>
+    <v-svg-star class="star" v-if="isPhone"/>
+    </no-ssr>
+    <p>Let’s make something great!<br><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a>  for any <br> collaborations.</p>
+    <no-ssr>
+      <div v-if="!isPhone">
         <div class="line" :class="{'ready': linesReady[0]}"><v-svg-smiley class="smiley" /></div>
         <div class="line" :class="{'ready': linesReady[1]}">Let’s make <strong class="italic">something</strong> great!</div>
         <div class="line" :class="{'ready': linesReady[2]}"><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank" class="link">hey@zhenyary.com</a><v-svg-arrow class="arrow" /> <span class="italic">for</span></div>
@@ -18,6 +21,7 @@ import vSvgStar from "~/assets/svgs/star.svg?inline";
 import vSvgSmiley from "~/assets/svgs/smiley.svg?inline";
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -28,6 +32,9 @@ export default {
       arrow: [false, false, false],
       currentArrow: 0
     }
+  },
+  computed: {
+    ...mapGetters(['isPhone'])
   },
   components: {
     vSvgArrow, vSvgStar, vSvgSmiley
@@ -42,11 +49,12 @@ export default {
 
     },
     tick(scrollTop) {
-      if(scrollTop > (this.offset - this.h * .5) && this.lines ) {
+      if(this.isPhone) return
+      if(scrollTop > (this.offset - this.h * .7) && this.lines ) {
         this.isReseted = false
         this.lines.forEach((line, i) => {
           const duration = this.h * .2
-          const start = (this.offset - this.h * .5) + this.h * .1 * i
+          const start = (this.offset - this.h * .7) + this.h * .1 * i
           const end = start + duration
           let coef = 0
           if(scrollTop > start ) {
@@ -93,17 +101,12 @@ export default {
     clearTimeout(this.arrowTimer)
   },
   mounted() {
+    if(this.isPhone)return
     this.$el.querySelector('p').style.display = 'none'
     this.$nextTick(()=>{
     this.lines = [].slice.call(this.$el.querySelectorAll('.line'))
     this.reset()
-      // anime({
-      //   targets: this.lines,
-      //   opacity: 0,
-      //   translateY: 100,
-      //   scaleY: 1.5,
-      //   duration: 0
-      // })
+
     })
   }
 }
@@ -178,7 +181,22 @@ export default {
       transform translateX(0)
     strong
       color $white
-
+.mobile &.contact
+  display block
+  svg
+    width 30px
+    height 30px
+    margin 0 auto 30px
+  p
+    text-align center
+    font-family $schnyder
+    font-size 12vw
+    a
+      display inline-block
+      line-height 1.2
+    a:after
+      transform scale(1)
+      height 3px
 @keyframes smiley
   0%
     transform rotate(-15deg)

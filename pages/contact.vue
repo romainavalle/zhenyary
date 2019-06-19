@@ -182,7 +182,7 @@ export default {
     fill $red
   .device &
     font-size 12vw
-    height calc(100vh - 50px)
+    height 100vh
     padding-top 20vh
     .line
       display block

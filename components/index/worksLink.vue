@@ -7,6 +7,7 @@
 <script>
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -17,15 +18,20 @@ export default {
   },
   components: {
   },
+  computed: {
+    ...mapGetters(['isPhone'])
+  },
   methods: {
     resize(w, h) {
       if(w && h) {
         this.w = w
         this.h = h
       }
+      if(this.isPhone) return
       this.offset = offset(this.$el).top - this.h
     },
     tick(scrollTop, ease) {
+      if(this.isPhone) return
       let coef = 0
       if(ease>=this.offset) coef = (ease-this.offset) / this.h * 1.5
       coef = Math.min(1, coef)

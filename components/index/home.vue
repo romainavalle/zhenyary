@@ -142,7 +142,7 @@ export default {
     anime.set(this.$refs.click,{opacity: 0})
     anime.set(this.skills,{opacity: 0, translateY: '100%'})
 
-    setTimeout(this.show.bind(this), 3000)
+    setTimeout(this.show.bind(this), 1000)
   }
 }
 </script>

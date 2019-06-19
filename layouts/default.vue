@@ -6,7 +6,16 @@
     </no-ssr>
     <v-loader ref="loader"/>
     <no-ssr>
-      <v-turn v-if="isDevice"></v-turn>
+    <v-loader-intro ref="loaderIntro"/>
+    </no-ssr>
+    <no-ssr>
+      <v-turn v-if="isDevice" />
+    </no-ssr>
+    <no-ssr>
+      <v-header-mobile v-if="isPhone" />
+    </no-ssr>
+    <no-ssr>
+      <v-nav-mobile v-if="isPhone" />
     </no-ssr>
     <v-nav ref="nav"/>
     <div class="scroll" ref="scroll">
@@ -20,14 +29,17 @@ import Emitter from '~/assets/js/events/EventsEmitter'
 import ResizeHelper from '~/assets/js/utils/ResizeHelper'
 import ScrollHelper from '~/assets/js/utils/ScrollHelper'
 import vTurn from '~/components/common/turn.vue'
+import vNavMobile from '~/components/common/navMobile.vue'
+import vHeaderMobile from '~/components/common/headerMobile.vue'
 import vLoader from '~/components/common/loader.vue'
+import vLoaderIntro from '~/components/common/loaderIntro.vue'
 import vFooter from '~/components/common/footer.vue'
 import vNav from '~/components/common/nav.vue'
 import vProgress from '~/components/common/progress.vue'
 import loop from 'raf-loop'
 import transform from 'dom-transform'
 import anime from 'animejs'
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 export default {
 
   data() {
@@ -40,9 +52,10 @@ export default {
     ...mapGetters(['isDevice', 'isPhone', 'isTablet'])
   },
   components: {
-    vLoader, vTurn, vNav, vFooter,vProgress
+    vLoader, vLoaderIntro, vTurn, vNav, vFooter,vProgress, vNavMobile, vHeaderMobile
   },
   methods:{
+    ...mapActions(['setNavMobile']),
     resize(){
       const w = ResizeHelper.width()
       const h = ResizeHelper.height()
@@ -51,6 +64,7 @@ export default {
       this.$refs.nav.resize(w, h, pageHeight)
       if(this.$refs.progress) this.$refs.progress.resize(w, h, pageHeight)
       this.$refs.loader.resize(w, h)
+      this.$refs.loaderIntro.resize(w, h)
       if(!this.isDevice)document.body.style.height = pageHeight + 'px'
     },
     tick(){
@@ -67,7 +81,7 @@ export default {
       this.animation = anime({
         targets: this.$refs.scroll,
         //opacity: 0,
-        duration: 500,
+        duration: 700,
         //easing: 'easeInQuad',
         complete: cb
       });
@@ -84,10 +98,13 @@ export default {
     setRouterHooks () {
       this.$router.beforeEach((to, from, next) => {
           this.pageFadeOut(next)
+
           this.$refs.loader.show()
+          this.$refs.loaderIntro.show()
       })
       this.$router.afterEach((to, from) => {
         ScrollHelper.goTo(0)
+        this.setNavMobile(false)
       })
     },
     onPageMounted(){
@@ -96,6 +113,8 @@ export default {
       }, 100)
       //this.pageFadeIn(0)
       this.$refs.loader.hide()
+      this.$refs.loaderIntro.hide()
+
     }
   },
   mounted() {
@@ -107,7 +126,10 @@ export default {
     const engine = loop(this.tick.bind(this)).start()
     this.setRouterHooks()
     this.isTouch = this.isDevice
-    this.$refs.loader.hide()
+    setTimeout(()=>{
+      this.$refs.loader.hide()
+      this.$refs.loaderIntro.hide()
+    },1000)
    if(!this.isTouch)  document.body.className = "no-touch"
   }
 }
