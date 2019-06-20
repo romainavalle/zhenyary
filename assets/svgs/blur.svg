@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 556">
+  <defs>
+    <filter id="a" width="114.5%" height="114.5%" x="-7.3%" y="-7.3%" filterUnits="objectBoundingBox">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12"/>
+    </filter>
+  </defs>
+  <circle cx="1496" cy="1585" r="248" fill="#F2F2F2" fill-rule="evenodd" filter="url(#a)" opacity=".6" transform="translate(-1218 -1307)"/>
+</svg>

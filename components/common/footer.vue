@@ -1,14 +1,47 @@
 <template>
   <footer>
-    <v-socials />
+    <v-socials ref="socials"/>
   </footer>
 </template>
 
 <script>
 import vSocials from '~/components/common/socials.vue'
+import anime from 'animejs'
 export default {
+  data() {
+    return {
+      isShown: false
+    }
+  },
   components: {
     vSocials
+  },
+  methods: {
+    resize(w, h, ph) {
+      if(w && h) {
+        this.w = w
+        this.h = h
+        this.ph = ph
+      }
+    },
+    tick(scrollTop) {
+      if(scrollTop > this.ph - this.h * 1.1 ) {
+        if(!this.isShown)this.show()
+      }else{
+        if(this.isShown)this.hide()
+      }
+    },
+    show() {
+      this.isShown = true
+      this.$refs.socials.show()
+    },
+    hide(){
+      this.isShown = false
+      this.$refs.socials.hide()
+    }
+  },
+  mounted() {
+    this.$refs.socials.fastHide()
   }
 }
 </script>

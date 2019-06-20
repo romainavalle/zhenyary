@@ -8,22 +8,22 @@
       </div>
       <div class="idea">
         <div>
-          <v-svg-idea class="svg-idea circle-bottom"/>
-          <v-svg-idea class="svg-idea circle-top"/>
-          <v-svg-arrow class="svg-arrow"/>
+          <v-svg-idea class="svg-idea circle-bottom" aria-hidden="true"/>
+          <v-svg-idea class="svg-idea circle-top" aria-hidden="true"/>
+          <v-svg-arrow class="svg-arrow" aria-hidden="true"/>
         </div>
-        <v-svg-arrow class="arrow"/>
+        <v-svg-arrow class="arrow" aria-hidden="true"/>
       </div>
       <div class="process" ref="process">
         <strong class="strong">It's all<br>about</strong>
         <div class="text">
           <h4>thinking<br>process<v-svg-star class="svg-star star"/></h4>
-          <p>My ultimate goal with every project is to come up with a solution-based design approach to help my clients solve real cases and achieve business needs.</p>
-          <p>For this to happen, many ideas and hypotheses need to be generated and iterated upon. Creative thinking inspires ideas while ideas empower change.</p>
+          <p ref="text1">My ultimate goal with every project is to come up with a solution-based design approach to help my clients solve real cases and achieve business needs.</p>
+          <p ref="text2">For this to happen, many ideas and hypotheses need to be generated and iterated upon. Creative thinking inspires ideas while ideas empower change.</p>
         </div>
       </div>
     </div>
-    <div class="bottom">
+    <div class="bottom" ref="bottom">
       <div class="content">
         <span>Z.<sup>is</sup></span>
         <h5>thinking<br>how to implement<br><span class="italic red">this idea</span></h5>
@@ -59,27 +59,43 @@ export default {
         this.h = h
       }
       this.animHeight = this.h * .5
-      this.offset = offset(this.$el).top - this.h * .9
+      this.offset = offset(this.$el).top - this.h * .8
+      this.bottomOffset = offset(this.$refs.bottom).top - this.h * .8
     },
     tick(scrollTop, ease) {
+
       if(scrollTop > this.offset  && scrollTop < this.offset + this.h * 1.5){
-        transform(this.circleBottom, {rotate:(scrollTop % this.h) / this.h * 360})
-        transform(this.circleTop, {rotate:(ease % this.h) / this.h * 360})
+        transform(this.circleBottom, {rotate:(ease % this.h) / this.h * 360})
+        transform(this.circleTop, {rotate:(scrollTop % this.h) / this.h * 360})
       }
+
       if(ease > this.offset && ease < this.offset + this.animHeight){
         const coef = (ease - this.offset) / this.animHeight
         this.$el.style.opacity = coef
+        this.arrow.style.opacity = coef
         transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
         transform(this.$refs.title, {translate3d:[0, 200 - coef * 200, 0]})
         transform(this.$refs.process, {translate3d:[0, 200 - coef * 200, 0]})
         transform(this.$refs.number, {translate3d:[0, 400 - coef * 400, 0]})
+        transform(this.$refs.text1, {translate3d:[0, 300 - coef * 300, 0]})
+        transform(this.$refs.text2, {translate3d:[0, 400 - coef * 400, 0]})
+      }
+
+      if(ease > this.bottomOffset && ease < this.bottomOffset + this.animHeight){
+        const coefBottom = (ease - this.bottomOffset) / this.animHeight
+        this.$refs.bottom.style.opacity = coefBottom
+        transform(this.$refs.bottom, {translate3d:[0, 200 - coefBottom * 200, 0]})
       }
     }
   },
   mounted() {
     this.circleBottom = this.$el.querySelector('.circle-bottom')
     this.circleTop = this.$el.querySelector('.circle-top')
-    if(!this.isPhone)this.$el.style.opacity = 0
+    this.arrow = this.$el.querySelector('.svg-arrow')
+    if(!this.isPhone) {
+      this.$el.style.opacity = 0
+      this.$refs.bottom.style.opacity = 0
+    }
   }
 }
 </script>

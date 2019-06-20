@@ -20,7 +20,7 @@
     <v-nav ref="nav"/>
     <div class="scroll" ref="scroll">
       <nuxt :key="route.params.slug || route.name"  ref="page" class="page"/>
-      <v-footer />
+      <v-footer ref="footer"/>
     </div>
   </main>
 </template>
@@ -65,6 +65,7 @@ export default {
       if(this.$refs.progress) this.$refs.progress.resize(w, h, pageHeight)
       this.$refs.loader.resize(w, h)
       this.$refs.loaderIntro.resize(w, h)
+      this.$refs.footer.resize(w, h, pageHeight)
       if(!this.isDevice)document.body.style.height = pageHeight + 'px'
     },
     tick(){
@@ -72,6 +73,7 @@ export default {
       const scrollTop = this.isDevice ? ScrollHelper.scrollTop : ScrollHelper.ease
       const scrollTopEase = this.isDevice ? ScrollHelper.ease : ScrollHelper.easeSlow
       this.$refs.nav.tick(scrollTop)
+      this.$refs.footer.tick(scrollTop)
       if(this.$refs.page.$children[0])this.$refs.page.$children[0].tick && this.$refs.page.$children[0].tick(scrollTop, scrollTopEase)
       if(!this.isDevice)transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
       if(this.$refs.progress) this.$refs.progress.tick(scrollTop, scrollTopEase)

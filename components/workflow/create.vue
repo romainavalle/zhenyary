@@ -7,9 +7,12 @@
     </div>
     <div class="content">
       <h3><no-ssr><div class="bar" aria-hidden="true" ref="bar"></div></no-ssr> UX strategy <small class="red">/ brand strategy</small><br>Visual strategy</h3>
-      <p>To succeed, every digital product has to be aesthetically appealing, functional, robust, distinctive and memorable. To ensure that the right balance of these components is maintained I always stay in close contact with the client and address every project holistically.</p>
-      <v-svg-star class="star"/>
-      <ul>
+      <p ref="text">To succeed, every digital product has to be aesthetically appealing, functional, robust, distinctive and memorable. To ensure that the right balance of these components is maintained I always stay in close contact with the client and address every project holistically.</p>
+      <v-svg-star class="star" aria-hidden="true"/>
+      <ul ref="bottom" class="bottom">
+        <li class="blur-container" :class="{'ready': isBlurReady}">
+          <v-svg-blur class="svg-blur" aria-hidden="true"/>
+        </li>
         <li>product</li>
         <li>creation</li>
         <li>stage</li>
@@ -19,6 +22,7 @@
 </template>
 
 <script>
+import vSvgBlur from "~/assets/svgs/blur.svg?inline";
 import vSvgStar from "~/assets/svgs/star.svg?inline";
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
@@ -27,11 +31,12 @@ export default {
   data() {
     return {
       w: 0,
-      h:0
+      h:0,
+      isBlurReady: false
     }
   },
   components: {
-    vSvgStar
+    vSvgStar,vSvgBlur
   },
   computed: {
     ...mapGetters(['isPhone'])
@@ -44,6 +49,7 @@ export default {
       }
       this.animHeight = this.h * .5
       this.offset = offset(this.$el).top - this.h * .9
+      this.bottomOffset = offset(this.$refs.bottom).top - this.h * .9
     },
     tick(scrollTop, ease) {
       if(ease > this.offset && ease < this.offset + this.animHeight){
@@ -52,12 +58,30 @@ export default {
         transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
         transform(this.$refs.bar, {scaleX: coef })
         transform(this.$refs.title, {translate3d:[0, 200 - coef * 200, 0]})
+        transform(this.$refs.text, {translate3d:[0, 100 - coef * 100, 0]})
         transform(this.$refs.number, {translate3d:[0, 400 - coef * 400, 0]})
+      }
+      if(ease > this.bottomOffset && ease < this.bottomOffset + this.animHeight){
+        const coefBottom = (ease - this.bottomOffset) / this.animHeight
+        this.$refs.bottom.style.opacity = coefBottom
+        this.lis.forEach((li, i) => {
+          const pos = 100 + i * 100
+          transform(li, {translate3d:[0, pos - coefBottom * pos, 0]})
+        });
+      }
+      if(ease > this.bottomOffset && ease < this.bottomOffset + this.animHeight + this.h * .6){
+        if(!this.isBlurReady) this.isBlurReady = true
+      }else{
+        if(this.isBlurReady) this.isBlurReady = false
       }
     }
   },
   mounted() {
-    if(!this.isPhone)this.$el.style.opacity = 0
+    if(!this.isPhone) {
+      this.$el.style.opacity = 0
+      this.$refs.bottom.style.opacity = 0
+      this.lis = [].slice.call(this.$refs.bottom.querySelectorAll('li'))
+    }
   }
 }
 </script>
@@ -94,6 +118,7 @@ h3
 p
   padding-top 2vh
   padding-bottom 5vh
+  font-size 14px
 .star
   fill $red
   width 3vw
@@ -104,5 +129,17 @@ li
   font-family $schnyder
   font-weight $demi
   line-height 1
+.bottom
+  position relative
+.blur-container
+  position absolute
+  left 5vw
+  top 10vw
+  z-index -1
+.svg-blur
+  width 30vw
+  height 30vw
+  display block
+  transform translate(-50%, -50%)
 
 </style>

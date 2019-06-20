@@ -18,16 +18,16 @@
       </div>
       <div class="content">
         <div class="inner">
-          <ul class="arrows">
+          <ul class="arrows" aria-hidden="true">
             <li><v-svg-arrow class="arrow"/></li>
             <li><v-svg-arrow class="arrow"/></li>
             <li><v-svg-arrow class="arrow"/></li>
             <li><v-svg-arrow class="arrow"/></li>
           </ul>
-          <h3>Long-lasting Collaboration</h3>
-          <h4>Trustful partner for you<br>and your business</h4>
-          <p>I truly believe in the power of a strong business relationship and years-long collaboration. Success is not a 1-day phenomenon it takes a lot of time and joint effort. </p>
-          <p>Common expertise developed over the years of trustful partnership is the core competence of the business and its driving force.</p>
+          <h3 ref="h3">Long-lasting Collaboration</h3>
+          <h4 ref="h4">Trustful partner for you<br>and your business</h4>
+          <p ref="text1">I truly believe in the power of a strong business relationship and years-long collaboration. Success is not a 1-day phenomenon it takes a lot of time and joint effort. </p>
+          <p ref="text2">Common expertise developed over the years of trustful partnership is the core competence of the business and its driving force.</p>
         </div>
       </div>
     </div>
@@ -60,6 +60,8 @@ export default {
       }
       this.animHeight = this.h * .5
       this.offset = offset(this.$el).top - this.h * .9
+      this.bottomOffset = offset(this.$refs.bottom).top - this.h * .8
+      this.bottomOffset2 = offset(this.$refs.h3).top - this.h * .8
     },
     tick(scrollTop, ease) {
       if(ease > this.offset && ease < this.offset + this.animHeight){
@@ -68,12 +70,35 @@ export default {
         transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
         transform(this.$refs.title, {scale:[1+.2*(1-coef),1+.2*(1-coef)]})
         transform(this.$refs.skills, {translate3d:[0, 200 - coef * 200, 0]})
-        transform(this.$refs.bottom, {translate3d:[0, 200 - coef * 200, 0]})
+      }
+      if(ease > this.bottomOffset && ease < this.bottomOffset + this.animHeight){
+        const coefBottom = (ease - this.bottomOffset) / this.animHeight
+        this.$refs.bottom.style.opacity = coefBottom
+        transform(this.$refs.bottom, {translate3d:[0, 200 - coefBottom * 200, 0]})
+        this.arrows.forEach((arrow,i) => {
+          transform(arrow, {translate3d:[0, -50 -100 * (i+1) + coefBottom * 100 * (i+2) + '%', 0]})
+        });
+      }
+      if(ease > this.bottomOffset2 && ease < this.bottomOffset2 + this.animHeight){
+        const coefBottom2 = (ease - this.bottomOffset2) / this.animHeight
+        transform(this.$refs.h3, {translate3d:[0, 100 - coefBottom2 * 100, 0]})
+        transform(this.$refs.h4, {translate3d:[0, 200 - coefBottom2 * 200, 0]})
+        transform(this.$refs.text1, {translate3d:[0, 300 - coefBottom2 * 300, 0]})
+        transform(this.$refs.text2, {translate3d:[0, 400 - coefBottom2 * 400, 0]})
       }
     }
   },
   mounted() {
-    if(!this.isPhone)this.$el.style.opacity = 0
+
+    if(!this.isPhone) {
+      this.$el.style.opacity = 0
+      this.$refs.bottom.style.opacity = 0
+      this.arrows = [].slice.call(this.$el.querySelectorAll('.arrows li'))
+      transform(this.$refs.h3, {translate3d:[0, 100 - 0 * 100, 0]})
+      transform(this.$refs.h4, {translate3d:[0, 200 - 0 * 200, 0]})
+      transform(this.$refs.text1, {translate3d:[0, 300 - 0 * 300, 0]})
+      transform(this.$refs.text2, {translate3d:[0, 400 - 0 * 400, 0]})
+    }
   }
 }
 </script>
@@ -120,6 +145,7 @@ h5
   display flex
   padding 0
   padding-bottom 4vw
+  overflow hidden
   li
     height 6.1vw
     width 4.1vw

@@ -66,7 +66,7 @@ class ScrollHelper {
     tick() {
       this.tempScroll = this.scrollTop
       this.ease = Math.round(this.lerp(this.ease, this.scrollTop, 0.07)*100)/100
-      this.easeSlow = Math.round(this.lerp(this.easeSlow, this.scrollTop, 0.09)*100)/100
+      this.easeSlow = Math.round(this.lerp(this.easeSlow, this.scrollTop, 0.05)*100)/100
     }
     lerp(x, y, r) {
       return x + ((y - x) * r);

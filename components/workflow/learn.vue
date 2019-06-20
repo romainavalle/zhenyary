@@ -16,18 +16,22 @@
           <li>Functional Specifications</li>
           <li>Content Requirements</li>
         </ul>
-        <v-svg-arrow class="arrow"/>
+          <v-svg-arrow class="arrow" aria-hidden="true"/>
       </div>
     </div>
-    <div class="problem">
+    <div class="problem" ref="problem">
       <strong>Problem</strong>
       <p>User Needs<br>Product Objectives</p>
+      <div class="blur-container" :class="{'ready': isBlurReady}">
+        <v-svg-blur class="svg-blur" aria-hidden="true"/>
+      </div>
     </div>
   </article>
 </template>
 
 <script>
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
+import vSvgBlur from "~/assets/svgs/blur.svg?inline";
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import { mapGetters } from 'vuex';
@@ -35,11 +39,12 @@ export default {
   data() {
     return {
       w: 0,
-      h:0
+      h:0,
+      isBlurReady: false
     }
   },
   components: {
-    vSvgArrow
+    vSvgArrow, vSvgBlur
   },
   computed: {
     ...mapGetters(['isPhone'])
@@ -60,11 +65,21 @@ export default {
         transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
         transform(this.$refs.title, {translate3d:[0, 200 - coef * 200, 0]})
         transform(this.$refs.number, {translate3d:[0, 400 - coef * 400, 0]})
+        transform(this.$refs.problem, {translate3d:[0, 100 - coef * 100, 0]})
+        this.lis.forEach((li, i) => {
+          transform(li, {translate3d:[0, (i+1) * 50 - coef * (i+1) * 50, 0]})
+        })
+      }
+      if(ease > this.offset + this.animHeight - this.h * .1 && ease < this.offset + this.h * 1.5) {
+        if(!this.isBlurReady) this.isBlurReady = true
+      }else{
+        if(this.isBlurReady) this.isBlurReady = false
       }
     }
   },
   mounted() {
     if(!this.isPhone)this.$el.style.opacity = 0
+    this.lis = [].slice.call(this.$el.querySelectorAll('li'))
   }
 }
 </script>
@@ -90,15 +105,17 @@ h4
   .inner
     width 55%
     padding-top 5vw
+ul
+  margin-bottom 3vw
 li
   margin-top 10px
+  display block
 
 strong
   font-size 4.1vw
   font-weight normal
   display block
 p
-  line-height 1
   font-size 1.5vw
   margin 0
 .arrow
@@ -108,4 +125,17 @@ p
   transform-origin 0 50%
   transform rotate(90deg) translateY(-50%)
   opacity 0.5
+.problem
+  position relative
+  padding-top 18vw
+.blur-container
+  position absolute
+  left 8vw
+  top 23vw
+  z-index -1
+.svg-blur
+  width 25vw
+  height 25vw
+  display block
+  transform translate(-50%, -50%)
 </style>

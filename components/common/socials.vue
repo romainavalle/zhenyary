@@ -14,19 +14,28 @@ export default {
   },
   methods:{
     hide() {
-      anime.set(this.$refs.links,{
+      anime({
+        targets: this.$refs.links,
         translateY: '100%',
-        opacity: 0
+        opacity: 0,
+        duration: 500,
+        easing: 'easeOutQuad'
       })
     },
-    show() {
+    show(start = 0) {
       anime({
         targets: this.$refs.links,
         translateY: '0%',
         opacity: 1,
         duration: 500,
         easing: 'easeOutQuad',
-        delay: anime.stagger(200, {start: 1000})
+        delay: anime.stagger(200, {start})
+      })
+    },
+    fastHide() {
+      anime.set(this.$refs.links,{
+        translateY: '100%',
+        opacity: 0
       })
     }
   }

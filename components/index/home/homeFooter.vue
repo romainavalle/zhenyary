@@ -23,7 +23,7 @@ export default {
   methods: {
     ...mapActions(['setColor']),
     show() {
-      this.$refs.socials.show()
+      this.$refs.socials.show(1000)
       anime({
         targets: [this.$refs.buttonRed, this.$refs.buttonNude],
         translateX: '0%',
@@ -44,7 +44,7 @@ export default {
         translateX: '100%'
       }
     )
-    this.$refs.socials.hide()
+    this.$refs.socials.fastHide()
   }
 }
 </script>
