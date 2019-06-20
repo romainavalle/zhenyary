@@ -168,11 +168,6 @@ export default {
   .smiley
     width 4.1vw
     height 4.1vw
-    animation-name smiley
-    animation-duration 5s
-    animation-timing-function ease-in-out-quad
-    animation-iteration-count infinite
-    animation-direction alternate
   .ready
     a:after
       transform scale(1)
@@ -198,23 +193,5 @@ export default {
     a:after
       transform scale(1)
       height 3px
-@keyframes smiley
-  0%
-    transform rotate(-15deg)
-  5%
-    transform rotate(25deg)
-  10%
-    transform rotate(-10deg)
-  40%
-    transform rotate(380deg)
-  50%
-    transform rotate(330deg)
-  55%
-    transform rotate(370deg)
-  80%
-    transform rotate(-20deg)
-  90%
-    transform rotate(30deg)
-  100%
-    transform rotate(-15deg)
+
 </style>

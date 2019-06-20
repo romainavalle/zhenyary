@@ -1,6 +1,6 @@
 <template>
  <footer>
-   <strong class="big">So, no more words</strong>
+   <strong class="big" ref="big">So, no more words</strong>
    <div class="content">
      <div class="img">
        <img src="/images/workflow.jpg" alt="zhenya">
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import offset from '~/assets/js/utils/offset'
+import transform from 'dom-transform'
 export default {
   data() {
     return {
@@ -30,11 +32,19 @@ export default {
         this.w = w
         this.h = h
       }
+      this.animHeight = this.h * .5
+      this.offset = offset(this.$el).top - this.h * .9
     },
     tick(scrollTop, ease) {
+      if(ease > this.offset && ease < this.offset + this.animHeight){
+        const coef = (ease - this.offset) / this.animHeight
+        transform(this.$refs.big, {translateX: 100 - coef * 100 +'%'})
+      }
     }
   },
   mounted() {
+
+    transform(this.$refs.big, {translateX: 100  +'%'})
   }
 }
 </script>

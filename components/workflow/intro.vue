@@ -11,13 +11,15 @@
     </div>
     <no-ssr>
       <div class="desktop" v-if="!isPhone">
+
         <div class="d-f">
-          <p>
+          <p ref="te">
+            <v-svg-smiley class="smiley"/>
             <span class="line"><span>It's all about my</span> <v-svg-arrow class="arrow"/><span class="italic">design</span></span>
-            <span class="line"><span class="italic">process</span><small>*how<br>the magic happens</small><ul><li><em>A.</em>Learn</li><li><em>B.</em>Think</li><li><em>C.</em>Create</li></ul></span>
+            <span class="line"><span class="italic">process</span><small>*how<br>the magic happens</small><ul><li><em>A.</em><span :class="{'red': words[0]}">Learn</span></li><li><em>B.</em><span :class="{'red': words[1]}">Think</span></li><li><em>C.</em><span :class="{'red': words[2]}">Create</span></li></ul></span>
           </p>
         </div>
-        <strong class="strong">Scroll down for more</strong>
+        <button class="strong" @click="scrollTo" ref="button" :disabled="buttonClicked">Scroll down for more</button>
       </div>
     </no-ssr>
   </header>
@@ -25,16 +27,25 @@
 
 <script>
 import vSvgArrow from "~/assets/svgs/arrow-l.svg?inline";
+import vSvgSmiley from "~/assets/svgs/smiley.svg?inline";
+import anime from 'animejs'
+import ScrollHelper from '~/assets/js/utils/ScrollHelper'
+import transform from 'dom-transform'
 import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
       w: 0,
-      h:0
+      h:0,
+      isShown: false,
+      isActive: false,
+      currentWord: -1,
+      buttonClicked: false,
+      words: [false, false, false],
     }
   },
   components: {
-    vSvgArrow
+    vSvgArrow, vSvgSmiley
   },
   computed: {
     ...mapGetters(['isPhone'])
@@ -47,11 +58,93 @@ export default {
       }
     },
     tick(scrollTop, ease) {
+      if(!this.isShown) return
+      if(scrollTop > this.h) {
+        if(this.active) this.reset()
+      }else{
+        if(!this.active)this.activateWords()
+      }
+      if(scrollTop > this.h) return
+      const op = 1 - scrollTop / (this.h  /2)
+      this.lines.forEach((line, i)=>{
+        transform(line, {translate3d:[0, .1 * (i - 2) * scrollTop, 0]})
+        line.style.opacity = op
+      })
+      this.smiley.style.opacity = op
+    },
+    scrollTo() {
+      this.buttonClicked = true
+      ScrollHelper.scrollTo(this.h * .7)
+
+      anime({
+        targets: this.$refs.button,
+        opacity: 0,
+        translateY: 0,
+        duration: 300,
+        easing: 'easeOutQuad'
+      })
+    },
+    reset() {
+      this.active = false
+      clearTimeout(this.wordsTimer)
+      this.words.forEach((element,i) => {
+        this.$set(this.words, i, false)
+      });
+    },
+    show() {
+      anime({
+        targets: this.lines,
+        opacity: 1,
+        translateY: 0,
+        scaleY: 1,
+        duraction: 700,
+        easing: 'easeOutQuad',
+        delay: anime.stagger(300)
+      })
+      anime({
+        targets: this.smiley,
+        opacity: 1,
+        duraction: 700,
+        easing: 'easeOutQuad',
+        delay: 500,
+        complete: ()=>{
+          this.isShown = true
+          this.activateWords()
+        }
+      })
+    },
+    activateWords() {
+      this.animateWords()
+      this.active = true
+    },
+    animateWords() {
+      this.currentWord++
+      if(this.currentWord === this.words.length * 3) this.currentWord = 0
+      this.$nextTick(()=>{
+        if((this.currentWord - this.words.length) % 3 >= 0)this.$set(this.words,(this.currentWord - this.words.length) % 3, false)
+        if(this.words[this.currentWord] < this.words.length)this.$set(this.words,this.currentWord, true)
+      })
+      this.wordsTimer = setTimeout(this.animateWords.bind(this), 400)
     }
+  },
+  beforeDestroy() {
+    clearTimeout(this.wordsTimer)
   },
   mounted() {
     if(this.isPhone) return
     this.$el.querySelector('.mobile').style.display = "none"
+    this.$nextTick(()=>{
+      this.lines = [].slice.call(this.$el.querySelectorAll('.line'))
+      this.smiley = this.$el.querySelector('.smiley')
+      anime.set(this.lines, {
+        opacity: 0,
+        translateY: 200,
+        scaleY: 1.5
+      })
+      anime.set(this.smiley, {
+        opacity: 0
+      })
+    })
   }
 }
 </script>
@@ -74,6 +167,7 @@ p
   font-weight $demi
   line-height 1
   margin 0
+  position relative
 .strong
   position absolute
   bottom 3vh
@@ -88,6 +182,8 @@ p
   display flex
   justify-content space-between
   align-items baseline
+  transform-origin 0 0
+  position relative
   & + .line
     margin-top 3vh
 
@@ -108,6 +204,11 @@ ul
 li
   display flex
   align-items baseline
+  span
+    display block
+    transition transform .3s ease-out-quad,  color .3s ease-out-quad
+    &.red
+      transform translateY(-.5vw)
   & + li
     padding-left 2vw
 em
@@ -119,4 +220,11 @@ em
   color $red
   font-style normal
   padding-right .5vw
+.smiley
+  width 8vw
+  height 8vw
+  display block
+  position absolute
+  top -5vw
+  left 15vw
 </style>

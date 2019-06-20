@@ -53,7 +53,12 @@ export default {
     }
   },
   mounted() {
-    Emitter.emit('PAGE:MOUNTED')
+    this.$nextTick(()=>{
+      Emitter.emit('PAGE:MOUNTED')
+      setTimeout(()=>{
+        this.$refs.intro.show()
+      }, 3000)
+    })
   },
 }
 </script>

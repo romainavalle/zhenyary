@@ -3,17 +3,18 @@
     <div class="top">
       <div class="title">
         <span>B.</span>
-        <h2>Think</h2>
-        <span>02</span>
+        <h2 ref="title">Think</h2>
+        <span ref="number">02</span>
       </div>
       <div class="idea">
         <div>
-          <v-svg-idea class="svg-idea"/>
+          <v-svg-idea class="svg-idea circle-bottom"/>
+          <v-svg-idea class="svg-idea circle-top"/>
           <v-svg-arrow class="svg-arrow"/>
         </div>
         <v-svg-arrow class="arrow"/>
       </div>
-      <div class="process">
+      <div class="process" ref="process">
         <strong class="strong">It's all<br>about</strong>
         <div class="text">
           <h4>thinking<br>process<v-svg-star class="svg-star star"/></h4>
@@ -35,6 +36,9 @@
 import vSvgIdea from "~/assets/svgs/idea.svg?inline";
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
 import vSvgStar from "~/assets/svgs/star.svg?inline";
+import transform from 'dom-transform'
+import offset from '~/assets/js/utils/offset'
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -45,17 +49,37 @@ export default {
   components:{
     vSvgIdea,vSvgArrow, vSvgStar
   },
+  computed: {
+    ...mapGetters(['isPhone'])
+  },
   methods: {
     resize(w, h) {
       if(w && h) {
         this.w = w
         this.h = h
       }
+      this.animHeight = this.h * .5
+      this.offset = offset(this.$el).top - this.h * .9
     },
     tick(scrollTop, ease) {
+      if(scrollTop > this.offset  && scrollTop < this.offset + this.h * 1.5){
+        transform(this.circleBottom, {rotate:(scrollTop % this.h) / this.h * 360})
+        transform(this.circleTop, {rotate:(ease % this.h) / this.h * 360})
+      }
+      if(ease > this.offset && ease < this.offset + this.animHeight){
+        const coef = (ease - this.offset) / this.animHeight
+        this.$el.style.opacity = coef
+        transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
+        transform(this.$refs.title, {translate3d:[0, 200 - coef * 200, 0]})
+        transform(this.$refs.process, {translate3d:[0, 200 - coef * 200, 0]})
+        transform(this.$refs.number, {translate3d:[0, 400 - coef * 400, 0]})
+      }
     }
   },
   mounted() {
+    this.circleBottom = this.$el.querySelector('.circle-bottom')
+    this.circleTop = this.$el.querySelector('.circle-top')
+    if(!this.isPhone)this.$el.style.opacity = 0
   }
 }
 </script>
@@ -91,7 +115,10 @@ svg
   width 100%
   height 100%
   display block
-
+  position relative
+  &.circle-bottom
+    position absolute
+    opacity 0.3
 
 h4
   font-size 3.4vw

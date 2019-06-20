@@ -2,8 +2,8 @@
   <article>
     <div class="title">
       <span>A.</span>
-      <h2>Learn</h2>
-      <span>01</span>
+      <h2 ref="title">Learn</h2>
+      <span ref="number">01</span>
     </div>
     <div class="brief">
       <div class="inner">
@@ -28,6 +28,9 @@
 
 <script>
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
+import transform from 'dom-transform'
+import offset from '~/assets/js/utils/offset'
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -38,17 +41,30 @@ export default {
   components: {
     vSvgArrow
   },
+  computed: {
+    ...mapGetters(['isPhone'])
+  },
   methods: {
     resize(w, h) {
       if(w && h) {
         this.w = w
         this.h = h
       }
+      this.animHeight = this.h * .5
+      this.offset = offset(this.$el).top - this.h * .9
     },
     tick(scrollTop, ease) {
+      if(ease > this.offset && ease < this.offset + this.animHeight){
+        const coef = (ease - this.offset) / this.animHeight
+        this.$el.style.opacity = coef
+        transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
+        transform(this.$refs.title, {translate3d:[0, 200 - coef * 200, 0]})
+        transform(this.$refs.number, {translate3d:[0, 400 - coef * 400, 0]})
+      }
     }
   },
   mounted() {
+    if(!this.isPhone)this.$el.style.opacity = 0
   }
 }
 </script>

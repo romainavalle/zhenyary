@@ -2,11 +2,11 @@
   <article>
     <div class="title">
       <span>C.</span>
-      <h2>Create</h2>
-      <span>03</span>
+      <h2 ref="title">Create</h2>
+      <span ref="number">03</span>
     </div>
     <div class="content">
-      <h3>UX strategy <small class="red">/ brand strategy</small><br>Visual strategy</h3>
+      <h3><no-ssr><div class="bar" aria-hidden="true" ref="bar"></div></no-ssr> UX strategy <small class="red">/ brand strategy</small><br>Visual strategy</h3>
       <p>To succeed, every digital product has to be aesthetically appealing, functional, robust, distinctive and memorable. To ensure that the right balance of these components is maintained I always stay in close contact with the client and address every project holistically.</p>
       <v-svg-star class="star"/>
       <ul>
@@ -20,6 +20,9 @@
 
 <script>
 import vSvgStar from "~/assets/svgs/star.svg?inline";
+import transform from 'dom-transform'
+import offset from '~/assets/js/utils/offset'
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -30,17 +33,31 @@ export default {
   components: {
     vSvgStar
   },
+  computed: {
+    ...mapGetters(['isPhone'])
+  },
   methods: {
     resize(w, h) {
       if(w && h) {
         this.w = w
         this.h = h
       }
+      this.animHeight = this.h * .5
+      this.offset = offset(this.$el).top - this.h * .9
     },
     tick(scrollTop, ease) {
+      if(ease > this.offset && ease < this.offset + this.animHeight){
+        const coef = (ease - this.offset) / this.animHeight
+        this.$el.style.opacity = coef
+        transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
+        transform(this.$refs.bar, {scaleX: coef })
+        transform(this.$refs.title, {translate3d:[0, 200 - coef * 200, 0]})
+        transform(this.$refs.number, {translate3d:[0, 400 - coef * 400, 0]})
+      }
     }
   },
   mounted() {
+    if(!this.isPhone)this.$el.style.opacity = 0
   }
 }
 </script>
@@ -62,14 +79,14 @@ h3
   font-weight $demi
   position relative
   padding-top 2vw
-  &:before
-    content ''
+  .bar
     width 100%
     height 0.2vw
     background $black
     position absolute
     top 0
     left 0
+    transform-origin 0 0
   small
     font-family $walsheim
     font-weight $light

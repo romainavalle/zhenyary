@@ -1,10 +1,10 @@
 <template>
   <article class="implementation">
     <div class="title">
-      <span>04</span>
-      <h2>Implementation</h2>
+      <span >04</span>
+      <h2 ref="title">Implementation</h2>
     </div>
-    <ul class="d-f">
+    <ul class="d-f" ref="skills">
       <li>UX architecture</li>
       <li>Visual concepts</li>
       <li>Interactions</li>
@@ -12,7 +12,7 @@
       <li>Testing</li>
       <li>🎂Project Birth</li>
     </ul>
-    <div class="d-f bottom">
+    <div class="d-f bottom" ref="bottom">
       <div>
         <h5>Communication with the <span class="strike">client</span> partner during the whole process</h5>
       </div>
@@ -36,6 +36,9 @@
 
 <script>
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
+import transform from 'dom-transform'
+import offset from '~/assets/js/utils/offset'
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -46,17 +49,31 @@ export default {
   components:{
     vSvgArrow
   },
+  computed: {
+    ...mapGetters(['isPhone'])
+  },
   methods: {
     resize(w, h) {
       if(w && h) {
         this.w = w
         this.h = h
       }
+      this.animHeight = this.h * .5
+      this.offset = offset(this.$el).top - this.h * .9
     },
     tick(scrollTop, ease) {
+      if(ease > this.offset && ease < this.offset + this.animHeight){
+        const coef = (ease - this.offset) / this.animHeight
+        this.$el.style.opacity = coef
+        transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
+        transform(this.$refs.title, {scale:[1+.2*(1-coef),1+.2*(1-coef)]})
+        transform(this.$refs.skills, {translate3d:[0, 200 - coef * 200, 0]})
+        transform(this.$refs.bottom, {translate3d:[0, 200 - coef * 200, 0]})
+      }
     }
   },
   mounted() {
+    if(!this.isPhone)this.$el.style.opacity = 0
   }
 }
 </script>
