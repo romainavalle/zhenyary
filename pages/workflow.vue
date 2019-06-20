@@ -63,5 +63,19 @@ export default {
   position relative
   width 100vw
 </style>
+<style lang="stylus" >
+section.workflow
+  .title
+    h2
+      font-family $schnyder
+      font-weight $demi
+      font-size 10.6vw
+      display block
+      line-height 1
+    span
+      color $red
+      display block
+      font-size 2.2vw
+</style>
 
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="socials">
+  <div class="socials" :class="{'white': $route.name ==='workflow'}">
     <a v-for="(social,i) in datas.socials" :key="`social-${i}`" :href="social.link" v-text="social.label" target="_blank" rel="noopener" :class="color" ref="links"></a>
   </div>
 </template>
@@ -40,6 +40,9 @@ export default {
   font-size 21px
   display flex
   justify-content center
+  &.white
+    a
+      color $white
   a
     color $black
     display block
