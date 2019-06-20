@@ -1,10 +1,22 @@
 <template>
   <section class="workflow">
+    <v-intro ref="intro"/>
+    <v-learn ref="learn"/>
+    <v-think ref="think"/>
+    <v-create ref="create"/>
+    <v-implementation ref="implementation"/>
+    <v-footer ref="footer" />
   </section>
 </template>
 
 <script>
 import Emitter from '~/assets/js/events/EventsEmitter'
+import vIntro from '~/components/workflow/intro.vue'
+import vLearn from '~/components/workflow/learn.vue'
+import vThink from '~/components/workflow/think.vue'
+import vCreate from '~/components/workflow/create.vue'
+import vImplementation from '~/components/workflow/implementation.vue'
+import vFooter from '~/components/pageFooter.vue'
 import { mapState } from 'vuex'
 export default {
   data() {
@@ -16,6 +28,7 @@ export default {
   computed: {
   },
   components: {
+    vIntro, vLearn, vThink, vCreate, vImplementation, vFooter
   },
   methods: {
     resize(w, h) {
@@ -23,8 +36,20 @@ export default {
         this.w = w
         this.h = h
       }
+      this.$refs.intro.resize(this.w, this.h)
+      this.$refs.learn.resize(this.w, this.h)
+      this.$refs.think.resize(this.w, this.h)
+      this.$refs.create.resize(this.w, this.h)
+      this.$refs.implementation.resize(this.w, this.h)
+      this.$refs.footer.resize(this.w, this.h)
     },
-    tick(scrollTop) {
+    tick(scrollTop, ease) {
+      this.$refs.intro.tick(scrollTop, ease)
+      this.$refs.learn.tick(scrollTop, ease)
+      this.$refs.think.tick(scrollTop, ease)
+      this.$refs.create.tick(scrollTop, ease)
+      this.$refs.implementation.tick(scrollTop, ease)
+      this.$refs.footer.tick(scrollTop, ease)
     }
   },
   mounted() {

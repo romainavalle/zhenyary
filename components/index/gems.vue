@@ -1,48 +1,46 @@
 <template>
   <article class="gems">
     <strong class="strong">My main services</strong>
-    <div class="d-f">
-      <div>
-        <div class="line">
-          <span class="word">Art direction</span>
-          <v-svg-star class="star"/>
-          <span class="italic blur" :class="{'ready': isBlurActive}">Product Design
-            <no-ssr>
-              <span class="inner-blur" data-text="Product Design"></span>
-              <span class="inner-blur" data-text="Product Design"></span>
-              <span class="inner-blur" data-text="Product Design"></span>
-              <span class="inner-blur" data-text="Product Design"></span>
-              <span class="inner-blur" data-text="Product Design"></span>
-              <span class="inner-blur" data-text="Product Design"></span>
-              <span class="inner-blur" data-text="Product Design"></span>
-              <span class="inner-blur" data-text="Product Design"></span>
-              <span class="inner-blur" data-text="Product Design"></span>
-              <span class="inner-blur" data-text="Product Design"></span>
-              <span class="inner-blur" data-text="Product Design"></span>
-            </no-ssr>
-          </span>
-        </div>
-        <div class="line">
-          <span class="underline" :class="{'ready': isShown}">Visual design</span>
-          <span class="word">Mobile & web design</span>
-        </div>
-        <div class="line">
-          <span class="word italic">Interaction design</span>
-          <div class="and" :class="{'ready': isShown}"><span>&</span><span>&</span></div>
-          <span class="word">Animation</span>
-        </div>
-      </div>
-    </div>
+    <ul>
+      <li><v-svg-star class="star"/></li>
+      <li>Art direction</li>
+      <li>Product design</li>
+      <li>Visual design</li>
+      <li>Mobile esign</li>
+      <li> web design</li>
+      <li>Interaction design</li>
+      <li>Animation</li>
+    </ul>
     <no-ssr>
-      <div class="mobile" v-if="isPhone">
-        <span><v-svg-star class="star"/></span>
-        <span>Art direction</span>
-        <span>Product design</span>
-        <span>Visual design</span>
-        <span>Mobile esign</span>
-        <span> web design</span>
-        <span>Interaction design</span>
-        <span>Animation</span>
+      <div class="d-f" aria-hidden="true" v-if="!isPhone">
+        <div>
+          <div class="line">
+            <span class="word">Art direction</span>
+            <v-svg-star class="star"/>
+            <span class="italic blur" :class="{'ready': isBlurActive}">Product Design
+                <span class="inner-blur" data-text="Product Design"></span>
+                <span class="inner-blur" data-text="Product Design"></span>
+                <span class="inner-blur" data-text="Product Design"></span>
+                <span class="inner-blur" data-text="Product Design"></span>
+                <span class="inner-blur" data-text="Product Design"></span>
+                <span class="inner-blur" data-text="Product Design"></span>
+                <span class="inner-blur" data-text="Product Design"></span>
+                <span class="inner-blur" data-text="Product Design"></span>
+                <span class="inner-blur" data-text="Product Design"></span>
+                <span class="inner-blur" data-text="Product Design"></span>
+                <span class="inner-blur" data-text="Product Design"></span>
+            </span>
+          </div>
+          <div class="line">
+            <span class="underline" :class="{'ready': isShown}">Visual design</span>
+            <span class="word">Mobile & web design</span>
+          </div>
+          <div class="line">
+            <span class="word italic">Interaction design</span>
+            <div class="and" :class="{'ready': isShown}"><span>&</span><span>&</span></div>
+            <span class="word">Animation</span>
+          </div>
+        </div>
       </div>
     </no-ssr>
   </article>
@@ -104,26 +102,20 @@ export default {
       })
 
       anime({
-        targets: '.star',
+        targets: [this.star, this.blur],
         opacity: 1,
         easing: 'easeOutQuad',
-        delay: 100
+        delay: anime.stagger(200, {start: 100})
       })
-      anime({
-        targets: '.blur',
-        opacity: 1,
-        easing: 'easeOutQuad',
-        delay: 300
-      })
-      setTimeout(this.blur.bind(blur), 500)
+      setTimeout(this.doBlur.bind(this), 500)
 
     },
-    blur() {
+    doBlur() {
       if(this.isDevice) return
 
       this.showComplete = true
       this.isBlurActive = true
-      const duration = 50 + Math.random() * 200
+      const duration = 50 + Math.random() * 50
       const delay = Math.random() * 100
       const scaleX = 1 + Math.random() / 10
       const scaleY = 1 + Math.random() / 10
@@ -132,14 +124,14 @@ export default {
       const translateY = (Math.random() - .5) / 100
       this.blurAnime = anime({
         targets: '.inner-blur',
-        translateX: () => { return anime.random(-3, 3); },
-        translateY: () => { return anime.random(-3, 3); },
+        translateX: () => { return anime.random(-4, 4); },
+        translateY: () => { return anime.random(-4, 4); },
         duration: duration,
         easing: 'easeOutQuad',
         delay,
         direction: 'alternate',
         loop: 1,
-        complete: this.blur.bind(this),
+        complete: this.doBlur.bind(this),
       })
 
     },
@@ -157,10 +149,7 @@ export default {
         })
       });
 
-      anime.set('.blur',{
-        opacity: 0
-      })
-      anime.set('.star',{
+      anime.set([this.blur,this.star],{
         opacity: 0
       })
 
@@ -171,12 +160,17 @@ export default {
   },
   mounted() {
     if(this.isPhone) return
-    const words = [].slice.call(this.$el.querySelectorAll('.word'))
-    this.words =[]
-    words.forEach(word => {
-      this.words.push({el: word})
+    this.$el.querySelector('ul').style.display = "none"
+    this.$nextTick(()=>{
+      const words = [].slice.call(this.$el.querySelectorAll('.word'))
+      this.words =[]
+      words.forEach(word => {
+        this.words.push({el: word})
+      })
+      this.star = this.$el.querySelector('.d-f .star')
+      this.blur = this.$el.querySelector('.d-f .blur')
+      this.setup()
     })
-    this.setup()
   }
 }
 </script>
@@ -188,19 +182,19 @@ export default {
   height 60vh
   width 100vw
   position relative
-  .d-f
-    font-size 6vw
-    display flex
-    align-items center
-    font-family $schnyder
-    font-weight $demi
-    height 100%
   strong
     position absolute
     top 2vh
     text-align center
     left 50%
     transform translateX(-50%)
+.d-f
+  font-size 6vw
+  display flex
+  align-items center
+  font-family $schnyder
+  font-weight $demi
+  height 100%
 .line
   display flex
   justify-content space-between
@@ -257,19 +251,18 @@ export default {
   display flex
 .mobile &.gems
   height auto
-  .d-f
-    display none
-  .mobile
+  ul
     padding 100px 0
-    span
-      display block
-      text-align center
-      font-family $schnyder
-      font-size 12vw
-    .star
-      width 30px
-      height 30px
-      margin 0 auto 30px
+  li
+    display block
+    text-align center
+    font-family $schnyder
+    font-weight $demi
+    font-size 12vw
+  .star
+    width 30px
+    height 30px
+    margin 0 auto 30px
 
 </style>
 

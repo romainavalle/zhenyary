@@ -36,6 +36,7 @@ export default {
 <style lang="stylus" scoped>
 .socials
   font-family $schnyder
+  font-weight $demi
   font-size 21px
   display flex
   justify-content center

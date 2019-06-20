@@ -17,6 +17,7 @@ section
 h1
   font-size 20vw
   font-family $schnyder
+  font-weight $demi
   text-align center
   position absolute
   top 50%

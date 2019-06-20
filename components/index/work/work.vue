@@ -161,6 +161,7 @@ export default {
 .h3
   font-size 60px
   font-family $schnyder
+  font-weight $demi
   text-align center
   line-height .9
   width 40%
@@ -169,6 +170,7 @@ export default {
 .type
   font-size 20px
   font-family $schnyder
+  font-weight $demi
   text-align center
   position absolute
   bottom 3vh
@@ -182,6 +184,7 @@ ul li
   padding 50px 0
 a
   font-family $schnyder
+  font-weight $demi
   font-size 36px
 .work + .work
   color $white

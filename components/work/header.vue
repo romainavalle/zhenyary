@@ -64,6 +64,7 @@ h1
   text-align center
   line-height 1
   font-family $schnyder
+  font-weight $demi
   padding-top 30vh
 h2
   margin-bottom 1em

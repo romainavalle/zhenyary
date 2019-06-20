@@ -4,16 +4,16 @@
       <v-background />
     </no-ssr>
     <no-ssr>
-      <v-circles :circles="homeCircles[0]" :id="0" ref="circles-0"/>
+      <v-circles :circles="homeCircles[0]" :id="0" ref="circles-0" aria-hidden="true" />
     </no-ssr>
     <no-ssr>
-      <v-bottom-layer ref="bottomLayer"/>
+      <v-bottom-layer ref="bottomLayer" aria-hidden="true"/>
     </no-ssr>
     <div class="img-container">
       <img src="/images/home/zhenya-bg.jpg" alt="Zhenya Rynzhuk" ref="imgBack">
     </div>
     <no-ssr>
-      <v-circles :circles="homeCircles[1]" :id="1"  ref="circles-1"/>
+      <v-circles :circles="homeCircles[1]" :id="1"  ref="circles-1"  aria-hidden="true"/>
     </no-ssr>
     <h1 :class="{'ready': isReady }">
       <span class="label">Zhenya Rynzhuk</span>
@@ -32,7 +32,7 @@
       <img src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" ref="imgFront">
     </div>
     <no-ssr>
-      <v-top-layer ref="topLayer"/>
+      <v-top-layer ref="topLayer"  aria-hidden="true"/>
     </no-ssr>
     <button class="play" aria-label="play video" ref="play">Play<br>Showreel</button>
     <div class="click">
@@ -44,7 +44,7 @@
       </ul>
     </div>
     <no-ssr>
-      <v-circles :circles="homeCircles[2]" :id="2"  ref="circles-2"/>
+      <v-circles :circles="homeCircles[2]" :id="2"  ref="circles-2" aria-hidden="true"/>
     </no-ssr>
     <v-home-footer ref="footer"/>
   </article>

@@ -190,6 +190,7 @@ export default {
   p
     text-align center
     font-family $schnyder
+    font-weight $demi
     font-size 12vw
     a
       display inline-block

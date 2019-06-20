@@ -66,8 +66,6 @@ export default {
       })
     },
     hide() {
-      console.log('intro hide');
-
       anime({
         targets: this.$refs.red,
         opacity: 0,
