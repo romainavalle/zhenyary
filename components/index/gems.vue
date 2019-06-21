@@ -80,7 +80,7 @@ export default {
         this.show()
       }
       if(scrollTop > this.offset- this.h * .8 && scrollTop < this.offset +this.h * .5 && this.showComplete) {
-        if(!this.isBlurActive)this.blur()
+        if(!this.isBlurActive)this.doBlur()
       }else{
         if(this.isBlurActive){
           this.isBlurActive = false

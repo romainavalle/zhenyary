@@ -179,9 +179,7 @@ export default {
     position relative
     width 100vw
     height auto
-    padding 10vh 0
-  +below('s')
-    padding 10vh 0
+    padding 10vh 0 15vh
 </style>
 
 

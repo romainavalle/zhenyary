@@ -1,30 +1,35 @@
 <template>
   <article>
-    <div class="title">
+    <div class="title" :class="{'mobile-anime': isPhone}">
       <span>A.</span>
       <h2 ref="title">Learn</h2>
       <span ref="number">01</span>
     </div>
     <div class="brief">
       <div class="inner">
-        <h4><span class="red">Briefing</span>Reseach</h4>
+        <h4 :class="{'mobile-anime': isPhone}"><span class="red">Briefing</span>Reseach</h4>
         <ul>
-          <li class="opacity">Project Goals</li>
-          <li class="opacity">Target Audience</li>
-          <li class="opacity">Market</li>
-          <li class="opacity">Competitors</li>
-          <li>Functional Specifications</li>
-          <li>Content Requirements</li>
+          <li class="opacity" :class="{'mobile-anime': isPhone}">Project Goals</li>
+          <li class="opacity" :class="{'mobile-anime': isPhone}">Target Audience</li>
+          <li class="opacity" :class="{'mobile-anime': isPhone}">Market</li>
+          <li class="opacity" :class="{'mobile-anime': isPhone}">Competitors</li>
+          <li :class="{'mobile-anime': isPhone}">Functional Specifications</li>
+          <li :class="{'mobile-anime': isPhone}">Content Requirements</li>
         </ul>
-          <v-svg-arrow class="arrow" aria-hidden="true"/>
+        <no-ssr>
+          <v-svg-arrow class="arrow" aria-hidden="true" v-if="!isPhone"/>
+        </no-ssr>
       </div>
     </div>
-    <div class="problem" ref="problem">
-      <strong>Problem</strong>
-      <p>User Needs<br>Product Objectives</p>
+    <div class="problem" ref="problem" :class="{'mobile-anime': isPhone}">
       <div class="blur-container" :class="{'ready': isBlurReady}">
         <v-svg-blur class="svg-blur" aria-hidden="true"/>
       </div>
+      <strong>Problem</strong>
+      <p>User Needs<br>Product Objectives</p>
+      <no-ssr>
+        <v-svg-arrow class="arrow mobile-anime" aria-hidden="true" v-if="isPhone"/>
+      </no-ssr>
     </div>
   </article>
 </template>
@@ -55,10 +60,12 @@ export default {
         this.w = w
         this.h = h
       }
+      if(this.isPhone) return
       this.animHeight = this.h * .5
       this.offset = offset(this.$el).top - this.h * .9
     },
     tick(scrollTop, ease) {
+      if(this.isPhone) return
       if(ease > this.offset && ease < this.offset + this.animHeight){
         const coef = (ease - this.offset) / this.animHeight
         this.$el.style.opacity = coef
@@ -78,8 +85,12 @@ export default {
     }
   },
   mounted() {
-    if(!this.isPhone)this.$el.style.opacity = 0
-    this.lis = [].slice.call(this.$el.querySelectorAll('li'))
+    if(!this.isPhone){
+      this.$el.style.opacity = 0
+      this.lis = [].slice.call(this.$el.querySelectorAll('li'))
+    }else{
+      this.isBlurReady = true
+    }
   }
 }
 </script>
@@ -91,6 +102,8 @@ article
   justify-content space-between
   >div
     width 30%
+
+
 .opacity
   opacity 0.5
 h4
@@ -105,6 +118,13 @@ h4
   .inner
     width 55%
     padding-top 5vw
+  .arrow
+    display block
+    width 4.6vw
+    height 2.1vw
+    transform-origin 0 50%
+    transform rotate(90deg) translateY(-50%)
+    opacity 0.5
 ul
   margin-bottom 3vw
 li
@@ -118,13 +138,7 @@ strong
 p
   font-size 1.5vw
   margin 0
-.arrow
-  display block
-  width 4.6vw
-  height 2.1vw
-  transform-origin 0 50%
-  transform rotate(90deg) translateY(-50%)
-  opacity 0.5
+
 .problem
   position relative
   padding-top 18vw
@@ -138,4 +152,44 @@ p
   height 25vw
   display block
   transform translate(-50%, -50%)
+article
+  +below('s')
+    text-align center
+    display block
+    >div
+      width 100%
+    h4
+      font-size 12.5vw
+    .brief
+      display block
+      position relative
+      z-index 1
+      .inner
+        width 100%
+    .problem
+      text-align left
+      padding-left 50%
+      position relative
+      padding-top 5vh
+      strong
+        font-size 12.5vw
+      p
+        font-size 15px
+      .arrow
+        display block
+        width 28vw
+        height 13vw
+        transform-origin 0 50%
+        transform rotate(90deg) translateY(-50%)
+        opacity 0.5
+        position absolute
+        left 5vw
+        top 5vh
+      .blur-container
+        z-index 0
+        left 65vw
+        svg
+          width 70vw
+          height 70vw
+
 </style>

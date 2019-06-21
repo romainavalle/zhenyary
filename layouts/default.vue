@@ -142,7 +142,7 @@ main
   background $brown
   color black
   .page
-    padding-bottom 150px
+    //padding-bottom 150px
   &.no-touch
     height 100%
     .page

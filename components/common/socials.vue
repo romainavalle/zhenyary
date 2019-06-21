@@ -1,16 +1,17 @@
 <template>
-  <div class="socials" :class="{'white': $route.name ==='workflow'}">
+  <div class="socials" :class="{'white': $route.name ==='workflow' && !isDevice}">
     <a v-for="(social,i) in datas.socials" :key="`social-${i}`" :href="social.link" v-text="social.label" target="_blank" rel="noopener" :class="color" ref="links"></a>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import anime from 'animejs'
 export default {
   props: ['color'],
   computed: {
-    ...mapState(['datas'])
+    ...mapState(['datas']),
+    ...mapGetters(['isDevice'])
   },
   methods:{
     hide() {

@@ -1,33 +1,41 @@
 <template>
   <article>
     <div class="top">
-      <div class="title">
+      <div class="title" :class="{'mobile-anime': isPhone}">
         <span>B.</span>
         <h2 ref="title">Think</h2>
         <span ref="number">02</span>
       </div>
-      <div class="idea">
-        <div>
-          <v-svg-idea class="svg-idea circle-bottom" aria-hidden="true"/>
-          <v-svg-idea class="svg-idea circle-top" aria-hidden="true"/>
-          <v-svg-arrow class="svg-arrow" aria-hidden="true"/>
+      <no-ssr>
+        <div class="idea"  v-if="!isDevice">
+          <div>
+            <v-svg-idea class="svg-idea circle-bottom" aria-hidden="true"/>
+            <v-svg-idea class="svg-idea circle-top" aria-hidden="true"/>
+            <v-svg-arrow class="svg-arrow" aria-hidden="true"/>
+          </div>
+          <v-svg-arrow class="arrow" aria-hidden="true"/>
         </div>
-        <v-svg-arrow class="arrow" aria-hidden="true"/>
-      </div>
+      </no-ssr>
       <div class="process" ref="process">
-        <strong class="strong">It's all<br>about</strong>
+        <strong class="strong" :class="{'mobile-anime': isPhone}">It's all <br>about</strong>
         <div class="text">
-          <h4>thinking<br>process<v-svg-star class="svg-star star"/></h4>
-          <p ref="text1">My ultimate goal with every project is to come up with a solution-based design approach to help my clients solve real cases and achieve business needs.</p>
-          <p ref="text2">For this to happen, many ideas and hypotheses need to be generated and iterated upon. Creative thinking inspires ideas while ideas empower change.</p>
+          <h4 :class="{'mobile-anime': isPhone}">thinking <br>process<v-svg-star class="svg-star star" aria-hidden="true"/></h4>
+          <p ref="text1" :class="{'mobile-anime': isPhone}">My ultimate goal with every project is to come up with a solution-based design approach to help my clients solve real cases and achieve business needs.</p>
+          <p ref="text2" :class="{'mobile-anime': isPhone}">For this to happen, many ideas and hypotheses need to be generated and iterated upon. Creative thinking inspires ideas while ideas empower change.</p>
         </div>
       </div>
     </div>
-    <div class="bottom" ref="bottom">
-      <div class="content">
-        <span>Z.<sup>is</sup></span>
-        <h5>thinking<br>how to implement<br><span class="italic red">this idea</span></h5>
+    <no-ssr>
+      <div class="bottom" ref="bottom" v-if="!isPhone">
+        <div class="content">
+          <span>Z.<sup>is</sup></span>
+          <h5>thinking<br>how to implement<br><span class="italic red">this idea</span></h5>
+        </div>
       </div>
+    </no-ssr>
+    <div class="bottom mobile-anime" v-show="isPhone">
+      <v-svg-arrow class="svg-arrow" aria-hidden="true"/>
+      <h5>how to implement<br><span class="red">this idea</span></h5>
     </div>
   </article>
 </template>
@@ -50,7 +58,7 @@ export default {
     vSvgIdea,vSvgArrow, vSvgStar
   },
   computed: {
-    ...mapGetters(['isPhone'])
+    ...mapGetters(['isPhone', 'isDevice'])
   },
   methods: {
     resize(w, h) {
@@ -58,21 +66,24 @@ export default {
         this.w = w
         this.h = h
       }
+      if(this.isPhone) return
       this.animHeight = this.h * .5
       this.offset = offset(this.$el).top - this.h * .8
       this.bottomOffset = offset(this.$refs.bottom).top - this.h * .8
     },
     tick(scrollTop, ease) {
-
-      if(scrollTop > this.offset  && scrollTop < this.offset + this.h * 1.5){
-        transform(this.circleBottom, {rotate:(ease % this.h) / this.h * 360})
-        transform(this.circleTop, {rotate:(scrollTop % this.h) / this.h * 360})
+      if(this.isPhone) return
+      if(!this.isDevice) {
+        if(scrollTop > this.offset  && scrollTop < this.offset + this.h * 1.5){
+          transform(this.circleBottom, {rotate:(ease % this.h) / this.h * 360})
+          transform(this.circleTop, {rotate:(scrollTop % this.h) / this.h * 360})
+        }
       }
 
       if(ease > this.offset && ease < this.offset + this.animHeight){
         const coef = (ease - this.offset) / this.animHeight
         this.$el.style.opacity = coef
-        this.arrow.style.opacity = coef
+        if(!this.isDevice)this.arrow.style.opacity = coef
         transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
         transform(this.$refs.title, {translate3d:[0, 200 - coef * 200, 0]})
         transform(this.$refs.process, {translate3d:[0, 200 - coef * 200, 0]})
@@ -89,9 +100,13 @@ export default {
     }
   },
   mounted() {
-    this.circleBottom = this.$el.querySelector('.circle-bottom')
-    this.circleTop = this.$el.querySelector('.circle-top')
-    this.arrow = this.$el.querySelector('.svg-arrow')
+    if(!this.isDevice) {
+      this.$nextTick(()=>{
+        this.circleBottom = this.$el.querySelector('.circle-bottom')
+        this.circleTop = this.$el.querySelector('.circle-top')
+        this.arrow = this.$el.querySelector('.svg-arrow')
+      })
+    }
     if(!this.isPhone) {
       this.$el.style.opacity = 0
       this.$refs.bottom.style.opacity = 0
@@ -108,6 +123,11 @@ article
     justify-content space-between
     >div
       width 30%
+    +below('l')
+      >div
+        width 55%
+      .title
+        width 30%
 .bottom
   width 100%
   padding 0 8vw 0
@@ -125,6 +145,8 @@ article
       padding-right 1vw
       sup
         font-size 12px
+    +below('l')
+      margin-left 46%
 svg
   display block
 .svg-idea
@@ -173,8 +195,11 @@ h5
   top 50%
   left 50%
   transform translate(-50%, -50%) rotate(90deg)
-.idea>div
-  position relative
+.idea
+  +below('l')
+    display block
+  >div
+    position relative
 .process
   display flex
   align-items flex-start
@@ -185,4 +210,52 @@ h5
   p
     font-size 14px
     width 78%
+article
+  +below('s')
+    padding-top 10vh
+    .top
+      display block
+      >div
+        width 100%
+      .title
+        width 100%
+    .process
+      display block
+      width 100%
+      text-align center
+      .strong
+        padding 0
+        padding-top 5vh
+        width 100%
+        font-size 13px
+        br
+          display none
+      h4
+        padding-top 5vh
+        font-size 12.5vw
+        display block
+        .star
+            display block
+            width 20px
+            height 20px
+            margin 5vh auto
+      p
+        margin 3vh auto
+        width 90%
+    .bottom
+      padding 0 6vw
+      .svg-arrow
+        display block
+        width 20vh
+        height 20vh
+        position relative
+        transform rotate(90deg)
+        margin 5vh auto
+        opacity 0.5
+        top auto
+        left auto
+
+      h5
+        font-size 12.5vw
+        text-align center
 </style>

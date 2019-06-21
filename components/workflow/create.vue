@@ -1,21 +1,22 @@
 <template>
   <article>
-    <div class="title">
+    <div class="title" :class="{'mobile-anime': isPhone}">
       <span>C.</span>
       <h2 ref="title">Create</h2>
       <span ref="number">03</span>
     </div>
     <div class="content">
-      <h3><no-ssr><div class="bar" aria-hidden="true" ref="bar"></div></no-ssr> UX strategy <small class="red">/ brand strategy</small><br>Visual strategy</h3>
-      <p ref="text">To succeed, every digital product has to be aesthetically appealing, functional, robust, distinctive and memorable. To ensure that the right balance of these components is maintained I always stay in close contact with the client and address every project holistically.</p>
-      <v-svg-star class="star" aria-hidden="true"/>
-      <ul ref="bottom" class="bottom">
+      <no-ssr><strong class="red mobile-anime" v-if="isPhone">brand strategy</strong></no-ssr>
+      <h3 :class="{'mobile-anime': isPhone}"><no-ssr><div class="bar" aria-hidden="true" ref="bar" v-if="!isPhone"></div></no-ssr> UX strategy <small class="red">/ brand strategy</small><br>Visual strategy</h3>
+      <p ref="text" :class="{'mobile-anime': isPhone}">To succeed, every digital product has to be aesthetically appealing, functional, robust, distinctive and memorable. To ensure that the right balance of these components is maintained I always stay in close contact with the client and address every project holistically.</p>
+      <v-svg-star class="star" :class="{'mobile-anime': isPhone}" aria-hidden="true"/>
+      <ul ref="bottom" :class="{'mobile-anime': isPhone}" class="bottom">
         <li class="blur-container" :class="{'ready': isBlurReady}">
-          <v-svg-blur class="svg-blur" aria-hidden="true"/>
+          <v-svg-blur class="svg-blur" aria-hidden="true" />
         </li>
-        <li>product</li>
-        <li>creation</li>
-        <li>stage</li>
+        <li :class="{'mobile-anime': isPhone}">product</li>
+        <li :class="{'mobile-anime': isPhone}">creation</li>
+        <li :class="{'mobile-anime': isPhone}">stage</li>
       </ul>
     </div>
   </article>
@@ -47,11 +48,13 @@ export default {
         this.w = w
         this.h = h
       }
+      if(this.isPhone) return
       this.animHeight = this.h * .5
       this.offset = offset(this.$el).top - this.h * .9
       this.bottomOffset = offset(this.$refs.bottom).top - this.h * .9
     },
     tick(scrollTop, ease) {
+      if(this.isPhone) return
       if(ease > this.offset && ease < this.offset + this.animHeight){
         const coef = (ease - this.offset) / this.animHeight
         this.$el.style.opacity = coef
@@ -77,7 +80,9 @@ export default {
     }
   },
   mounted() {
-    if(!this.isPhone) {
+    if(this.isPhone) {
+      this.isBlurReady = true
+    }else{
       this.$el.style.opacity = 0
       this.$refs.bottom.style.opacity = 0
       this.lis = [].slice.call(this.$refs.bottom.querySelectorAll('li'))
@@ -97,6 +102,10 @@ article
   .content
     width 51%
     padding-right 20%
+    +below('l')
+      width 55%
+      padding-right 10%
+      padding-left 5vw
 h3
   font-size 4.1vw
   font-family $schnyder
@@ -141,5 +150,39 @@ li
   height 30vw
   display block
   transform translate(-50%, -50%)
+article
+  +below('s')
+    display block
+    text-align center
+    padding 10vh 13vw
+    h3
+      font-size 12.5vw
+      .red
+        display none
+    .content
+      width 100%
+      padding 5vh 0 0
+      strong
+        font-size 13px
+        text-transform uppercase
+        font-weight normal
+  p
+    position relative
+    z-index 1
+  .star
+    width 40px
+    height 40px
+    margin-bottom 5vh
+    position relative
+    z-index 1
+  li
+    font-size 12.5vw
+    position relative
+  .blur-container
+    z-index 0
+    left 20vw
+    svg
+      width 100vw
+      height 100vw
 
 </style>

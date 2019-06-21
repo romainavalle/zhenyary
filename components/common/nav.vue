@@ -68,6 +68,8 @@ nav
     display none
   .no-touch & a:hover
     color $red
+    .label
+      letter-spacing .1vw
   &.index.red a
     color $white
   .no-touch &.index.red a:hover

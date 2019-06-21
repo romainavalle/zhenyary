@@ -1,8 +1,9 @@
 <template>
   <header>
     <div class="mobile">
+      <v-svg-smiley class="smiley"/>
       <h3>It's all about my process design</h3>
-      <p>*How<br>the magic happens</p>
+      <strong class="strong">*How<br>the magic happens</strong>
       <ul>
         <li>Learn</li>
         <li>Think</li>
@@ -11,7 +12,6 @@
     </div>
     <no-ssr>
       <div class="desktop" v-if="!isPhone">
-
         <div class="d-f">
           <p ref="te">
             <v-svg-smiley class="smiley"/>
@@ -108,6 +108,7 @@ export default {
         easing: 'easeOutQuad',
         delay: 500,
         complete: ()=>{
+          if(this.isPhone) return
           this.isShown = true
           this.activateWords()
         }
@@ -168,7 +169,7 @@ p
   line-height 1
   margin 0
   position relative
-.strong
+button.strong
   position absolute
   bottom 3vh
   left 50%
@@ -227,4 +228,32 @@ em
   position absolute
   top -5vw
   left 15vw
+.mobile
+  padding-top 15vh
+  height 100vh
+  h3
+    font-size 12vw
+    font-family $schnyder
+    font-weight $demi
+    text-align center
+    position relative
+    line-height 1.1
+  .strong
+    margin 5vh 0 3vh 50%
+    display block
+  ul, li
+    display block
+    margin 0
+    padding 0
+    text-align center
+  li
+    font-family $schnyder
+    font-weight $demi
+    font-size 18vw
+  .smiley
+    top 13vh
+    width 20vw
+    height 20vw
+    left 17vw
+
 </style>

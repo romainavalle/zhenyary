@@ -1,19 +1,21 @@
 <template>
   <article class="implementation">
-    <div class="title">
+    <div class="title" :class="{'mobile-anime': isPhone}">
       <span >04</span>
       <h2 ref="title">Implementation</h2>
     </div>
-    <ul class="d-f" ref="skills">
-      <li>UX architecture</li>
-      <li>Visual concepts</li>
-      <li>Interactions</li>
-      <li>Development</li>
-      <li>Testing</li>
-      <li>🎂Project Birth</li>
-    </ul>
+    <no-ssr>
+      <ul class="d-f" ref="skills" v-if="!isDevice">
+        <li>UX architecture</li>
+        <li>Visual concepts</li>
+        <li>Interactions</li>
+        <li>Development</li>
+        <li>Testing</li>
+        <li>🎂Project Birth</li>
+      </ul>
+    </no-ssr>
     <div class="d-f bottom" ref="bottom">
-      <div>
+      <div :class="{'mobile-anime': isPhone}">
         <h5>Communication with the <span class="strike">client</span> partner during the whole process</h5>
       </div>
       <div class="content">
@@ -24,10 +26,10 @@
             <li><v-svg-arrow class="arrow"/></li>
             <li><v-svg-arrow class="arrow"/></li>
           </ul>
-          <h3 ref="h3">Long-lasting Collaboration</h3>
-          <h4 ref="h4">Trustful partner for you<br>and your business</h4>
-          <p ref="text1">I truly believe in the power of a strong business relationship and years-long collaboration. Success is not a 1-day phenomenon it takes a lot of time and joint effort. </p>
-          <p ref="text2">Common expertise developed over the years of trustful partnership is the core competence of the business and its driving force.</p>
+          <h3 ref="h3" :class="{'mobile-anime': isPhone}">Long-lasting Collaboration</h3>
+          <h4 ref="h4" :class="{'mobile-anime': isPhone}">Trustful partner for you<br>and your business</h4>
+          <p ref="text1" :class="{'mobile-anime': isPhone}">I truly believe in the power of a strong business relationship and years-long collaboration. Success is not a 1-day phenomenon it takes a lot of time and joint effort. </p>
+          <p ref="text2" :class="{'mobile-anime': isPhone}">Common expertise developed over the years of trustful partnership is the core competence of the business and its driving force.</p>
         </div>
       </div>
     </div>
@@ -50,7 +52,7 @@ export default {
     vSvgArrow
   },
   computed: {
-    ...mapGetters(['isPhone'])
+    ...mapGetters(['isPhone', 'isDevice'])
   },
   methods: {
     resize(w, h) {
@@ -58,18 +60,20 @@ export default {
         this.w = w
         this.h = h
       }
+      if(this.isPhone) return
       this.animHeight = this.h * .5
       this.offset = offset(this.$el).top - this.h * .9
       this.bottomOffset = offset(this.$refs.bottom).top - this.h * .8
       this.bottomOffset2 = offset(this.$refs.h3).top - this.h * .8
     },
     tick(scrollTop, ease) {
+      if(this.isPhone) return
       if(ease > this.offset && ease < this.offset + this.animHeight){
         const coef = (ease - this.offset) / this.animHeight
         this.$el.style.opacity = coef
         transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
         transform(this.$refs.title, {scale:[1+.2*(1-coef),1+.2*(1-coef)]})
-        transform(this.$refs.skills, {translate3d:[0, 200 - coef * 200, 0]})
+        if(this.$refs.skills)transform(this.$refs.skills, {translate3d:[0, 200 - coef * 200, 0]})
       }
       if(ease > this.bottomOffset && ease < this.bottomOffset + this.animHeight){
         const coefBottom = (ease - this.bottomOffset) / this.animHeight
@@ -123,9 +127,13 @@ article.implementation
       font-family $schnyder
       font-weight $demi
       font-size 20px
+    +below('l')
+      display none
 p
   width 45%
   font-size 14px
+  +below('l')
+    width 80%
 h3, h4, h5
   font-family $schnyder
   font-weight $demi
@@ -141,11 +149,15 @@ h5
   width 50%
 .bottom
   padding-top 4vw
+  +below('l')
+    padding-top 0
 .arrows
   display flex
   padding 0
   padding-bottom 4vw
   overflow hidden
+  +below('s')
+    display block
   li
     height 6.1vw
     width 4.1vw
@@ -157,6 +169,28 @@ h5
   width 6.1vw
   height 4.1vw
   fill $white
+  position relative
   transform-origin 0 0
   transform rotate(90deg) translateY(-100%)
+article.implementation
+  +below('s')
+    position relative
+    text-align center
+    .d-f
+      display block
+      >div
+        width 100%
+    h3
+      font-size 12.5vw
+      padding-bottom 5vh
+    h4
+      font-size 7vw
+      padding-bottom 3vh
+    h5
+      font-size 7vw
+      width 80%
+      margin 5vh auto
+    p
+      margin 3vh auto
+
 </style>
