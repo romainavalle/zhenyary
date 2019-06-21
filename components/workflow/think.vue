@@ -109,7 +109,9 @@ export default {
     }
     if(!this.isPhone) {
       this.$el.style.opacity = 0
-      this.$refs.bottom.style.opacity = 0
+      this.$nextTick(()=>{
+        this.$refs.bottom.style.opacity = 0
+      })
     }
   }
 }

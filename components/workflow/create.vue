@@ -9,7 +9,9 @@
       <no-ssr><strong class="red mobile-anime" v-if="isPhone">brand strategy</strong></no-ssr>
       <h3 :class="{'mobile-anime': isPhone}"><no-ssr><div class="bar" aria-hidden="true" ref="bar" v-if="!isPhone"></div></no-ssr> UX strategy <small class="red">/ brand strategy</small><br>Visual strategy</h3>
       <p ref="text" :class="{'mobile-anime': isPhone}">To succeed, every digital product has to be aesthetically appealing, functional, robust, distinctive and memorable. To ensure that the right balance of these components is maintained I always stay in close contact with the client and address every project holistically.</p>
-      <v-svg-star class="star" :class="{'mobile-anime': isPhone}" aria-hidden="true"/>
+      <div :class="{'mobile-anime': isPhone}">
+        <v-svg-star class="star" aria-hidden="true"/>
+      </div>
       <ul ref="bottom" :class="{'mobile-anime': isPhone}" class="bottom">
         <li class="blur-container" :class="{'ready': isBlurReady}">
           <v-svg-blur class="svg-blur" aria-hidden="true" />
@@ -166,23 +168,23 @@ article
         font-size 13px
         text-transform uppercase
         font-weight normal
-  p
-    position relative
-    z-index 1
-  .star
-    width 40px
-    height 40px
-    margin-bottom 5vh
-    position relative
-    z-index 1
-  li
-    font-size 12.5vw
-    position relative
-  .blur-container
-    z-index 0
-    left 20vw
-    svg
-      width 100vw
-      height 100vw
+    p
+      position relative
+      z-index 1
+    .star
+      width 40px
+      height 40px
+      margin-bottom 5vh
+      position relative
+      z-index 1
+    li
+      font-size 12.5vw
+      position relative
+    .blur-container
+      z-index 0
+      left 20vw
+      svg
+        width 100vw
+        height 100vw
 
 </style>

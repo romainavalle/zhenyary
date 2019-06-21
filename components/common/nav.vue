@@ -42,7 +42,7 @@ export default {
       }
     },
     tick(scrollTop) {
-      if(this.w < 1024) return
+      if(this.isDevice) return
       if(scrollTop > this.h * .3 ) {
         if(!this.isMinimized) this.isMinimized = true
       }else{
@@ -100,6 +100,8 @@ nav
         color $red
       &.z .title
         padding-right 5.4vw
+    .home-main a.nuxt-link-active
+      color $black
     .home-main
       display none
       margin-right 4vw
