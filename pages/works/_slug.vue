@@ -51,7 +51,6 @@ export default {
     this._onLoad = this.onLoad.bind(this)
     this.imgs = []
     this.$nextTick(()=>{
-      Emitter.emit('PAGE:MOUNTED')
       const imgs = [].slice.call(this.$el.querySelectorAll('img'))
       imgs.forEach(element => {
         const img = new Image()
@@ -61,6 +60,7 @@ export default {
         this.imgs.push(img)
       });
       this.isReady = true
+      Emitter.emit('PAGE:MOUNTED')
     })
 
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="Loader" :class="{'transparent':isReady}">
+  <div class="Loader" :class="{'transparent':isReady}" v-if="isFirstTime">
     <div class="animation" ref="animation"></div>
   </div>
 </template>
@@ -9,8 +9,8 @@ if (process.client) {
   //var bodymovin = require('lottie-web')
 }
 import anime from 'animejs'
+import { mapActions, mapState } from 'vuex';
 export default {
-  name: 'TurnDevice',
   data(){
     return {
       w: 0,
@@ -21,30 +21,19 @@ export default {
   components: {
   },
   computed: {
+    ...mapState(['isFirstTime'])
   },
   methods:{
+    ...mapActions(['setFirstTime']),
     resize(w, h) {
       if(w && h) {
         this.w = w
         this.h = h
       }
-
-    },
-    show() {
-      this.$el.style.display = 'block'
-      this.$el.style.mixBlendMode = 'multiply'
-      this.animation.goToAndStop(0, true)
-      anime({
-        targets: this.$el,
-        opacity: [0, 1],
-        duration: 300,
-        easing: 'easeOutQuad'
-      })
     },
     hide() {
       this.$el.style.display = 'block'
       this.$el.style.mixBlendMode = 'multiply'
-      this.$el.style.opacity = 1
       this.animation.play()
     },
   },
@@ -53,7 +42,7 @@ export default {
   beforeDestroy(){
   },
   mounted() {
-    //if(process.env.NODE_ENV === "development") this.$el.style.display = 'none'
+
     this.animation = bodymovin.loadAnimation({
       container: this.$refs.animation,
       renderer: 'canvas',
@@ -67,11 +56,11 @@ export default {
 
 
     this.animation.addEventListener('complete', () => {
-      this.$el.style.display = 'none'
-      this.$el.style.mixBlendMode = ''
+      this.setFirstTime()
     })
     this.animation.addEventListener('DOMLoaded', () => {
       this.isReady = true
+      this.hide()
     })
   }
 }
@@ -86,8 +75,7 @@ export default {
   left 0
   right 0
   bottom 0
-  z-index 999
-  will-change opacity
+  z-index 998
   &.transparent
     background none
   .animation

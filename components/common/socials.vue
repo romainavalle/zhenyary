@@ -47,7 +47,7 @@ export default {
 .socials
   font-family $schnyder
   font-weight $demi
-  font-size 21px
+  font-size 18px
   display flex
   justify-content center
   &.white
@@ -57,8 +57,7 @@ export default {
     color $black
     display block
     margin 0 50px
-    &.nude
-      color $nude
+    color #5E5B55
     &.red
       color $red
   +below('l')

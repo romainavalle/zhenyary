@@ -12,7 +12,6 @@
 import vSvg from "~/assets/svgs/mobile.svg?inline";
 import { mapGetters } from 'vuex'
 export default {
-  name: 'TurnDevice',
   data(){
     return {
     }

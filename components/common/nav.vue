@@ -15,7 +15,7 @@
         <div class="spacer" v-if="!isTablet"></div>
       </no-ssr>
       <nuxt-link :to="{name: 'workflow'}"><span class="title">Workflow</span><span class="label">All the processes</span></nuxt-link>
-      <nuxt-link :to="{name: 'contact'}"><span class="title">Connect</span><span class="label">For any collaborations</span></nuxt-link>
+      <nuxt-link :to="{name: 'contact'}"><span class="title">Contact me</span><span class="label">For any collaborations</span></nuxt-link>
     </div>
   </nav>
 </template>
@@ -94,6 +94,7 @@ nav
       display block
       margin 0
       line-height 1
+      color $black
       white-space nowrap
       transition color .5s ease-in-out-quad
       &.nuxt-link-active

@@ -1,15 +1,15 @@
 <template>
   <article class="gems">
-    <strong class="strong">My main services</strong>
+    <strong class="strong" :class="{'mobile-anime': isPhone}">My main services</strong>
     <ul>
-      <li><v-svg-star class="star"/></li>
-      <li>Art direction</li>
-      <li>Product design</li>
-      <li>Visual design</li>
-      <li>Mobile esign</li>
-      <li> web design</li>
-      <li>Interaction design</li>
-      <li>Animation</li>
+      <li :class="{'mobile-anime': isPhone}"><v-svg-star class="star"/></li>
+      <li :class="{'mobile-anime': isPhone}">Art direction</li>
+      <li :class="{'mobile-anime': isPhone}">Product design</li>
+      <li :class="{'mobile-anime': isPhone}">Visual design</li>
+      <li :class="{'mobile-anime': isPhone}">Mobile design</li>
+      <li :class="{'mobile-anime': isPhone}">Web design</li>
+      <li :class="{'mobile-anime': isPhone}">Interaction design</li>
+      <li :class="{'mobile-anime': isPhone}">Animation</li>
     </ul>
     <no-ssr>
       <div class="d-f" aria-hidden="true" v-if="!isPhone">

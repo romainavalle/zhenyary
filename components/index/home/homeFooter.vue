@@ -2,7 +2,7 @@
   <footer>
     <button @click="setColor('red')" :class="{'active' : color === 'red'}" class="red" ref="buttonRed">In red</button>
     <v-socials  ref="socials"/>
-    <button @click="setColor('nude')" :class="{'active' : color === 'nude'}" class="nude" ref="buttonNude">In nude</button>
+    <button @click="setColor('nude')" :class="{'active' : color === 'nude'}" class="nude" ref="buttonNude">In Light</button>
   </footer>
 </template>
 <script>

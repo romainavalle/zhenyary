@@ -16,7 +16,14 @@
     </no-ssr>
     <div class="d-f bottom" ref="bottom">
       <div :class="{'mobile-anime': isPhone}">
-        <h5>Communication with the <span class="strike">client</span> partner during the whole process</h5>
+        <h5 v-show="isPhone">Communication with the<br>partner during the<br>whole process</h5>
+        <no-ssr>
+          <h5 v-if="!isPhone">
+            <span class="line">Communication with the</span>
+            <span class="line" :class="{'ready': isLineReady}"><span class="strike"><v-svg-bar class="bar" aria-hidden="true"/><span>client</span></span> <span class="end"><span class="partner">partner</span>  during the</span></span>
+            <span class="line">whole process</span>
+          </h5>
+        </no-ssr>
       </div>
       <div class="content">
         <div class="inner">
@@ -37,7 +44,8 @@
 </template>
 
 <script>
-import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
+import vSvgArrow from '~/assets/svgs/arrow.svg?inline';
+import vSvgBar from '~/assets/svgs/bar.svg?inline'
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import { mapGetters } from 'vuex';
@@ -45,11 +53,12 @@ export default {
   data() {
     return {
       w: 0,
-      h:0
+      h:0,
+      isLineReady: false
     }
   },
   components:{
-    vSvgArrow
+    vSvgArrow, vSvgBar
   },
   computed: {
     ...mapGetters(['isPhone', 'isDevice'])
@@ -82,6 +91,11 @@ export default {
         this.arrows.forEach((arrow,i) => {
           transform(arrow, {translate3d:[0, -50 -100 * (i+1) + coefBottom * 100 * (i+2) + '%', 0]})
         });
+      }
+      if(ease > this.bottomOffset + this.h *.1 && ease < this.bottomOffset + this.animHeight + this.h *.6){
+        if(!this.isLineReady) this.isLineReady = true
+      }else{
+        if(this.isLineReady) this.isLineReady = false
       }
       if(ease > this.bottomOffset2 && ease < this.bottomOffset2 + this.animHeight){
         const coefBottom2 = (ease - this.bottomOffset2) / this.animHeight
@@ -172,6 +186,40 @@ h5
   position relative
   transform-origin 0 0
   transform rotate(90deg) translateY(-100%)
+.line
+  display block
+  .strike
+    position relative
+    display inline-block
+  svg
+    left 0
+    width 100%
+    height 100%
+    transform-origin 0 0
+    position absolute
+    transform scale(0,1)
+  .end
+    transform translateX(-6.2vw)
+    display inline-block
+  .partner
+    opacity 0
+    display inline-block
+    transform-origin 0 0
+    transform scale(.7,1)
+  &.ready
+    svg
+      transform scale(1,1)
+      transition transform 1s ease-out-quad .3s
+    .strike span
+      opacity .5
+      transition opacity 1s ease-out-quad .3s
+    .end
+      transform translate(0)
+      transition transform 1s ease-out-quad .3s
+    .partner
+      opacity 1
+      transition transform .7s ease-out-quad .5s, opacity .7s ease-out-quad .5s
+      transform scale(1)
 article.implementation
   +below('s')
     position relative

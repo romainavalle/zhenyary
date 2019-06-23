@@ -147,7 +147,7 @@ footer
   overflow hidden
   width 100%
 .mail
-  display block
+  display none
 .big
   font-size 11.5vw
   line-height 1

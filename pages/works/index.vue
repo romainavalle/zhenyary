@@ -35,7 +35,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['datas']),
+    ...mapState(['datas', 'isFirstTime']),
     ...mapGetters(['isDevice'])
   },
   components: {
@@ -56,9 +56,10 @@ export default {
     },
     tick(scrollTop, easeScrollTop) {
       if(this.isDevice) return
-      transform(this.$el, {translateY: easeScrollTop - easeScrollTop/this.h * this.h *.2})
-      this.screenId = (Math.floor(.5 + scrollTop/this.h))
-      if(scrollTop > 10 && !this.isScrolled) this.hideScrollIndication()
+      if(this.h) {
+        transform(this.$el, {translateY: scrollTop - scrollTop/this.h * this.h *.2})
+        this.screenId = (Math.floor(.5 + scrollTop/this.h))
+      }
     },
     scrollTo(){
       if(this.isDevice) return
@@ -79,6 +80,7 @@ export default {
     },
     hideScrollIndication() {
       if(this.isDevice) return
+      if(this.isScrolled) return
       this.isScrolled = true
       anime({
           targets: this.$refs.strong,
@@ -96,6 +98,7 @@ export default {
     hideScreen(id){
       if(this.isDevice) return
       if(this.isAnimating)return
+
       const start = this.showId === -1 ? 0 : 200
       if(this.showId !== -1)this.onWorkLeave(id)
       this.isAnimating = true
@@ -113,8 +116,10 @@ export default {
   },
   watch: {
     screenId(val, old) {
+
       this.direction = val - old
       this.hideScreen(old)
+      this.hideScrollIndication()
     }
   },
   beforeDestroy() {
@@ -150,10 +155,10 @@ export default {
       }
       Emitter.on('SCREEN:HIDECOMPLETE', this._onScreenHideComplete)
       Emitter.on('SCREEN:SHOWCOMPLETE', this._onScreenShowComplete)
-
+      this.direction = 1
       this.$nextTick(()=>{
         Emitter.emit('PAGE:MOUNTED')
-        this.showScreen(this.screenId)
+        setTimeout(this.showScreen.bind(this, this.screenId), this.isFirstTime ? 3000 : 450)
       })
     }
   },

@@ -1,13 +1,13 @@
 <template>
   <header>
     <div class="mobile">
-      <v-svg-smiley class="smiley"/>
-      <h3>It's all about my process design</h3>
-      <strong class="strong">*How<br>the magic happens</strong>
+      <v-svg-smiley class="smiley" :class="{'mobile-anime': isPhone}"/>
+      <h3 :class="{'mobile-anime': isPhone}">It's all about my process design</h3>
+      <strong class="strong" :class="{'mobile-anime': isPhone}">*How<br>the magic happens</strong>
       <ul>
-        <li>Learn</li>
-        <li>Think</li>
-        <li>Create</li>
+        <li :class="{'mobile-anime': isPhone}">Learn</li>
+        <li :class="{'mobile-anime': isPhone}">Think</li>
+        <li :class="{'mobile-anime': isPhone}">Create</li>
       </ul>
     </div>
     <no-ssr>
@@ -251,7 +251,7 @@ em
     font-weight $demi
     font-size 18vw
   .smiley
-    top 13vh
+    top 7vh
     width 20vw
     height 20vw
     left 17vw

@@ -34,10 +34,11 @@ export default {
       id:0,
       lineTwo: false,
       lineThree: false,
-      words: ['collaborations', 'cooool stories', 'new projects', 'collaborations']
+      words: ['collaborations', 'new projects', 'expeeeeriences', 'collaborations']
     }
   },
   computed: {
+    ...mapState(['firstTime']),
     ...mapGetters(['isDevice'])
   },
   components: {
@@ -103,8 +104,10 @@ export default {
         scaleY: 1.5,
         transformOrigin: '50% 100%'
       })
-      this.showWord()
-      this.show()
+      setTimeout(()=>{
+        this.showWord()
+        this.show()
+      }, this.firstTime ? 3000 : 450)
     })
   }
 }

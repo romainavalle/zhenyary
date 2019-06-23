@@ -8,6 +8,7 @@ export const state = () => ({
   works: [],
   worksById: {},
   color: 'nude',
+  isFirstTime: true,
   navMobile: false,
   path: process.env.NODE_ENV === 'production' ? '/images/' : '/images/',
   vPath: process.env.NODE_ENV === 'production' ? '/images/' : '/images/'
@@ -24,6 +25,9 @@ export const mutations = {
   },
   SET_NAV_MOBILE (state, navMobile) {
     state.navMobile = navMobile
+  },
+  SET_FIRST_TIME (state) {
+    state.isFirstTime = false
   }
 }
 export const actions = {
@@ -47,6 +51,9 @@ export const actions = {
   },
   setNavMobile ({ commit }, navMobile) {
     commit('SET_NAV_MOBILE', navMobile)
+  },
+  setFirstTime({commit}) {
+    commit('SET_FIRST_TIME')
   }
 }
 export const getters = {

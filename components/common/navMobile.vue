@@ -5,7 +5,7 @@
       <nuxt-link :to="{name: 'about'}" class="z"><span class="title">Some thing</span><span class="label">about me</span></nuxt-link>
       <nuxt-link :to="{name: 'works'}"><span class="title">Works</span><span class="label">some cases</span></nuxt-link>
       <nuxt-link :to="{name: 'workflow'}"><span class="title">Workflow</span><span class="label">my life — my rules</span></nuxt-link>
-      <nuxt-link :to="{name: 'contact'}"><span class="title">Connect</span><span class="label">For any collaborations</span></nuxt-link>
+      <nuxt-link :to="{name: 'contact'}"><span class="title">Contact me</span><span class="label">For any collaborations</span></nuxt-link>
       <nuxt-link :to="{name: 'index'}"  v-show="$route.name !== 'index'" class="home">Go Home</nuxt-link>
     </div>
   </nav>

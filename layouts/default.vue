@@ -6,7 +6,7 @@
     </no-ssr>
     <v-loader ref="loader"/>
     <no-ssr>
-    <v-loader-intro ref="loaderIntro"/>
+    <v-loader-top ref="loaderTop"/>
     </no-ssr>
     <no-ssr>
       <v-turn v-if="isDevice" />
@@ -32,7 +32,7 @@ import vTurn from '~/components/common/turn.vue'
 import vNavMobile from '~/components/common/navMobile.vue'
 import vHeaderMobile from '~/components/common/headerMobile.vue'
 import vLoader from '~/components/common/loader.vue'
-import vLoaderIntro from '~/components/common/loaderIntro.vue'
+import vLoaderTop from '~/components/common/loaderTop.vue'
 import vFooter from '~/components/common/footer.vue'
 import vNav from '~/components/common/nav.vue'
 import vProgress from '~/components/common/progress.vue'
@@ -52,7 +52,7 @@ export default {
     ...mapGetters(['isDevice', 'isPhone', 'isTablet'])
   },
   components: {
-    vLoader, vLoaderIntro, vTurn, vNav, vFooter,vProgress, vNavMobile, vHeaderMobile
+    vLoader, vLoaderTop, vTurn, vNav, vFooter,vProgress, vNavMobile, vHeaderMobile
   },
   methods:{
     ...mapActions(['setNavMobile']),
@@ -64,7 +64,7 @@ export default {
       this.$refs.nav.resize(w, h, pageHeight)
       if(this.$refs.progress) this.$refs.progress.resize(w, h, pageHeight)
       this.$refs.loader.resize(w, h)
-      this.$refs.loaderIntro.resize(w, h)
+      this.$refs.loaderTop.resize(w, h)
       this.$refs.footer.resize(w, h, pageHeight)
       if(!this.isDevice)document.body.style.height = pageHeight + 'px'
     },
@@ -100,9 +100,7 @@ export default {
     setRouterHooks () {
       this.$router.beforeEach((to, from, next) => {
           this.pageFadeOut(next)
-
-          this.$refs.loader.show()
-          this.$refs.loaderIntro.show()
+          this.$refs.loaderTop.show()
       })
       this.$router.afterEach((to, from) => {
         ScrollHelper.goTo(0)
@@ -114,8 +112,7 @@ export default {
         this.resize()
       }, 100)
       //this.pageFadeIn(0)
-      this.$refs.loader.hide()
-      this.$refs.loaderIntro.hide()
+      this.$refs.loaderTop.hide()
 
     }
   },
@@ -130,7 +127,7 @@ export default {
     this.isTouch = this.isDevice
     setTimeout(()=>{
       this.$refs.loader.hide()
-      this.$refs.loaderIntro.hide()
+      this.$refs.loaderTop.hide()
     },1000)
    if(!this.isTouch)  document.body.className = "no-touch"
   }
@@ -140,7 +137,7 @@ export default {
 main
   position relative
   background $brown
-  color black
+  color $black
   .page
     //padding-bottom 150px
   &.no-touch
