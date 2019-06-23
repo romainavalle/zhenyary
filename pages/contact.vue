@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['firstTime']),
+    ...mapState(['isFirstTime']),
     ...mapGetters(['isDevice'])
   },
   components: {
@@ -54,10 +54,10 @@ export default {
     tick(scrollTop) {
     },
     showWord() {
-      this.timer = setTimeout(this.showWord.bind(this),1000)
+      this.timer = setTimeout(this.showWord.bind(this), 400)
       anime({
         targets: this.slider ,
-        translateY: this.id *  this.isDevice ? -( .12 * this.w) : -(.08 *this.w) ,
+        translateY: this.id * (this.isDevice ? -( .121 * this.w) : -(.081 *this.w)) ,
         easing: 'easeInOutQuad',
         duration: 0,
         complete: ()=>{
@@ -107,7 +107,7 @@ export default {
       setTimeout(()=>{
         this.showWord()
         this.show()
-      }, this.firstTime ? 3000 : 450)
+      }, this.isFirstTime ? 3000 : 450)
     })
   }
 }
@@ -202,6 +202,7 @@ export default {
       .slider span
         text-align center
         height 12vw
+        margin-bottom 1vw
     .star
       margin 3vh auto
 </style>
