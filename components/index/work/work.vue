@@ -3,7 +3,7 @@
     <div class="inner">
       <div class="left">
         <div class="img" ref="leftImgContainer">
-          <img :src="`${path}${work.cover}`" :alt="work.title">
+          <img :src="`${path}${work.cover}`" :alt="work.title" ref="img">
         </div>
         <div class="text">
           <h3 class="h3"  v-html="work.title" ref="title"></h3>
@@ -12,16 +12,18 @@
       </div>
       <div class="right">
         <div class="text">
-          <p v-html="work.title" ref="rTitle" class="title"></p>
-          <ul ref="skills">
+          <p v-html="work.title" ref="rTitle" class="title"  :class="{'mobile-anime': isPhone}"></p>
+          <ul ref="skills"  :class="{'mobile-anime': isPhone}">
             <li v-for="(skill, index) in work.skills" :key="`skill-${index}`" v-text="index === 0 ? skill : ` / ${skill}`" class="strong"></li>
           </ul>
-          <p v-html="work.intro" class="intro" ref="intro"></p>
-          <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}" ref="link">Check full case +</nuxt-link>
+          <p v-html="work.intro" class="intro" ref="intro" :class="{'mobile-anime': isPhone}"></p>
+          <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}" ref="link" :class="{'mobile-anime': isPhone}">Check full case +</nuxt-link>
         </div>
-        <div class="img" ref="rightImgContainer">
-          <img :src="`${path}${work.homeMenu}`" :alt="work.title" ref="rightImg">
-        </div>
+        <no-ssr>
+          <div class="img" ref="rightImgContainer" v-if="!isPhone">
+            <img :src="`${path}${work.homeMenu}`" :alt="work.title" ref="rightImg">
+          </div>
+        </no-ssr>
       </div>
     </div>
     <div class="letter-container" ref="letter">
@@ -59,36 +61,41 @@ export default {
       this.offset = offset(this.$el).top - this.h
     },
     tick(scrollTop, ease) {
-      if(this.isPhone) return
-      let coef = 0
-      if(ease>=this.offset) coef = (ease-this.offset) / this.h
-      if(this.id === 0 && coef >1) {
-        transform(this.$refs.letter, {translate3d:[0, (coef -1) * this.h * .8,0]})
-        this.$refs.letter.style.opacity = 2 + (1 - coef * 2)
+      if(this.isPhone)  {
+        let coef = 0
+        if(ease >= this.offset) coef = (ease-this.offset) / this.h
+        coef = Math.min(1, coef)
+        transform(this.$refs.img, {scale3d:[1.5-coef * .5,1.5-coef * .5, 1]})
+      }else {
+        let coef = 0
+        if(ease>=this.offset) coef = (ease-this.offset) / this.h
+        if(this.id === 0 && coef >1) {
+          transform(this.$refs.letter, {translate3d:[0, (coef -1) * this.h * .8,0]})
+          this.$refs.letter.style.opacity = 2 + (1 - coef * 2)
+        }
+        coef = Math.min(1, coef)
+        if(coef !== this.coef) {
+          transform(this.$refs.leftImgContainer, {scale3d:[1.5-coef * .5,1.5-coef * .5, 1]})
+          transform(this.$refs.rightImgContainer, {translate3d:[0, -this.h * .7  + coef * this.h * .7 , 0]})
+          transform(this.$refs.title, {translate3d:[0, this.h * .3 - coef * this.h * .3, 0]})
+          transform(this.$refs.rightImg, {scale3d:[1.25-coef * .25,1.25-coef * .25, 1]})
+          this.$refs.title.style.opacity = Math.max(0, -4 + coef * 5)
+          this.$refs.type.style.opacity = Math.max(0, -4 + coef * 5)
+          this.$refs.rTitle.style.opacity = Math.max(0, -1 + coef * 2)
+          this.$refs.skills.style.opacity = Math.max(0, -1.5 + coef * 2.5)
+          this.$refs.intro.style.opacity = Math.max(0, -3 + coef * 4)
+          this.$refs.link.$el.style.opacity = Math.max(0, -4 + coef * 5)
+          this.$refs.letter.style.opacity = Math.max(0, -1 + coef * 2)
+          if(this.id === 1) transform(this.$refs.letter, {translate3d:[0, -this.h*.8 + (coef) * this.h *.8,0]})
+          this.coef = coef
+        }
       }
-      coef = Math.min(1, coef)
-
-      if(coef !== this.coef) {
-        transform(this.$refs.leftImgContainer, {scale3d:[1.5-coef * .5,1.5-coef * .5, 1]})
-        transform(this.$refs.rightImgContainer, {translate3d:[0, -this.h * .7  + coef * this.h * .7 , 0]})
-        transform(this.$refs.title, {translate3d:[0, this.h * .3 - coef * this.h * .3, 0]})
-        transform(this.$refs.rightImg, {scale3d:[1.25-coef * .25,1.25-coef * .25, 1]})
-        this.$refs.title.style.opacity = Math.max(0, -4 + coef * 5)
-        this.$refs.type.style.opacity = Math.max(0, -4 + coef * 5)
-        this.$refs.rTitle.style.opacity = Math.max(0, -1 + coef * 2)
-        this.$refs.skills.style.opacity = Math.max(0, -1.5 + coef * 2.5)
-        this.$refs.intro.style.opacity = Math.max(0, -3 + coef * 4)
-        this.$refs.link.$el.style.opacity = Math.max(0, -4 + coef * 5)
-        this.$refs.letter.style.opacity = Math.max(0, -1 + coef * 2)
-        if(this.id === 1) transform(this.$refs.letter, {translate3d:[0, -this.h*.8 + (coef) * this.h *.8,0]})
-        this.coef = coef
-      }
-      /*let top = 0
-      if(scrollTop >= this.offset + this.h) {
-        top = scrollTop - (this.offset + this.h)
-      }
-      top = Math.min(top, this.h * .5)
-      transform(this.$el, {translate3d:[0, top, 1]})*/
+        /*let top = 0
+        if(scrollTop >= this.offset + this.h) {
+          top = scrollTop - (this.offset + this.h)
+        }
+        top = Math.min(top, this.h * .5)
+        transform(this.$el, {translate3d:[0, top, 1]})*/
 
 
     },
@@ -241,6 +248,7 @@ a
         width 90%
         position relative
         margin 0 auto
+        overflow hidden
       .text
         height auto
         padding-top 10px

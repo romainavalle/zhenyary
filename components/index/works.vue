@@ -37,19 +37,21 @@ export default {
       });
     },
     tick(scrollTop, ease) {
-      if(this.isPhone) return
-      let top = 0
-      let coef = 0
-      if(ease >=  this.h * 2) top = ease - this.h * 2
-      if(ease >= this.h) coef = (ease-this.h) / this.h
-      top = Math.min(this.h, top)
-      coef = Math.min(1, coef)
-      if(this.coef !== coef) {
-        const easeCoef = this.easeOutQuad(coef)
-        this.$refs.dot.style.opacity = Math.max(0, -1 + coef * 2)
-        this.coef = coef
+      if(this.isPhone) {
+      }else{
+        let top = 0
+        let coef = 0
+        if(ease >=  this.h * 2) top = ease - this.h * 2
+        if(ease >= this.h) coef = (ease-this.h) / this.h
+        top = Math.min(this.h, top)
+        coef = Math.min(1, coef)
+        if(this.coef !== coef) {
+          const easeCoef = this.easeOutQuad(coef)
+          this.$refs.dot.style.opacity = Math.max(0, -1 + coef * 2)
+          this.coef = coef
+        }
+        transform(this.$refs.dot,{translate3d:[0, top, 0] })
       }
-      transform(this.$refs.dot,{translate3d:[0, top, 0] })
       this.$refs.works.forEach(work => {
         work.tick(scrollTop, ease)
       });
