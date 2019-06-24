@@ -1,7 +1,7 @@
 <template>
-  <nav>
+  <nav class="navMobile">
     <button @click="setNavMobile(false)" ref="close"><v-svg-close /></button>
-    <div class="container">
+    <div class="container" ref="container">
       <nuxt-link :to="{name: 'about'}" class="z"><span class="title">Some thing</span><span class="label">about me</span></nuxt-link>
       <nuxt-link :to="{name: 'works'}"><span class="title">Works</span><span class="label">some cases</span></nuxt-link>
       <nuxt-link :to="{name: 'workflow'}"><span class="title">Workflow</span><span class="label">my life — my rules</span></nuxt-link>
@@ -31,8 +31,18 @@ export default {
   },
   methods: {
     ...mapActions(['setNavMobile']),
+    resize(w, h) {
+      if(w && h) {
+        this.w = w
+        this.h = h
+      }
+    },
     show() {
       this.$el.style.display = 'block'
+      anime.set(this.$refs.container,{translateY: '0%'})
+      anime.set(this.$refs.close,{translateY: 0})
+      //anime.set(this.letters,{translateY: ()=>{return anime.random(-30,30)}})
+
       anime({
         targets: this.$refs.close,
         opacity: [0,1],
@@ -56,7 +66,28 @@ export default {
       })
     },
     hide() {
-      this.$el.style.display = 'none'
+      anime({
+        targets: this.$refs.close,
+        opacity: 0,
+        duration: 500,
+        translateY: this.h,
+        easing: 'easeInQuad',
+      })
+      anime({
+        targets: this.$refs.container,
+        translateY: '75%',
+        duration: 500,
+        easing: 'easeInQuad',
+      })
+      anime({
+        targets: this.$el,
+        translateY: '-100%',
+        duration: 500,
+        easing: 'easeInQuad',
+        complete: ()=>{
+          this.$el.style.display = 'none'
+        }
+      })
     }
   },
   watch: {
@@ -71,6 +102,13 @@ export default {
   mounted(){
     this.links = [].slice.call(this.$el.querySelectorAll('a'))
     this.$el.style.display = 'none'
+    /*const titles = [].slice.call(this.$el.querySelectorAll('.title'))
+    titles.forEach(title => {
+      title.innerHTML = title.innerText.split('').map(function(letter) {
+        return '<span class="letter">' + (letter === ' ' ? '&nbsp;' : letter )+ '</span>'
+      }).join(' ');
+    });*/
+    this.letters = [].slice.call(this.$el.querySelectorAll('.letter'))
   }
 }
 </script>
@@ -116,4 +154,14 @@ nav
         text-transform uppercase
         font-weight $light
         font-size 12px
+</style>
+
+<style lang="stylus" >
+.navMobile
+  a
+    .title
+      display flex
+      justify-content center
+    .letter
+      display block
 </style>

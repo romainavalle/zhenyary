@@ -15,7 +15,7 @@
       <v-header-mobile v-if="isPhone" />
     </no-ssr>
     <no-ssr>
-      <v-nav-mobile v-if="isPhone" />
+      <v-nav-mobile v-if="isPhone" ref="navMobile"/>
     </no-ssr>
     <v-nav ref="nav"/>
     <div class="scroll" ref="scroll">
@@ -63,6 +63,7 @@ export default {
       if(this.$refs.page && this.$refs.page.$children[0])this.$refs.page.$children[0].resize && this.$refs.page.$children[0].resize(w, h, pageHeight)
       this.$refs.nav.resize(w, h, pageHeight)
       if(this.$refs.progress) this.$refs.progress.resize(w, h, pageHeight)
+      if(this.$refs.navMobile) this.$refs.navMobile.resize(w, h, pageHeight)
       this.$refs.loader.resize(w, h)
       this.$refs.loaderTop.resize(w, h)
       this.$refs.footer.resize(w, h, pageHeight)

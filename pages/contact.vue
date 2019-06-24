@@ -57,7 +57,7 @@ export default {
       this.timer = setTimeout(this.showWord.bind(this), 400)
       anime({
         targets: this.slider ,
-        translateY: this.id * (this.isDevice ? -( .121 * this.w) : -(.081 *this.w)) ,
+        translateY: this.id * (this.isDevice ? -( .13 * this.w) : -(.081 *this.w)) ,
         easing: 'easeInOutQuad',
         duration: 0,
         complete: ()=>{
@@ -186,7 +186,6 @@ export default {
   .device &
     font-size 12vw
     height 100vh
-    padding-top 20vh
     .line
       display block
       text-align center

@@ -242,7 +242,8 @@ a
       top auto
       left auto
       bottom auto
-
+    .h3
+      font-size 31px
     .left
       .img
         width 90%
@@ -259,9 +260,12 @@ a
       height auto
     p
       margin 10px auto
-
+    a
+      font-size 30px
     & + .work
       background $red
+      .type
+        color $white
       .left, .right
         background none
 
