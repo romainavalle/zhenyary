@@ -42,6 +42,13 @@ export const actions = {
             const json = require(`~/assets/datas/works/${work}.json`)
             works.push(json)
             worksById[work]  = json
+            if(json.awwwards){
+              state.about.awwwards.push({'title': json.title, 'award': json.awwwards})
+            }
+            if(json.FWA){
+              state.about.FWA.push({'title': json.title, 'award': json.FWA})
+            }
+
         })
       })
     })
