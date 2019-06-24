@@ -1,10 +1,12 @@
 
 import datas from '~/assets/datas/datas.json'
+import about from '~/assets/datas/about.json'
 if(process.browser){
   var sniffer = require('sniffer')
 }
 export const state = () => ({
   datas,
+  about,
   works: [],
   worksById: {},
   color: 'nude',

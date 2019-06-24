@@ -1,5 +1,5 @@
 <template>
-  <div class="socials" :class="{'white': $route.name ==='workflow' && !isDevice}">
+  <div class="socials" :class="{'white': ($route.name ==='workflow' || $route.name ==='about') && !isDevice}">
     <a v-for="(social,i) in datas.socials" :key="`social-${i}`" :href="social.link" v-text="social.label" target="_blank" rel="noopener" :class="color" ref="links"></a>
   </div>
 </template>

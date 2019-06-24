@@ -3,7 +3,7 @@
    <strong class="big" ref="big">So, no more words</strong>
    <div class="content">
      <div class="img">
-       <img src="/images/workflow.jpg" alt="zhenya">
+       <img :src="`/images/${$route.name}.jpg`" alt="zhenya">
        <nuxt-link :to="{name:'contact'}" class="link">Contact Me</nuxt-link>
        <a :href="`mailto:${datas.email}`" class="mail" rel="noopener" target="_blank" v-text="datas.email"></a>
      </div>

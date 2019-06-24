@@ -51,8 +51,8 @@ export default {
         this.$refs.think.resize(this.w, this.h)
         this.$refs.create.resize(this.w, this.h)
         this.$refs.implementation.resize(this.w, this.h)
-        this.$refs.footer.resize(this.w, this.h)
       }
+      this.$refs.footer.resize(this.w, this.h)
     },
     tick(scrollTop, ease) {
       this.$refs.footer.tick(scrollTop, ease)
