@@ -69,7 +69,7 @@ nav
   .no-touch & a:hover
     color $red
     .label
-      letter-spacing .1vw
+      letter-spacing .07vw
   &.index.red a
     color $white
   .no-touch &.index.red a:hover

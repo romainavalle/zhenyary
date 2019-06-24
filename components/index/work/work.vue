@@ -6,8 +6,8 @@
           <img :src="`${path}${work.cover}`" :alt="work.title" ref="img">
         </div>
         <div class="text">
-          <h3 class="h3"  v-html="work.title" ref="title"></h3>
-          <p class="type"  v-text="work.type" ref="type"></p>
+          <h3 class="h3"  v-html="work.title" ref="title" :class="{'mobile-anime': isPhone}"></h3>
+          <p class="type"  v-text="work.type" ref="type" :class="{'mobile-anime': isPhone}"></p>
         </div>
       </div>
       <div class="right">
@@ -163,10 +163,10 @@ export default {
   position absolute
   top 30vh
 .title
-  font-size 36px
+  font-size 1.8vw
   margin-bottom 10px
 .h3
-  font-size 60px
+  font-size 3.1vw
   font-family $schnyder
   font-weight $demi
   text-align center
@@ -192,7 +192,7 @@ ul li
 a
   font-family $schnyder
   font-weight $demi
-  font-size 36px
+  font-size 1.8vw
 .work + .work
   color $white
   .left

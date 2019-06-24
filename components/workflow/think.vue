@@ -17,7 +17,7 @@
         </div>
       </no-ssr>
       <div class="process" ref="process">
-        <strong class="strong" :class="{'mobile-anime': isPhone}">It's all <br>about</strong>
+        <strong :class="{'mobile-anime': isPhone}">It's all <br>about</strong>
         <div class="text">
           <h4 :class="{'mobile-anime': isPhone}">thinking <br>process<v-svg-star class="svg-star star" aria-hidden="true"/></h4>
           <p ref="text1" :class="{'mobile-anime': isPhone}">My ultimate goal with every project is to come up with a solution-based design approach to help my clients solve real cases and achieve business needs.</p>
@@ -205,13 +205,19 @@ h5
 .process
   display flex
   align-items flex-start
-  .strong
+  strong
     color $red
-    padding-top 1.5vw
+    padding-top 1vw
     padding-right 1vw
+    font-size 20px
+    white-space nowrap
+    font-weight normal
+    text-transform uppercase
+    +below('l')
+      font-size 14px
   p
     font-size 14px
-    width 78%
+    width 85%
 article
   +below('s')
     padding-top 10vh
@@ -225,7 +231,7 @@ article
       display block
       width 100%
       text-align center
-      .strong
+      strong
         padding 0
         padding-top 5vh
         width 100%

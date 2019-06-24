@@ -69,6 +69,7 @@ export default {
     left 50%
     position absolute
     top 0
+    transition opacity .5s ease-out-cubic
     transform-origin 50% 0%
     width 1px
     opacity 0.1
@@ -78,10 +79,17 @@ export default {
     top 33vh
     display flex
     opacity .3
+    transition opacity .5s ease-out-cubic
     justify-content space-between
     li
       padding 0 4vw
       letter-spacing 6px
+      color $black
+  .red &
+    .numbers
+      opacity .5
+    .vertical
+      opacity 0.2
   +below('l')
     .numbers
       display none

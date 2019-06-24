@@ -27,9 +27,8 @@
       [ "adobe-xd", "uruoi"]
     ],
     [
-      [ "allure", "go-daddy"],
-      [ "glo", "espn"],
-      [ "huckleberry", "archieve"]
+      [ "allure", "huckleberry"],
+      [ "glo", "espn", "archieve"]
     ]
   ]
 }

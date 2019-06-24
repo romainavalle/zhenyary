@@ -301,11 +301,14 @@ h1
       margin 0 auto
   +below('s')
     display none
-.red .click
-  svg
-    fill $brown
-  span
+.red
+  .play
     color $white
-  ul
-    color $white
+  .click
+    svg
+      fill $brown
+    span
+      color $white
+    ul
+      color $white
 </style>

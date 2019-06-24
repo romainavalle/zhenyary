@@ -168,6 +168,9 @@ export default {
   .smiley
     width 4.1vw
     height 4.1vw
+  .safari &
+    strong
+      color $white
   .ready
     a:after
       transform scale(1)

@@ -204,6 +204,8 @@ export default {
   padding 1vh 0
   padding 0 6vw
   width 100vw
+  & + .line
+    margin-top 2vw
 .star
   fill $red
   width 2vw

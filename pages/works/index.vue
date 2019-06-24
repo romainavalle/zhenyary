@@ -1,11 +1,11 @@
 <template>
   <section class="works">
-      <v-screen v-for="(lines, index) in datas.works" :key="`screen-${index}`" :id="index" :lines="lines" ref="screens"/>
+      <v-screen v-for="(lines, index) in datas.works" :key="`screen-${index}`" :id="index" :lines="lines" :previousLines="getWorksBefore(index)" ref="screens"/>
       <no-ssr>
-        <v-work-img ref="img" :id="showId"></v-work-img>
+        <v-work-img ref="img" :id="showId" v-if="!isDevice"></v-work-img>
       </no-ssr>
       <no-ssr>
-        <v-work-over ref="work"></v-work-over>
+        <v-work-over ref="work" v-if="!isDevice"></v-work-over>
       </no-ssr>
       <no-ssr>
         <button class="strong" ref="strong" @click="scrollTo" v-if="!isDevice">scroll down for all cases</button>
@@ -51,8 +51,8 @@ export default {
       this.screens.forEach((screen, i) => {
         transform(screen.el, {translateY:  i * this.h *.2})
       });
-      this.$refs.img.resize(this.w, this.h)
-      this.$refs.work.resize(this.w, this.h)
+      if(this.$refs.img)this.$refs.img.resize(this.w, this.h)
+      if(this.$refs.work)this.$refs.work.resize(this.w, this.h)
     },
     tick(scrollTop, easeScrollTop) {
       if(this.isDevice) return
@@ -60,6 +60,16 @@ export default {
         transform(this.$el, {translateY: scrollTop - scrollTop/this.h * this.h *.2})
         this.screenId = (Math.floor(.5 + scrollTop/this.h))
       }
+    },
+    getWorksBefore(id) {
+      let count = 0
+      for (let index = 0; index < id; index++) {
+        const screen = this.datas.works[index]
+        screen.forEach(line=>{
+          count += line.length;
+        })
+      }
+      return count
     },
     scrollTo(){
       if(this.isDevice) return
@@ -69,13 +79,14 @@ export default {
     onWorkEnter(id) {
       if(this.isDevice) return
       this.showId = id
-      this.$refs.work.setWork(this.worksEl[this.showId], this.showId, this.screenId)
+
+      if(this.$refs.work)this.$refs.work.setWork(this.worksEl[this.showId], this.showId, this.screenId)
       this.$refs.screens[this.screenId].hideWorks()
     },
     onWorkLeave(screenId = -1) {
       if(this.isDevice) return
       this.showId = -1
-      this.$refs.work.hide()
+      if(this.$refs.work)this.$refs.work.hide()
       this.$refs.screens[screenId === -1 ? this.screenId : screenId].showWorks()
     },
     hideScrollIndication() {
@@ -116,8 +127,8 @@ export default {
   },
   watch: {
     screenId(val, old) {
-
       this.direction = val - old
+      if(this.$refs.img)this.$refs.img.setScreenId(val)
       this.hideScreen(old)
       this.hideScrollIndication()
     }

@@ -14,7 +14,8 @@ export default {
   data() {
     return {
       w: 0,
-      h:0
+      h: 0,
+      screenId: 0
     }
   },
   props: ['id'],
@@ -37,11 +38,10 @@ export default {
         duration: 500,
         easing: 'easeOutQuad'
       })
-      let coef = 0
-      if(id>5)coef++
-      if(id>10)coef++
-      transform(this.$el, {translateY: this.h *.2 *coef})
-
+      transform(this.$el, {translateY: this.h *.2 * this.screenId})
+    },
+    setScreenId(screenId) {
+      this.screenId = screenId
     },
     hide(id){
       if(this.imgAnim)this.imgAnim.pause()

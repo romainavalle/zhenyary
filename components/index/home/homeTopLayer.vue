@@ -17,7 +17,7 @@ export default {
         targets: this.$refs.circle,
         scaleX: 1,
         scaleY: 1,
-        opacity: .1,
+        opacity: .2,
         easing: 'easeOutQuad',
         delay: 500,
         duration: 1500
@@ -67,18 +67,27 @@ export default {
     position absolute
     top 65vh
     width 100%
+    transition opacity .5s ease-out-cubic
   .circle-container
     left 50%
     position absolute
     top 50%
     height 45vw
     width 45vw
+    opacity 0.5
     transform translate(-95%, -50%)
+    transition opacity .5s ease-out-cubic
   .circle
     border solid 1px $black
     border-radius 50%
     width 100%
     height 100%
+
+  .red &
+    .horizontal
+      opacity .2
+    .circle-container
+      opacity 1
   +below('l')
     z-index -1
     .horizontal

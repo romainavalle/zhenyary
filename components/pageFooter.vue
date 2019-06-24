@@ -48,7 +48,7 @@ export default {
     },
     tick(scrollTop, ease) {
       if(ease > this.offset && ease < this.offset + this.animHeight){
-        const coef = (ease - this.offset) / this.animHeight
+        const coef = this.easeInOutQuad((ease - this.offset) / this.animHeight)
         transform(this.$refs.big, {translateX: 100 - coef * 100 +'%'})
       }
       if(scrollTop > this.animOffset  ) {
@@ -57,6 +57,7 @@ export default {
         if(this.isShown)this.hide()
       }
     },
+    easeInOutQuad(t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t },
     show() {
       this.isShown = true
       const duration = 1500

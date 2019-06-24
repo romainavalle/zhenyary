@@ -1,5 +1,5 @@
 <template>
-  <main :class="{ 'no-touch': !isTouch, 'device': isDevice, 'tablet': isTablet, 'mobile': isPhone}">
+  <main :class="{ 'no-touch': !isTouch, 'device': isDevice, 'tablet': isTablet, 'mobile': isPhone, 'safari': isSafari}">
 
     <no-ssr>
       <v-progress ref="progress" v-if="!isDevice" />
@@ -49,7 +49,7 @@ export default {
   },
   computed: {
     ...mapState(['route']),
-    ...mapGetters(['isDevice', 'isPhone', 'isTablet'])
+    ...mapGetters(['isDevice', 'isPhone', 'isTablet', 'isSafari'])
   },
   components: {
     vLoader, vLoaderTop, vTurn, vNav, vFooter,vProgress, vNavMobile, vHeaderMobile
@@ -72,6 +72,7 @@ export default {
       ScrollHelper.tick()
       const scrollTop = this.isDevice ? ScrollHelper.scrollTop : ScrollHelper.ease
       const scrollTopEase = this.isDevice ? ScrollHelper.ease : ScrollHelper.easeSlow
+
       this.$refs.nav.tick(scrollTop)
       this.$refs.footer.tick(scrollTop)
       if(this.$refs.page.$children[0])this.$refs.page.$children[0].tick && this.$refs.page.$children[0].tick(scrollTop, scrollTopEase)

@@ -1,13 +1,13 @@
 <template>
   <div class="line">
-    <v-work v-for="(workId, index) in works" :key="`work-${index}`" :workId="workId" :id="id * works.length + index " ref="works"/>
+    <v-work v-for="(workId, index) in works" :key="`work-${index}`" :workId="workId" :id="previousWorks  + index " ref="works"/>
   </div>
 </template>
 
 <script>
 import vWork from '~/components/works/work.vue'
 export default {
-  props: {'id': Number, 'works': Array},
+  props: {'id': Number, 'works': Array, 'previousWorks': Number},
   components: {
     vWork
   },

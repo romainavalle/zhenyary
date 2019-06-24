@@ -1,7 +1,7 @@
 <template>
   <div class="screen">
     <div>
-      <v-line class="line" v-for="(works, index) in lines" :key="`line-${index}`" :works="works" :id="id  * lines.length + index" ref="lines"/>
+      <v-line class="line" v-for="(works, index) in lines" :key="`line-${index}`" :works="works" :previousWorks="previousLines + getWorksBefore(index)"  ref="lines"/>
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@ import vLine from '~/components/works/line.vue'
 import anime from 'animejs'
 import { mapGetters } from 'vuex';
 export default {
-  props: {'id': Number, 'lines': Array},
+  props: {'id': Number, 'lines': Array, 'previousLines': Number},
   components: {
     vLine
   },
@@ -20,6 +20,13 @@ export default {
     ...mapGetters(['isDevice'])
   },
   methods: {
+    getWorksBefore(id) {
+      let count = 0
+      for (let index = 0; index < id; index++) {
+        count += this.lines[index].length;
+      }
+      return count
+    },
     hideWorks() {
       this.$refs.lines.forEach(line => {
         line.hideWorks()
