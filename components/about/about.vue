@@ -15,14 +15,20 @@
     <div class="d-f">
       <div class="spacer"></div>
       <article class="desc">
+        <div class="blur-container" :class="{'ready': isBlurReady}" aria-hidden="true" >
+          <v-svg-blur class="svg-blur" :class="{'mobile-anime': isPhone}"/>
+        </div>
         <strong class="h4" :class="{'mobile-anime': isPhone}">So,</strong>
         <p :class="{'mobile-anime': isPhone}" v-html="about.about" ></p>
       </article>
     </div>
     <div class="d-f">
-      <div class="spacer"></div>
+      <div class="spacer"><button class="showreel" aria-label="showreel" v-show="!isPhone">showreel</button></div>
       <article class="regognitions">
-        <h3 :class="{'mobile-anime': isPhone}">Regognitions</h3>
+        <div class="title">
+          <h3 :class="{'mobile-anime': isPhone}">Regognitions</h3>
+          <button class="showreel" aria-label="showreel" v-show="isPhone"  :class="{'mobile-anime': isPhone}">showreel</button>
+        </div>
         <div>
           <h4 :class="{'mobile-anime': isPhone}">Awwwards</h4>
           <ul class="awards" v-if="about.awwwards">
@@ -59,19 +65,22 @@
 </template>
 
 <script>
+import vSvgBlur from "~/assets/svgs/blur.svg?inline";
 import { mapState, mapGetters } from 'vuex'
 export default {
   data() {
     return {
       w: 0,
-      h:0
+      h: 0,
+      isBlurReady: true
     }
+  },
+  components: {
+    vSvgBlur
   },
   computed: {
     ...mapState(['about']),
     ...mapGetters(['isPhone'])
-  },
-  components: {
   },
   methods: {
     resize(w, h) {
@@ -95,6 +104,28 @@ export default {
   width 100vw
   padding-top 200px
   overflow hidden
+  button
+    height 200px
+    width 200px
+    border-radius 50%
+    border 1px solid $black
+    font-family $schnyder
+    font-weight $demi
+    font-size 18px
+    margin-left 10vw
+    margin-top 5vw
+  .top
+    position relative
+    z-index 1
+  .blur-container
+    position absolute
+    left 0vw
+    top 4vw
+  .svg-blur
+    width 30vw
+    height 30vw
+    display block
+    transform translate(-50%, -50%)
   .d-f
     display flex
     justify-content flex-start
@@ -102,6 +133,8 @@ export default {
     width 45%
   article
     padding 0 4vw
+    position relative
+    z-index 1
     width 45%
   strong
     display block
@@ -109,7 +142,12 @@ export default {
   .strong
     padding-bottom 2vw
   .desc
+    z-index 0
+    position relative
     margin-top -4vw
+    strong, p
+      display block
+      position relative
     p
       font-weight $light
   p
@@ -160,6 +198,11 @@ export default {
         padding-left 3vw
   +below('l')
     padding-top 100px
+    button
+      height 150px
+      width 150px
+      margin-left 50px
+      margin-top 50px
     .img
       padding-left 6vw
     .desc
@@ -192,13 +235,13 @@ export default {
     .behance, .awards strong
       font-size 4.1vw
 
-  .regognitions
-    padding-top 10vw
-    div + div
-      padding-top 10vw
+    .regognitions
+      padding-top 200px
+      div + div
+        padding-top 10vw
 
-  .collaborations
-    font-size 3.9vw
+    .collaborations
+      font-size 3.9vw
   +below('s')
     padding-top 100px
     .d-f
@@ -239,14 +282,25 @@ export default {
       li + li
         padding-top 30px
 
-  .regognitions
-    padding-top 40px
-    div + div
+    .regognitions
       padding-top 40px
+      .title
+        display flex
+        align-items baseline
+        justify-content space-between
+      button
+        font-size 14px
+        width 100px
+        height 100px
+        margin-right -30px
+        margin-left 0
+        margin-top 0
+      div + div
+        padding-top 40px
 
-  .collaborations
-    font-size 22px
-    padding-bottom 50px
+    .collaborations
+      font-size 22px
+      padding-bottom 50px
 
 </style>
 

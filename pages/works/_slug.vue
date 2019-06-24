@@ -1,9 +1,9 @@
 <template>
   <section class="work">
     <v-header :work="work" ref="header"/>
-    <v-intro-text :work="work"/>
+    <v-intro-text :work="work" ref="intro" />
     <component v-for="(item, i) in work.content" :key="`item-${i}`" ref="contents" :is="item.type" :content="item" :path="path" :title="work.title" ></component>
-    <v-footer />
+    <v-footer ref="footer"/>
   </section>
 </template>
 
@@ -35,6 +35,19 @@ export default {
         this.h =h
       }
       this.$refs.header.resize(this.w, this.h)
+      this.$refs.intro.resize(this.w, this.h)
+      this.$refs.footer.resize(this.w, this.h)
+      this.$refs.contents.forEach(content => {
+        content.resize(this.w, this.h)
+      });
+    },
+    tick(scrollTop, ease) {
+      this.$refs.header.tick(scrollTop, ease)
+      this.$refs.intro.tick(scrollTop, ease)
+      this.$refs.footer.tick(scrollTop, ease)
+      this.$refs.contents.forEach(content => {
+        content.tick(scrollTop, ease)
+      });
     },
     onLoad() {
       this.imgLoaded++
@@ -78,4 +91,10 @@ h3
   font-size 20px
 .content
   width 100%
+</style>
+
+<style lang="stylus" >
+.page.work
+  .line
+    display block
 </style>

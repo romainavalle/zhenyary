@@ -3,22 +3,26 @@
     <nuxt-link :to="{name: 'works'}" class="strong back">Back To All Projects</nuxt-link>
     <div class="next">
       <span class="strong">next</span>
-      <span class="letter">{{letter}}.</span>
+      <span class="letter" ref="letter">{{letter}}<span class="dot" ref="dot">.</span></span>
     </div>
     <div class="right">
-      <div>
+      <nuxt-link :to="{name: 'works-slug', params: {slug: nextWork.slug}}" :aria-label="nextWork.title">
         <h3 v-html="nextWork.title"></h3>
         <ul>
           <li v-for="(skill, index) in nextWork.skills" :key="`skill-${index}`" v-text="index === 0 ? skill : ` / ${skill}`" class="strong"></li>
         </ul>
-        <nuxt-link :to="{name: 'works-slug', params: {slug: nextWork.slug}}" :aria-label="nextWork.title"><v-svg-arrow class="arrow"/></nuxt-link>
-      </div>
+        <div class="arrow" ref="arrow">
+          <v-svg-arrow />
+        </div>
+      </nuxt-link>
     </div>
   </footer>
 </template>
 
 <script>
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
+import transform from 'dom-transform'
+import offset from '~/assets/js/utils/offset'
 import { mapGetters } from 'vuex'
 export default {
   computed: {
@@ -30,10 +34,48 @@ export default {
   components: {
     vSvgArrow
   },
-  mounted() {
-  },
+  methods: {
+    resize(w,h) {
+      if(w && h){
+        this.w = w
+        this.h = h
+      }
+      this.offset = offset(this.$el).top - this.h
+      this.offsetLetter = this.offset + this.h * .3
+      this.offsetDot = this.offset + this.h * .4
 
+    },
+    tick(scrollTop, ease){
+      if(ease > this.offset) {
+        const coef = (ease - this.offset) / (this.h * .6)
+        this.$el.style.opacity = coef
+        transform(this.$el, {translate3d:[0, 150 - 150 * coef, 0]})
+        this.$el.style.opacity = coef
+
+      }
+      if(ease > this.offsetLetter) {
+        const coefLetter = (ease - this.offsetLetter) / (this.h * .3)
+        transform(this.$refs.letter, {translate3d:[0, this.w * .1 - this.w * .1 * coefLetter, 0]})
+        this.$refs.letter.style.opacity = coefLetter
+        transform(this.$refs.arrow, {translate3d:[ -this.w * .05 + this.w * .05 * coefLetter, 0, 0]})
+        this.$refs.arrow.style.opacity = coefLetter
+      }
+      if(ease > this.offsetDot) {
+        const coefDot = (ease - this.offsetDot) / (this.h * .2)
+        this.$refs.dot.style.opacity = coefDot
+        transform(this.$refs.dot, {translate3d:[0, -this.w * .1 + this.w * .1 * coefDot, 0]})
+      }
+    }
+  },
+  mounted() {
+    this.$el.style.opacity = 0
+    this.$refs.letter.style.opacity = 0
+    this.$refs.arrow.style.opacity = 0
+    this.$refs.dot.style.opacity = 0
+    transform(this.$el, {translate3d:[0, 150, 0]})
+  }
 }
+
 </script>
 
 <style lang="stylus" scoped>
@@ -51,6 +93,8 @@ footer
   display block
   padding-left 50px
   font-weight $light
+.dot
+  display inline-block
 .next
   text-align center
 li
@@ -58,11 +102,16 @@ li
 h3
   font-size 36px
   margin-bottom 10px
-.right>div
+.right>a
+  display block
   padding 0 20%
 .arrow
   width 158px
   height 106px
-  fill $black
   margin-top 40px
+  svg
+    display block
+    width 100%
+    height 100%
+    fill $black
 </style>

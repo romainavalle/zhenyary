@@ -1,13 +1,13 @@
 <template>
   <header>
-    <nuxt-link :to="{name: 'works'}" class="strong back">Back To All Projects</nuxt-link>
-    <h1 v-html="work.title"></h1>
+    <nuxt-link :to="{name: 'works'}" class="strong back" ref="link">Back To All Projects</nuxt-link>
+    <h1 v-html="work.title" ref="title"></h1>
     <div class="text">
       <div>
-        <button aria-label="scroll" @click="scrollTo"><v-svg-arrow class="arrow"/></button>
+        <button aria-label="scroll" @click="scrollTo" ref="arrow"><v-svg-arrow class="arrow"/></button>
       </div>
       <div class="details">
-        <span class="letter">{{letter}}.</span>
+        <span class="letter" ref="letter">{{letter}}<span class="dot" ref="dot">.</span></span>
         <div class="details-text">
           <div>
             <h2 class="demi" v-text="work.subtitle"></h2>
@@ -26,6 +26,8 @@
 
 <script>
 import ScrollHelper from '~/assets/js/utils/ScrollHelper'
+import transform from 'dom-transform'
+import offset from '~/assets/js/utils/offset'
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
 export default {
   props: { 'work': Object },
@@ -45,7 +47,19 @@ export default {
       }
 
     },
-    scrollTo() {
+    tick(scrollTop, ease){
+      if(ease < this.h) {
+        transform(this.$refs.arrow, {translate3d:[0, Math.min(ease,this.h /2), 0]})
+        transform(this.$refs.link.$el, {translate3d:[0, scrollTop, 0]})
+        transform(this.$refs.title, {translate3d:[0, ease / 3, 0]})
+        transform(this.$refs.letter, {translate3d:[0, -scrollTop / this.h * this.w * .1, 0]})
+        transform(this.$refs.dot, {translate3d:[0, -scrollTop / this.h * this.w * .1, 0]})
+        this.$refs.dot.style.opacity = (this.h - ease * 2) / this.h
+        this.$refs.title.style.opacity = (this.h - ease * 2) / this.h
+        this.$refs.link.$el.style.opacity = (this.h - ease * 2) / this.h
+      }
+    },
+    scrollTo(scrollTop) {
       ScrollHelper.scrollTo(this.h * .7)
     }
   },
@@ -91,6 +105,8 @@ h2
   width 15vw
   display block
   font-weight $light
+.dot
+  display inline-block
 .text
   display flex
   width 100%
@@ -114,6 +130,7 @@ li
 .arrow
   width 158px
   height 106px
+  stroke $black
   fill $black
   transform translateY(-20px) rotate(90deg)
 </style>

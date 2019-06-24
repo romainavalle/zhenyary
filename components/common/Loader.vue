@@ -43,6 +43,7 @@ export default {
   },
   mounted() {
 
+    if(process.env.NODE_ENV === 'development') this.$el.style.display = 'none'
     this.animation = bodymovin.loadAnimation({
       container: this.$refs.animation,
       renderer: 'canvas',
@@ -76,6 +77,7 @@ export default {
   right 0
   bottom 0
   z-index 998
+  pointer-events none
   &.transparent
     background none
   .animation

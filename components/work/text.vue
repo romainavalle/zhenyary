@@ -12,8 +12,55 @@
 </template>
 
 <script>
+import transform from 'dom-transform'
+import offset from '~/assets/js/utils/offset'
+import splitLines from '~/assets/js/utils/splitLines'
 export default {
-  props: ['content', 'path', 'title']
+  props: ['content', 'path', 'title'],
+  methods:{
+    resize(w,h) {
+      if(w && h){
+        this.w = w
+        this.h = h
+      }
+    this.offset = offset(this.$el).top -this.h
+    },
+    tick(scrollTop, ease){
+      if(ease > this.offset && ease <this.offset + this.h) {
+        const coef = Math.min(1, (ease - this.offset) / this.h * 2)
+        this.$el.style.opacity = coef
+        transform(this.$el, {translate3d: [0,-200 + 200 * coef, 0 ]})
+        this.headerLines.forEach((line, i) => {
+          const start = 50 + i * 50
+          transform(line, {translate3d: [0, start -  start * coef, 0]})
+        });
+        this.pLines.forEach((line, i) => {
+          const start = 50 + i * 50
+          transform(line, {translate3d: [0, start -  start * coef, 0]})
+        });
+      }
+    },
+  },
+  mounted() {
+    transform(this.$el, {translate3d: [0,-200, 0 ]})
+    this.$el.style.opacity = 0
+    this.$nextTick(()=>{
+      const header = this.$el.querySelector('header')
+      const p = this.$el.querySelector('p')
+      splitLines(header)
+      splitLines(p)
+      this.headerLines = [].slice.call(header.querySelectorAll('.line'))
+      this.pLines = [].slice.call(p.querySelectorAll('.line'))
+      this.headerLines.forEach((line, i) => {
+        const start = 50 + i * 50
+        transform(line, {translate3d: [0, start, 0]})
+      });
+      this.pLines.forEach((line, i) => {
+        const start = 50 + i * 50
+        transform(line, {translate3d: [0, start, 0]})
+      });
+    })
+  },
 }
 </script>
 
@@ -34,8 +81,9 @@ article.content
   display flex
   justify-content flex-end
 header
-  width 25%
+  width 30%
+  font-size 20px
 p
-  width 50%
+  width 45%
 
 </style>
