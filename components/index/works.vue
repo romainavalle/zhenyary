@@ -9,6 +9,7 @@
 
 <script>
 import vWork from '~/components/index/work/work.vue'
+import { easeOutQuad } from '~/assets/js/utils/easings'
 import transform from 'dom-transform'
 import { mapState, mapGetters } from 'vuex';
 export default {
@@ -46,7 +47,7 @@ export default {
         top = Math.min(this.h, top)
         coef = Math.min(1, coef)
         if(this.coef !== coef) {
-          const easeCoef = this.easeOutQuad(coef)
+          const easeCoef = easeOutQuad(coef)
           this.$refs.dot.style.opacity = Math.max(0, -1 + coef * 2)
           this.coef = coef
         }
@@ -56,7 +57,7 @@ export default {
         work.tick(scrollTop, ease)
       });
     },
-    easeOutQuad: function (t) { return t*(2-t) }
+
   },
   created() {
   },

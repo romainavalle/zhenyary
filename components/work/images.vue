@@ -9,6 +9,8 @@
 <script>
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
+
+import { easeInOutCubic } from '~/assets/js/utils/easings'
 export default {
   props: ['content', 'path', 'title'],
   computed:{
@@ -36,7 +38,7 @@ export default {
     },
     tick(scrollTop, ease){
       if(ease > this.offset && ease <this.offset + this.h) {
-        const coef = (ease - this.offset) / this.h
+        const coef = easeInOutCubic((ease - this.offset) / this.h)
         transform(this.$refs.imgs[0], {scale3d: [2.1 - coef * 1.1, 2.1 - coef * 1.1, 1]})
         transform(this.$refs.imgs[1], {translate3d: [300 - coef * 300, 0, 0]})
         this.$refs.imgs[1].style.opacity = coef

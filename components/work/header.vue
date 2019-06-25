@@ -28,6 +28,7 @@
 import ScrollHelper from '~/assets/js/utils/ScrollHelper'
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
+
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
 export default {
   props: { 'work': Object },

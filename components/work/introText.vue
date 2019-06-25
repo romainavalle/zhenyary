@@ -11,6 +11,8 @@
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import splitLines from '~/assets/js/utils/splitLines'
+
+import { easeInOutQuad } from '~/assets/js/utils/easings'
 export default {
   props: ['work'],
   methods:{
@@ -23,7 +25,7 @@ export default {
     },
     tick(scrollTop, ease){
       if(ease > this.offset && ease <this.offset + this.h * .4) {
-        const coef = Math.min(1, (ease - this.offset) / (this.h * .4))
+        const coef = easeInOutQuad(Math.min(1, (ease - this.offset) / (this.h * .4)))
         this.$el.style.opacity = coef
         this.lines.forEach((line, i) => {
           const start = 50 + i * 50

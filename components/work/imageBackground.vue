@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { easeInOutQuad } from '~/assets/js/utils/easings'
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 export default {
@@ -19,7 +20,7 @@ export default {
     },
     tick(scrollTop, ease){
       if(ease > this.offset && ease <this.offset + this.h) {
-        const coef = (ease - this.offset) / this.h
+        const coef = easeInOutQuad((ease - this.offset) / this.h)
         transform(this.$refs.img, {scale3d: [1.5 - coef * .5,1.5 - coef * .5,1 ]})
       }
     },

@@ -15,6 +15,8 @@
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import splitLines from '~/assets/js/utils/splitLines'
+
+import { easeInOutQuad, easeInOutCubic } from '~/assets/js/utils/easings'
 export default {
   props: ['content', 'path', 'title'],
   methods:{
@@ -27,16 +29,17 @@ export default {
     },
     tick(scrollTop, ease){
       if(ease > this.offset && ease <this.offset + this.h) {
-        const coef = Math.min(1, (ease - this.offset) / this.h * 2)
-        this.$el.style.opacity = coef
-        transform(this.$el, {translate3d: [0,-200 + 200 * coef, 0 ]})
+        const coefCubic = easeInOutCubic(Math.min(1, (ease - this.offset) / this.h * 2))
+        const coefQuad = easeInOutQuad(Math.min(1, (ease - this.offset) / this.h * 2))
+        this.$el.style.opacity = coefCubic
+        transform(this.$el, {translate3d: [0,-200 + 200 * coefCubic, 0 ]})
         this.headerLines.forEach((line, i) => {
           const start = 50 + i * 50
-          transform(line, {translate3d: [0, start -  start * coef, 0]})
+          transform(line, {translate3d: [0, start -  start * coefQuad, 0]})
         });
         this.pLines.forEach((line, i) => {
           const start = 50 + i * 50
-          transform(line, {translate3d: [0, start -  start * coef, 0]})
+          transform(line, {translate3d: [0, start -  start * coefQuad, 0]})
         });
       }
     },

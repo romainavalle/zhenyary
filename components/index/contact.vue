@@ -19,6 +19,7 @@
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
 import vSvgStar from "~/assets/svgs/star.svg?inline";
 import vSvgSmiley from "~/assets/svgs/smiley.svg?inline";
+import { easeInOutQuad } from '~/assets/js/utils/easings'
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import { mapGetters } from 'vuex';
@@ -58,7 +59,7 @@ export default {
           const end = start + duration
           let coef = 0
           if(scrollTop > start ) {
-            coef = this.easeInOutQuad(Math.min(1,(scrollTop-start) / duration))
+            coef = easeInOutQuad(Math.min(1,(scrollTop-start) / duration))
             transform(line, {translateY: 100 - 100 * coef, scaleY: 1.5 - .5 * coef})
             line.style.opacity = coef
             if(coef > .8 && !this.linesReady[i]){
@@ -74,7 +75,6 @@ export default {
         if(!this.isReseted)this.reset()
       }
     },
-    easeInOutQuad (t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t },
     reset() {
       this.isReseted = true
       this.lines.forEach((line, i) => {

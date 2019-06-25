@@ -57,7 +57,7 @@ export default {
       this.timer = setTimeout(this.showWord.bind(this), 400)
       anime({
         targets: this.slider ,
-        translateY: this.id * (this.isDevice ? -( .13 * this.w) : -(.081 *this.w)) ,
+        translateY: this.id * (this.isDevice ? -( .13 * this.w) : -(.080 *this.w)) ,
         easing: 'easeInOutQuad',
         duration: 0,
         complete: ()=>{

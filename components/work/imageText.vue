@@ -14,6 +14,7 @@
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import splitLines from '~/assets/js/utils/splitLines'
+import { easeInOutCubic, easeInOutQuad } from '~/assets/js/utils/easings'
 export default {
   props: ['content', 'path', 'title'],
   computed:{
@@ -37,13 +38,13 @@ export default {
     },
     tick(scrollTop, ease){
       if(ease > this.offset && ease <this.offset + this.h) {
-        const coef = (ease - this.offset) / this.h
+        const coef = easeInOutCubic((ease - this.offset) / this.h)
+        const coefQuad = easeInOutQuad((ease - this.offset) / this.h)
         transform(this.$refs.img, {scale3d: [2.1 - coef * 1.1, 2.1 - coef * 1.1, 1]})
-        this.$refs.textContent.style.opacity = coef
         this.lines.forEach((line, i) => {
           const start = 50 + i * 50
-          line.style.opacity = coef
-          transform(line, {translate3d: [start - coef * start, 0, 0]})
+          line.style.opacity = coefQuad
+          transform(line, {translate3d: [start - coefQuad * start, 0, 0]})
         });
       }
     }

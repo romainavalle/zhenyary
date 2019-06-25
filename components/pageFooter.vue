@@ -19,6 +19,7 @@
 
 <script>
 import offset from '~/assets/js/utils/offset'
+import { easeOutQuad } from '~/assets/js/utils/easings'
 import transform from 'dom-transform'
 import anime from 'animejs'
 import { mapState } from 'vuex';
@@ -48,7 +49,7 @@ export default {
     },
     tick(scrollTop, ease) {
       if(ease > this.offset && ease < this.offset + this.animHeight){
-        const coef = this.easeInOutQuad((ease - this.offset) / this.animHeight)
+        const coef = easeOutQuad((ease - this.offset) / this.animHeight)
         transform(this.$refs.big, {translateX: 100 - coef * 100 +'%'})
       }
       if(scrollTop > this.animOffset  ) {
@@ -57,7 +58,6 @@ export default {
         if(this.isShown)this.hide()
       }
     },
-    easeInOutQuad(t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t },
     show() {
       this.isShown = true
       const duration = 1500
@@ -187,11 +187,11 @@ footer
   .img
     position relative
     margin 0 auto
-    width 40%
+    width 35%
 .top
   pointer-events none
   width 100%
-  height 51vw
+  height 43vw
   position absolute
   top 100%
   left 50%

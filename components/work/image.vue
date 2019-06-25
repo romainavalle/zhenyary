@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { easeInOutCubic } from '~/assets/js/utils/easings'
 import vSvgShadow from "~/assets/svgs/shadow.svg?inline";
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
@@ -45,7 +46,7 @@ export default {
     },
     tick(scrollTop, ease){
       if(ease > this.offset && ease <this.offset + this.h) {
-        const coef = (ease - this.offset) / this.h
+        const coef = easeInOutCubic((ease - this.offset) / this.h)
         transform(this.$refs.img, {scale3d: [1.5 - coef * .5, 1.8 - coef * .8, 1]})
         transform(this.$refs.container, {scale3d: [.7 + coef * .3, .7 + coef * .3, 1]})
       }

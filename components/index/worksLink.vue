@@ -7,6 +7,7 @@
 <script>
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
+import { easeOutQuad } from '~/assets/js/utils/easings'
 import { mapGetters } from 'vuex';
 export default {
   data() {
@@ -37,13 +38,12 @@ export default {
       coef = Math.min(1, coef)
       if(coef !== this.coef) {
 
-        const easeCoef = this.easeOutQuad(coef)
+        const easeCoef = easeOutQuad(coef)
         transform(this.$refs.link.$el, {scale3d:[1.5-easeCoef * .5,1.5-easeCoef * .5, 1]})
         this.$refs.link.$el.style.opacity = -1 + easeCoef * 2
         this.coef = coef
       }
-    },
-    easeOutQuad: function (t) { return t*(2-t) }
+    }
   },
   mounted() {
   }
