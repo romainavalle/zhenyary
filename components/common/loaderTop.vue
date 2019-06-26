@@ -55,10 +55,12 @@ export default {
         easing: 'easeOutQuad'
       })
       if(this.isFirstTime) {
+        const posX = this.w >=  1024 ? -270 : -100
+        const posY = this.w >=  1024 ? this.h *.5 - 100 : this.h *.5 -20
         anime({
           targets: this.$refs.span,
-          translateX: [-270, -270],
-          translateY: [this.h * 1.2,this.h *.5 - 100],
+          translateX: [posX, posX],
+          translateY: [this.h * 1.2,posY],
           duration: 500,
           easing: 'easeOutCubic'
         })
@@ -167,6 +169,8 @@ export default {
     top 0
     left 50%
     color $white
+    +below('m')
+      font-size 50px
   .circle
     will-change opacity
     position absolute
@@ -174,7 +178,7 @@ export default {
     left 0
     width 13vw
     height 13vw
-    +below('m')
+    +below('l')
       width 100px
       height 100px
     svg

@@ -8,10 +8,8 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+
   },
   /*
   ** Customize the progress bar color
@@ -19,9 +17,9 @@ module.exports = {
   loading: { color: '#3B8070' },
   modules: [
     '@nuxtjs/pwa',
-    /*['@nuxtjs/google-analytics', {
-      id: 'UA-44603597-1'
-    }],*/
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-90480178-1'
+    }],
     'nuxt-svg'
   ],
   plugins: [
@@ -58,7 +56,7 @@ module.exports = {
     }
   },
   generate: {
-    dir: '../zhenya',
+    dir: '../html',
     routes: function () {
       const routes = []
       var datas = JSON.parse(require('fs').readFileSync(`./assets/datas/datas.json`, 'utf-8'))

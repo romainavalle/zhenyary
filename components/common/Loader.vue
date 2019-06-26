@@ -44,12 +44,13 @@ export default {
   mounted() {
 
     if(process.env.NODE_ENV === 'development') this.$el.style.display = 'none'
+    const url = (window.innerWidth > window.innerHeight) ? '/datas/bodymovin/data.json' : '/datas/bodymovin/data1080_1920.json'
     this.animation = bodymovin.loadAnimation({
       container: this.$refs.animation,
       renderer: 'canvas',
       loop: false,
       autoplay: false,
-      animationData: require('~/assets/datas/bodymovin/data.json'),
+      path: url,
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice'
       }

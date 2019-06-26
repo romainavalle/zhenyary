@@ -1,0 +1,287 @@
+AddDefaultCharset UTF-8
+
+
+
+#----------------------------------------------o
+#-----Leverage browser caching-----------------o 
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 month" 
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType text/html "access plus 1 minute"
+  ExpiresByType text/plain "access plus 1 month"
+  ExpiresByType text/x-component "access plus 1 month" 
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType text/x-javascript "access plus 1 month"
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 months"
+  ExpiresByType application/x-javascript "access plus 1 months"
+  ExpiresByType application/x-shockwave-flash "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType application/xml "access plus 0 seconds" 
+  ExpiresByType application/json "access plus 0 seconds" 
+  ExpiresByType application/ld+json "access plus 0 seconds" 
+  ExpiresByType application/xml "access plus 0 seconds" 
+  ExpiresByType text/xml "access plus 0 seconds" 
+  ExpiresByType application/x-web-app-manifest+json "access plus 0 seconds" 
+  ExpiresByType text/cache-manifest "access plus 0 seconds" 
+  ExpiresByType audio/ogg "access plus 1 month" 
+  ExpiresByType video/mp4 "access plus 1 month" 
+  ExpiresByType video/ogg "access plus 1 month" 
+  ExpiresByType video/webm "access plus 1 month" 
+  ExpiresByType application/atom+xml "access plus 1 hour" 
+  ExpiresByType application/rss+xml "access plus 1 hour" 
+  ExpiresByType application/font-woff "access plus 1 month" 
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 month" 
+  ExpiresByType application/x-font-ttf "access plus 1 month" 
+  ExpiresByType font/opentype "access plus 1 month" 
+</IfModule>
+
+#——END Leverage browser caching-------------o 
+#----------------------------------------------o
+
+
+
+#----------------------------------------------o
+#-----Specify a cache validator----------------o 
+<IfModule mod_headers.c> 
+  Header unset ETag 
+</IfModule> 
+FileETag None
+#-----FIN Specify a cache validator------------o 
+#----------------------------------------------o
+
+
+
+#---------------------------------------------------------------------o
+#——File compression js, css, txt, html, ...----------------o
+#-----a adapter au serveur--------------------------------------------o 
+<IfModule mod_deflate.c>
+
+    <IfModule mod_setenvif.c>
+        <IfModule mod_headers.c>
+            SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+            RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+        </IfModule>
+    </IfModule>
+
+    <IfModule mod_filter.c>
+      SetOutputFilter DEFLATE
+
+      AddOutputFilterByType DEFLATE "application/atom+xml" \
+                                    "application/javascript" \
+                                    "application/json" \
+                                    "application/ld+json" \
+                                    "application/manifest+json" \
+                                    "application/rdf+xml" \
+                                    "application/rss+xml" \
+                                    "application/schema+json" \
+                                    "application/vnd.geo+json" \
+                                    "application/vnd.ms-fontobject" \
+                                    "application/x-font-ttf" \
+                                    "application/x-javascript" \
+                                    "application/x-web-app-manifest+json" \
+                                    "application/xhtml+xml" \
+                                    "application/xml" \
+                                    "font/eot" \
+                                    "font/opentype" \
+                                    "image/bmp" \
+                                    "image/svg+xml" \
+                                    "image/vnd.microsoft.icon" \
+                                    "image/x-icon" \
+                                    "text/cache-manifest" \
+                                    "text/css" \
+                                    "text/html" \
+                                    "text/javascript" \
+                                    "text/plain" \
+                                    "text/vcard" \
+                                    "text/vnd.rim.location.xloc" \
+                                    "text/vtt" \
+                                    "text/x-component" \
+                                    "text/x-cross-domain-policy" \
+                                    "text/xml"
+        
+      SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
+      SetEnvIfNoCase Request_URI \.(?:exe|t?gz|zip|bz2|sit|rar)$ no-gzip dont-vary
+      SetEnvIfNoCase Request_URI \.(?:pdf|avi|mov|mp3|mp4|rm|wav)$ no-gzip dont-vary
+
+      Header append Vary User-Agent env=!dont-vary
+
+      <IfModule mod_mime.c>
+        AddEncoding gzip              svgz
+      </IfModule>
+    </IfModule>
+
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|xml|gz|json)$">
+    Header append Vary: Accept-Encoding
+  </FilesMatch>
+</IfModule>
+
+
+<IfModule mod_gzip.c>
+  mod_gzip_on Yes
+  mod_gzip_dechunk Yes
+  mod_gzip_item_include file \.(html?|txt|css|js|php|pl|json)$
+  mod_gzip_item_include handler ^cgi-script$
+  mod_gzip_item_include mime ^text/.*
+  mod_gzip_item_include mime ^application/x-javascript.*
+  mod_gzip_item_include mime ^application/json$ 
+  mod_gzip_item_exclude mime ^image/.*
+  mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+  mod_gzip_item_include file \.html$  
+  mod_gzip_item_include file \.php$  
+  mod_gzip_item_include file \.js$  
+  mod_gzip_item_include file \.css$  
+  mod_gzip_item_include file \.txt$  
+  mod_gzip_item_include file \.xml$  
+  mod_gzip_item_include file \.json$ 
+
+  Header append Vary Accept-Encoding
+</IfModule>
+#----- END file compression js, css, txt, html, ...-------------o 
+#---------------------------------------------------------------------o
+
+
+
+#--------------------------------------------------------o
+#----- browser caching time per file type ----------o
+
+#1 mois
+<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf)$">
+  Header set Cache-Control "public, max-age=2592000"
+</FilesMatch>
+
+#1 mois
+<FilesMatch ".(mp3|wav)$">
+  Header set Cache-Control "public, max-age=2592000"
+</FilesMatch>
+
+# 1 semaine
+<FilesMatch ".(js|css|pdf|txt|dds|pvr|json)$">
+  Header set Cache-Control "public, max-age=604800"
+</FilesMatch>
+
+# 12 heures
+<FilesMatch ".(html|htm)$">
+  Header set Cache-Control "public, max-age=43200"
+</FilesMatch>
+
+#——END browser caching time per file type------------o
+#--------------------------------------------------------o
+
+#—— speed up website rendering on IE 8 and IE 9 ——————o
+#--------------------------------------------------------o
+
+<IfModule mod_headers.c>
+
+    Header set X-UA-Compatible "IE=edge"
+
+    <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
+        Header unset X-UA-Compatible
+    </FilesMatch>
+
+</IfModule>
+
+#—— END speed up website rendering on IE 8 and IE 9 ——————o
+#--------------------------------------------------------o
+
+#—— apply mime type to files to enhance SEO ——————o
+#--------------------------------------------------------o
+
+<IfModule mod_mime.c>
+
+    AddType application/atom+xml                        atom
+    AddType application/json                            json map topojson
+    AddType application/ld+json                         jsonld
+    AddType application/rss+xml                         rss
+    AddType application/vnd.geo+json                    geojson
+    AddType application/xml                             rdf xml
+
+    AddType application/javascript                      js
+
+    AddType application/manifest+json                   webmanifest
+    AddType application/x-web-app-manifest+json         webapp
+    AddType text/cache-manifest                         appcache
+
+    AddType audio/mp4                                   f4a f4b m4a
+    AddType audio/ogg                                   oga ogg opus
+    AddType image/bmp                                   bmp
+    AddType image/svg+xml                               svg svgz
+    AddType image/webp                                  webp
+    AddType video/mp4                                   f4v f4p m4v mp4
+    AddType video/ogg                                   ogv
+    AddType video/webm                                  webm
+    AddType video/x-flv                                 flv
+
+    AddType image/x-icon                                cur ico
+
+    AddType application/font-woff                       woff
+    AddType application/font-woff2                      woff2
+    AddType application/vnd.ms-fontobject               eot
+
+    AddType application/x-font-ttf                      ttc ttf
+    AddType font/opentype                               otf
+
+    AddType application/octet-stream                    safariextz
+    AddType application/x-bb-appworld                   bbaw
+    AddType application/x-chrome-extension              crx
+    AddType application/x-opera-extension               oex
+    AddType application/x-xpinstall                     xpi
+    AddType text/vcard                                  vcard vcf
+    AddType text/vnd.rim.location.xloc                  xloc
+    AddType text/vtt                                    vtt
+    AddType text/x-component                            htc
+
+</IfModule>
+
+
+
+<IfModule mod_mime.c>
+    AddCharset utf-8 .atom \
+                     .bbaw \
+                     .css \
+                     .geojson \
+                     .js \
+                     .json \
+                     .jsonld \
+                     .manifest \
+                     .rdf \
+                     .rss \
+                     .topojson \
+                     .vtt \
+                     .webapp \
+                     .webmanifest \
+                     .xloc \
+                     .xml
+</IfModule>
+
+#—— END apply mime type to files to enhance SEO ——————o
+#--------------------------------------------------------o
+
+
+#——protect website from sniffing attacks ——————o
+#--------------------------------------------------------o
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+#——END protect website from sniffing attacks ——————o
+#--------------------------------------------------------o
+
+#——remove PHP version from request response header to enhance security  ——————o
+#--------------------------------------------------------o
+<IfModule mod_headers.c>
+    Header unset X-Powered-By
+</IfModule>
+
+#——END remove PHP version from request response header to enhance security  ——————o
+#--------------------------------------------------------o

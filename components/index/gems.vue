@@ -179,7 +179,7 @@ export default {
 .gems
   background $grey
   overflow hidden
-  height 60vh
+  height 100vh
   width 100vw
   position relative
   strong
