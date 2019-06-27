@@ -54,13 +54,13 @@ export default {
       anime({
         targets: this.$refs.showOuter,
         translateX: '0%',
-        duration: 800,
+        duration: 1200,
         easing: 'easeOutCubic'
       })
       anime({
         targets: this.$refs.showInner,
         translateX: '0%',
-        duration: 800,
+        duration: 1200,
         easing: 'easeOutCubic'
       })
       anime({

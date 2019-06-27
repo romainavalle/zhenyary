@@ -1,13 +1,13 @@
 <template>
   <header>
-    <nuxt-link :to="{name: 'works'}" class="strong back" ref="link">Back To All Projects</nuxt-link>
-    <h1 v-html="work.title" ref="title"></h1>
+    <nuxt-link :to="{name: 'works'}" class="strong back" ref="link"><span>Back To All Projects</span></nuxt-link>
+    <h1 ref="title"><span v-html="work.title"></span></h1>
     <div class="text">
       <div>
-        <button aria-label="scroll" @click="scrollTo" ref="arrow"><v-svg-arrow class="arrow"/></button>
+        <button aria-label="scroll" @click="scrollTo" ref="arrow"><span class="arrow"><v-svg-arrow/></span></button>
       </div>
       <div class="details">
-        <span class="letter" ref="letter">{{letter}}<span class="dot" ref="dot">.</span></span>
+        <span class="letter-container" ><span class="letter" ref="letter">{{letterStr}}</span><span class="dot" ref="dot">.</span></span>
         <div class="details-text">
           <div>
             <h2 class="demi" v-text="work.subtitle"></h2>
@@ -28,7 +28,7 @@
 import ScrollHelper from '~/assets/js/utils/ScrollHelper'
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
-
+import anime from 'animejs'
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
 export default {
   props: { 'work': Object },
@@ -36,7 +36,7 @@ export default {
     vSvgArrow
   },
   computed: {
-    letter() {
+    letterStr() {
       return this.work.title.charAt(0)
     }
   },
@@ -62,9 +62,30 @@ export default {
     },
     scrollTo(scrollTop) {
       ScrollHelper.scrollTo(this.h * .7)
+    },
+    show(){
+      anime({targets: this.title, opacity: 1, translateY: 0, duration: 1500,  easing: 'easeOutQuad'})
+      anime({targets: this.back, opacity: 1, duration: 600, delay: 600, easing: 'easeOutQuad'})
+      anime({targets: this.arrow, opacity: 1, translateY: 0, duration: 800, delay: 400, easing: 'easeOutQuad'})
+      anime({targets: this.letter, opacity: 1, translateY: 0, duration: 1000, delay: 500,  easing: 'easeOutQuad'})
+      anime({targets: this.text_array, opacity: 1, translateX: 0, duration: 1200, delay: anime.stagger(50, {start: 600}),  easing: 'easeOutQuad'})
     }
   },
   mounted() {
+    this.back = this.$refs.link.$el.querySelector('span')
+    this.title = this.$refs.title.querySelector('span')
+    this.arrow = this.$refs.arrow.querySelector('.arrow')
+    this.letter = this.$el.querySelector('.letter-container')
+    this.text_array = [
+      this.$el.querySelector('h2'),
+      this.$el.querySelector('ul'),
+      this.$el.querySelector('.link')
+    ]
+    anime.set(this.back, { opacity: 0})
+    anime.set(this.arrow, { opacity: 0, translateY: -50})
+    anime.set(this.title, { opacity: 0, translateY: 100})
+    anime.set(this.letter, { opacity: 0, translateY: 50})
+    anime.set(this.text_array , { opacity: 0, translateX: 30})
   }
 }
 </script>
@@ -81,6 +102,8 @@ h1
   font-family $schnyder
   font-weight $demi
   padding-top 30vh
+  span
+    display block
 h2
   margin-bottom 1em
 .back
@@ -88,9 +111,11 @@ h2
   top 32vh
   left 6vw
   position absolute
+  z-index 1
 .link
   font-size 20px
   position relative
+  display inline-block
   &:after
     content ''
     width 100%
@@ -100,7 +125,7 @@ h2
     left 0
     position absolute
     display block
-.letter
+.letter-container
   font-size 10.5vw
   line-height .68
   width 15vw
@@ -131,7 +156,11 @@ li
 .arrow
   width 158px
   height 106px
-  stroke $black
-  fill $black
-  transform translateY(-20px) rotate(90deg)
+  display block
+  svg
+    width 100%
+    height 100%
+    stroke $black
+    fill $black
+    transform translateY(-20px) rotate(90deg)
 </style>

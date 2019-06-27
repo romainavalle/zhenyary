@@ -23,7 +23,7 @@ export default {
     vHeader, vIntroText, vImageBackground, vImage, vImages, vText, vImageText, vFooter
   },
   computed: {
-    ...mapState(['worksById','path']),
+    ...mapState(['worksById','path', 'isFirstTime']),
     work() {
       return this.worksById[this.$route.params.slug]
     }
@@ -53,6 +53,9 @@ export default {
       this.imgLoaded++
       if(this.imgLoaded % 3 === 0) Emitter.emit('GLOBAL:RESIZE')
       if(this.imgLoaded === this.imgs.length) Emitter.emit('GLOBAL:RESIZE')
+    },
+    show() {
+      this.$refs.header.show()
     }
   },
   beforeDestroy() {
@@ -72,7 +75,7 @@ export default {
         img.src = element.src
         this.imgs.push(img)
       });
-      this.isReady = true
+      setTimeout(this.show.bind(this), this.isFirstTime ? 2500 : 450)
       Emitter.emit('PAGE:MOUNTED')
     })
 
