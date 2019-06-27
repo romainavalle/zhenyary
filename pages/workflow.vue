@@ -74,7 +74,7 @@ export default {
       setTimeout(()=>{
         this.isShown = true
         this.$refs.intro.show()
-      }, this.isFirstTime ? 3000 : 400)
+      }, this.isFirstTime ? 2500 : 450)
       Emitter.emit('PAGE:MOUNTED')
     })
   }

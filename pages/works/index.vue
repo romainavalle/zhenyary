@@ -169,7 +169,7 @@ export default {
       this.direction = 1
       this.$nextTick(()=>{
         Emitter.emit('PAGE:MOUNTED')
-        setTimeout(this.showScreen.bind(this, this.screenId), this.isFirstTime ? 3000 : 450)
+        setTimeout(this.showScreen.bind(this, this.screenId), this.isFirstTime ? 2500 : 450)
       })
     }
   },

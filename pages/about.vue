@@ -34,25 +34,25 @@ export default {
       }
       this.$refs.about.resize(this.w, this.h)
       this.$refs.footer.resize(this.w, this.h)
-          if(this.isPhone) {
-            this.resizeMobile()
-          }
+      this.resizeMobile()
     },
     tick(scrollTop, ease) {
       this.$refs.footer.tick(scrollTop, ease)
       this.$refs.about.tick(scrollTop, ease)
-      if(this.isPhone) {
-        this.tickMobile(scrollTop, ease)
-      }
+      this.tickMobile(scrollTop, ease)
+    },
+    show(){
+      setTimeout(()=>{
+        this.isShown = true
+      },1000)
+      this.$refs.about.show()
     }
   },
   mounted() {
     this.$nextTick(()=>{
-      if(this.isPhone) this.setupMobile()
+      this.setupMobile()
       Emitter.emit('PAGE:MOUNTED')
-      setTimeout(()=>{
-        this.isShown = true
-      }, this.isFirstTime ? 3000 : 400)
+      setTimeout(this.show.bind(this), this.isFirstTime ? 2500 : 450)
     })
   },
 }

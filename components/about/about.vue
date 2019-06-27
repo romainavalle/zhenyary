@@ -1,86 +1,26 @@
 <template>
   <div class="about">
-    <div class="d-f top">
-      <div class="img" :class="{'mobile-anime': isPhone}">
-        <img src="/images/zhenya.jpg" alt="zhenya rynzhuk">
-      </div>
-      <article>
-        <h1 :class="{'mobile-anime': isPhone}">Z.</h1>
-        <h2 :class="{'mobile-anime': isPhone}">a bit about me</h2>
-        <strong class="h4" :class="{'mobile-anime': isPhone}">Just about</strong>
-        <p class="strong" :class="{'mobile-anime': isPhone}">background</p>
-        <p :class="{'mobile-anime': isPhone}">My experience, awards<br> and own vibes<br> for sure!</p>
-      </article>
-    </div>
-    <div class="d-f">
-      <div class="spacer"></div>
-      <article class="desc">
-        <div class="blur-container" :class="{'ready': isBlurReady}" aria-hidden="true" >
-          <v-svg-blur class="svg-blur" :class="{'mobile-anime': isPhone}"/>
-        </div>
-        <strong class="h4" :class="{'mobile-anime': isPhone}">So,</strong>
-        <p :class="{'mobile-anime': isPhone}" v-html="about.about" ></p>
-      </article>
-    </div>
-    <div class="d-f">
-      <div class="spacer"><button class="showreel" aria-label="showreel" v-show="!isPhone">showreel</button></div>
-      <article class="regognitions">
-        <div class="title">
-          <h3 :class="{'mobile-anime': isPhone}">Regognitions</h3>
-          <button class="showreel" aria-label="showreel" v-show="isPhone"  :class="{'mobile-anime': isPhone}">showreel</button>
-        </div>
-        <div>
-          <h4 :class="{'mobile-anime': isPhone}">Awwwards</h4>
-          <ul class="awards" v-if="about.awwwards">
-            <li v-for="(awwward, index) in about.awwwards" :key="`awwward-${index}`" :class="{'mobile-anime': isPhone}">
-              <strong v-text="awwward.title"></strong>
-              <span v-text="awwward.award"></span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h4 :class="{'mobile-anime': isPhone}">FWA</h4>
-          <ul class="awards" v-if="about.FWA">
-            <li v-for="(fwa, index) in about.FWA" :key="`fwa-${index}`" :class="{'mobile-anime': isPhone}">
-              <strong v-text="fwa.title"></strong>
-              <span v-text="fwa.award"></span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h4 :class="{'mobile-anime': isPhone}">Behance</h4>
-          <ul class="behance ">
-            <li v-for="(behance, index) in about.behance" :key="`behance-${index}`" v-text="behance" :class="{'mobile-anime': isPhone}"></li>
-          </ul>
-        </div>
-        <div>
-          <h4 :class="{'mobile-anime': isPhone}">Collaborations</h4>
-          <ul class="collaborations" :class="{'mobile-anime': isPhone}">
-            <li v-for="(collab, index) in about.collaborations" :key="`collab-${index}`" v-text="collab"></li>
-          </ul>
-        </div>
-      </article>
-    </div>
+    <v-top ref="top" />
+    <v-desc ref="desc" />
+    <v-recognitions ref="recognitions" />
   </div>
 </template>
 
 <script>
-import vSvgBlur from "~/assets/svgs/blur.svg?inline";
-import { mapState, mapGetters } from 'vuex'
+import vTop from "~/components/about/top.vue";
+import vDesc from "~/components/about/desc.vue";
+import vRecognitions from "~/components/about/recognitions.vue";
 export default {
   data() {
     return {
       w: 0,
-      h: 0,
-      isBlurReady: true
+      h: 0
     }
   },
   components: {
-    vSvgBlur
+    vTop, vDesc, vRecognitions
   },
   computed: {
-    ...mapState(['about']),
-    ...mapGetters(['isPhone'])
   },
   methods: {
     resize(w, h) {
@@ -88,9 +28,17 @@ export default {
         this.w = w
         this.h = h
       }
-
+      this.$refs.top.resize(this.w, this.h)
+      this.$refs.desc.resize(this.w, this.h)
+      this.$refs.recognitions.resize(this.w, this.h)
     },
     tick(scrollTop, ease) {
+      this.$refs.top.tick(scrollTop, ease)
+      this.$refs.desc.tick(scrollTop, ease)
+      this.$refs.recognitions.tick(scrollTop, ease)
+    },
+    show() {
+      this.$refs.top.show()
     }
   },
   mounted() {
@@ -98,38 +46,16 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.about
+<style lang="stylus" >
+section.about .about
   position relative
   width 100vw
   padding-top 200px
   overflow hidden
-  button
-    height 200px
-    width 200px
-    border-radius 50%
-    border 1px solid $black
-    font-family $schnyder
-    font-weight $demi
-    font-size 18px
-    margin-left 10vw
-    margin-top 5vw
-  .top
-    position relative
-    z-index 1
-  .blur-container
-    position absolute
-    left 0vw
-    top 4vw
-  .svg-blur
-    width 30vw
-    height 30vw
-    display block
-    transform translate(-50%, -50%)
   .d-f
     display flex
     justify-content flex-start
-  .img, .spacer
+  .spacer
     width 45%
   article
     padding 0 4vw
@@ -141,15 +67,6 @@ export default {
     font-weight normal
   .strong
     padding-bottom 2vw
-  .desc
-    z-index 0
-    position relative
-    margin-top -4vw
-    strong, p
-      display block
-      position relative
-    p
-      font-weight $light
   p
     width 50%
   h1
@@ -170,52 +87,10 @@ export default {
     font-weight normal
   h4
     padding-bottom 2vw
-  .regognitions
-    padding-top 4vw
-    div + div
-      padding-top 4vw
-  .awards
-    li + li
-      padding-top 1vw
-    strong
-      font-weight normal
-    span
-      font-size .93vw
-      display block
-      opacity .5
-  .behance, .awards strong
-    font-size 1.66vw
-  .behance li + li
-    padding-top .3vw
-  .collaborations
-    font-size 1.5vw
-    display flex
-    li
-      display inline-block
-      white-space nowrap
-      color $red
-      & + li
-        padding-left 3vw
   +below('l')
     padding-top 100px
-    button
-      height 150px
-      width 150px
-      margin-left 50px
-      margin-top 50px
-    .img
-      padding-left 6vw
-    .desc
-      margin-top 4vw
-      p
-        width 68%
     .spacer
       width 30%
-    .top
-      article
-        width 45%
-      .img
-        width 50%
     article
       width 70%
     h1
@@ -230,32 +105,10 @@ export default {
       font-size 5.2vw
     h4
       padding-bottom 4vw
-    .awards span
-      font-size 2.3vw
-    .behance, .awards strong
-      font-size 4.1vw
-
-    .regognitions
-      padding-top 200px
-      div + div
-        padding-top 10vw
-
-    .collaborations
-      font-size 3.9vw
   +below('s')
     padding-top 100px
     .d-f
       display block
-    .top
-      .img
-        padding-left 0vw
-        padding-right 20vw
-        width 100%
-      article
-        width 100%
-    .desc
-      p
-        width 100%
     .spacer
       display none
     article
@@ -274,34 +127,6 @@ export default {
       padding-bottom 20px
     p
       font-size 14px
-    .awards span
-      font-size 14px
-    .behance, .awards strong
-      font-size 17pw
-    .awards
-      li + li
-        padding-top 30px
-
-    .regognitions
-      padding-top 40px
-      .title
-        display flex
-        align-items baseline
-        justify-content space-between
-      button
-        font-size 14px
-        width 100px
-        height 100px
-        margin-right -30px
-        margin-left 0
-        margin-top 0
-      div + div
-        padding-top 40px
-
-    .collaborations
-      font-size 22px
-      padding-bottom 50px
-
 </style>
 
 

@@ -20,6 +20,7 @@ export default {
     },
     tickMobile(scrollTop) {
       if(!this.isShown) return
+
       this.anims.forEach((anim)=>{
         if(anim.offset < scrollTop && anim.offset + anim.height > scrollTop - this.h) {
           if(!anim.shown) {

@@ -3,7 +3,7 @@
     <div class="inner">
       <div class="left">
         <div class="img" ref="leftImgContainer">
-          <img :src="`${path}${work.cover}`" :alt="work.title" ref="img">
+          <img src="" :data-src="`${path}${work.cover}`" :alt="work.title" ref="img">
         </div>
         <div class="text">
           <h3 class="h3"  v-html="work.title" ref="title" :class="{'mobile-anime': isPhone}"></h3>
@@ -102,7 +102,9 @@ export default {
     easeOutQuad: function (t) { return t*(2-t) }
   },
   mounted(){
-
+    this.$nextTick(()=>{
+      this.$refs.img.src = this.$refs.img.dataset.src
+    })
   }
 }
 </script>

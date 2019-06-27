@@ -43,6 +43,7 @@ export default {
     },
     tick(scrollTop) {
       if(this.isDevice) return
+      if(this.w<=1024) return
       if(scrollTop > this.h * .3 ) {
         if(!this.isMinimized) this.isMinimized = true
       }else{

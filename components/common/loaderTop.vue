@@ -109,7 +109,7 @@ export default {
           delay: 200,
           easing: 'easeInCubic',
           complete: () => {
-              this.$el.style.display = 'none'
+            this.$el.style.display = 'none'
           }
         })
         anime({

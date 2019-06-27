@@ -1,11 +1,13 @@
 <template>
  <footer>
-   <strong class="big" ref="big">So, no more words</strong>
+   <strong class="big" ref="big" :class="{'show': isShown}">So, no more words</strong>
    <div class="content">
      <div class="img">
-       <img :src="`/images/${$route.name}.jpg`" alt="zhenya">
-       <nuxt-link :to="{name:'contact'}" class="link">Contact Me</nuxt-link>
-       <a :href="`mailto:${datas.email}`" class="mail" rel="noopener" target="_blank" v-text="datas.email"></a>
+      <no-ssr>
+        <img :src="`/images/${$route.name}.jpg`" alt="zhenya">
+      </no-ssr>
+      <nuxt-link :to="{name:'contact'}" class="link">Contact Me</nuxt-link>
+      <a :href="`mailto:${datas.email}`" class="mail" rel="noopener" target="_blank" v-text="datas.email"></a>
      </div>
      <div class="top">
        <div>
@@ -50,7 +52,7 @@ export default {
     tick(scrollTop, ease) {
       if(ease > this.offset && ease < this.offset + this.animHeight){
         const coef = easeOutQuad((ease - this.offset) / this.animHeight)
-        transform(this.$refs.big, {translateX: 100 - coef * 100 +'%'})
+        //transform(this.$refs.big, {translateX: 100 - coef * 100 +'%'})
       }
       if(scrollTop > this.animOffset  ) {
         if(!this.isShown)this.show()
@@ -128,7 +130,7 @@ export default {
     if(this.wordsTimer) clearTimeout(this.wordsTimer)
   },
   mounted() {
-    transform(this.$refs.big, {translateX: 100  +'%'})
+    //transform(this.$refs.big, {translateX: 100  +'%'})
     this.lines = [].slice.call(this.$el.querySelectorAll('.line'))
     this.spacers = [].slice.call(this.$el.querySelectorAll('.spacer'))
     this.rights = [].slice.call(this.$el.querySelectorAll('.right'))
@@ -159,6 +161,11 @@ footer
   right 0
   top -1.3vw
   z-index 1
+  transform translateX(100%)
+  transition transform 1s ease-in-quad
+  &.show
+    transform translateX(0%)
+    transition transform 2s ease-out-quad
 .content
   background #EAE9E5
   position relative

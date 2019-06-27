@@ -110,9 +110,7 @@ export default {
       })
     },
     onPageMounted(){
-      setTimeout(()=>{
         this.resize()
-      }, 100)
       //this.pageFadeIn(0)
       this.$refs.loaderTop.hide()
 

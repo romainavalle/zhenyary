@@ -107,7 +107,7 @@ export default {
       setTimeout(()=>{
         this.showWord()
         this.show()
-      }, this.isFirstTime ? 3000 : 450)
+      }, this.isFirstTime ? 2500 : 450)
     })
   }
 }
