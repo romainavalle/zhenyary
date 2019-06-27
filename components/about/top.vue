@@ -1,6 +1,6 @@
 <template>
   <div class="d-f top">
-    <div class="img" :class="{'mobile-anime': isPhone}" ref="imgContainer">
+    <div class="img" ref="imgContainer">
       <div class="show-outer" ref="showOuter">
         <div class="show-inner" ref="showInner">
             <img src="/images/zhenya.jpg" alt="zhenya rynzhuk" ref="img">
@@ -44,8 +44,10 @@ export default {
     },
     tick(scrollTop, ease) {
       let coef = 0
-      if(ease >= 0 && ease < this.h ) {
-        coef = scrollTop/this.h
+
+      const val = this.isPhone ? scrollTop : ease
+      if(val >= 0 && val < this.h ) {
+        coef = val/this.h
         transform(this.$refs.imgContainer, {translate3d:[0,coef*this.h*.2,0]})
         transform(this.$refs.img, {translate3d:[0,coef*this.h*.2,0]})
       }
@@ -54,13 +56,13 @@ export default {
       anime({
         targets: this.$refs.showOuter,
         translateX: '0%',
-        duration: 1200,
+        duration: 1000,
         easing: 'easeOutCubic'
       })
       anime({
         targets: this.$refs.showInner,
         translateX: '0%',
-        duration: 1200,
+        duration: 1000,
         easing: 'easeOutCubic'
       })
       anime({
@@ -97,6 +99,8 @@ export default {
     display block
   .show-outer
     overflow hidden
+  .img
+    overflow hidden
   .img, .spacer
     width 45%
   +below('l')
@@ -106,12 +110,14 @@ export default {
     article
       width 45%
   +below('s')
+    padding 0 4vw
     .img
-      padding-left 0vw
-      padding-right 20vw
+      padding 0
+      margin 0
       width 100%
     article
       width 100%
+      padding 0!important
 </style>
 
 

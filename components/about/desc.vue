@@ -44,8 +44,10 @@ export default {
     tick(scrollTop, ease) {
       if(!this.isPhone) {
         let coef = 0
-        if(ease >= this.offset && ease < this.offset+this.h * .5) {
+
+        if(ease >= this.offset && ease < this.offset + this.h * .5) {
           coef = easeInOutQuad((ease-this.offset) / (this.h * .5))
+
           if(!this.isBlurReady && coef > .5)this.isBlurReady=true
           this.lines.forEach((line, i) => {
             const start = 50 + i * 50
@@ -87,6 +89,7 @@ export default {
     position relative
   p
     font-weight $light
+    width 50%
   .blur-container
     position absolute
     left 0vw
@@ -96,13 +99,13 @@ export default {
     height 30vw
     display block
     transform translate(-50%, -50%)
-+below('l')
-  margin-top 4vw
-  p
-    width 68%
-+below('s')
-  p
-    width 100%
+  +below('l')
+    margin-top 4vw
+    p
+      width 68%
+  +below('s')
+    p
+      width 100%
 </style>
 <style lang="stylus" >
 .about .desc .line

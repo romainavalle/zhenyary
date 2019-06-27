@@ -161,10 +161,10 @@ footer
   right 0
   top -1.3vw
   z-index 1
-  transform translateX(100%)
+  transform translate3d(100%, 0, 0)
   transition transform 1s ease-in-quad
   &.show
-    transform translateX(0%)
+    transform translate3d(0%, 0, 0)
     transition transform 2s ease-out-quad
 .content
   background #EAE9E5

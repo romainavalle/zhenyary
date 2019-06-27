@@ -35,6 +35,9 @@
       <div class="collabs mobile-anime">
         <ul class="collaborations" ref="collabs">
           <li v-for="(collab, index) in about.collaborations" :key="`collab-${index}`" v-text="collab"></li>
+          <no-ssr>
+          <li v-for="(collab, index) in about.collaborations" :key="`collab-${index+about.collaborations.length}`" v-text="collab"></li>
+          </no-ssr>
         </ul>
       </div>
     </div>
@@ -69,7 +72,7 @@ export default {
       }
       this.offset = offset(this.$refs.collabs).top - this.h
 
-      this.translateX = this.lastItem.offsetLeft + this.lastItem.clientWidth - this.w * (this.w > 1024 ? .45 : .6)
+      this.translateX = this.lastItem.offsetLeft * 1.9 + this.lastItem.clientWidth - this.w * (this.w > 1024 ? .45 : .6)
     },
     tick(scrollTop, ease) {
       if(!this.isPhone) {
@@ -79,18 +82,18 @@ export default {
           transform(this.$refs.collabs, {translate3d: [-coef * this.translateX  , 0, 0]})
         }
       }
+      if(ease >= this.offset) {
+        const collabcoef = easeInOutQuad((ease-this.offset) / (this.h))
+        transform(this.$refs.collabs, {translate3d: [-collabcoef * this.translateX  , 0, 0]})
+      }
     },
     show() {
     }
   },
   mounted() {
-    this.$nextTick(()=>{
-      const collabs = [].slice.call(this.$refs.collabs.querySelectorAll('li'))
-      this.lastItem = collabs[collabs.length-1]
-    })
-    if(this.isPhone) {
-      isShown = true
-    }
+    const collabs = [].slice.call(this.$refs.collabs.querySelectorAll('li'))
+    this.lastItem = collabs[collabs.length-1]
+
   },
 }
 </script>

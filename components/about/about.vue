@@ -67,8 +67,6 @@ section.about .about
     font-weight normal
   .strong
     padding-bottom 2vw
-  p
-    width 50%
   h1
     font-size 15vw
     font-weight normal
