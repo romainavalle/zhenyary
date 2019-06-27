@@ -4,8 +4,8 @@
       <img :src="`${path}${content.url}`" :alt="alt" ref="img">
     </div>
     <div class="text-content" ref="textContent">
-      <header v-html="content.header" class="demi" ref="header"></header>
-      <p v-for="(paragraph, index) in content.paragraphs" :key="`paragraph-${index}`" v-html="paragraph" ref="paragraphs"></p>
+      <header v-html="content.header" class="demi" ref="header" :class="{'mobile-anime': isPhone}"></header>
+      <p v-for="(paragraph, index) in content.paragraphs" :key="`paragraph-${index}`" v-html="paragraph" ref="paragraphs" :class="{'mobile-anime': isPhone}"></p>
     </div>
   </article>
 </template>
@@ -15,9 +15,11 @@ import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import splitLines from '~/assets/js/utils/splitLines'
 import { easeInOutCubic, easeInOutQuad } from '~/assets/js/utils/easings'
+import { mapGetters } from 'vuex';
 export default {
   props: ['content', 'path', 'title'],
   computed:{
+    ...mapGetters(['isPhone']),
     width() {
       return this.content.width ? `${this.content.width}%`: '100%'
     },
@@ -40,28 +42,35 @@ export default {
       if(ease > this.offset && ease <this.offset + this.h) {
         const coef = easeInOutCubic((ease - this.offset) / this.h)
         const coefQuad = easeInOutQuad((ease - this.offset) / this.h)
-        transform(this.$refs.img, {scale3d: [2.1 - coef * 1.1, 2.1 - coef * 1.1, 1]})
-        this.lines.forEach((line, i) => {
-          const start = 50 + i * 50
-          line.style.opacity = coefQuad
-          transform(line, {translate3d: [start - coefQuad * start, 0, 0]})
-        });
+        if(this.isPhone) {
+          transform(this.$refs.img, {scale3d: [1.5 - coef * .5, 1.5 - coef * .5, 1]})
+        }else{
+          transform(this.$refs.img, {scale3d: [2.1 - coef * 1.1, 2.1 - coef * 1.1, 1]})
+          this.lines.forEach((line, i) => {
+            const start = 50 + i * 50
+            line.style.opacity = coefQuad
+            transform(line, {translate3d: [start - coefQuad * start, 0, 0]})
+          });
+        }
       }
     }
   },
   mounted() {
+    if(this.isPhone) {
+      transform(this.$refs.img, {scale3d: [1.5,1.5, 1 ]})
+    }else{
     transform(this.$refs.img, {scale3d: [2.1, 2.1, 1 ]})
-
-    this.$nextTick(()=>{
-      splitLines(this.$el.querySelector('header'))
-      splitLines(this.$el.querySelector('p'))
-      this.lines = [].slice.call(this.$el.querySelectorAll('.line'))
-       this.lines.forEach((line, i) => {
-         const start = 50 + i * 50
-          line.style.opacity = 0
-          transform(line, {translate3d: [start , 0, 0]})
-        });
-    })
+      this.$nextTick(()=>{
+        splitLines(this.$el.querySelector('header'))
+        splitLines(this.$el.querySelector('p'))
+        this.lines = [].slice.call(this.$el.querySelectorAll('.line'))
+        this.lines.forEach((line, i) => {
+          const start = 50 + i * 50
+            line.style.opacity = 0
+            transform(line, {translate3d: [start , 0, 0]})
+          });
+      })
+    }
   }
 }
 </script>
@@ -88,5 +97,23 @@ header
   font-size 20px
   padding-bottom 50px
   padding-right 25%
+article
+  overflow auto
+  +below('s')
+    display block
+    .img
+      width 100%
+      overflow hidden
+      img
+        transform-origin 50% 50%
+    .text-content
+      width 100%
+      padding 10vh 4vw
+      display block
+    header, p
+      width 100%
+    header
+      padding-bottom 5vh
+
 
 </style>

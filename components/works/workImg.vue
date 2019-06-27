@@ -38,7 +38,7 @@ export default {
         duration: 500,
         easing: 'easeOutQuad'
       })
-      transform(this.$el, {translateY: this.h *.2 * this.screenId})
+      //transform(this.$el, {translateY: this.h *.2 * this.screenId})
     },
     setScreenId(screenId) {
       this.screenId = screenId

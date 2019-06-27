@@ -47,6 +47,7 @@ export default {
     setupMobile(){
       this.anims = []
       const anims = [].slice.call(this.$el.querySelectorAll('.mobile-anime'))
+
       anims.forEach((el)=>{
         classie.add(el, 'mobile-trans')
         this.anims.push({el})

@@ -49,7 +49,7 @@ export default {
       }
       if(this.isDevice)return
       this.screens.forEach((screen, i) => {
-        transform(screen.el, {translateY:  i * this.h *.2})
+        //transform(screen.el, {translateY:  i * this.h *.2})
       });
       if(this.$refs.img)this.$refs.img.resize(this.w, this.h)
       if(this.$refs.work)this.$refs.work.resize(this.w, this.h)
@@ -57,8 +57,8 @@ export default {
     tick(scrollTop, easeScrollTop) {
       if(this.isDevice) return
       if(this.h) {
-        transform(this.$el, {translateY: scrollTop - scrollTop/this.h * this.h *.2})
-        this.screenId = (Math.floor(.5 + scrollTop/this.h))
+        //transform(this.$el, {translateY: scrollTop - scrollTop/this.h * this.h *.2})
+        //this.screenId = (Math.floor(.5 + scrollTop/this.h))
       }
     },
     getWorksBefore(id) {
@@ -122,7 +122,27 @@ export default {
     onScreenShowComplete(id){
       this.isAnimating = false
       if(id !== this.screenId) this.hideScreen(id)
+    },
+    onWheel(e) {
+      let id = this.screenId
+      if(e.deltaY > 0){
+        id++
+      }else{
+        id--
+      }
+      if(id<0)return
+      if(id>this.$refs.screens.length-1)return
+      this.screenId = id
+      this.removeWheel()
+      this.wheelTimer = setTimeout(this.addWheel.bind(this), 1200)
+    },
+    addWheel() {
+      this.$el.addEventListener('wheel', this._onWheel, {passive: true})
+    },
+    removeWheel() {
+      this.$el.removeEventListener('wheel', this._onWheel)
     }
+
 
   },
   watch: {
@@ -135,6 +155,8 @@ export default {
   },
   beforeDestroy() {
     if(!this.isDevice) {
+      this.removeWheel()
+      clearTimeout(this.wheelTimer)
       Emitter.removeListener('WORK:MOUSELEAVE', this._onWorkLeave)
       Emitter.removeListener('WORK:MOUSEENTER', this._onWorkEnter)
       Emitter.removeListener('SCREEN:HIDECOMPLETE', this._onScreenHideComplete)
@@ -167,6 +189,8 @@ export default {
       Emitter.on('SCREEN:HIDECOMPLETE', this._onScreenHideComplete)
       Emitter.on('SCREEN:SHOWCOMPLETE', this._onScreenShowComplete)
       this.direction = 1
+      this._onWheel = this.onWheel.bind(this)
+      this.addWheel()
       this.$nextTick(()=>{
         Emitter.emit('PAGE:MOUNTED')
         setTimeout(this.showScreen.bind(this, this.screenId), this.isFirstTime ? 2500 : 450)
@@ -181,7 +205,7 @@ export default {
   background $pink
   position relative
   width 100vw
-  height 300vh
+  height 100vh
   font-family $schnyder
   font-weight $demi
   .strong

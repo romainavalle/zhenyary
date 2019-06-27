@@ -39,7 +39,7 @@ export default {
         const workOffset = offset(workEl)
         this.$el.style.left = workOffset.left + 'px'
         const left = workOffset.left
-        const top = workOffset.top + screenId * this.h *.2
+        const top = workOffset.top /*+ screenId * this.h *.2*/
         this.$el.style.top = top + 'px'
         this.show()
       })

@@ -17,17 +17,20 @@ import vImages from '~/components/work/images.vue'
 import vText from '~/components/work/text.vue'
 import vFooter from '~/components/work/footer.vue'
 import Emitter from '~/assets/js/events/EventsEmitter'
-import { mapState } from 'vuex';
+import mobileMixin from '~/components/mobileMixin.vue'
+import { mapState, mapGetters } from 'vuex';
 export default {
   components: {
     vHeader, vIntroText, vImageBackground, vImage, vImages, vText, vImageText, vFooter
   },
   computed: {
     ...mapState(['worksById','path', 'isFirstTime']),
+    ...mapGetters(['isPhone']),
     work() {
       return this.worksById[this.$route.params.slug]
     }
   },
+  mixins: [mobileMixin],
   methods: {
     resize(w,h) {
       if(w, h) {
@@ -40,8 +43,10 @@ export default {
       this.$refs.contents.forEach(content => {
         content.resize(this.w, this.h)
       });
+      this.resizeMobile()
     },
     tick(scrollTop, ease) {
+      this.tickMobile(scrollTop)
       this.$refs.header.tick(scrollTop, ease)
       this.$refs.intro.tick(scrollTop, ease)
       this.$refs.footer.tick(scrollTop, ease)
@@ -76,6 +81,10 @@ export default {
         this.imgs.push(img)
       });
       setTimeout(this.show.bind(this), this.isFirstTime ? 2500 : 450)
+      if(this.isPhone){
+        this.setupMobile()
+        this.isShown = true
+      }
       Emitter.emit('PAGE:MOUNTED')
     })
 
@@ -90,6 +99,8 @@ export default {
   width 100vw
   min-height 100vh
   background $grey
+  +below('s')
+    min-height auto
 h3
   font-size 20px
 .content
