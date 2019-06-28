@@ -7,7 +7,7 @@
       <button class="showreel mobile-anime" aria-label="showreel" v-show="isPhone">showreel</button>
     </div>
     <div>
-      <h4 class="mobile-anime">Awwwards</h4>
+      <h4 class="mobile-anime">Awwwards <sup>x{{about.awwwards.length}}</sup></h4>
       <ul class="awards" v-if="about.awwwards">
         <li v-for="(awwward, index) in about.awwwards" :key="`awwward-${index}`" class="mobile-anime">
           <strong v-text="awwward.title"></strong>
@@ -16,7 +16,7 @@
       </ul>
     </div>
     <div>
-      <h4 class="mobile-anime">FWA</h4>
+      <h4 class="mobile-anime">FWA <sup>x{{about.FWA.length}}</sup></h4>
       <ul class="awards" v-if="about.FWA">
         <li v-for="(fwa, index) in about.FWA" :key="`fwa-${index}`" class="mobile-anime">
           <strong v-text="fwa.title"></strong>
@@ -25,9 +25,9 @@
       </ul>
     </div>
     <div>
-      <h4 class="mobile-anime">Behance</h4>
+      <h4 class="mobile-anime">Behance <sup>x{{behance}}</sup></h4>
       <ul class="behance ">
-        <li v-for="(behance, index) in about.behance" :key="`behance-${index}`" v-text="behance" class="mobile-anime"></li>
+        <li v-for="(behance, index) in about.behance" :key="`behance-${index}`" class="mobile-anime">{{behance.label}} — x{{behance.num}}</li>
       </ul>
     </div>
     <div>
@@ -62,7 +62,11 @@ export default {
     },
   computed: {
     ...mapState(['about']),
-    ...mapGetters(['isPhone'])
+    ...mapGetters(['isPhone']),
+    behance(){
+      const reducer = (total, obj) => total + obj.num;
+      return this.about.behance.reduce(reducer, 0)
+    }
   },
   methods: {
     resize(w, h) {
@@ -114,6 +118,8 @@ button
   padding-top 4vw
   div + div
     padding-top 4vw
+sup
+  font-size .5em
 ul
   display block
 .awards

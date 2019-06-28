@@ -2,8 +2,15 @@
   <section class="work">
     <v-header :work="work" ref="header"/>
     <v-intro-text :work="work" ref="intro" />
-    <component v-for="(item, i) in work.content" :key="`item-${i}`" ref="contents" :is="item.type" :content="item" :path="path" :title="work.title" ></component>
-    <v-footer ref="footer"/>
+    <div ref="content">
+      <component v-for="(item, i) in work.content" :key="`item-${i}`" ref="contents" :is="item.type" :content="item" :path="path" :title="work.title" ></component>
+    </div>
+    <no-ssr>
+      <v-footer ref="footer" v-if="!isPhone"/>
+    </no-ssr>
+    <no-ssr>
+      <v-footer-mobile ref="footer" v-if="isPhone"/>
+    </no-ssr>
   </section>
 </template>
 
@@ -14,14 +21,17 @@ import vImageBackground from '~/components/work/imageBackground.vue'
 import vImage from '~/components/work/image.vue'
 import vImageText from '~/components/work/imageText.vue'
 import vImages from '~/components/work/images.vue'
+import vImageVideo from '~/components/work/imageVideo.vue'
 import vText from '~/components/work/text.vue'
 import vFooter from '~/components/work/footer.vue'
+import vFooterMobile from '~/components/work/footerMobile.vue'
 import Emitter from '~/assets/js/events/EventsEmitter'
+import anime from 'animejs'
 import mobileMixin from '~/components/mobileMixin.vue'
 import { mapState, mapGetters } from 'vuex';
 export default {
   components: {
-    vHeader, vIntroText, vImageBackground, vImage, vImages, vText, vImageText, vFooter
+    vHeader, vIntroText, vImageBackground, vImage, vImages, vText, vImageText, vFooter, vFooterMobile, vImageVideo
   },
   computed: {
     ...mapState(['worksById','path', 'isFirstTime']),
@@ -37,6 +47,7 @@ export default {
         this.w = w
         this.h =h
       }
+
       this.$refs.header.resize(this.w, this.h)
       this.$refs.intro.resize(this.w, this.h)
       this.$refs.footer.resize(this.w, this.h)
@@ -60,7 +71,10 @@ export default {
       if(this.imgLoaded === this.imgs.length) Emitter.emit('GLOBAL:RESIZE')
     },
     show() {
+
+      anime({targets: this.$refs.content, opacity:1, translateY: 0, easing: 'easeOutQuad', duration : 700, delay:1200})
       this.$refs.header.show()
+      if(this.w <= 1024)this.$refs.intro.show()
     }
   },
   beforeDestroy() {
@@ -87,7 +101,7 @@ export default {
       }
       Emitter.emit('PAGE:MOUNTED')
     })
-
+    anime.set(this.$refs.content, {opacity:0, translateY: 300})
   }
 }
 </script>

@@ -39,7 +39,7 @@ export default {
           const coefCubic = easeInOutCubic(Math.min(1, (ease - this.offset) / this.h * 2))
           const coefQuad = easeInOutQuad(Math.min(1, (ease - this.offset) / this.h * 2))
           this.$el.style.opacity = coefCubic
-          transform(this.$el, {translate3d: [0,-200 + 200 * coefCubic, 0 ]})
+          transform(this.$el, {translate3d: [0,200 - 200 * coefCubic, 0 ]})
           this.headerLines.forEach((line, i) => {
             const start = 50 + i * 50
             transform(line, {translate3d: [0, start -  start * coefQuad, 0]})
@@ -56,7 +56,7 @@ export default {
       if(this.isPhone) {
 
       }else{
-        transform(this.$el, {translate3d: [0,-200, 0 ]})
+        transform(this.$el, {translate3d: [0,200, 0 ]})
         this.$el.style.opacity = 0
         this.$nextTick(()=>{
           const header = this.$el.querySelector('header')
@@ -87,6 +87,7 @@ article.text
   padding-top 7vw
   padding-bottom 7vw
   height auto
+  overflow hidden
 .text-content
   width 80%
   margin 0 auto
@@ -102,12 +103,24 @@ p
   width 45%
 
 article.text
-  +below('s')
-    display block
+  padding 10vh 7vw
+  +below('l')
     .text-content
       width 100%
+      justify-content space-between
+    .header, .paragraphs
       display block
-      padding 10vh 7vw
+    .header
+      width 35%
+    .paragraphs
+      width 50%
+    header, p
+      width 100%
+  +below('s')
+    padding 10vh 4vw
+    display block
+    .text-content
+      display block
     .header, .paragraphs
       width 100%
       display block

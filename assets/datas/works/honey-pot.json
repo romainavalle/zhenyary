@@ -20,14 +20,13 @@
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "honey-pot/honey-1.jpg",
+      "alt": "Honey Pot"
     },
     {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "type": "vImageBackground",
+      "url": "honey-pot/honey-2.jpg",
+      "alt": "Honey Pot"
     },
     {
       "type": "vText",
@@ -38,19 +37,19 @@
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "honey-pot/honey-3.jpg",
+      "alt": "Honey Pot"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
+      "url": "honey-pot/honey-4.jpg",
+      "alt": "Honey Pot"
     },
     {
       "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
+      "url": "honey-pot/honey-5.jpg",
+      "alt": "Honey Pot",
       "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
       "paragraphs": [
         "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
@@ -58,37 +57,48 @@
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
+      "width": 60,
+      "fitHeight": true,
+      "url": "honey-pot/honey-6.jpg",
+      "alt": "Honey Pot"
     },
     {
       "type": "vImage",
       "width": 60,
-      "background": "#D4D1CB",
-      "shadow": true,
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
+      "background": "#6B6E64",
+      "shadow": "shadow-honey",
+      "url": "honey-pot/honey-7.jpg",
+      "alt": "Honey Pot"
     },
-    {
-      "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
-    },
+   
     {
       "type": "vImages",
       "images":[
         {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
+          "url": "honey-pot/honey-8.jpg",
+          "alt": "Honey Pot"
         },
         {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
+          "url": "honey-pot/honey-9.jpg",
+          "alt": "Honey Pot"
         }
       ]
+    },
+    {
+      "type": "vImage",
+      "width": 80,
+      "url": "honey-pot/honey-10.jpg",
+      "alt": "Honey Pot"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "honey-pot/honey-11.jpg",
+      "alt": "Honey Pot"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "honey-pot/honey-12.jpg",
+      "alt": "Honey Pot"
     }
   ]
 }

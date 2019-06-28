@@ -4,6 +4,7 @@
   "menuItalic": false,
   "title": "Rafal Bojar",
   "subtitle": "Rafal Bojar Photographer",
+  "awwwards": "Site of the day, Mobile excellence, Devaward",
   "link": {
     "label": "Rafalbojar.com",
     "url": "https://rafalbojar.com/"
@@ -21,14 +22,14 @@
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "rafal-bojar/rafal-1.jpg",
+      "alt": "Rafal Bojar Photographer"
     },
     {
       "type": "vImage",
       "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "url": "rafal-bojar/rafal-2.jpg",
+      "alt": "Rafal Bojar Photographer"
     },
     {
       "type": "vText",
@@ -40,18 +41,18 @@
     {
       "type": "vImage",
       "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "url": "rafal-bojar/rafal-3.jpg",
+      "alt": "Rafal Bojar Photographer"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
+      "url": "rafal-bojar/rafal-4.jpg",
+      "alt": "Rafal Bojar Photographer"
     },
     {
       "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
+      "url": "rafal-bojar/rafal-5.jpg",
+      "alt": "Rafal Bojar Photographer",
       "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
       "paragraphs": [
         "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
@@ -60,34 +61,34 @@
     {
       "type": "vImage",
       "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
+      "url": "rafal-bojar/rafal-6.jpg",
+      "alt": "Rafal Bojar Photographer"
     },
     {
       "type": "vImage",
       "width": 60,
       "background": "#D4D1CB",
-      "shadow": true,
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
+      "shadow": "shadow-rafal",
+      "url": "rafal-bojar/rafal-7.jpg",
+      "alt": "Rafal Bojar Photographer"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
+      "url": "rafal-bojar/rafal-8.jpg",
+      "alt": "Rafal Bojar Photographer"
     },
     {
-      "type": "vImages",
+      "type": "vImageVideo",
       "images":[
         {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
+          "url": "rafal-bojar/rafal-9.jpg",
+          "alt": "Rafal Bojar Photographer"
         },
         {
-          "url": "rafal-bojar/img-9.jpg",
+          "url": "rafal-bojar/rafal-10.jpg",
           "background": "#CECAC7",
           "width": 60,
-          "alt": "alternative text"
+          "alt": "Rafal Bojar Photographer"
         }
       ]
     }

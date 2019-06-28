@@ -11,7 +11,7 @@
   "awwwards": "Site of the day, Mobile excellence, Devaward",
   "FWA": "FWA of the day",
   "type": "Ecommerce Website",
-  "skills": ["Art direction", "interface design", "photography"],
+  "skills": ["Art Direction","Interface Design"],
   "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
   "header": [
     "Cure is a unique nail and wax boutique.",
@@ -22,14 +22,14 @@
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "m-shkret/max-1.jpg",
+      "alt": "M Shkret"
     },
     {
       "type": "vImage",
       "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "url": "m-shkret/max-2.jpg",
+      "alt": "M Shkret"
     },
     {
       "type": "vText",
@@ -40,57 +40,78 @@
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "m-shkret/max-3.jpg",
+      "alt": "M Shkret"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
-      "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
-      ]
-    },
-    {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImage",
-      "width": 60,
-      "background": "#D4D1CB",
-      "shadow": true,
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
+      "url": "m-shkret/max-4.jpg",
+      "alt": "M Shkret"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
+      "url": "m-shkret/max-5.jpg",
+      "alt": "M Shkret"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "m-shkret/max-6.jpg",
+      "alt": "M Shkret"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "m-shkret/max-7.jpg",
+      "alt": "M Shkret"
+    },
+    {
+      "type": "vImage",
+      "width": 70,
+      "url": "m-shkret/max-8.jpg",
+      "alt": "M Shkret"
+    },
+    {
+      "type": "vImage",
+      "width": 50,
+      "top": 60,
+      "background": "#292929",
+      "shadow": "shadow-max",
+      "url": "m-shkret/max-9.jpg",
+      "alt": "M Shkret"
+    },
+    {
+      "type": "vImage",
+      "width": 50,
+      "top": 40,
+      "background": "#292929",
+      "shadow": "shadow-max",
+      "url": "m-shkret/max-10.jpg",
+      "alt": "M Shkret"
     },
     {
       "type": "vImages",
+      "background": "#292929",
       "images":[
         {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
+          "url": "m-shkret/max-11.jpg",
+          "alt": "M Shkret"
         },
         {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
+          "url": "m-shkret/max-12.jpg",
+          "alt": "M Shkret"
         }
       ]
+    },
+    {
+      "type": "vImage",
+      "width": 70,
+      "url": "m-shkret/max-13.jpg",
+      "alt": "M Shkret"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "m-shkret/max-14.jpg",
+      "alt": "M Shkret"
     }
   ]
 }

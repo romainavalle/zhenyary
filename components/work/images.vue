@@ -1,7 +1,7 @@
 <template>
-  <article>
-    <div class="img" v-for="(image, index) in content.images" :key="`image-${index}`" :style="{'background': background(index)}">
-      <img :src="`${path}${content.images[index].url}`" :alt="alt(index)" :style="{'width': width(index)}" :class="shadowClass(index)" ref="imgs">
+  <article :style="{'background': background }">
+    <div class="img" v-for="(image, index) in content.images" :key="`image-${index}`">
+      <img :src="`${path}${content.images[index].url}`" :alt="alt(index)" ref="imgs">
     </div>
   </article>
 </template>
@@ -14,18 +14,12 @@ import { easeInOutCubic } from '~/assets/js/utils/easings'
 export default {
   props: ['content', 'path', 'title'],
   computed:{
-
+    background() {
+      return this.content.background ? this.content.background : 'none'
+    }
   },
   methods: {
-    width(id) {
-      return this.content.images[id].width ? `${this.content.images[id].width}%`: '100%'
-    },
-    background(id) {
-      return this.content.images[id].background ? this.content.images[id].background : 'none'
-    },
-    shadowClass(id) {
-      return this.content.images[id].shadow ? true : false
-    },
+   
     alt(id) {
       return this.content.images[id].alt ? this.content.images[id].alt : this.title
     },
@@ -39,18 +33,16 @@ export default {
     tick(scrollTop, ease){
       if(ease > this.offset && ease <this.offset + this.h) {
         const coef = easeInOutCubic((ease - this.offset) / this.h)
-        transform(this.$refs.imgs[0], {scale3d: [2.1 - coef * 1.1, 2.1 - coef * 1.1, 1]})
-        transform(this.$refs.imgs[1], {translate3d: [300 - coef * 300, 0, 0]})
-        this.$refs.imgs[1].style.opacity = coef
+        transform(this.$refs.imgs[0], {scale3d: [1.3 - coef * .3, 1.3 - coef * .3, 1]})
+        transform(this.$refs.imgs[1], {scale3d: [1.3 - coef * .3, 1.3 - coef * .3, 1]})
       }
     }
   },
   mounted() {
     this.$refs.imgs[0].style.transformOrigin = "0% 50%"
-    this.$refs.imgs[0].style.zIndex = 1
-    transform(this.$refs.imgs[0], {scale3d: [2.1, 2.1, 1]})
-    transform(this.$refs.imgs[1], {translate3d: [300, 0, 0]})
-    this.$refs.imgs[1].style.opacity = 0
+    this.$refs.imgs[1].style.transformOrigin = "100% 50%"
+    transform(this.$refs.imgs[0], {scale3d: [1.3, 1.3]})
+    transform(this.$refs.imgs[1], {scale3d: [1.3, 1.3]})
   }
 }
 </script>
@@ -61,8 +53,16 @@ article
   display flex
   overflow hidden
 .img
+  transform translateZ(0)
   width 50%
+  overflow hidden
   display flex
   justify-content center
   align-items center
+  img
+    display block
+    height 100%
+    object-fit cover
+    object-position 50% 50%
+    width 100%
 </style>

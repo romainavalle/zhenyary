@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 740 238">
+  <defs>
+    <path id="c" d="M113.73 471.8h522.934c22.363 0 40.492 18.129 40.492 40.492 0 22.968-17.71 42.05-40.614 43.758-87.115 6.5-174.23 9.75-261.345 9.75-87.114 0-174.229-3.25-261.344-9.75-22.903-1.708-40.614-20.79-40.614-43.758 0-22.363 18.129-40.492 40.492-40.492z"/>
+    <filter id="b" width="128.6%" height="283.8%" x="-14.3%" y="-91.9%" filterUnits="objectBoundingBox">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="28.8"/>
+    </filter>
+    <pattern id="d" width="258" height="258" x="-184.761" y="213.8" patternUnits="userSpaceOnUse">
+      <use xlink:href="#a"/>
+    </pattern>
+  </defs>
+  <g fill="none" fill-rule="evenodd" filter="url(#b)" opacity=".75" transform="translate(-5 -400)">
+    <use fill="#566269" xlink:href="#c"/>
+    <use fill="url(#d)" fill-opacity=".127" xlink:href="#c"/>
+  </g>
+</svg>

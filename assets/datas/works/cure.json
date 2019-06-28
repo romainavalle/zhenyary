@@ -1,16 +1,15 @@
 {
   "slug": "cure",
   "title": "Cure",
-  "menuNumberUnderline": false,
   "menuItalic": true,
   "subtitle": "Cure Beauty",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Curenails.com",
+    "url": "https://curenails.com/"
   },
   "awwwards": "Site of the day, Mobile excellence, Devaward",
   "type": "Ecommerce Website",
-  "skills": ["Art direction", "interface design", "photography"],
+  "skills": ["Art Direction","Content creation","Branding","Interface Design"],
   "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
   "header": [
     "Cure is a unique nail and wax boutique.",
@@ -22,14 +21,15 @@
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "cure/cure-1.jpg",
+      "alt": "Cure Beauty"
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "width": 22,
+      "background": "#E5DEDE",
+      "url": "cure/cure-2.jpg",
+      "alt": "Cure Beauty"
     },
     {
       "type": "vText",
@@ -40,19 +40,19 @@
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "cure/cure-3.jpg",
+      "alt": "Cure Beauty"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
+      "url": "cure/cure-4.jpg",
+      "alt": "Cure Beauty"
     },
     {
       "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
+      "url": "cure/cure-5.jpg",
+      "alt": "Cure Beauty",
       "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
       "paragraphs": [
         "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
@@ -60,37 +60,57 @@
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "cure/cure-6.jpg",
+      "alt": "Cure Beauty"
     },
     {
       "type": "vImage",
-      "width": 60,
-      "background": "#D4D1CB",
-      "shadow": true,
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "cure/cure-7.jpg",
+      "alt": "Cure Beauty"
+    },
+    {
+      "type": "vImage",
+      "width": 40,
+      "background": "#6E787D",
+      "top": "60",
+      "shadow": "shadow-cure",
+      "url": "cure/cure-8.jpg",
+      "alt": "Cure Beauty"
+    },
+    {
+      "type": "vImage",
+      "width": 40,
+      "background": "#6E787D",
+      "shadow": "shadow-cure",
+      "top": "40",
+      "url": "cure/cure-9.jpg",
+      "alt": "Cure Beauty"
+    },
+    {
+      "type": "vImageVideo",
+      "images":[
+        {
+          "url": "cure/cure-10.jpg",
+          "alt": "Cure Beauty"
+        },
+        {
+          "url": "cure/cure-11.jpg",
+          "alt": "Cure Beauty"
+        }
+      ]
+    },
+    {
+      "type": "vImage",
+      "width": 22,
+      "url": "cure/cure-12.jpg",
+      "alt": "Cure Beauty"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImages",
-      "images":[
-        {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
-        },
-        {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
-        }
-      ]
+      "url": "cure/cure-13.jpg",
+      "alt": "Cure Beauty"
     }
   ]
 }

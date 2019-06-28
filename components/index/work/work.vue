@@ -36,6 +36,7 @@
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import { mapState, mapGetters } from 'vuex';
+import { easeInOutCubic, easeInOutQuad } from '~/assets/js/utils/easings'
 export default {
   data() {
     return {
@@ -59,6 +60,7 @@ export default {
         this.h = h
       }
       this.offset = offset(this.$el).top - this.h
+      this.offsetImgR = offset(this.$el).top - this.h * .5
     },
     tick(scrollTop, ease) {
       if(this.isPhone)  {
@@ -75,10 +77,10 @@ export default {
         }
         coef = Math.min(1, coef)
         if(coef !== this.coef) {
-          transform(this.$refs.leftImgContainer, {scale3d:[1.5-coef * .5,1.5-coef * .5, 1]})
-          transform(this.$refs.rightImgContainer, {translate3d:[0, -this.h * .7  + coef * this.h * .7 , 0]})
+          const coefCubic = easeInOutCubic(coef)
+          transform(this.$refs.leftImgContainer, {scale3d:[1.5-coefCubic * .5,1.5-coefCubic * .5, 1]})
+          //transform(this.$refs.rightImgContainer, {translate3d:[0, -this.h * .7  + coef * this.h * .7 , 0]})
           transform(this.$refs.title, {translate3d:[0, this.h * .3 - coef * this.h * .3, 0]})
-          transform(this.$refs.rightImg, {scale3d:[1.25-coef * .25,1.25-coef * .25, 1]})
           this.$refs.title.style.opacity = Math.max(0, -4 + coef * 5)
           this.$refs.type.style.opacity = Math.max(0, -4 + coef * 5)
           this.$refs.rTitle.style.opacity = Math.max(0, -1 + coef * 2)
@@ -89,6 +91,15 @@ export default {
           if(this.id === 1) transform(this.$refs.letter, {translate3d:[0, -this.h*.8 + (coef) * this.h *.8,0]})
           this.coef = coef
         }
+        if(ease >= this.offsetImgR && ease < this.offsetImgR + this.h *.5){
+          const imgCoef = easeInOutQuad((ease-this.offsetImgR) / (this.h *.5))
+          transform(this.$refs.rightImg, {scale3d:[1.25-imgCoef * .25, 1.25-imgCoef * .25, 1]})
+        }
+        if(this.id === 0 && coef >1) {
+          transform(this.$refs.letter, {translate3d:[0, (coef -1) * this.h * .8,0]})
+          this.$refs.letter.style.opacity = 2 + (1 - coef * 2)
+        }
+
       }
         /*let top = 0
         if(scrollTop >= this.offset + this.h) {
@@ -104,6 +115,20 @@ export default {
   mounted(){
     this.$nextTick(()=>{
       this.$refs.img.src = this.$refs.img.dataset.src
+      if(!this.isPhone) {
+        const h =window.innerHeight
+          transform(this.$refs.leftImgContainer, {scale3d:[1.5,1.5, 1]})
+          transform(this.$refs.title, {translate3d:[0, h * .3, 0]})
+          this.$refs.title.style.opacity = 0
+          this.$refs.type.style.opacity = 0
+          this.$refs.rTitle.style.opacity = 0
+          this.$refs.skills.style.opacity = 0
+          this.$refs.intro.style.opacity = 0
+          this.$refs.link.$el.style.opacity = 0
+          this.$refs.letter.style.opacity = 0
+          if(this.id === 1) transform(this.$refs.letter, {translate3d:[0, -h*.8,0]})
+          transform(this.$refs.rightImg, {scale3d:[1.25,1.25, 1]})
+      }
     })
   }
 }
