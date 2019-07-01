@@ -241,7 +241,7 @@ a
     .left .img
       width 70%
     p
-      margin 10px auto
+      margin 10px 0 10px
   +below('s')
     padding 40px 0
     height auto

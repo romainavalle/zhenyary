@@ -60,6 +60,6 @@ export default {
       svg
         fill white
         display block
-  /*@media (orientation: landscape)
-    display block*/
+  @media (orientation: landscape)
+    display block
 </style>

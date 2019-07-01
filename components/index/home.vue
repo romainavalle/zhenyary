@@ -253,7 +253,11 @@ h1
     transform translate(25vw, -33vw)
     top 50%
   +below('s')
-    display none
+    top 2vh
+    text-align center
+    width 50%
+    left 50%
+    transform translate(-50%, 0)
 
 .click
   position absolute

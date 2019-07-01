@@ -1,6 +1,6 @@
 <template>
   <div class="worksLink">
-    <nuxt-link :to="{name: 'works'}" class="link" ref="link">All cases here</nuxt-link>
+    <nuxt-link :to="{name: 'works'}" class="link" ref="link"><span>All cases</span> <span>here</span></nuxt-link>
   </div>
 </template>
 
@@ -74,5 +74,17 @@ export default {
       position absolute
       left 0
       display block
+  +below('s')
+    a
+      width 50%
+      margin 0 auto
+      text-align center
+      font-size 12vw
+      span
+        line-height 1
+        display inline-block
+        border-bottom 2px solid $white
+      &:after
+        display none
 
 </style>

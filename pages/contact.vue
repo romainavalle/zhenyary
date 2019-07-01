@@ -197,7 +197,7 @@ export default {
       padding-bottom 2vh
     .slider-container
       display block
-      height 12vw
+      height 12.5vw
       .slider span
         text-align center
         height 12vw

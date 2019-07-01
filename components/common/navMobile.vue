@@ -2,11 +2,11 @@
   <nav class="navMobile">
     <button @click="setNavMobile(false)" ref="close"><v-svg-close /></button>
     <div class="container" ref="container">
-      <nuxt-link :to="{name: 'about'}" class="z"><span class="title">Some things</span><span class="label">about me</span></nuxt-link>
-      <nuxt-link :to="{name: 'works'}"><span class="title">Works</span><span class="label">some cases</span></nuxt-link>
-      <nuxt-link :to="{name: 'workflow'}"><span class="title">Workflow</span><span class="label">my life — my rules</span></nuxt-link>
-      <nuxt-link :to="{name: 'contact'}"><span class="title">Contact me</span><span class="label">For any collaborations</span></nuxt-link>
-      <nuxt-link :to="{name: 'index'}"  class="home">Go Home</nuxt-link>
+      <nuxt-link :to="{name: 'about'}" @click.native="doClick('about')"><span class="title">Some things</span><span class="label">about me</span></nuxt-link>
+      <nuxt-link :to="{name: 'works'}" @click.native="doClick('works')"><span class="title">Works</span><span class="label">some cases</span></nuxt-link>
+      <nuxt-link :to="{name: 'workflow'}" @click.native="doClick('o')"><span class="title">Workflow</span><span class="label">my life — my rules</span></nuxt-link>
+      <nuxt-link :to="{name: 'contact'}" @click.native="doClick('contact')"><span class="title">Contact me</span><span class="label">For any collaborations</span></nuxt-link>
+      <nuxt-link :to="{name: 'index'}"  class="home" @click.native="doClick('index')">Go Home</nuxt-link>
     </div>
   </nav>
 </template>
@@ -36,6 +36,9 @@ export default {
         this.w = w
         this.h = h
       }
+    },
+    doClick(id, $ev) {
+      if(this.$route.name === id)this.hide()
     },
     show() {
       this.$el.style.display = 'block'

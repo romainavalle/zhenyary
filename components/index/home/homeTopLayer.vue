@@ -82,7 +82,6 @@ export default {
     border-radius 50%
     width 100%
     height 100%
-
   .red &
     .horizontal
       opacity .2
@@ -97,8 +96,11 @@ export default {
       height 25vw
       transform translate(18vw, -42vw)
   +below('s')
-    .circle
-      display none
+    z-index auto
+    .circle-container
+      width 85vw
+      height 85vw
+      transform translate(-50%, -50%)
     .horizontal
       display none
 </style>

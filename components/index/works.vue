@@ -1,5 +1,6 @@
 <template>
   <article class="works">
+    <strong class="strong">selected works</strong>
     <v-work v-for="(work, index) in datas.homeWorks" :key="`work-${index}`" :work="worksById[work]" :id="index" ref="works" />
     <div class="dot-container" ref="dot">
       <div class="dot">.</div>
@@ -73,6 +74,22 @@ export default {
   height 200vh
   width 100vw
   position relative
+.strong
+  position absolute
+  display block
+  left 75%
+  z-index 10
+  top 3vw
+  +below('l')
+    left 57%
+  +below('s')
+    position relative
+    left  0
+    width 100%
+    text-align center
+    top auto
+    background $white
+    padding-top 7vh
 .dot-container
   font-size 10vw
   position absolute

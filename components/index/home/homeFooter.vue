@@ -90,7 +90,7 @@ footer
         transform translateX(100%)
   +below('l')
     justify-content center
-    padding-bottom 2vh
+    padding-bottom 4vh
     button
       display none
 </style>

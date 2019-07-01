@@ -40,11 +40,15 @@ import loop from 'raf-loop'
 import transform from 'dom-transform'
 import anime from 'animejs'
 import { mapState, mapGetters, mapActions } from 'vuex';
+if(process.browser) {
+  var classie = require('desandro-classie')
+}
 export default {
 
   data() {
     return {
-      isTouch: false
+      isTouch: false,
+      colorId: 1
     }
   },
   computed: {
@@ -132,6 +136,13 @@ export default {
       this.$refs.loaderTop.hide()
     },1000)
    if(!this.isTouch)  document.body.className = "no-touch"
+    classie.addClass(document.body, `color${this.colorId}`)
+   window.addEventListener('mousedown', ()=>{
+     classie.removeClass(document.body, `color${this.colorId}`)
+     this.colorId++
+     if(this.colorId===5)this.colorId = 1
+     classie.addClass(document.body, `color${this.colorId}`)
+   })
   }
 }
 </script>

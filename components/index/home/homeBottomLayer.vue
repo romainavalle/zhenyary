@@ -1,6 +1,7 @@
 <template>
   <div class="bottom-layer">
     <div class="vertical" ref="bar"/>
+    <div class="horizontal" ref="barH" />
     <ul class="numbers" >
       <li v-for="(item, index) in 9" :key="index" ref="numbers">0{{index + 1}}</li>
     </ul>
@@ -28,6 +29,13 @@ export default {
         easing: 'easeOutQuad',
         duration: 2000
       })
+       anime({
+        targets: this.$refs.barH,
+        scaleX: 1,
+        easing: 'easeOutQuad',
+        duration: 1500,
+        delay: 700,
+      })
     }
   },
   mounted() {
@@ -42,6 +50,12 @@ export default {
       this.$refs.bar,
       {
         scaleY: 0
+      }
+    )
+     anime.set(
+      this.$refs.barH,
+      {
+        scaleX: 0
       }
     )
   }
@@ -69,10 +83,21 @@ export default {
     left 50%
     position absolute
     top 0
-    transition opacity .5s ease-out-cubic
     transform-origin 50% 0%
     width 1px
+    transition opacity .5s ease-out-cubic
     opacity 0.1
+  .horizontal
+    height 2px
+    border-bottom 1px solid $black
+    left 0
+    opacity 0.1
+    transform-origin 0% 50%
+    position absolute
+    top 50vh
+    width 100%
+    transition opacity .5s ease-out-cubic
+    display none
   .numbers
     position absolute
     width 100%
@@ -96,4 +121,7 @@ export default {
   +between('m', 'l')
     .vertical
       display none
+  +below('s')
+    .horizontal
+      display block
 </style>

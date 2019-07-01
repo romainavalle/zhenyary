@@ -202,7 +202,7 @@ export default {
   will-change transform
   line-height 1.11
   padding 1vh 0
-  padding 0 6vw
+  padding 1vw 6vw
   width 100vw
   & + .line
     margin-top 2vw
@@ -261,6 +261,8 @@ export default {
     font-family $schnyder
     font-weight $demi
     font-size 12vw
+    & + li
+      padding-top 2.5vh
   .star
     width 30px
     height 30px
