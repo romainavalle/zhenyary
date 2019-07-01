@@ -21,13 +21,12 @@ import vScreen from '~/components/works/screen.vue'
 import ScrollHelper from '~/assets/js/utils/ScrollHelper'
 import anime from 'animejs'
 import transform from 'dom-transform'
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   data() {
     return {
       w: 0,
       h:0,
-      screenId: 0,
       direction: 1,
       showId: -1,
       img: '',
@@ -35,13 +34,14 @@ export default {
     }
   },
   computed: {
-    ...mapState(['datas', 'isFirstTime']),
+    ...mapState(['datas', 'isFirstTime', 'workScreenId']),
     ...mapGetters(['isDevice'])
   },
   components: {
     vWorkOver, vWorkImg, vScreen
   },
   methods: {
+    ...mapActions(['setWorkScreenId']),
     resize(w, h) {
       if(w && h) {
         this.w = w
@@ -56,10 +56,8 @@ export default {
     },
     tick(scrollTop, easeScrollTop) {
       if(this.isDevice) return
-      if(this.h) {
-        //transform(this.$el, {translateY: scrollTop - scrollTop/this.h * this.h *.2})
-        //this.screenId = (Math.floor(.5 + scrollTop/this.h))
-      }
+      transform(this.$el, {translateY: scrollTop})
+        //this.workScreenId = (Math.floor(.5 + scrollTop/this.h))
     },
     getWorksBefore(id) {
       let count = 0
@@ -72,22 +70,25 @@ export default {
       return count
     },
     scrollTo(){
-      if(this.isDevice) return
       this.hideScrollIndication()
-      ScrollHelper.scrollTo(this.h)
+      if(this.isDevice) {
+        ScrollHelper.scrollTo(this.h)
+      }else{
+        this.setWorkScreenId(this.workScreenId + 1)
+      }
     },
     onWorkEnter(id) {
       if(this.isDevice) return
       this.showId = id
 
-      if(this.$refs.work)this.$refs.work.setWork(this.worksEl[this.showId], this.showId, this.screenId)
-      this.$refs.screens[this.screenId].hideWorks()
+      if(this.$refs.work)this.$refs.work.setWork(this.worksEl[this.showId], this.showId, this.workScreenId)
+      this.$refs.screens[this.workScreenId].hideWorks()
     },
     onWorkLeave(screenId = -1) {
       if(this.isDevice) return
-      this.showId = -1
       if(this.$refs.work)this.$refs.work.hide()
-      this.$refs.screens[screenId === -1 ? this.screenId : screenId].showWorks()
+      this.showId = -1
+      this.$refs.screens[screenId === -1 ? this.workScreenId : screenId].showWorks()
     },
     hideScrollIndication() {
       if(this.isDevice) return
@@ -110,21 +111,21 @@ export default {
       if(this.isDevice) return
       if(this.isAnimating)return
 
-      const start = this.showId === -1 ? 0 : 200
+      const start = this.showId === -1 ? 0 : 300
       if(this.showId !== -1)this.onWorkLeave(id)
       this.isAnimating = true
       this.$refs.screens[id].hideLines(this.direction, start)
     },
     onScreenHideComplete(){
       this.isAnimating = false
-      this.showScreen(this.screenId)
+      this.showScreen(this.workScreenId)
     },
     onScreenShowComplete(id){
       this.isAnimating = false
-      if(id !== this.screenId) this.hideScreen(id)
+      if(id !== this.workScreenId) this.hideScreen(id)
     },
     onWheel(e) {
-      let id = this.screenId
+      let id = this.workScreenId
       if(e.deltaY > 0){
         id++
       }else{
@@ -132,7 +133,7 @@ export default {
       }
       if(id<0)return
       if(id>this.$refs.screens.length-1)return
-      this.screenId = id
+      this.setWorkScreenId(id)
       this.removeWheel()
       this.wheelTimer = setTimeout(this.addWheel.bind(this), 1200)
     },
@@ -142,11 +143,9 @@ export default {
     removeWheel() {
       this.$el.removeEventListener('wheel', this._onWheel)
     }
-
-
   },
   watch: {
-    screenId(val, old) {
+    workScreenId(val, old) {
       this.direction = val - old
       if(this.$refs.img)this.$refs.img.setScreenId(val)
       this.hideScreen(old)
@@ -193,7 +192,11 @@ export default {
       this.addWheel()
       this.$nextTick(()=>{
         Emitter.emit('PAGE:MOUNTED')
-        setTimeout(this.showScreen.bind(this, this.screenId), this.isFirstTime ? 2500 : 450)
+        setTimeout(this.showScreen.bind(this, this.workScreenId), this.isFirstTime ? 2500 : 450)
+        if(!this.isDevice && this.workScreenId){
+          ScrollHelper.scrollTo(window.innerHeight * this.workScreenId)
+          this.hideScrollIndication()
+        }
       })
     }
   },
@@ -205,7 +208,7 @@ export default {
   background $pink
   position relative
   width 100vw
-  height 100vh
+  height 300vh
   font-family $schnyder
   font-weight $demi
   .strong

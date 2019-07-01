@@ -4,7 +4,7 @@
    <div class="content">
      <div class="img">
       <no-ssr>
-        <img :src="`/images/${$route.name}.jpg`" alt="zhenya">
+        <img :data-src="`/images/${$route.name}.jpg`" alt="zhenya" width="766" height="966">
       </no-ssr>
       <nuxt-link :to="{name:'contact'}" class="link">Contact Me</nuxt-link>
      </div>

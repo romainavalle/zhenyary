@@ -3,7 +3,7 @@
     <div class="inner">
       <div class="left">
         <div class="img" ref="leftImgContainer">
-          <img src="" :data-src="`${path}${work.cover}`" :alt="work.title" ref="img">
+          <img :data-src="`${path}${work.cover}`" :alt="work.title" ref="img" width="484" height="536">
         </div>
         <div class="text">
           <h3 class="h3"  v-html="work.title" ref="title" :class="{'mobile-anime': isPhone}"></h3>
@@ -21,7 +21,7 @@
         </div>
         <no-ssr>
           <div class="img" ref="rightImgContainer" v-if="!isPhone">
-            <img :src="`${path}${work.homeMenu}`" :alt="work.title" ref="rightImg">
+            <img :data-src="`${path}${work.homeMenu}`" :alt="work.title" ref="rightImg" width="960" height="377">
           </div>
         </no-ssr>
       </div>
@@ -114,7 +114,6 @@ export default {
   },
   mounted(){
     this.$nextTick(()=>{
-      this.$refs.img.src = this.$refs.img.dataset.src
       if(!this.isPhone) {
         const h =window.innerHeight
           transform(this.$refs.leftImgContainer, {scale3d:[1.5,1.5, 1]})

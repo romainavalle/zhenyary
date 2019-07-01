@@ -116,10 +116,27 @@ export default {
     onPageMounted(){
       setTimeout(()=>{
         this.resize()
+        this.checkImg()
       }, 100)
       //this.pageFadeIn(0)
       this.$refs.loaderTop.hide()
 
+    },
+    onLoaded() {
+      this.imageCount++
+      if(this.imageCount %3 === 0 || this.imageCount === this.imgs.length) this.resize()
+    },
+    checkImg() {
+      const imgs = [].slice.call(this.$el.querySelectorAll('img'))
+      this.imgs = []
+      this.imageCount = 0
+      imgs.forEach(img => {
+        if(img.dataset.src){
+          img.addEventListener('load', this.onLoaded.bind(this))
+          img.src = this.getSrcSet(img.dataset.src)
+          this.imgs.push(img)
+        }
+      });
     }
   },
   mounted() {

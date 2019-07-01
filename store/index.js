@@ -10,6 +10,7 @@ export const state = () => ({
   works: [],
   worksById: {},
   color: 'nude',
+  workScreenId: 0,
   isFirstTime: true,
   navMobile: false,
   path: process.env.NODE_ENV === 'production' ? '/images/' : '/images/',
@@ -21,6 +22,9 @@ export const mutations = {
   },
   SET_WORKS_BY_ID (state, worksById) {
     state.worksById = worksById
+  },
+  SET_WORK_SCREEN_ID (state, workScreenId) {
+    state.workScreenId = workScreenId
   },
   SET_COLOR (state, color) {
     state.color = color
@@ -36,6 +40,9 @@ export const actions = {
   nuxtServerInit({state, commit}) {
     const works = []
     const worksById = {}
+    console.log('nuxtServerInit');
+    state.about.awwwards = []
+    state.about.FWA = []
     state.datas.works.forEach(screen => {
       screen.forEach(line => {
         line.forEach(work => {
@@ -54,6 +61,9 @@ export const actions = {
     })
     commit('SET_WORKS', works)
     commit('SET_WORKS_BY_ID', worksById)
+  },
+  setWorkScreenId({ commit }, workScreenId) {
+    commit('SET_WORK_SCREEN_ID', workScreenId)
   },
   setColor ({ commit }, color) {
     commit('SET_COLOR', color)
@@ -86,5 +96,13 @@ export const getters = {
     let id = worksSlugs.indexOf(state.route.params.slug) + 1
     if(id === state.works.length) id = 0
     return state.works[id]
+  },
+  isWebP: () =>{
+    var elem = document.createElement('canvas');
+    if (!!(elem.getContext && elem.getContext('2d'))) {
+        return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+    }
+
+    return false;
   }
 }

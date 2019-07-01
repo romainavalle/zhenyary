@@ -3,7 +3,7 @@
     <div class="img" ref="imgContainer">
       <div class="show-outer" ref="showOuter">
         <div class="show-inner" ref="showInner">
-            <img src="/images/zhenya.jpg" alt="zhenya rynzhuk" ref="img">
+            <img data-src="/images/zhenya.jpg" alt="zhenya rynzhuk" ref="img" width="801" height="887">
         </div>
       </div>
     </div>

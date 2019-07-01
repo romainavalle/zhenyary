@@ -1,6 +1,8 @@
 <template>
   <div class="Loader" :class="{'transparent':isReady}" v-if="isFirstTime">
-    <v-loader-animation />
+    <no-ssr>
+      <v-loader-animation v-if="showLoader"/>
+    </no-ssr>
   </div>
 </template>
 <script>
@@ -11,7 +13,8 @@ export default {
     return {
       w: 0,
       h: 0,
-      isReady: false
+      isReady: false,
+      showLoader: false
     }
   },
   components: {
@@ -36,6 +39,9 @@ export default {
     //if(process.env.NODE_ENV === 'development') this.$el.style.display = 'none'
     this.$el.style.display = 'block'
     this.$el.style.mixBlendMode = 'multiply'
+    this.$nextTick(()=>{
+      this.showLoader = true
+    })
   }
 }
 

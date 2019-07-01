@@ -55,6 +55,7 @@ export default {
 
     },
     hide(){
+      if(!this.work )return
       if(this.workOpacity)this.workOpacity.pause()
       this.workOpacity = anime({
         targets: this.$el,

@@ -1,21 +1,7 @@
 <template>
   <article :style="{'background': background }">
     <div class="img" v-for="(image, index) in content.images" :key="`image-${index}`">
-      <picture>
-        <source :srcset="`
-          ${getSrcSet(content.images[index].url, '@mx', 'webp')} 500w,
-          ${getSrcSet(content.images[index].url, '@.5x', 'webp')} 1000w,
-          ${getSrcSet(content.images[index].url, '@1x', 'webp')} 1440w,
-          ${getSrcSet(content.images[index].url, '', 'webp')} 2000w`
-        " type="image/webp">
-        <source :srcset="`
-          ${getSrcSet(content.images[index].url, '@mx', 'jpg')} 500w,
-          ${getSrcSet(content.images[index].url, '@.5x', 'jpg')} 1000w,
-          ${getSrcSet(content.images[index].url, '@1x', 'jpg')} 1440w,
-          ${getSrcSet(content.images[index].url, '', 'jpg')} 2000w`
-        " type="image/jpg">
-        <img :src="`${path}${content.images[index].url}`" :alt="alt(index) || title" ref="imgs">
-      </picture>
+      <img :data-src="`${path}${content.images[index].url}`" :alt="alt(index) || title" ref="imgs">
     </div>
   </article>
 </template>

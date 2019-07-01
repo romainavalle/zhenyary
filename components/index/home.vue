@@ -10,7 +10,7 @@
       <v-bottom-layer ref="bottomLayer" aria-hidden="true"/>
     </no-ssr>
     <div class="img-container">
-      <img src="/images/home/zhenya-bg.jpg" alt="Zhenya Rynzhuk" ref="imgBack">
+      <img data-src="/images/home/zhenya-bg.jpg" alt="Zhenya Rynzhuk" ref="imgBack" width="1070" height="1184">
     </div>
     <no-ssr>
       <v-circles :circles="homeCircles[1]" :id="1"  ref="circles-1"  aria-hidden="true"/>
@@ -29,7 +29,7 @@
       </no-ssr>
     </h1>
     <div class="img-container">
-      <img src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" ref="imgFront">
+      <img data-src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" ref="imgFront" width="1070" height="1184">
     </div>
     <no-ssr>
       <v-top-layer ref="topLayer"  aria-hidden="true"/>
@@ -160,6 +160,9 @@ export default {
   left 50%
   transform translate(-50%, -50%)
   width 30vw
+  img
+    display block
+    max-width 100%
   +below('l')
     width 50vw
   +below('s')

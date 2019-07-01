@@ -1,10 +1,22 @@
 import Vue from 'vue'
-
+import { mapGetters } from 'vuex';
+import ResizeHelper from '~/assets/js/utils/ResizeHelper'
 Vue.mixin({
+  computed: {
+    ...mapGetters(['isWebP'])
+  },
   methods: {
-    getSrcSet(url, size, type) {
-      let img = `${this.path}${url}`
-      img = img.replace('.jpg', size + '.'+ type).replace('.png', size + '.'+ type)
+    getSrcSet(url) {
+      let size = ''
+      if(ResizeHelper.width() < 768 ) {
+        size = '@mx'
+      }else if(ResizeHelper.width() < 1024 ) {
+        size = '@.5x'
+      }else if(ResizeHelper.width() < 1440 ) {
+        size = '@1x'
+      }
+      let img = url.replace('.jpg', size + '.jpg').replace('.png', size + '.png')
+      if(this.isWebP)img = img.replace('.jpg', '.webp').replace('.png', '.webp')
       return img
     }
   }
