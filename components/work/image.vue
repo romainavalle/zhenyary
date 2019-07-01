@@ -3,10 +3,10 @@
     <figure :style="{width, top}">
       <div class="img">
         <no-ssr>
-          <img :src="shadow" v-if="this.content.shadow" class="shadow"/>
+          <img :data-src="`${path}honey-pot/shadow-honey.png`" alt="shadow" class="shadow" aria-hidden="true">
         </no-ssr>
         <div class="img-container" ref="container">
-          <img :src="`${path}${content.url}`" :alt="alt" class="main" ref="img">
+          <img :data-src="`${path}${content.url}`" :alt="content.alt || title" ref="img" class="main">
         </div>
       </div>
     </figure>
@@ -81,7 +81,7 @@ article
       position relative
       top auto
       left auto
-      transform none 
+      transform none
       margin 0 auto
 figure
   display block

@@ -132,7 +132,6 @@ export default {
     this.setRouterHooks()
     this.isTouch = this.isDevice
     setTimeout(()=>{
-      this.$refs.loader.hide()
       this.$refs.loaderTop.hide()
     },1000)
    if(!this.isTouch)  document.body.className = "no-touch"

@@ -91,7 +91,7 @@ export default {
         const img = new Image()
         img.addEventListener('load',this._onLoad)
         //img.src = element.dataset.src
-        img.src = element.src
+        //img.src = element.src
         this.imgs.push(img)
       });
       setTimeout(this.show.bind(this), this.isFirstTime ? 2500 : 450)

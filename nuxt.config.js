@@ -23,7 +23,8 @@ module.exports = {
     'nuxt-svg'
   ],
   plugins: [
-    '~plugins/vuex-router-sync.js'
+    '~plugins/vuex-router-sync.js',
+    '~plugins/imgMixin.js',
   ],
 
   css: [
