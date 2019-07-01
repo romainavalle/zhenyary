@@ -7,7 +7,6 @@
         <img :src="`/images/${$route.name}.jpg`" alt="zhenya">
       </no-ssr>
       <nuxt-link :to="{name:'contact'}" class="link">Contact Me</nuxt-link>
-      <a :href="`mailto:${datas.email}`" class="mail" rel="noopener" target="_blank" v-text="datas.email"></a>
      </div>
      <div class="top">
        <div>
@@ -238,15 +237,9 @@ footer
       .top
         display none
       .img
-        width 90%
-    .mail
-      display block
-      padding 5vh 0
-      text-align center
-      text-transform uppercase
-      opacity 0.65
+        width 92%
   +below('s')
-    height 103vh
+    height 93vh
     .content
       padding 10vh 0 15vh
 </style>

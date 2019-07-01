@@ -170,6 +170,8 @@ ul
       padding-top 30px
   .regognitions
     padding-top 40px
+    h4
+      padding-top 5vh
     .title
       display flex
       align-items baseline
@@ -181,8 +183,6 @@ ul
       margin-right -30px
       margin-left 0
       margin-top 0
-    div + div
-      padding-top 40px
   .collaborations
     font-size 22px
     padding-bottom 50px

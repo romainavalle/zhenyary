@@ -113,11 +113,14 @@ export default {
     padding 0 4vw
     .img
       padding 0
-      margin 0
+      margin 0 0 0 -4vw
       width 100%
     article
       width 100%
       padding 0!important
+      h1, h2
+        width 45%
+        display inline-block
 </style>
 
 

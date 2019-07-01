@@ -50,8 +50,8 @@ export default {
         this.$refs.learn.resize(this.w, this.h)
         this.$refs.think.resize(this.w, this.h)
         this.$refs.create.resize(this.w, this.h)
-        this.$refs.implementation.resize(this.w, this.h)
       }
+      this.$refs.implementation.resize(this.w, this.h)
       this.$refs.footer.resize(this.w, this.h)
     },
     tick(scrollTop, ease) {
@@ -63,9 +63,8 @@ export default {
         this.$refs.learn.tick(scrollTop, ease)
         this.$refs.think.tick(scrollTop, ease)
         this.$refs.create.tick(scrollTop, ease)
-        this.$refs.implementation.tick(scrollTop, ease)
-
       }
+        this.$refs.implementation.tick(scrollTop, ease)
     }
   },
   mounted() {

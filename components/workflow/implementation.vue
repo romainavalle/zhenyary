@@ -5,7 +5,7 @@
       <h2 ref="title">Implementation</h2>
     </div>
     <no-ssr>
-      <ul class="d-f" ref="skills" v-if="!isDevice">
+      <ul class="d-f skills" ref="skills" v-if="!isDevice">
         <li>UX architecture</li>
         <li>Visual concepts</li>
         <li>Interactions</li>
@@ -16,14 +16,12 @@
     </no-ssr>
     <div class="d-f bottom" ref="bottom">
       <div :class="{'mobile-anime': isPhone}">
-        <h5 v-show="isPhone">Communication with the<br>partner during the<br>whole process</h5>
-        <no-ssr>
-          <h5 v-if="!isPhone">
+
+          <h5>
             <span class="line">Communication with the</span>
             <span class="line" :class="{'ready': isLineReady}"><span class="strike"><v-svg-bar class="bar" aria-hidden="true"/><span>client</span></span> <span class="end"><span class="partner">partner</span>  during the</span></span>
             <span class="line">whole process</span>
           </h5>
-        </no-ssr>
       </div>
       <div class="content">
         <div class="inner">
@@ -69,40 +67,42 @@ export default {
         this.w = w
         this.h = h
       }
-      if(this.isPhone) return
-      this.animHeight = this.h * .5
-      this.offset = offset(this.$el).top - this.h * .9
       this.bottomOffset = offset(this.$refs.bottom).top - this.h * .8
+      this.animHeight = this.h * .5
+      if(this.isPhone) return
+      this.offset = offset(this.$el).top - this.h * .9
       this.bottomOffset2 = offset(this.$refs.h3).top - this.h * .8
     },
     tick(scrollTop, ease) {
-      if(this.isPhone) return
-      if(ease > this.offset && ease < this.offset + this.animHeight){
-        const coef = (ease - this.offset) / this.animHeight
-        this.$el.style.opacity = coef
-        transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
-        transform(this.$refs.title, {scale:[1+.2*(1-coef),1+.2*(1-coef)]})
-        if(this.$refs.skills)transform(this.$refs.skills, {translate3d:[0, 200 - coef * 200, 0]})
-      }
-      if(ease > this.bottomOffset && ease < this.bottomOffset + this.animHeight){
-        const coefBottom = (ease - this.bottomOffset) / this.animHeight
-        this.$refs.bottom.style.opacity = coefBottom
-        transform(this.$refs.bottom, {translate3d:[0, 200 - coefBottom * 200, 0]})
-        this.arrows.forEach((arrow,i) => {
-          transform(arrow, {translate3d:[0, -50 -100 * (i+1) + coefBottom * 100 * (i+2) + '%', 0]})
-        });
+      if(this.isPhone) {
+      }else{
+        if(ease > this.offset && ease < this.offset + this.animHeight){
+          const coef = (ease - this.offset) / this.animHeight
+          this.$el.style.opacity = coef
+          transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
+          transform(this.$refs.title, {scale:[1+.2*(1-coef),1+.2*(1-coef)]})
+          if(this.$refs.skills)transform(this.$refs.skills, {translate3d:[0, 200 - coef * 200, 0]})
+        }
+        if(ease > this.bottomOffset && ease < this.bottomOffset + this.animHeight){
+          const coefBottom = (ease - this.bottomOffset) / this.animHeight
+          this.$refs.bottom.style.opacity = coefBottom
+          transform(this.$refs.bottom, {translate3d:[0, 200 - coefBottom * 200, 0]})
+          this.arrows.forEach((arrow,i) => {
+            transform(arrow, {translate3d:[0, -50 -100 * (i+1) + coefBottom * 100 * (i+2) + '%', 0]})
+          });
+        }
+        if(ease > this.bottomOffset2 && ease < this.bottomOffset2 + this.animHeight){
+          const coefBottom2 = (ease - this.bottomOffset2) / this.animHeight
+          transform(this.$refs.h3, {translate3d:[0, 100 - coefBottom2 * 100, 0]})
+          transform(this.$refs.h4, {translate3d:[0, 200 - coefBottom2 * 200, 0]})
+          transform(this.$refs.text1, {translate3d:[0, 300 - coefBottom2 * 300, 0]})
+          transform(this.$refs.text2, {translate3d:[0, 400 - coefBottom2 * 400, 0]})
+        }
       }
       if(ease > this.bottomOffset + this.h *.1 && ease < this.bottomOffset + this.animHeight + this.h *.6){
         if(!this.isLineReady) this.isLineReady = true
       }else{
         if(this.isLineReady) this.isLineReady = false
-      }
-      if(ease > this.bottomOffset2 && ease < this.bottomOffset2 + this.animHeight){
-        const coefBottom2 = (ease - this.bottomOffset2) / this.animHeight
-        transform(this.$refs.h3, {translate3d:[0, 100 - coefBottom2 * 100, 0]})
-        transform(this.$refs.h4, {translate3d:[0, 200 - coefBottom2 * 200, 0]})
-        transform(this.$refs.text1, {translate3d:[0, 300 - coefBottom2 * 300, 0]})
-        transform(this.$refs.text2, {translate3d:[0, 400 - coefBottom2 * 400, 0]})
       }
     }
   },
@@ -135,14 +135,12 @@ article.implementation
     justify-content space-between
     >div
       width 50%
-  ul
+  .skills
     padding-left 0.7vw
     li
       font-family $schnyder
       font-weight $demi
       font-size 20px
-    +below('l')
-      display none
 p
   width 45%
   font-size 14px
@@ -170,18 +168,22 @@ h5
   padding 0
   padding-bottom 4vw
   overflow hidden
-  +below('s')
-    display block
+  margin-left -2vw
   li
     height 6.1vw
     width 4.1vw
     display block
   li + li
     margin-left 1.6vw
+  +below('s')
+    justify-content center
+    li
+      height 10vw
+      width 8vw
 .arrow
   display block
-  width 6.1vw
-  height 4.1vw
+  width 100%
+  height 100%
   fill $white
   position relative
   transform-origin 0 0
@@ -224,6 +226,8 @@ article.implementation
   +below('s')
     position relative
     text-align center
+    .end
+      transform translateX(-21vw)
     .d-f
       display block
       >div

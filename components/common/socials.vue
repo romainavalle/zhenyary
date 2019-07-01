@@ -63,6 +63,15 @@ export default {
   +below('l')
     a
       margin 0 30px
+  +below('s')
+    justify-content space-between
+    width 100%
+    padding 0 4vw
+    a
+      color $black
+      margin 0
+    &.white a
+      color $black
 .red &
   a
     color $white
