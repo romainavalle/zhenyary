@@ -1,7 +1,7 @@
 <template>
   <div class="video" >
     <button @click="setVideo(false)" ref="close" aria-label="close"><v-svg-close /></button>
-    <video src="/videos/video.mp4" muted playsinline ref="video"></video>
+    <video src="/videos/video.mp4" ref="video"></video>
     <div class="circle" ref="circle">
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"  ref="circle-inner">
         <circle cx="50" cy="50" r="49"/>
@@ -24,7 +24,8 @@
 
 <script>
 
-import { easeOutQuint } from '~/assets/js/utils/easings'
+import { easeInOutQuint } from '~/assets/js/utils/easings'
+import MouseHelper from '~/assets/js/utils/MouseHelper'
 import anime from'animejs'
 import { mapState, mapActions } from 'vuex';
 import transform from 'dom-transform'
@@ -60,8 +61,12 @@ export default {
       this.$refs.video.pause()
       this.isPlaying = false
     },
-    tick(x,y,easeX,easeY) {
+    tick() {
       if(!this.showVideo) return
+      const x = MouseHelper.x
+      const y = MouseHelper.y
+      const easeX = MouseHelper.easeX
+      const easeY = MouseHelper.easeY
       transform(this.$refs.icons, {translate3d: [x,y,0]})
       transform(this.$refs.circle, {translate3d: [easeX,easeY,0]})
       const posX = this.w-(20+15)
@@ -69,7 +74,7 @@ export default {
       const dist = this.distance(x,y,posX,posY)
       let pourc = 0
       if(dist < 200) {
-        pourc = easeOutQuint(1 - (dist / 200))
+        pourc = easeInOutQuint(1 - (dist / 200))
         if(pourc > 1) pourc = 1
       }
       if(pourc > .7) {
@@ -77,7 +82,7 @@ export default {
       }else{
         if(this.isCloseAttracted) this.isCloseAttracted = false
       }
-      transform(this.$refs.close, {translate3d: [ posX + (x-posX) * pourc ,posY + (y-posY) * pourc,0]})
+      transform(this.$refs.close, {translate3d: [  (x-posX) * pourc , (y-posY) * pourc,0]})
     },
     distance(x1, y1, x2, y2) {
       const dx = x1 - x2;
@@ -86,19 +91,19 @@ export default {
     },
     show() {
       this.$el.style.display = 'block'
-      this.$refs.video.currentTime = 0
-      this.play()
-      this.$refs.video.addEventListener('end',this._onEnd)
+      this.$refs.video.addEventListener('ended',this._onEnd)
       anime({
         targets:this.$el,
         opacity: 1,
         duration: 1000,
         easing: 'easeOutQuad',
-
+        complete: ()=>{
+          this.play()
+        }
       })
     },
     hide() {
-      this.$refs.video.removeEventListener('end',this._onEnd)
+      this.$refs.video.removeEventListener('ended',this._onEnd)
       this.pause()
       anime({
         targets:this.$el,
@@ -106,6 +111,7 @@ export default {
         duration: 700,
         easing: 'easeInQuad',
         complete: ()=>{
+          this.$refs.video.currentTime = 0
           this.$el.style.display = 'none'
         }
       })
@@ -136,19 +142,19 @@ export default {
     }
   },
   beforeDestroy() {
-    this.$refs.video.removeEventListener('end',this._onEnd)
+    this.$refs.video.removeEventListener('ended',this._onEnd)
   },
   mounted() {
     this._onEnd = this.onEnd.bind(this)
     this.$el.style.display = 'none'
     anime.set(this.$el, {opacity: 0})
 
-      anime.set( this.$refs.circle.querySelector('svg'),{
-        scaleX: 1,
-        scaleY: 1,
-        translateX: '-50%',
-        translateY: '-50%'
-      })
+    anime.set( this.$refs.circle.querySelector('svg'),{
+      scaleX: 1,
+      scaleY: 1,
+      translateX: '-50%',
+      translateY: '-50%'
+    })
   },
 }
 </script>
@@ -167,10 +173,11 @@ export default {
     position absolute
     width 30px
     height 30px
+    right 20px
+    top 25px
     z-index 1
     cursor none
     svg
-      transform translate(-50%, -50%)
       display block
       width 100%
       height 100%

@@ -50,6 +50,7 @@
   </article>
 </template>
 <script>
+import { easeInQuad } from '~/assets/js/utils/easings'
 import vCircles from '~/components/index/home/homeCircles.vue'
 import vTopLayer from '~/components/index/home/homeTopLayer.vue'
 import vBottomLayer from '~/components/index/home/homeBottomLayer.vue'
@@ -60,7 +61,7 @@ import MouseHelper from '~/assets/js/utils/MouseHelper'
 import homeCircles from '~/assets/datas/homeCircles.json';
 import transform from 'dom-transform'
 import anime from 'animejs'
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -73,7 +74,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(['color'])
+    ...mapState(['color']),
+    ...mapGetters(['isDevice'])
   },
   components:{
     vBottomLayer, vTopLayer, vHomeFooter, vSvg, vCircles, vBackground
@@ -98,11 +100,31 @@ export default {
       transform(this.$refs.imgBack, { translate3d: [0, coef * 200, 0] })
       transform(this.$refs.imgFront, { translate3d: [0, coef * 200, 0] })
       this.$refs.title.style.opacity = 1 - coef * 2
-      if(!this.circlesShown) return
-      MouseHelper.tick()
-      this.circles.forEach(circle => {
-        circle.tick(.5 - MouseHelper.easeSlowX / this.w, .5 - MouseHelper.easeSlowY / this.h)
-      })
+      if(this.circlesShown) {
+        this.circles.forEach(circle => {
+          circle.tick(.5 - MouseHelper.easeSlowX / this.w, .5 - MouseHelper.easeSlowY / this.h)
+        })
+      }
+
+      if(!this.isDevice) {
+        const x = MouseHelper.x
+        const y = MouseHelper.y + scrollTop
+        const easeX = MouseHelper.easeX
+        const easeY = MouseHelper.easeY + scrollTop
+
+        const posX = this.w * .5 - this.w * .32
+        const posY = this.h * .68
+        const dist = this.distance(x,y,posX,posY)
+
+        let pourc = 0
+        if(dist < 200) {
+          pourc = easeInQuad(1 - (dist / 200))
+          if(pourc > 1) pourc = 1
+        }
+        const newPosX = (x-posX) * pourc - this.w * .32
+        const newPosY = (y-posY) * pourc
+        transform(this.$refs.play, {translate3d: [newPosX , newPosY,0]})
+      }
     },
     showCircles() {
       MouseHelper.setMouse()
@@ -110,6 +132,11 @@ export default {
       this.circles.forEach(circle => {
         circle.toggleShow(this.circlesShown)
       })
+    },
+    distance(x1, y1, x2, y2) {
+      const dx = x1 - x2;
+      const dy = y1 - y2;
+      return Math.sqrt(dx * dx + dy * dy);
     },
     show() {
       this.isReady = true

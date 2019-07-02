@@ -22,14 +22,14 @@
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "dennis-berti/dennis-1.jpg",
+      "alt": "Dennis Berti"
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "width": 60,
+      "url": "dennis-berti/dennis-2.jpg",
+      "alt": "Dennis Berti"
     },
     {
       "type": "vText",
@@ -39,20 +39,21 @@
       ]
     },
     {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "type": "vImageBackground",
+      "url": "dennis-berti/dennis-3.jpg",
+      "alt": "Dennis Berti"
     },
     {
-      "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
+      "type": "vImage",
+      "width": 70,
+      "background": "#29282A",
+      "url": "dennis-berti/dennis-4.jpg",
+      "alt": "Dennis Berti"
     },
     {
       "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
+      "url": "dennis-berti/dennis-5.jpg",
+      "alt": "Dennis Berti",
       "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
       "paragraphs": [
         "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
@@ -60,37 +61,15 @@
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImage",
-      "width": 60,
-      "background": "#D4D1CB",
-      "shadow": "shadow-rafal",
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "background": "#29282A",
+      "url": "dennis-berti/dennis-6.jpg",
+      "alt": "Dennis Berti"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImages",
-      "images":[
-        {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
-        },
-        {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
-        }
-      ]
+      "url": "dennis-berti/dennis-7.jpg",
+      "alt": "Dennis Berti"
     }
   ]
 }

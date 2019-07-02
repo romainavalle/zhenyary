@@ -1,11 +1,11 @@
 <template>
   <section class="contact">
-    <p>Let’s make something great!<br>Reach out <a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a>  for wonderfull collaborations. <v-svg-star class="star" /></p>
+    <p>Let’s make something great!<br>Reach out <a :href="`mailto:${datas.email}`" rel="noopener" target="_blank" v-text="datas.email"></a>  for wonderfull collaborations. <v-svg-star class="star" /></p>
     <no-ssr>
       <div v-if="isDevice">
         <div class="line">Let’s make</div>
         <div class="line"><strong class="italic">something</strong> great!</div>
-        <div class="line" :class="{'ready': lineThree}"><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank" class="underline">hey@zhenyary.com</a></div>
+        <div class="line" :class="{'ready': lineThree}"><a :href="`mailto:${datas.email}`" rel="noopener" target="_blank" class="underline" v-text="datas.email"></a></div>
         <div class="line" :class="{'ready': lineTwo}"><strong class="italic">Reach out</strong> for</div>
         <div class="line"><span class="slider-container"><span class="slider"><span v-for="(word, index) in words" :key="`word-${index}`" v-text="word"></span></span>.</span></div>
         <div class="line"><v-svg-star class="star" /></div>
@@ -14,7 +14,7 @@
     <no-ssr>
       <div  v-if="!isDevice">
         <div class="line">Let’s make <strong class="italic">something</strong> great!</div>
-        <div class="line" :class="{'ready': lineTwo}"><span class="rounded">Reach out</span><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank" class="link underline">hey@zhenyary.com</a></div>
+        <div class="line" :class="{'ready': lineTwo}"><span class="rounded">Reach out</span><a :href="`mailto:${datas.email}`" rel="noopener" target="_blank" class="link underline" v-text="datas.email"></a></div>
         <div class="line" :class="{'ready': lineThree}">for <span class="underline wide">wonderfull</span> <span class="slider-container"><span class="slider"><span v-for="(word, index) in words" :key="`word-${index}`" v-text="word"></span></span>.</span><v-svg-star class="star" /></div>
       </div>
     </no-ssr>
@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isFirstTime']),
+    ...mapState(['isFirstTime', 'datas']),
     ...mapGetters(['isDevice'])
   },
   components: {

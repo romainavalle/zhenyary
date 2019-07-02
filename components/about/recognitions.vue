@@ -1,10 +1,10 @@
 <template>
 <div class="d-f">
-  <div class="spacer"><button class="showreel mobile-anime" aria-label="showreel" v-show="!isPhone">showreel</button></div>
+  <div class="spacer"><button class="showreel" aria-label="showreel" v-show="!isPhone" @click="setVideo(true)"><span>showreel</span></button></div>
   <article class="regognitions">
     <div class="title">
       <h3 class="mobile-anime">Regognitions</h3>
-      <button class="showreel mobile-anime" aria-label="showreel" v-show="isPhone">showreel</button>
+      <button class="showreel mobile-anime" aria-label="showreel" v-show="isPhone" @click="setVideo(true)">showreel</button>
     </div>
     <div>
       <h4 class="mobile-anime">Awwwards <sup>x{{about.awwwards.length}}</sup></h4>
@@ -46,10 +46,12 @@
 </template>
 
 <script>
+import { easeInQuad } from '~/assets/js/utils/easings'
+import MouseHelper from '~/assets/js/utils/MouseHelper'
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import { easeInOutQuad } from '~/assets/js/utils/easings'
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -62,34 +64,60 @@ export default {
     },
   computed: {
     ...mapState(['about']),
-    ...mapGetters(['isPhone']),
+    ...mapGetters(['isDevice', 'isPhone']),
     behance(){
       const reducer = (total, obj) => total + obj.num;
       return this.about.behance.reduce(reducer, 0)
     }
   },
   methods: {
+    ...mapActions(['setVideo']),
     resize(w, h) {
       if(w && h) {
         this.w = w
         this.h = h
       }
-      this.offset = offset(this.$refs.collabs).top - this.h
+      this.offset = offset(this.$el).top - this.h
+      this.offsetCollabs = offset(this.$refs.collabs).top - this.h
 
       this.translateX = this.lastItem.offsetLeft * 1.9 + this.lastItem.clientWidth - this.w * (this.w > 1024 ? .45 : .6)
     },
     tick(scrollTop, ease) {
-      if(!this.isPhone) {
+     /* if(!this.isPhone) {
         let coef = 0
-        if(ease >= this.offset && ease < this.offset+this.h*.5) {
-          coef = easeInOutQuad((ease-this.offset) / (this.h*.5))
+        if(ease >= this.offsetCollabs && ease < this.offsetCollabs+this.h*.5) {
+          coef = easeInOutQuad((ease-this.offsetCollabs) / (this.h*.5))
           transform(this.$refs.collabs, {translate3d: [-coef * this.translateX  , 0, 0]})
         }
-      }
-      if(ease >= this.offset) {
-        const collabcoef = easeInOutQuad((ease-this.offset) / (this.h))
+      }*/
+      if(ease >= this.offsetCollabs) {
+        const collabcoef = easeInOutQuad((ease-this.offsetCollabs) / (this.h))
         transform(this.$refs.collabs, {translate3d: [-collabcoef * this.translateX  , 0, 0]})
       }
+      if(!this.isDevice) {
+        const x = MouseHelper.x
+        const y = MouseHelper.y + scrollTop
+        const easeX = MouseHelper.easeX
+        const easeY = MouseHelper.easeY + scrollTop
+        const posX = this.w * .1 + 100
+        const posY = this.offset + this.h + this.w * .05 + 100
+        const dist = this.distance(x,y,posX,posY)
+
+        let pourc = 0
+        if(dist < 300) {
+          pourc = easeInQuad(1 - (dist / 300))
+          if(pourc > 1) pourc = 1
+        }
+        const newPosX = (x-posX) * pourc
+        const newPosY = (y-posY) * pourc
+        transform(this.buttonReel, {translate3d: [  newPosX , newPosY,0]})
+        transform(this.buttonReelSpan, {translate3d: [  (x-posX -newPosX) * pourc , (y-posY - newPosY) * pourc,0]})
+      }
+    },
+    distance(x1, y1, x2, y2) {
+      const dx = x1 - x2;
+      const dy = y1 - y2;
+      return Math.sqrt(dx * dx + dy * dy);
     },
     show() {
     }
@@ -97,13 +125,15 @@ export default {
   mounted() {
     const collabs = [].slice.call(this.$refs.collabs.querySelectorAll('li'))
     this.lastItem = collabs[collabs.length-1]
-
+    this.buttonReel = this.$el.querySelector('button.showreel')
+    this.buttonReelSpan = this.buttonReel.querySelector('span')
   },
 }
 </script>
 
 <style lang="stylus" scoped>
-
+.d-f
+  position relative
 button
   height 200px
   width 200px
@@ -112,8 +142,12 @@ button
   font-family $schnyder
   font-weight $demi
   font-size 18px
-  margin-left 10vw
-  margin-top 5vw
+  position absolute
+  top 5vw
+  left 10vw
+  span
+    display block
+
 .d-f .regognitions
   padding-top 4vw
   div + div
@@ -150,6 +184,9 @@ ul
     width 150px
     margin-left 50px
     margin-top 50px
+    position relative
+    top auto
+    left auto
   .awards span
     font-size 2.3vw
   .behance, .awards strong

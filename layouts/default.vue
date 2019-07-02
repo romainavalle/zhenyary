@@ -91,7 +91,7 @@ export default {
       if(!this.isDevice) {
         MouseHelper.tick()
         transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
-        if(this.$refs.video)this.$refs.video.tick(MouseHelper.x, MouseHelper.y, MouseHelper.easeX, MouseHelper.easeY)
+        if(this.$refs.video)this.$refs.video.tick()
       }
     },
 

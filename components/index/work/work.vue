@@ -20,7 +20,7 @@
           <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}" ref="link" :class="{'mobile-anime': isPhone}">Check full case +</nuxt-link>
         </div>
         <no-ssr>
-          <div class="img" ref="rightImgContainer" v-if="!isPhone">
+          <div class="img" v-if="!isPhone">
             <img :data-src="`${path}${work.homeMenu}`" :alt="work.title" ref="rightImg" width="960" height="377">
           </div>
         </no-ssr>
@@ -60,7 +60,7 @@ export default {
         this.h = h
       }
       this.offset = offset(this.$el).top - this.h
-      this.offsetImgR = offset(this.$el).top - this.h * .5
+      if(!this.isPhone)this.offsetImgR = offset(this.$refs.rightImg).top - this.h
     },
     tick(scrollTop, ease) {
       if(this.isPhone)  {
@@ -177,7 +177,6 @@ export default {
   background $grey
   .img
     width 100%
-    height 30vh
     overflow hidden
     position absolute
     bottom 0

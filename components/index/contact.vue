@@ -3,12 +3,12 @@
     <no-ssr>
     <v-svg-star class="star" v-if="isPhone"/>
     </no-ssr>
-    <p>Let’s make something great!<br><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank">hey@zhenyary.com</a>  for any <br> collaborations.</p>
+    <p>Let’s make something great!<br><a :href="`mailto:${datas.email}`" rel="noopener" target="_blank" v-text="datas.email"></a>  for any <br> collaborations.</p>
     <no-ssr>
       <div v-if="!isPhone">
         <div class="line" :class="{'ready': linesReady[0]}"><v-svg-smiley class="smiley" /></div>
         <div class="line" :class="{'ready': linesReady[1]}">Let’s make <strong class="italic">something</strong> great!</div>
-        <div class="line" :class="{'ready': linesReady[2]}"><a href="mailto:hey@zhenyary.com" rel="noopener" target="_blank" class="link">hey@zhenyary.com</a><v-svg-arrow class="arrow" /> <span class="italic">for</span></div>
+        <div class="line" :class="{'ready': linesReady[2]}"><a :href="`mailto:${datas.email}`" rel="noopener" target="_blank" class="link"  v-text="datas.email"></a><v-svg-arrow class="arrow" /> <span class="italic">for</span></div>
         <div class="line" :class="{'ready': linesReady[3]}"><v-svg-arrow class="arrow" :class="{'red': arrow[0]}" /><v-svg-arrow class="arrow"  :class="{'red': arrow[1]}"/><v-svg-arrow class="arrow"  :class="{'red': arrow[2]}"/><span>collaborations.</span><v-svg-star class="star" /></div>
       </div>
     </no-ssr>
@@ -22,7 +22,7 @@ import vSvgSmiley from "~/assets/svgs/smiley.svg?inline";
 import { easeInOutQuad } from '~/assets/js/utils/easings'
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -35,7 +35,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isPhone'])
+    ...mapGetters(['isPhone']),
+    ...mapState(['datas'])
   },
   components: {
     vSvgArrow, vSvgStar, vSvgSmiley
