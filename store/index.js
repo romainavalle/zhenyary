@@ -10,6 +10,7 @@ export const state = () => ({
   works: [],
   worksById: {},
   color: 'nude',
+  showVideo: false,
   workScreenId: 0,
   isFirstTime: true,
   navMobile: false,
@@ -29,6 +30,9 @@ export const mutations = {
   SET_COLOR (state, color) {
     state.color = color
   },
+  SET_VIDEO (state, showVideo) {
+    state.showVideo = showVideo
+  },
   SET_NAV_MOBILE (state, navMobile) {
     state.navMobile = navMobile
   },
@@ -40,7 +44,6 @@ export const actions = {
   nuxtServerInit({state, commit}) {
     const works = []
     const worksById = {}
-    console.log('nuxtServerInit');
     state.about.awwwards = []
     state.about.FWA = []
     state.datas.works.forEach(screen => {
@@ -73,6 +76,9 @@ export const actions = {
   },
   setFirstTime({commit}) {
     commit('SET_FIRST_TIME')
+  },
+  setVideo({commit}, showVideo) {
+    commit('SET_VIDEO', showVideo)
   }
 }
 export const getters = {

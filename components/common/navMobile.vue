@@ -38,7 +38,7 @@ export default {
       }
     },
     doClick(id, $ev) {
-      if(this.$route.name === id)this.hide()
+      if(this.$route.name === id)this.setNavMobile(false)
     },
     show() {
       this.$el.style.display = 'block'
@@ -137,6 +137,7 @@ nav
       display block
       width 100%
       height 100%
+      fill $black
   .container
     position absolute
     top 0

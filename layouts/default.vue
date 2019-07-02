@@ -17,6 +17,9 @@
     <no-ssr>
       <v-nav-mobile v-if="isPhone" ref="navMobile"/>
     </no-ssr>
+    <no-ssr>
+      <v-video-player ref="video"/>
+    </no-ssr>
     <v-nav ref="nav"/>
     <div class="scroll" ref="scroll">
       <nuxt :key="route.params.slug || route.name"  ref="page" class="page"/>
@@ -28,12 +31,14 @@
 import Emitter from '~/assets/js/events/EventsEmitter'
 import ResizeHelper from '~/assets/js/utils/ResizeHelper'
 import ScrollHelper from '~/assets/js/utils/ScrollHelper'
+import MouseHelper from '~/assets/js/utils/MouseHelper'
 import vTurn from '~/components/common/turn.vue'
 import vNavMobile from '~/components/common/navMobile.vue'
 import vHeaderMobile from '~/components/common/headerMobile.vue'
 import vLoader from '~/components/common/loader.vue'
 import vLoaderTop from '~/components/common/loaderTop.vue'
 import vFooter from '~/components/common/footer.vue'
+import vVideoPlayer from '~/components/common/videoPlayer.vue'
 import vNav from '~/components/common/nav.vue'
 import vProgress from '~/components/common/progress.vue'
 import loop from 'raf-loop'
@@ -56,7 +61,7 @@ export default {
     ...mapGetters(['isDevice', 'isPhone', 'isTablet', 'isSafari'])
   },
   components: {
-    vLoader, vLoaderTop, vTurn, vNav, vFooter,vProgress, vNavMobile, vHeaderMobile
+    vLoader, vLoaderTop, vTurn, vNav, vFooter,vProgress, vNavMobile, vHeaderMobile, vVideoPlayer
   },
   methods:{
     ...mapActions(['setNavMobile']),
@@ -71,6 +76,7 @@ export default {
       this.$refs.loader.resize(w, h)
       this.$refs.loaderTop.resize(w, h)
       this.$refs.footer.resize(w, h, pageHeight)
+      if(this.$refs.video)this.$refs.video.resize(w, h)
       if(!this.isDevice)document.body.style.height = pageHeight + 'px'
     },
     tick(){
@@ -81,8 +87,12 @@ export default {
       this.$refs.nav.tick(scrollTop)
       this.$refs.footer.tick(scrollTop)
       if(this.$refs.page.$children[0])this.$refs.page.$children[0].tick && this.$refs.page.$children[0].tick(scrollTop, scrollTopEase)
-      if(!this.isDevice)transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
       if(this.$refs.progress) this.$refs.progress.tick(scrollTop, scrollTopEase)
+      if(!this.isDevice) {
+        MouseHelper.tick()
+        transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
+        if(this.$refs.video)this.$refs.video.tick(MouseHelper.x, MouseHelper.y, MouseHelper.easeX, MouseHelper.easeY)
+      }
     },
 
     pageFadeOut(cb) {

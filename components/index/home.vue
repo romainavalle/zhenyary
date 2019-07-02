@@ -34,7 +34,7 @@
     <no-ssr>
       <v-top-layer ref="topLayer"  aria-hidden="true"/>
     </no-ssr>
-    <button class="play" aria-label="play video" ref="play">Play<br>Showreel</button>
+    <button class="play" aria-label="play video" ref="play" @click="setVideo(true)">Play<br>Showreel</button>
     <div class="click">
      <button aria-label="click" @click="showCircles" ref="click"><v-svg class="star"></v-svg><span>Click click</span></button>
       <ul ref="skills">
@@ -60,7 +60,7 @@ import MouseHelper from '~/assets/js/utils/MouseHelper'
 import homeCircles from '~/assets/datas/homeCircles.json';
 import transform from 'dom-transform'
 import anime from 'animejs'
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -79,6 +79,7 @@ export default {
     vBottomLayer, vTopLayer, vHomeFooter, vSvg, vCircles, vBackground
   },
   methods: {
+    ...mapActions(['setVideo']),
     resize(w, h) {
       if(w && h) {
         this.w = w

@@ -6,6 +6,7 @@
 
 <script>
 import vSocials from '~/components/common/socials.vue'
+import vSvgClose from "~/assets/svgs/close.svg?inline";
 import anime from 'animejs'
 export default {
   data() {
