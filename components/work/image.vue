@@ -3,7 +3,7 @@
     <figure :style="{width, top}">
       <div class="img">
         <no-ssr>
-          <img :data-src="`${path}honey-pot/shadow-honey.png`" alt="shadow" class="shadow" aria-hidden="true">
+          <img :data-src="`${path}${content.shadow}`" alt="shadow" class="shadow" aria-hidden="true" v-if="content.shadow">
         </no-ssr>
         <div class="img-container" ref="container">
           <img :data-src="`${path}${content.url}`" :alt="content.alt || title" ref="img" class="main">

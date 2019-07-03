@@ -75,7 +75,7 @@
       "width": 50,
       "top": 60,
       "background": "#292929",
-      "shadow": "shadow-max",
+      "shadow": "m-shkret/shadow-max.png",
       "url": "m-shkret/max-9.jpg",
       "alt": "M Shkret"
     },
@@ -84,7 +84,7 @@
       "width": 50,
       "top": 40,
       "background": "#292929",
-      "shadow": "shadow-max",
+      "shadow": "m-shkret/shadow-max.png",
       "url": "m-shkret/max-10.jpg",
       "alt": "M Shkret"
     },

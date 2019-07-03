@@ -65,7 +65,7 @@
       "width": 60,
       "top": 60,
       "background": "#453949",
-      "shadow": "shadow-epicurrence",
+      "shadow": "epicurrence/shadow-epicurrence.png",
       "url": "epicurrence/epicurrence-5.jpg",
       "alt": "epicurrence"
     },
@@ -74,7 +74,7 @@
       "width": 60,
       "top": 40,
       "background": "#453949",
-      "shadow": "shadow-epicurrence",
+      "shadow": "epicurrence/shadow-epicurrence.png",
       "url": "epicurrence/epicurrence-6.jpg",
       "alt": "epicurrence"
     },

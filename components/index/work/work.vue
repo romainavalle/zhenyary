@@ -17,10 +17,9 @@
             <li v-for="(skill, index) in work.skills" :key="`skill-${index}`" v-text="index === 0 ? skill : ` / ${skill}`" class="strong"></li>
           </ul>
           <p v-html="work.intro" class="intro" ref="intro" :class="{'mobile-anime': isPhone}"></p>
-          <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}" @mouseenter.native="onMouseEnter" @mouseleave.native="onMouseLeave" ref="link" :class="{'mobile-anime': isPhone, 'ready': isBlurReady}" class="blur">Check full case +
+          <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}" @mouseenter.native="onMouseEnter" @mouseleave.native="onMouseLeave" ref="link" :class="{'mobile-anime': isPhone, 'ready': isBlurReady}" class="blur blur-sml">Check full case +
             <no-ssr>
               <span v-if="isBlurReady">
-                  <span class="inner-blur" data-text="Check full case +"></span>
                   <span class="inner-blur" data-text="Check full case +"></span>
                   <span class="inner-blur" data-text="Check full case +"></span>
                   <span class="inner-blur" data-text="Check full case +"></span>

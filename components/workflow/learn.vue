@@ -173,8 +173,10 @@ article
       padding-top 5vh
       strong
         font-size 12.5vw
+        position relative
       p
         font-size 15px
+        position relative
       .arrow
         display block
         width 28vw

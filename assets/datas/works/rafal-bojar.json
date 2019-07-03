@@ -68,7 +68,7 @@
       "type": "vImage",
       "width": 60,
       "background": "#D4D1CB",
-      "shadow": "shadow-rafal",
+      "shadow": "rafal-bojar/shadow-rafal.png",
       "url": "rafal-bojar/rafal-7.jpg",
       "alt": "Rafal Bojar Photographer"
     },
