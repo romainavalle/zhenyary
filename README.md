@@ -1,6 +1,6 @@
 # zhenya
 
-> Nuxt.js project
+> Zhenya Rynzhuk Portfolio
 
 ## Build Setup
 
