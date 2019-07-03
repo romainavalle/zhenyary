@@ -7,7 +7,51 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Art Director / Visual designer - I\'m is a designer with 5 years of experience. I\'m firmly believe that every project needs an individual approach. I specialize in mobile app design, web design, UI/UX, graphic design, branding, and building identities. I\'m looking forward to making something fabulous together with a future client.' }
+      { hid: 'description', name: 'description', content: 'Portfolio of Zhenya Rynzhuk, award-winning art director. Areas of expertise include Product & Visual design, Mobile & Web projects, Branding, Typography, and Animations.' },
+      { hid: 'og:description', property: 'og:description', content: 'Portfolio of Zhenya Rynzhuk, award-winning art director. Areas of expertise include Product & Visual design, Mobile & Web projects, Branding, Typography, and Animations.' },
+      { hid: 'twitter:description', property: 'twitter:description', content: 'Portfolio of Zhenya Rynzhuk, award-winning art director. Areas of expertise include Product & Visual design, Mobile & Web projects, Branding, Typography, and Animations.' },
+      { hid: 'og:url', property: 'og:url', content: 'https://www.zhenyary.com' },
+      { hid: 'twitter:url', property: 'twitter:url', content: 'https://www.zhenyary.com' },
+      {
+        hid: `og:title`,
+        property: 'og:title',
+        content: 'Zhenya Rynzhuk'
+      },
+      {
+        hid: 'og:type',
+        property: 'og:type',
+        content: 'website'
+      },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: 'Zhenya Rynzhuk'
+      },
+      {
+        hid: 'twitter:card',
+        property: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      {
+        hid: 'twitter:title',
+        property: 'twitter:title',
+        content: 'Zhenya Rynzhuk'
+      },
+      {
+        hid: 'twitter:site',
+        property: 'twitter:site',
+        content: 'Zhenya Rynzhuk'
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://www.zhenyary.com/images/share.jpg'
+      },
+      {
+        hid: 'twitter:image',
+        property: 'twitter:image',
+        content: 'https://www.zhenyary.com/images/share.jpg'
+      }
     ]
 
   },
