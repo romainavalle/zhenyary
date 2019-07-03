@@ -32,11 +32,11 @@
             </span>
           </div>
           <div class="line">
-            <span class="underline" :class="{'ready': isShown}">Visual design</span>
+            <span class="underline italic" :class="{'ready': isShown}">Visual design</span>
             <span class="word">Mobile & web design</span>
           </div>
           <div class="line">
-            <span class="word italic">Interaction design</span>
+            <span class="word">Interaction design</span>
             <div class="and" :class="{'ready': isShown}"><span>&</span><span>&</span></div>
             <span class="word">Animation</span>
           </div>

@@ -64,6 +64,7 @@ export default {
     align-items center
     font-family $schnyder
     font-weight $demi
+    font-style italic
     text-align center
     line-height 1.1
     span
