@@ -5,6 +5,7 @@
     <v-works ref="works"/>
     <v-works-link ref="link"/>
     <v-contact ref="contact"/>
+    <v-thanks ref="thanks"/>
   </section>
 </template>
 
@@ -15,6 +16,7 @@ import vGems from '~/components/index/gems.vue'
 import vWorks from '~/components/index/works.vue'
 import vWorksLink from '~/components/index/worksLink.vue'
 import vContact from '~/components/index/contact.vue'
+import vThanks from '~/components/index/thanks.vue'
 import mobileMixin from '~/components/mobileMixin.vue'
 import { mapGetters, mapState } from 'vuex';
 export default {
@@ -26,7 +28,7 @@ export default {
     }
   },
   components: {
-    vHome, vGems, vWorks, vWorksLink, vContact
+    vHome, vGems, vWorks, vWorksLink, vContact, vThanks
   },
   mixins: [mobileMixin],
   computed: {
@@ -44,6 +46,7 @@ export default {
       this.$refs.works.resize(this.w, this.h)
       this.$refs.link.resize(this.w, this.h)
       this.$refs.contact.resize(this.w, this.h)
+      this.$refs.thanks.resize(this.w, this.h)
       if(this.isPhone)this.resizeMobile()
     },
     tick(scrollTop, ease) {
@@ -52,12 +55,13 @@ export default {
       this.$refs.works.tick(scrollTop, ease)
       this.$refs.link.tick(scrollTop, ease)
       this.$refs.contact.tick(scrollTop)
+      this.$refs.thanks.tick(scrollTop)
       if(this.isPhone)this.tickMobile(scrollTop)
     }
   },
   mounted() {
     this.$nextTick(()=>{
-      if(this.isPhone) this.setupMobile()
+      if(this.isPhone)this.setupMobile()
       this.isShown = true
       Emitter.emit('PAGE:MOUNTED')
       setTimeout(() => {

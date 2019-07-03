@@ -29,7 +29,7 @@ import MouseHelper from '~/assets/js/utils/MouseHelper'
 import anime from'animejs'
 import { mapState, mapActions } from 'vuex';
 import transform from 'dom-transform'
-import vSvgClose from "~/assets/svgs/close.svg?inline";
+import vSvgClose from "~/assets/svgs/closeVideo.svg?inline";
 import vSvgPlay from "~/assets/svgs/play.svg?inline";
 import vSvgPause from "~/assets/svgs/pause.svg?inline";
 export default {
@@ -92,6 +92,7 @@ export default {
     show() {
       this.$el.style.display = 'block'
       this.$refs.video.addEventListener('ended',this._onEnd)
+      window.addEventListener('keydown',this._onKeyPress)
       anime({
         targets:this.$el,
         opacity: 1,
@@ -104,6 +105,7 @@ export default {
     },
     hide() {
       this.$refs.video.removeEventListener('ended',this._onEnd)
+      window.removeEventListener('keydown',this._onKeyPress)
       this.pause()
       anime({
         targets:this.$el,
@@ -117,7 +119,12 @@ export default {
       })
     },
     onEnd() {
-      this.setVideo(false)
+      setTimeout(()=>{
+        this.setVideo(false)
+      }, 1000)
+    },
+    onKeyPress(e) {
+      if(e.code === 'Escape') this.setVideo(false)
     }
 
   },
@@ -143,9 +150,11 @@ export default {
   },
   beforeDestroy() {
     this.$refs.video.removeEventListener('ended',this._onEnd)
+    window.removeEventListener('keydown',this._onKeyPress)
   },
   mounted() {
     this._onEnd = this.onEnd.bind(this)
+    this._onKeyPress = this.onKeyPress.bind(this)
     this.$el.style.display = 'none'
     anime.set(this.$el, {opacity: 0})
 
@@ -182,7 +191,6 @@ export default {
       width 100%
       height 100%
       stroke $white
-      fill $white
 
   video
     position absolute
@@ -217,10 +225,11 @@ export default {
     display block
     width 100%
     height 100%
-    stroke-width 2px
     transform translate(-50%, -50%)
-.cursor-enter-active, .cursor-leave-active
-  transition opacity .5s
+.cursor-enter-active
+  transition opacity .5s ease-out-quad, transform .5s ease-out-quad
+.cursor-leave-active
+  transition opacity .2s ease-in-quad, transform .2s ease-in-quad
 .cursor-enter, .cursor-leave-to
   opacity 0
   transform scale(.5, .5)

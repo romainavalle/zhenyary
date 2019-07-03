@@ -48,6 +48,7 @@
 
 <script>
 import anime from 'animejs'
+import blurMixin from '~/components/blurMixin.vue'
 import vSvgStar from "~/assets/svgs/star.svg?inline";
 import { mapGetters } from 'vuex';
 export default {
@@ -66,6 +67,7 @@ export default {
   computed: {
     ...mapGetters(['isDevice', 'isPhone'])
   },
+  mixins: [blurMixin],
   methods: {
     resize(w, h) {
       if(w && h) {
@@ -80,7 +82,7 @@ export default {
         this.show()
       }
       if(scrollTop > this.offset- this.h * .8 && scrollTop < this.offset +this.h * .5 && this.showComplete) {
-        if(!this.isBlurActive)this.doBlur()
+        if(!this.isBlurActive)this.startBlur()
       }else{
         if(this.isBlurActive){
           this.isBlurActive = false
@@ -107,33 +109,14 @@ export default {
         easing: 'easeOutQuad',
         delay: anime.stagger(200, {start: 100})
       })
-      setTimeout(this.doBlur.bind(this), 500)
+      setTimeout(this.startBlur.bind(this), 500)
 
     },
-    doBlur() {
+    startBlur() {
       if(this.isDevice) return
-
       this.showComplete = true
       this.isBlurActive = true
-      const duration = 50 + Math.random() * 50
-      const delay = Math.random() * 100
-      const scaleX = 1 + Math.random() / 10
-      const scaleY = 1 + Math.random() / 10
-      const translateX = (Math.random() -.5) / 100
-
-      const translateY = (Math.random() - .5) / 100
-      this.blurAnime = anime({
-        targets: '.inner-blur',
-        translateX: () => { return anime.random(-4, 4); },
-        translateY: () => { return anime.random(-4, 4); },
-        duration: duration,
-        easing: 'easeOutQuad',
-        delay,
-        direction: 'alternate',
-        loop: 1,
-        complete: this.doBlur.bind(this),
-      })
-
+      this.doBlur()
     },
     setup() {
       this.words.forEach(word => {
@@ -154,9 +137,6 @@ export default {
       })
 
     }
-  },
-  beforeDestroy() {
-    if(this.blurAnime)this.blurAnime.pause()
   },
   mounted() {
     if(this.isPhone) return

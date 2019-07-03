@@ -1,9 +1,9 @@
 <template>
   <article class="contact">
     <no-ssr>
-    <v-svg-star class="star" v-if="isPhone"/>
+    <v-svg-star class="star mobile-anime" v-if="isPhone"/>
     </no-ssr>
-    <p>Let’s make something great!<br><a :href="`mailto:${datas.email}`" rel="noopener" target="_blank" v-text="datas.email"></a>  for any <br> collaborations.</p>
+    <p :class="{'mobile-anime': isPhone}">Let’s make something great!<br><a :href="`mailto:${datas.email}`" rel="noopener" target="_blank" v-text="datas.email"></a>  for any <br> collaborations.</p>
     <no-ssr>
       <div v-if="!isPhone">
         <div class="line" :class="{'ready': linesReady[0]}"><v-svg-smiley class="smiley" /></div>
@@ -63,7 +63,7 @@ export default {
             coef = easeInOutQuad(Math.min(1,(scrollTop-start) / duration))
             transform(line, {translateY: 100 - 100 * coef, scaleY: 1.5 - .5 * coef})
             line.style.opacity = coef
-            if(coef > .8 && !this.linesReady[i]){
+            if(coef > .95 && !this.linesReady[i]){
               this.$set(this.linesReady,i, true)
               if(i === 3)this.switchArrow()
             }
@@ -145,8 +145,8 @@ export default {
       height .3vw
       left 0
       background $red
-      transform scale(0)
-      transform-origin 0 0
+      transform scale(0, 1)
+      transform-origin 0 50%
       transition transform .5s ease-out-quad
   svg
     display block
@@ -182,6 +182,7 @@ export default {
       color $white
 .mobile &.contact
   display block
+  height 80vh
   svg
     width 30px
     height 30px

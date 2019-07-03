@@ -1,7 +1,11 @@
 <template>
-  <div class="work-link" v-if="work">
+  <div class="work-link blur ready" v-if="work">
     <span class="number" v-text="getId"  :class="{'wide': work.menuNumberUnderline}"></span>
     <div v-html="work.title" class="label" :class="{'italic': work.menuItalic}"></div>
+    <div class="work-link inner-blur" v-for="index in 10" :key="index">
+      <span class="number" v-text="getId"  :class="{'wide': work.menuNumberUnderline}"></span>
+      <div v-html="work.title" class="label" :class="{'italic': work.menuItalic}"></div>
+    </div>
   </div>
 </template>
 
@@ -9,6 +13,7 @@
 import offset from '~/assets/js/utils/offset'
 import anime from 'animejs'
 import Emitter from '~/assets/js/events/EventsEmitter'
+import blurMixin from '~/components/blurMixin.vue'
 import { mapState } from 'vuex';
 export default {
   data() {
@@ -17,6 +22,7 @@ export default {
       id: -1
     }
   },
+  mixins:[blurMixin],
   computed: {
     ...mapState(['works']),
     getId() {
@@ -31,6 +37,7 @@ export default {
         this.h = h
       }
     },
+
     setWork(workEl,id ,screenId) {
       this.work = this.works[id]
 
@@ -52,6 +59,7 @@ export default {
         duration: 500,
         easing: 'easeOutQuad'
       })
+      this.doBlur()
 
     },
     hide(){
@@ -63,14 +71,13 @@ export default {
         duration: 300,
         easing: 'easeInQuad',
         complete:()=>{
+          if(this.blurAnime)this.blurAnime.pause()
           this.work = null
         }
       })
     },
     onMouseLeave(){
     }
-  },
-  beforeDestroy() {
   },
   mounted(){
   }
@@ -81,5 +88,8 @@ export default {
 .work-link
   position absolute
   pointer-events none
+  width 100vw
+  .inner-blur
+    display flex
 </style>
 

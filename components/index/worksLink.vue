@@ -1,5 +1,5 @@
 <template>
-  <div class="worksLink">
+  <div class="worksLink" :class="{'ready': isReady}">
     <nuxt-link :to="{name: 'works'}" class="link" ref="link"><span>All cases</span> <span>here</span></nuxt-link>
   </div>
 </template>
@@ -14,7 +14,8 @@ export default {
     return {
       w:0,
       h:0,
-      coef: 0
+      coef: 0,
+      isReady: false
     }
   },
   components: {
@@ -36,6 +37,11 @@ export default {
       let coef = 0
       if(ease>=this.offset) coef = (ease-this.offset) / this.h * 1.5
       coef = Math.min(1, coef)
+      if(coef>.8){
+        if(!this.isReady) this.isReady = true
+      }else{
+        if(this.isReady) this.isReady = false
+      }
       if(coef !== this.coef) {
 
         const easeCoef = easeOutQuad(coef)
@@ -74,6 +80,12 @@ export default {
       position absolute
       left 0
       display block
+      transform scale(0, 1)
+      transform-origin 0 50%
+      transition transform .5s ease-out-quad
+  &.ready
+    a:after
+      transform scale(1)
   +below('s')
     a
       width 50%

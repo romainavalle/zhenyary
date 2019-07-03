@@ -17,7 +17,23 @@
             <li v-for="(skill, index) in work.skills" :key="`skill-${index}`" v-text="index === 0 ? skill : ` / ${skill}`" class="strong"></li>
           </ul>
           <p v-html="work.intro" class="intro" ref="intro" :class="{'mobile-anime': isPhone}"></p>
-          <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}" ref="link" :class="{'mobile-anime': isPhone}">Check full case +</nuxt-link>
+          <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}" @mouseenter.native="onMouseEnter" @mouseleave.native="onMouseLeave" ref="link" :class="{'mobile-anime': isPhone, 'ready': isBlurReady}" class="blur">Check full case +
+            <no-ssr>
+              <span v-if="isBlurReady">
+                  <span class="inner-blur" data-text="Check full case +"></span>
+                  <span class="inner-blur" data-text="Check full case +"></span>
+                  <span class="inner-blur" data-text="Check full case +"></span>
+                  <span class="inner-blur" data-text="Check full case +"></span>
+                  <span class="inner-blur" data-text="Check full case +"></span>
+                  <span class="inner-blur" data-text="Check full case +"></span>
+                  <span class="inner-blur" data-text="Check full case +"></span>
+                  <span class="inner-blur" data-text="Check full case +"></span>
+                  <span class="inner-blur" data-text="Check full case +"></span>
+                  <span class="inner-blur" data-text="Check full case +"></span>
+                  <span class="inner-blur" data-text="Check full case +"></span>
+              </span>
+            </no-ssr>
+          </nuxt-link>
         </div>
         <no-ssr>
           <div class="img" v-if="!isPhone">
@@ -37,22 +53,25 @@ import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import { mapState, mapGetters } from 'vuex';
 import { easeInOutCubic, easeInOutQuad } from '~/assets/js/utils/easings'
+import blurMixin from '~/components/blurMixin.vue'
 export default {
   data() {
     return {
       w: 0,
       h: 0,
-      coef: -1
+      coef: -1,
+      isBlurReady: false
     }
   },
   props: ['work', 'id'],
   computed: {
     ...mapState(['path']),
-    ...mapGetters(['isPhone']),
+    ...mapGetters(['isPhone', 'isDevice']),
     letter() {
       return this.work.title.charAt(0)
     }
   },
+  mixins: [blurMixin],
   methods: {
     resize(w, h) {
       if(w && h) {
@@ -110,7 +129,16 @@ export default {
 
 
     },
-    easeOutQuad: function (t) { return t*(2-t) }
+    onMouseEnter() {
+      if(this.isDevice) return
+      this.isBlurReady = true
+      this.doBlur(.5)
+    },
+    onMouseLeave() {
+      if(this.isDevice) return
+      if(this.blurAnime)this.blurAnime.pause()
+      this.isBlurReady = false
+    }
   },
   mounted(){
     this.$nextTick(()=>{
@@ -160,6 +188,10 @@ export default {
   height 100%
   position relative
   overflow hidden
+  img
+    object-fit cover
+    width 100%
+    height 100%
 .left
   background $white
   .img
@@ -167,10 +199,6 @@ export default {
     height 60vh
     overflow hidden
     margin 20vh auto 0
-  img
-    object-fit cover
-    width 100%
-    height 100%
   .text
     height 20vh
 .right
@@ -180,13 +208,14 @@ export default {
     overflow hidden
     position absolute
     bottom 0
+    height 30vh
 
 .right .text
   width 40%
   left 50%
-  height 30vh
+  transform translateY(-50%)
   position absolute
-  top 30vh
+  top 35%
 .title
   font-size 1.8vw
   margin-bottom 10px
@@ -236,8 +265,10 @@ a
       top auto
       height auto
       margin 10px auto
+      transform none
     .left .img
       width 70%
+      z-index 1
     p
       margin 10px 0 10px
   +below('s')
