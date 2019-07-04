@@ -42,9 +42,11 @@ header
   display flex
   justify-content space-between
   align-items center
+  pointer-events none
   button
-  font-weight $light
     font-size 12px
+    pointer-events auto
   a
     font-size 24px
+    pointer-events auto
 </style>

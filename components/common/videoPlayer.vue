@@ -2,23 +2,27 @@
   <div class="video" >
     <button @click="setVideo(false)" ref="close" aria-label="close"><v-svg-close /></button>
     <video src="/videos/video.mp4" ref="video"></video>
-    <div class="circle" ref="circle">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"  ref="circle-inner">
-        <circle cx="50" cy="50" r="49"/>
-      </svg>
-    </div>
-    <div class="icons" ref="icons">
-      <transition name="cursor">
-        <div class="play" v-if="!isPlaying && !isCloseAttracted" @click="play">
-          <v-svg-play/>
-        </div>
-      </transition>
-      <transition name="cursor">
-        <div class="pause" v-if="isPlaying && !isCloseAttracted" @click="pause">
-          <v-svg-pause/>
-        </div>
-      </transition>
-    </div>
+    <no-ssr>
+      <div class="circle" ref="circle" v-if="!isDevice">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"  ref="circle-inner">
+          <circle cx="50" cy="50" r="49"/>
+        </svg>
+      </div>
+    </no-ssr>
+    <no-ssr>
+      <div class="icons" ref="icons" v-if="!isDevice">
+        <transition name="cursor">
+          <div class="play" v-if="!isPlaying && !isCloseAttracted" @click="play">
+            <v-svg-play/>
+          </div>
+        </transition>
+        <transition name="cursor">
+          <div class="pause" v-if="isPlaying && !isCloseAttracted" @click="pause">
+            <v-svg-pause/>
+          </div>
+        </transition>
+      </div>
+    </no-ssr>
   </div>
 </template>
 
@@ -27,7 +31,7 @@
 import { easeInOutQuint } from '~/assets/js/utils/easings'
 import MouseHelper from '~/assets/js/utils/MouseHelper'
 import anime from'animejs'
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import transform from 'dom-transform'
 import vSvgClose from "~/assets/svgs/closeVideo.svg?inline";
 import vSvgPlay from "~/assets/svgs/play.svg?inline";
@@ -43,7 +47,8 @@ export default {
     vSvgClose, vSvgPlay, vSvgPause
   },
   computed: {
-    ...mapState(['showVideo'])
+    ...mapState(['showVideo']),
+    ...mapGetters(['isDevice'])
   },
   methods: {
     ...mapActions(['setVideo']),
@@ -157,13 +162,16 @@ export default {
     this._onKeyPress = this.onKeyPress.bind(this)
     this.$el.style.display = 'none'
     anime.set(this.$el, {opacity: 0})
-
-    anime.set( this.$refs.circle.querySelector('svg'),{
-      scaleX: 1,
-      scaleY: 1,
-      translateX: '-50%',
-      translateY: '-50%'
-    })
+    if(!this.isDevice) {
+      this.$nextTick(()=>{
+        anime.set( this.$refs.circle.querySelector('svg'),{
+          scaleX: 1,
+          scaleY: 1,
+          translateX: '-50%',
+          translateY: '-50%'
+        })
+      })
+    }
   },
 }
 </script>
