@@ -47,7 +47,7 @@ export default {
       this.$refs.link.resize(this.w, this.h)
       this.$refs.contact.resize(this.w, this.h)
       this.$refs.thanks.resize(this.w, this.h)
-      if(this.isPhone)this.resizeMobile()
+      this.resizeMobile()
     },
     tick(scrollTop, ease) {
       this.$refs.home.tick(scrollTop)
@@ -56,12 +56,12 @@ export default {
       this.$refs.link.tick(scrollTop, ease)
       this.$refs.contact.tick(scrollTop)
       this.$refs.thanks.tick(scrollTop)
-      if(this.isPhone)this.tickMobile(scrollTop)
+      this.tickMobile(scrollTop)
     }
   },
   mounted() {
     this.$nextTick(()=>{
-      if(this.isPhone)this.setupMobile()
+      this.setupMobile()
       this.isShown = true
       Emitter.emit('PAGE:MOUNTED')
       setTimeout(() => {

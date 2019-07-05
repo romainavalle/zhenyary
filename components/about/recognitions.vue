@@ -33,10 +33,11 @@
     <div>
       <h4 class="mobile-anime">Collaborations</h4>
       <div class="collabs mobile-anime">
-        <ul class="collaborations" ref="collabs">
+        <ul class="collaborations" ref="collabs" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
           <li v-for="(collab, index) in about.collaborations" :key="`collab-${index}`" v-text="collab"></li>
           <no-ssr>
           <li v-for="(collab, index) in about.collaborations" :key="`collab-${index+about.collaborations.length}`" v-text="collab"></li>
+          <li v-for="(collab, index) in about.collaborations" :key="`collab-${index+about.collaborations.length * 2}`" v-text="collab"></li>
           </no-ssr>
         </ul>
       </div>
@@ -50,6 +51,7 @@ import { easeInQuad } from '~/assets/js/utils/easings'
 import MouseHelper from '~/assets/js/utils/MouseHelper'
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
+import anime from 'animejs'
 import { easeInOutQuad } from '~/assets/js/utils/easings'
 import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
@@ -57,7 +59,8 @@ export default {
     return {
       w: 0,
       h: 0,
-      isShown: false
+      count: 0,
+      multiplier: 1
     }
   },
   components: {
@@ -80,7 +83,8 @@ export default {
       this.offset = offset(this.$el).top - this.h
       this.offsetCollabs = offset(this.$refs.collabs).top - this.h
 
-      this.translateX = this.lastItem.offsetLeft * 1.9 + this.lastItem.clientWidth - this.w * (this.w > 1024 ? .45 : .6)
+      this.translateX = this.lastItem.offsetLeft
+
     },
     tick(scrollTop, ease) {
      /* if(!this.isPhone) {
@@ -90,10 +94,9 @@ export default {
           transform(this.$refs.collabs, {translate3d: [-coef * this.translateX  , 0, 0]})
         }
       }*/
-      if(ease >= this.offsetCollabs) {
-        const collabcoef = easeInOutQuad((ease-this.offsetCollabs) / (this.h))
-        transform(this.$refs.collabs, {translate3d: [-collabcoef * this.translateX  , 0, 0]})
-      }
+      this.count += 3 * this.multiplier
+      if(this.count > this.translateX)this.count = 0
+      transform(this.$refs.collabs, {translate3d: [  -this.count , 0,0]})
       if(!this.isDevice) {
         const x = MouseHelper.x
         const y = MouseHelper.y + scrollTop
@@ -120,13 +123,22 @@ export default {
       return Math.sqrt(dx * dx + dy * dy);
     },
     show() {
+    },
+    onMouseEnter() {
+      anime({targets: this, multiplier: .2, easing: 'easeInQuad'})
+    },
+    onMouseLeave() {
+      anime({targets: this, multiplier: 1, easing: 'easeOutQuad'})
     }
   },
   mounted() {
-    const collabs = [].slice.call(this.$refs.collabs.querySelectorAll('li'))
-    this.lastItem = collabs[collabs.length-1]
+    this.$nextTick(()=>{
+      const collabs = [].slice.call(this.$refs.collabs.querySelectorAll('li'))
+      this.lastItem = collabs[ this.about.collaborations.length]
+    })
     this.buttonReel = this.$el.querySelector('button.showreel')
     this.buttonReelSpan = this.buttonReel.querySelector('span')
+
   },
 }
 </script>
@@ -172,12 +184,12 @@ ul
 .collaborations
   font-size 1.5vw
   display flex
+  margin-left -50vw
   li
     display inline-block
     white-space nowrap
     color $red
-    & + li
-      padding-left 3vw
+    padding-right 3vw
 +below('l')
   button
     height 150px

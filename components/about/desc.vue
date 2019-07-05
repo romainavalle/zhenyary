@@ -1,20 +1,20 @@
 <template>
   <div class="d-f desc">
     <div class="spacer"></div>
-    <article :class="{'mobile-anime': !isPhone}">
+    <article>
       <div class="blur-container" :class="{'ready': isBlurReady}" aria-hidden="true" >
         <v-svg-blur class="svg-blur" :class="{'mobile-anime': isPhone}"/>
       </div>
-      <strong class="h4" :class="{'mobile-anime': isPhone}">So,</strong>
-      <p :class="{'mobile-anime': isPhone}" v-html="about.about" ></p>
+      <strong class="h4" >So,</strong>
+      <p  v-html="about.about"  :class="{'mobile-anime': isPhone}"></p>
     </article>
   </div>
 </template>
 
 <script>
 import vSvgBlur from "~/assets/svgs/blur.svg?inline";
-import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
+import anime from 'animejs'
 import splitLines from '~/assets/js/utils/splitLines'
 import { easeInOutQuad } from '~/assets/js/utils/easings'
 import { mapState, mapGetters } from 'vuex'
@@ -44,21 +44,37 @@ export default {
     tick(scrollTop, ease) {
       if(!this.isPhone) {
         let coef = 0
-
+        if(!this.lines) return
         if(ease >= this.offset && ease < this.offset + this.h * .5) {
-          coef = easeInOutQuad((ease-this.offset) / (this.h * .5))
+          coef = (ease-this.offset) / (this.h * .5)
 
-          if(!this.isBlurReady && coef > .5)this.isBlurReady=true
-          this.lines.forEach((line, i) => {
-            const start = 50 + i * 50
-            line.style.opacity = coef
-            transform(line, {translate3d: [start - coef * start, 0, 0]})
-          });
-          if(coef < .1 && this.isBlurReady)this.isBlurReady=false
+          if(!this.isBlurReady && coef > .5)this.show()
+          if(coef < .1 && this.isBlurReady)this.hide()
         }
       }
     },
     show() {
+      this.isBlurReady=true
+
+      anime({
+        targets: this.lines,
+        translateX: 0,
+        opacity: 1,
+        easing: 'easeOutQuad',
+        duration: 500,
+        delay: anime.stagger(50, {easing: 'easeOutQuad'})
+      })
+    },
+    hide() {
+      this.isBlurReady = false
+      anime({
+        targets: this.lines,
+        translateX: 50,
+        opacity: 0,
+        easing: 'easeInQuad',
+        duration: 500
+      })
+
     }
   },
   mounted() {
@@ -68,11 +84,10 @@ export default {
       this.$nextTick(()=>{
         splitLines(this.$el.querySelector('p'))
         this.lines = [this.$el.querySelector('strong'), ...[].slice.call(this.$el.querySelectorAll('.line'))]
-        this.lines.forEach((line, i) => {
-          const start = 50 + i * 50
-          line.style.opacity = 0
-          transform(line, {translate3d: [start,0,  0]})
-        });
+        anime.set(this.lines, {
+          translateX: 50,
+          opacity: 0,
+        })
       })
     }
   },

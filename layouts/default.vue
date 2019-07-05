@@ -121,6 +121,11 @@ export default {
       })
       this.$router.afterEach((to, from) => {
         ScrollHelper.goTo(0)
+        const routes = this.$router.options.routes.map((r)=>r.name)
+        routes.forEach(r => {
+          classie.removeClass(document.body, r)
+        });
+        classie.addClass(document.body, to.name)
         this.setNavMobile(false)
       })
     },
@@ -166,8 +171,11 @@ export default {
       this.canScroll = true
       this.resize()
     },2000)
-   if(!this.isTouch) document.querySelector("html").className = "no-touch"
+   if(!this.isTouch) classie.addClass(document.querySelector("html"), "no-touch")
     classie.addClass(document.body, `color${this.colorId}`)
+    classie.addClass(document.body, this.$route.name)
+
+
    window.addEventListener('mousedown', ()=>{
      classie.removeClass(document.body, `color${this.colorId}`)
      this.colorId++

@@ -6,18 +6,18 @@
           <img :data-src="`${path}${work.cover}`" :alt="work.title" ref="img" width="484" height="536">
         </div>
         <div class="text">
-          <h3 class="h3"  v-html="work.title" ref="title" :class="{'mobile-anime': isPhone}"></h3>
-          <p class="type"  v-text="work.type" ref="type" :class="{'mobile-anime': isPhone}"></p>
+          <h3 class="h3 mobile-anime"  v-html="work.title"></h3>
+          <p class="type mobile-anime"  v-text="work.type"></p>
         </div>
       </div>
       <div class="right">
         <div class="text">
-          <p v-html="work.title" ref="rTitle" class="title"  :class="{'mobile-anime': isPhone}"></p>
-          <ul ref="skills"  :class="{'mobile-anime': isPhone}">
+          <p v-html="work.title" class="title mobile-anime"></p>
+          <ul class="mobile-anime">
             <li v-for="(skill, index) in work.skills" :key="`skill-${index}`" v-text="index === 0 ? skill : ` / ${skill}`" class="strong"></li>
           </ul>
-          <p v-html="work.intro" class="intro" ref="intro" :class="{'mobile-anime': isPhone}"></p>
-          <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}" @mouseenter.native="onMouseEnter" @mouseleave.native="onMouseLeave" ref="link" :class="{'mobile-anime': isPhone, 'ready': isBlurReady}" class="blur blur-sml">Check full case +
+          <p v-html="work.intro" class="intro mobile-anime"></p>
+          <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}"  @mouseenter.native="onMouseEnter" @mouseleave.native="onMouseLeave" :class="{'mobile-anime': isPhone, 'ready': isBlurReady, 'hover': isHover}" class="mobile-anime link blur blur-sml">Check full case +
             <no-ssr>
               <span v-if="isBlurReady">
                   <span class="inner-blur" data-text="Check full case +"></span>
@@ -59,7 +59,10 @@ export default {
       w: 0,
       h: 0,
       coef: -1,
-      isBlurReady: false
+      isBlurReady: false,
+      isHover: false,
+      isTimerDone: false,
+      isLeaveRequested: false
     }
   },
   props: ['work', 'id'],
@@ -98,13 +101,6 @@ export default {
           const coefCubic = easeInOutCubic(coef)
           transform(this.$refs.leftImgContainer, {scale3d:[1.5-coefCubic * .5,1.5-coefCubic * .5, 1]})
           //transform(this.$refs.rightImgContainer, {translate3d:[0, -this.h * .7  + coef * this.h * .7 , 0]})
-          transform(this.$refs.title, {translate3d:[0, this.h * .3 - coef * this.h * .3, 0]})
-          this.$refs.title.style.opacity = Math.max(0, -4 + coef * 5)
-          this.$refs.type.style.opacity = Math.max(0, -4 + coef * 5)
-          this.$refs.rTitle.style.opacity = Math.max(0, -1 + coef * 2)
-          this.$refs.skills.style.opacity = Math.max(0, -1.5 + coef * 2.5)
-          this.$refs.intro.style.opacity = Math.max(0, -3 + coef * 4)
-          this.$refs.link.$el.style.opacity = Math.max(0, -4 + coef * 5)
           this.$refs.letter.style.opacity = Math.max(0, -1 + coef * 2)
           if(this.id === 1) transform(this.$refs.letter, {translate3d:[0, -this.h*.8 + (coef) * this.h *.8,0]})
           this.coef = coef
@@ -131,12 +127,22 @@ export default {
     onMouseEnter() {
       if(this.isDevice) return
       this.isBlurReady = true
-      this.doBlur(.5)
+      this.doBlur(.4)
+      if(this.isHover) return
+      this.isHover = true
+      this.isTimerDone = false
+      this.timer = setTimeout(() => { this.isTimerDone = true; this.doOut()}, 1000)
     },
     onMouseLeave() {
       if(this.isDevice) return
       if(this.blurAnime)this.blurAnime.pause()
       this.isBlurReady = false
+      this.isLeaveRequested = true
+      this.doOut()
+    },
+    doOut() {
+      if(!this.isLeaveRequested || !this.isTimerDone) return
+      this.isHover = false
     }
   },
   mounted(){
@@ -144,13 +150,6 @@ export default {
       if(!this.isPhone) {
         const h =window.innerHeight
           transform(this.$refs.leftImgContainer, {scale3d:[1.5,1.5, 1]})
-          transform(this.$refs.title, {translate3d:[0, h * .3, 0]})
-          this.$refs.title.style.opacity = 0
-          this.$refs.type.style.opacity = 0
-          this.$refs.rTitle.style.opacity = 0
-          this.$refs.skills.style.opacity = 0
-          this.$refs.intro.style.opacity = 0
-          this.$refs.link.$el.style.opacity = 0
           this.$refs.letter.style.opacity = 0
           if(this.id === 1) transform(this.$refs.letter, {translate3d:[0, -h*.8,0]})
           transform(this.$refs.rightImg, {scale3d:[1.25,1.25, 1]})
@@ -200,6 +199,8 @@ export default {
     margin 20vh auto 0
   .text
     height 20vh
+    z-index 1
+    position relative
 .right
   background $grey
   .img
@@ -246,20 +247,23 @@ a
   font-family $schnyder
   font-weight $demi
   font-size 1.8vw
+  display inline-block
   &:after
     content ''
     display block
     width 100%
-    height 1px
+    height 2px
     bottom 0
     left 0
-    background white
+    background black
 .work + .work
   color $white
   .left
     background $brown
   .right
-    background $pink
+    background $red
+    a:after
+      background $white
 .work
   +below('l')
     .letter
