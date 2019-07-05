@@ -14,7 +14,7 @@
     <no-ssr>
       <div  v-if="!isDevice">
         <div class="line">Let’s make <strong class="italic">something</strong> great!</div>
-        <div class="line" :class="{'ready': lineTwo}"><span class="rounded">Reach out</span><a :href="`mailto:${datas.email}`" rel="noopener" target="_blank" class="link underline" v-text="datas.email"></a></div>
+        <div class="line" :class="{'ready': lineTwo}"><span class="rounded">Reach out</span><v-link :to="`mailto:${datas.email}`" class="underline">{{datas.email}}</v-link></div>
         <div class="line" :class="{'ready': lineThree}">for <span class="underline wide">wonderfull</span> <span class="slider-container"><span class="slider"><span v-for="(word, index) in words" :key="`word-${index}`" v-text="word"></span></span>.</span><v-svg-star class="star" /></div>
       </div>
     </no-ssr>
@@ -24,6 +24,7 @@
 <script>
 import Emitter from '~/assets/js/events/EventsEmitter'
 import vSvgStar from "~/assets/svgs/star.svg?inline";
+import vLink from "~/components/common/link.vue";
 import anime from 'animejs'
 import { mapState, mapGetters } from 'vuex'
 export default {
@@ -42,7 +43,7 @@ export default {
     ...mapGetters(['isDevice'])
   },
   components: {
-    vSvgStar
+    vSvgStar, vLink
   },
   methods: {
     resize(w, h) {
@@ -144,7 +145,7 @@ export default {
       display block
       bottom 0
       width 100%
-      height .3vw
+      height .25vw
       left 0
       background $black
       transform scale(0)

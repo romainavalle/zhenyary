@@ -3,6 +3,8 @@ ErrorDocument 404 /404.html
 AddType image/webp webp
 AddType application/font-woff  woff
 AddType application/font-woff2 woff2
+AddType video/mp4 .mp4
+AddType video/webm .webm
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/webp "access 1 year"

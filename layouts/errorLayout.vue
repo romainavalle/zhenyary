@@ -6,8 +6,7 @@
     <no-ssr>
       <v-turn v-if="isDevice"></v-turn>
     </no-ssr>
-    <span>Bring me back</span>
-    <nuxt-link :to="{name: 'index'}">Bring me back</nuxt-link>
+    <v-link :to="{name: 'index'}">Bring me back</v-link>
     <nuxt/>
   </main>
 </template>
@@ -18,6 +17,7 @@ import ScrollHelper from '~/assets/js/utils/ScrollHelper'
 
 import { mapGetters } from 'vuex';
 import vTurn from '~/components/common/turn.vue'
+import vLink from '~/components/common/link.vue'
 export default {
   data() {
     return {
@@ -29,7 +29,7 @@ export default {
     ...mapGetters(['isDevice'])
   },
   components: {
-    'v-error-bg': ()=> import('~/components/common/errorBackround.vue')
+    'v-error-bg': ()=> import('~/components/common/errorBackround.vue'), vLink, vTurn
   },
   methods:{
      resize(){
@@ -57,15 +57,23 @@ main
     text-align center
     color $black
     position absolute
-    border-bottom 3px solid #000
     top 50%
     left 50%
     transform translate(-50%, -50%)
     z-index 1
     user-select none
+    line-height 1
   a
-    opacity 0
     z-index 2
+    &:after
+      content ''
+      display block
+      bottom 0
+      width 100%
+      height .2vw
+      left 0
+      background $black
+      transition transform .5s ease-out-quad
 </style>
 
 

@@ -4,14 +4,15 @@
   "menuItalic": false,
   "title": "Rafal Bojar",
   "subtitle": "Rafal Bojar Photographer",
+  "FWA": "FWA of the day",
   "awwwards": "Site of the day, Mobile excellence, Devaward",
   "link": {
     "label": "Rafalbojar.com",
     "url": "https://rafalbojar.com/"
   },
-  "type": "Ecommerce Website",
-  "skills": ["Art direction", "interface design", "photography"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
+  "type": "Portfolio website",
+  "skills": ["Art direction", "Interface design", "Interaction design"],
+  "intro": "Folio of a polish photographer and videographer, who loves to create visual stories.",
   "header": [
     "Cure is a unique nail and wax boutique.",
     "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",

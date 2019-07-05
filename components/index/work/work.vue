@@ -246,12 +246,20 @@ a
   font-family $schnyder
   font-weight $demi
   font-size 1.8vw
+  &:after
+    content ''
+    display block
+    width 100%
+    height 1px
+    bottom 0
+    left 0
+    background white
 .work + .work
   color $white
   .left
     background $brown
   .right
-    background $red
+    background $pink
 .work
   +below('l')
     .letter

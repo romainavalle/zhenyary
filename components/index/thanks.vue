@@ -1,12 +1,13 @@
 <template>
   <article class="thanks">
-    <p :class="{'ready': showLink, 'mobile-anime': isPhone}"><span>Special thanks to <a href="https://www.romainavalle.dev" target="_blank" rel="noopener" class="link">Romain Avalle</a></span><span>for development.</span></p>
+    <p :class="{'ready': showLink, 'mobile-anime': isPhone}"><span>Special thanks to <v-link to="https://www.romainavalle.dev" class="link" ref="link">Romain Avalle</v-link></span><span>for development.</span></p>
   </article>
 </template>
 
 <script>
 import vSvgSmiley from "~/assets/svgs/smiley.svg?inline";
 import transform from 'dom-transform'
+import vLink from '~/components/common/link.vue'
 import offset from '~/assets/js/utils/offset'
 import { mapState, mapGetters } from 'vuex';
 export default {
@@ -21,6 +22,7 @@ export default {
     ...mapGetters(['isPhone'])
   },
   components: {
+    vLink
   },
   methods: {
     resize(w, h) {
@@ -78,7 +80,7 @@ export default {
       display block
       bottom 0
       width 100%
-      height .15vw
+      height 2px
       left 0
       background $black
       transform scale(0, 1)

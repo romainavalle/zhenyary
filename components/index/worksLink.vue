@@ -1,12 +1,13 @@
 <template>
   <div class="worksLink" :class="{'ready': isReady}">
-    <nuxt-link :to="{name: 'works'}" class="link" ref="link"><span>All cases</span> <span>here</span></nuxt-link>
+    <v-link :to="{name: 'works'}" class="link" ref="link"><span>All cases</span> <span>here</span></v-link>
   </div>
 </template>
 
 <script>
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
+import vLink from '~/components/common/link.vue'
 import { easeOutQuad } from '~/assets/js/utils/easings'
 import { mapGetters } from 'vuex';
 export default {
@@ -19,6 +20,7 @@ export default {
     }
   },
   components: {
+    vLink
   },
   computed: {
     ...mapGetters(['isPhone'])
@@ -52,6 +54,8 @@ export default {
     }
   },
   mounted() {
+    transform(this.$refs.link.$el, {scale3d:[1.5,1.5, 1]})
+    this.$refs.link.$el.style.opacity = 0
   }
 }
 </script>

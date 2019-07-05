@@ -1,11 +1,11 @@
 <template>
   <section class="index">
-    <v-home ref="home"/>
-    <v-gems ref="gems"/>
-    <v-works ref="works"/>
-    <v-works-link ref="link"/>
-    <v-contact ref="contact"/>
-    <v-thanks ref="thanks"/>
+    <v-home ref="home" />
+    <v-gems ref="gems" />
+    <v-works ref="works" />
+    <v-works-link ref="link" />
+    <v-thanks ref="thanks" />
+    <v-contact ref="contact" />
   </section>
 </template>
 

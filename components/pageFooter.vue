@@ -6,7 +6,7 @@
       <no-ssr>
         <img :data-src="`/images/${$route.name}.jpg`" alt="zhenya" width="766" height="966">
       </no-ssr>
-      <nuxt-link :to="{name:'contact'}" class="link">Contact Me</nuxt-link>
+      <v-link :to="{name:'contact'}" class="link">Contact Me</v-link>
      </div>
      <div class="top">
        <div>
@@ -23,6 +23,7 @@ import offset from '~/assets/js/utils/offset'
 import { easeOutQuad } from '~/assets/js/utils/easings'
 import transform from 'dom-transform'
 import anime from 'animejs'
+import vLink from '~/components/common/link.vue'
 import { mapState } from 'vuex';
 export default {
   data() {
@@ -36,6 +37,9 @@ export default {
   },
   computed: {
     ...mapState(['datas'])
+  },
+  components: {
+    vLink
   },
   methods: {
     resize(w, h) {

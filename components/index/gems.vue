@@ -17,22 +17,22 @@
           <div class="line">
             <span class="word">Art direction</span>
             <v-svg-star class="star"/>
-            <span class="italic blur" :class="{'ready': isBlurActive}">Product Design
-                <span class="inner-blur" data-text="Product Design"></span>
-                <span class="inner-blur" data-text="Product Design"></span>
-                <span class="inner-blur" data-text="Product Design"></span>
-                <span class="inner-blur" data-text="Product Design"></span>
-                <span class="inner-blur" data-text="Product Design"></span>
-                <span class="inner-blur" data-text="Product Design"></span>
-                <span class="inner-blur" data-text="Product Design"></span>
-                <span class="inner-blur" data-text="Product Design"></span>
-                <span class="inner-blur" data-text="Product Design"></span>
-                <span class="inner-blur" data-text="Product Design"></span>
-                <span class="inner-blur" data-text="Product Design"></span>
+            <span class="italic blur" :class="{'ready': isBlurActive}">Product design
+              <span class="inner-blur" data-text="Product design"></span>
+              <span class="inner-blur" data-text="Product design"></span>
+              <span class="inner-blur" data-text="Product design"></span>
+              <span class="inner-blur" data-text="Product design"></span>
+              <span class="inner-blur" data-text="Product design"></span>
+              <span class="inner-blur" data-text="Product design"></span>
+              <span class="inner-blur" data-text="Product design"></span>
+              <span class="inner-blur" data-text="Product design"></span>
+              <span class="inner-blur" data-text="Product design"></span>
+              <span class="inner-blur" data-text="Product design"></span>
+              <span class="inner-blur" data-text="Product design"></span>
             </span>
           </div>
           <div class="line">
-            <span class="underline italic" :class="{'ready': isShown}">Visual design</span>
+            <span class="underline italic" :class="{'ready': isShown}"><span>Visual design</span></span>
             <span class="word">Mobile & web design</span>
           </div>
           <div class="line">
@@ -195,7 +195,9 @@ export default {
   opacity 0
   position relative
   transition opacity .5s ease-out-quad .1s
-  &:after
+  span
+    position relative
+  &:before
     position absolute
     width 100%
     height 0.2vw
@@ -207,7 +209,7 @@ export default {
     transform translateX(-150%)
   &.ready
     opacity 1
-    &:after
+    &:before
       transform translateX(0%)
 .and
   width 10vw

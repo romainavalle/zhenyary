@@ -8,7 +8,7 @@
       <div v-if="!isPhone">
         <div class="line" :class="{'ready': linesReady[0]}"><v-svg-smiley class="smiley" /></div>
         <div class="line" :class="{'ready': linesReady[1]}">Let’s make <strong class="italic">something</strong> great!</div>
-        <div class="line" :class="{'ready': linesReady[2]}"><a :href="`mailto:${datas.email}`" rel="noopener" target="_blank" class="link"  v-text="datas.email"></a><v-svg-arrow class="arrow" /> <span class="italic">for</span></div>
+        <div class="line" :class="{'ready': linesReady[2]}"><v-link :to="`mailto:${datas.email}`">{{datas.email}}</v-link><v-svg-arrow class="arrow" /> <span class="italic">for</span></div>
         <div class="line" :class="{'ready': linesReady[3]}"><v-svg-arrow class="arrow" :class="{'red': arrow[0]}" /><v-svg-arrow class="arrow"  :class="{'red': arrow[1]}"/><v-svg-arrow class="arrow"  :class="{'red': arrow[2]}"/><span>collaborations.</span><v-svg-star class="star" /></div>
       </div>
     </no-ssr>
@@ -21,6 +21,7 @@ import vSvgStar from "~/assets/svgs/star.svg?inline";
 import vSvgSmiley from "~/assets/svgs/smiley.svg?inline";
 import { easeInOutQuad } from '~/assets/js/utils/easings'
 import transform from 'dom-transform'
+import vLink from '~/components/common/link.vue'
 import offset from '~/assets/js/utils/offset'
 import { mapState, mapGetters } from 'vuex';
 export default {
@@ -39,7 +40,7 @@ export default {
     ...mapState(['datas'])
   },
   components: {
-    vSvgArrow, vSvgStar, vSvgSmiley
+    vSvgArrow, vSvgStar, vSvgSmiley, vLink
   },
   methods: {
     resize(w, h) {

@@ -53,20 +53,27 @@ export default {
   &.white
     a
       color $white
+      &:hover
+        color $red
   a
     color $black
     display block
     margin 0 50px
     color #5E5B55
+    transition color .4s ease-out-cubic
+    &:hover
+      color $red
     &.red
       color $red
+      &:hover
+        color $white
   +below('l')
     a
       margin 0 30px
   +below('s')
     justify-content space-between
     width 100%
-    padding 0 4vw
+    padding 0 12vw
     a
       color $black
       margin 0

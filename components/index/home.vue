@@ -38,7 +38,7 @@
     <div class="click">
      <button aria-label="click" @click="showCircles" ref="click"><v-svg class="star"></v-svg><span>Click click</span></button>
       <ul ref="skills">
-        <li>Art Direction</li>
+        <li>Art direction</li>
         <li>Digital production</li>
         <li>Branding</li>
       </ul>

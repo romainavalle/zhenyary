@@ -53,7 +53,8 @@ export default {
   data() {
     return {
       isTouch: false,
-      colorId: 1
+      colorId: 1,
+      canScroll: false
     }
   },
   computed: {
@@ -77,7 +78,7 @@ export default {
       this.$refs.loaderTop.resize(w, h)
       this.$refs.footer.resize(w, h, pageHeight)
       if(this.$refs.video)this.$refs.video.resize(w, h)
-      if(!this.isDevice)document.body.style.height = pageHeight + 'px'
+      if(!this.isDevice && this.canScroll)document.body.style.height = pageHeight + 'px'
     },
     tick(){
       ScrollHelper.tick()
@@ -161,7 +162,11 @@ export default {
     setTimeout(()=>{
       this.$refs.loaderTop.hide()
     },1000)
-   if(!this.isTouch)  document.body.className = "no-touch"
+    setTimeout(()=>{
+      this.canScroll = true
+      this.resize()
+    },2000)
+   if(!this.isTouch) document.querySelector("html").className = "no-touch"
     classie.addClass(document.body, `color${this.colorId}`)
    window.addEventListener('mousedown', ()=>{
      classie.removeClass(document.body, `color${this.colorId}`)
