@@ -55,8 +55,7 @@ export default {
     })
     this.animation.addEventListener('DOMLoaded', () => {
       this.$parent.isReady = true
-      this.hide()
-
+      setTimeout(this.hide.bind(this), 800)
     })
   }
 }

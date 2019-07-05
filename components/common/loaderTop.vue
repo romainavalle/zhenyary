@@ -40,6 +40,7 @@ export default {
       this.$el.style.display = 'block'
       anime.set(this.$refs.pink, {opacity: 1})
       anime.set(this.$refs.red, {opacity: 1})
+      this.$el.style.opacity = 1
       anime({
         targets: this.$refs.red,
         translateX: [this.w *.5-100,this.w *.5+ 80 * this.w / 1920],
@@ -71,36 +72,25 @@ export default {
           duration: 300,
           easing: 'easeOutCubic'
         })
+
+
       }
     },
     hide() {
 
       if(this.isFirstTime) {
         anime({
-          targets: this.$refs.span,
+          targets: this.$el,
           opacity: 0,
-          duration: 1500,
-          delay: 500,
+          duration: 500,
+          delay: 700,
           easing: 'easeOutQuad',
           complete: ()=>{
             this.isFirstTime = false
             this.$el.style.display = 'none'
           }
         })
-        anime({
-          targets: this.$refs.red,
-          opacity: 0,
-          duration: 1500,
-          delay: 500,
-          easing: 'easeOutQuad'
-        })
-        anime({
-          targets: this.$refs.pink,
-          opacity: 0,
-          duration: 1500,
-          delay: 500,
-          easing: 'easeOutQuad'
-        })
+
       }else{
         anime({
           targets: this.$refs.bg,
@@ -148,7 +138,6 @@ export default {
   left 0
   right 0
   bottom 0
-  transfrom translate3d(0, 0, 0)
   z-index 999
   .bg
     position absolute
