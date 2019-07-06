@@ -1,22 +1,24 @@
 {
-  "about": "I’m Zhenya — Art director, digital & graphic designer with architectural backgroung. I believe in the connection of usability and visual aspects in all the products I’m Zhenya — Art director, digital& graphic designer with architectural backgroung. I believe in the connection of usability and visual aspects in all the products.",
+  "about": "I’m Zhenya — Art Director with an architectural background. <br>I love everything that has to do with product & visual design, <br>mobile & web projects as well as branding, typography, and animations. <br>With my solid industry experience, I know how to help clients solve real business cases and grow their businesses by using design thinking.",
   "behance": [
-    {"label":  "Behance gallery", "num": 2},
+    {"label":  "Behance.net", "num": 2},
     {"label": "Interaction", "num": 10},
-    {"label": "Graphic design", "num": 2},
-    {"label": "Illustrator gallery", "num": 1},
-    {"label": "XD gallery", "num": 6}
+    {"label": "Graphic Design", "num": 2},
+    {"label": "Illustrator", "num": 1},
+    {"label": "XD gallery", "num": 6},
+    {"label": "Student Show", "num": 4}
   ],
   "collaborations": [
     "Google",
     "Abobe",
     "Nike",
     "ESPN",
-    "GoD",
-    "United Nations",
+    "GoDaddy",
+    "UN",
     "Lime",
     "MixPanel",
-    "Bloom"
+    "Bloom",
+    "Johnson & Johnson"
   ],
   "awwwards": [],
   "FWA": []

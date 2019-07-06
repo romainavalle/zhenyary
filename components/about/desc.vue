@@ -82,7 +82,10 @@ export default {
       this.isBlurReady = true
     }else{
       this.$nextTick(()=>{
-        splitLines(this.$el.querySelector('p'))
+        //splitLines(this.$el.querySelector('p'))
+        const innerhtml = this.$el.querySelector('p').innerHTML
+        const html = '<span class="line">' + innerhtml.split('<br>').join('</span><span class="line">') + '</span>'
+        this.$el.querySelector('p').innerHTML = html
         this.lines = [this.$el.querySelector('strong'), ...[].slice.call(this.$el.querySelectorAll('.line'))]
         anime.set(this.lines, {
           translateX: 50,
@@ -104,7 +107,6 @@ export default {
     position relative
   p
     font-weight $light
-    width 50%
   .blur-container
     position absolute
     left 0vw
@@ -123,8 +125,13 @@ export default {
       width 100%
 </style>
 <style lang="stylus" >
-.about .desc .line
-  display block
+.about .desc
+  .line
+    display block
+  +below('s')
+    p
+      br
+        display none
 </style>
 
 

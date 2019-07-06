@@ -9,10 +9,10 @@
     </div>
     <article>
       <h1 :class="{'mobile-anime': isPhone}">Z.</h1>
-      <h2 :class="{'mobile-anime': isPhone}">a bit about me</h2>
+      <h2 :class="{'mobile-anime': isPhone}">a bit about myself</h2>
       <strong class="h4" :class="{'mobile-anime': isPhone}">Just about</strong>
-      <p class="strong" :class="{'mobile-anime': isPhone}">background</p>
-      <p :class="{'mobile-anime': isPhone}"><span>My experience, awards</span><span>and own vibes</span><span>for sure!</span></p>
+      <p class="strong" :class="{'mobile-anime': isPhone}">WHAT I DO</p>
+      <p :class="{'mobile-anime': isPhone}"><span>My experience, awards</span><span>collaborations, and</span><span>own vibes,</span><span>for sure!</span></p>
     </article>
   </div>
 </template>
