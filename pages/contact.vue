@@ -7,7 +7,7 @@
         <div class="line"><strong class="italic">something</strong> great!</div>
         <div class="line" :class="{'ready': lineThree}"><a :href="`mailto:${datas.email}`" rel="noopener" target="_blank" class="underline" v-text="datas.email"></a></div>
         <div class="line" :class="{'ready': lineTwo}"><strong class="italic">Reach out</strong> for</div>
-        <div class="line"><span class="slider-container"><span class="slider"><span v-for="(word, index) in words" :key="`word-${index}`" v-text="word"></span></span>.</span></div>
+        <div class="line"><span class="word-container"><span class="word" v-text="word"></span></span></div>
         <div class="line"><v-svg-star class="star" /></div>
       </div>
     </no-ssr>
@@ -15,7 +15,7 @@
       <div  v-if="!isDevice">
         <div class="line">Let’s make <strong class="italic">something</strong> great!</div>
         <div class="line" :class="{'ready': lineTwo}"><span class="rounded">Reach out</span><v-link :to="`mailto:${datas.email}`" class="underline">{{datas.email}}</v-link></div>
-        <div class="line" :class="{'ready': lineThree}">for <span class="underline wide">wonderfull</span> <span class="slider-container"><span class="slider"><span v-for="(word, index) in words" :key="`word-${index}`" v-text="word"></span></span>.</span><v-svg-star class="star" /></div>
+        <div class="line" :class="{'ready': lineThree}">for <span class="underline wide">wonderfull</span> <span class="word-container"><span v-text="word"></span></span><v-svg-star class="star" /></div>
       </div>
     </no-ssr>
   </section>
@@ -35,12 +35,15 @@ export default {
       id:0,
       lineTwo: false,
       lineThree: false,
-      words: ['collaborations', 'new projects', 'expeeeeriences', 'collaborations']
+      words: ['collaborations', 'new projects', 'expeeeeriences']
     }
   },
   computed: {
     ...mapState(['isFirstTime', 'datas']),
-    ...mapGetters(['isDevice'])
+    ...mapGetters(['isDevice']),
+    word() {
+      return this.words[this.id] + '.'
+    }
   },
   components: {
     vSvgStar, vLink
@@ -55,23 +58,13 @@ export default {
     tick(scrollTop) {
     },
     showWord() {
-      this.timer = setTimeout(this.showWord.bind(this), 400)
-      anime({
-        targets: this.slider ,
-        translateY: this.id * (this.isDevice ? -( .13 * this.w) : -(.080 *this.w)) ,
-        easing: 'easeInOutQuad',
-        duration: 0,
-        complete: ()=>{
-          if(this.id === this.words.length) {
-            this.id = 1
-            anime.set(this.slider, { translateY: 0 })
-          }
-        }
-      })
+      this.timer = setTimeout(this.showWord.bind(this), 500)
       this.id++
+      if(this.id === this.words.length) this.id = 0
 
     },
     show(){
+      const stagger = this.isDevice ? 250 : 500
       anime({
         targets: this.lines,
         translateY: 0,
@@ -79,7 +72,7 @@ export default {
         scaleY: 1,
         durration: 700,
         easing: 'easeOutQuad',
-        delay: anime.stagger(500)
+        delay: anime.stagger(stagger)
       })
       this.lineTimer = setTimeout(()=>{
         this.lineTwo = true
@@ -164,16 +157,12 @@ export default {
   .line.ready
     .underline:after
       transform scale(1)
-  .slider-container
+  .word-container
     display flex
-    height 8vw
-    overflow hidden
-    line-height 1
-  .slider
-    display block
-    span
+    justify-content flex-end
+    width 45vw
+    .word
       display block
-      height 8vw
       text-align right
   svg
     display block
@@ -186,7 +175,7 @@ export default {
     fill $red
   .device &
     font-size 12vw
-    height 100vh
+    height 90vh
     .line
       display block
       text-align center
@@ -196,12 +185,11 @@ export default {
       display inline-block
       font-size 10vw
       padding-bottom 2vh
-    .slider-container
+    .word-container
       display block
-      height 12.5vw
-      .slider span
+      width auto
+      .word
         text-align center
-        height 12vw
         margin-bottom 1vw
     .star
       margin 3vh auto

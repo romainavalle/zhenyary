@@ -103,8 +103,9 @@ p
   width 45%
 
 article.text
-  padding 10vh 7vw
   +below('l')
+    padding 10vh 7vw
+    overflow auto
     .text-content
       width 100%
       justify-content space-between

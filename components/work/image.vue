@@ -17,6 +17,7 @@
 import { easeInOutCubic } from '~/assets/js/utils/easings'
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
+import { mapGetters } from 'vuex';
 export default {
   props: ['content', 'path', 'title'],
   data() {
@@ -24,8 +25,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['isPhone']),
     width() {
-      return this.content.width ? `${this.content.width}%`: '100%'
+      return this.isPhone ? '80%' : this.content.width ? `${this.content.width}%`: '100%'
     },
     shadow(){
       return this.content.shadow ? require(`~/assets/imgs/${this.content.shadow}.png`) : ''
@@ -100,7 +102,7 @@ figure
     position relative
   img.shadow
     position absolute
-    bottom -90px
+    bottom -10%
     width 80%
     left 10%
   img

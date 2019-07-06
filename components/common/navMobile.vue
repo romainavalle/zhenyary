@@ -4,7 +4,7 @@
     <div class="container" ref="container">
       <nuxt-link :to="{name: 'about'}" @click.native="doClick('about')"><span class="title">Some things</span><span class="label">about me</span></nuxt-link>
       <nuxt-link :to="{name: 'works'}" @click.native="doClick('works')"><span class="title">Work</span><span class="label">some cases</span></nuxt-link>
-      <nuxt-link :to="{name: 'workflow'}" @click.native="doClick('o')"><span class="title">Workflow</span><span class="label">my life — my rules</span></nuxt-link>
+      <nuxt-link :to="{name: 'workflow'}" @click.native="doClick('workflow')"><span class="title">Workflow</span><span class="label">my life — my rules</span></nuxt-link>
       <nuxt-link :to="{name: 'contact'}" @click.native="doClick('contact')"><span class="title">Contact me</span><span class="label">For any collaborations</span></nuxt-link>
       <nuxt-link :to="{name: 'index'}"  class="home" @click.native="doClick('index')">Go Home</nuxt-link>
     </div>
@@ -129,7 +129,7 @@ nav
   button
     position absolute
     top 25px
-    right 20px
+    right 4%
     width 20px
     height 20px
     z-index 1

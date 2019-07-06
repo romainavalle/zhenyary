@@ -21,7 +21,7 @@ export default {
   computed:{
     ...mapGetters(['isPhone', 'isDevice']),
     width() {
-      return this.content.width ? `${this.content.width}%`: '100%'
+      return this.isPhone ? '90%' : this.content.width ? `${this.content.width}%`: '100%'
     },
     background() {
       return this.content.background ? this.content.background : 'none'
@@ -145,6 +145,7 @@ article
   +below('l')
     overflow auto
     display block
+    height auto
     .img
       width 100%
       max-height 75vh

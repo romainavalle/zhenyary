@@ -12,7 +12,7 @@
           <li v-for="(skill, index) in nextWork.skills" :key="`skill-${index}`" v-text="index === 0 ? skill : ` / ${skill}`" class="strong"></li>
         </ul>
         <div class="arrow" ref="arrow">
-          <v-svg-arrow />
+          <v-svg-arrow class="black"/><v-svg-arrow class="red"/>
         </div>
       </nuxt-link>
     </div>
@@ -105,13 +105,36 @@ h3
 .right>a
   display block
   padding 0 20%
+  transition color .6s ease-in-out-cubic
 .arrow
   width 158px
   height 106px
   margin-top 40px
+  position relative
   svg
     display block
+    position absolute
+    top 0
+    left 0
     width 100%
     height 100%
     fill $black
+    &.red
+      fill $red
+      opacity 0
+      transition transform .6s ease-in-out-cubic,  opacity .6s ease-in-out-cubic
+    &.black
+      transition transform .6s ease-in-out-cubic
+.right a:hover
+    color $red
+    .arrow
+      .black
+        transform translateX(30%)
+        transition transform .6s ease-in-out-cubic
+      .red
+        opacity 1
+        transform translateX(30%)
+        transition transform .6s ease-in-out-cubic, opacity .6s ease-in-out-cubic
+
+
 </style>

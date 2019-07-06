@@ -8,11 +8,11 @@ Vue.mixin({
   methods: {
     getSrcSet(url) {
       let size = ''
-      if(ResizeHelper.width() < 768 ) {
+      if(ResizeHelper.width() < 300 ) {
         size = '@mx'
-      }else if(ResizeHelper.width() < 1024 ) {
+      }else if(ResizeHelper.width() < 768 ) {
         size = '@.5x'
-      }else if(ResizeHelper.width() < 1440 ) {
+      }else if(ResizeHelper.width() < 1280 ) {
         size = '@1x'
       }
       let img = url.replace('.jpg', size + '.jpg').replace('.png', size + '.png')

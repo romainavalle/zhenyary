@@ -127,7 +127,7 @@ h2
   &:after
     content ''
     width 100%
-    height 2px
+    height 1px
     background $black
     bottom 0
     left 0
@@ -197,7 +197,7 @@ header
       padding-top 5px
   +below('s')
     height auto
-    padding 15vh 4vw 10vh
+    padding 15vh 4vw 0
     .back
       position relative
       top auto
@@ -222,5 +222,7 @@ header
       position relative
       padding 0
       padding-top 10vh
+    .link
+      padding-top 80px
 
 </style>
