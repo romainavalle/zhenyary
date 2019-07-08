@@ -10,7 +10,7 @@
       <v-bottom-layer ref="bottomLayer" aria-hidden="true"/>
     </no-ssr>
     <div class="img-container">
-      <img data-src="/images/home/zhenya-bg.jpg" alt="Zhenya Rynzhuk" ref="imgBack" width="1070" height="1184">
+      <img data-src="/images/home/zhenya-bg.jpg" alt="Zhenya Rynzhuk" ref="imgBack" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
     </div>
     <no-ssr>
       <v-circles :circles="homeCircles[1]" :id="1"  ref="circles-1"  aria-hidden="true"/>
@@ -29,12 +29,12 @@
       </no-ssr>
     </h1>
     <div class="img-container">
-      <img data-src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" ref="imgFront" width="1070" height="1184">
+      <img data-src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" ref="imgFront" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
     </div>
     <no-ssr>
       <v-top-layer ref="topLayer"  aria-hidden="true"/>
     </no-ssr>
-    <button class="play" aria-label="play video" ref="play" @click="setVideo(true)">Play<br>Showreel</button>
+    <button class="play" aria-label="play video" ref="play" @click="onPlayBtClicked">Play<br>Showreel</button>
     <div class="click">
      <button aria-label="click" @click="showCircles" ref="click"><v-svg class="star"></v-svg><span>Click click</span></button>
       <ul ref="skills">
@@ -61,6 +61,7 @@ import MouseHelper from '~/assets/js/utils/MouseHelper'
 import homeCircles from '~/assets/datas/homeCircles.json';
 import transform from 'dom-transform'
 import anime from 'animejs'
+import Emitter from '~/assets/js/events/EventsEmitter'
 import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -75,7 +76,7 @@ export default {
   },
   computed: {
     ...mapState(['color']),
-    ...mapGetters(['isDevice'])
+    ...mapGetters(['isDevice', 'isPhone'])
   },
   components:{
     vBottomLayer, vTopLayer, vHomeFooter, vSvg, vCircles, vBackground
@@ -125,6 +126,10 @@ export default {
         const newPosY = (y-posY) * pourc
         transform(this.$refs.play, {translate3d: [newPosX , newPosY,0]})
       }
+    },
+    onPlayBtClicked() {
+      this.setVideo(true)
+      Emitter.emit('VIDEO_BUTTON_CLICKED')
     },
     showCircles() {
       MouseHelper.setMouse()
@@ -222,6 +227,7 @@ h1
     width 70%
     span
       transition transform 2s ease-out-quad
+      will-change transform, opacity
   .left
     left -20%
     span

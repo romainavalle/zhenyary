@@ -3,7 +3,7 @@
 </template>
 <script>
 if (process.client) {
-  var bodymovin = require('lottie-web/build/player/lottie_canvas.js')
+  var bodymovin = require('lottie-web/build/player/lottie_svg.js')
 }
 import anime from 'animejs'
 import { mapActions, mapState } from 'vuex';
@@ -40,7 +40,7 @@ export default {
     const url = (window.innerWidth > window.innerHeight) ? '/datas/bodymovin/data.json' : '/datas/bodymovin/data1080_1920.json'
     this.animation = bodymovin.loadAnimation({
       container: this.$el,
-      renderer: 'canvas',
+      renderer: 'svg',
       loop: false,
       autoplay: false,
       path: url,

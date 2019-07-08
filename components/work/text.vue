@@ -118,7 +118,7 @@ article.text
     header, p
       width 100%
   +below('s')
-    padding 10vh 4vw
+    padding 10vh 5vw
     display block
     .text-content
       display block

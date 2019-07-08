@@ -1,6 +1,6 @@
 <template>
   <div class="worksLink" :class="{'ready': isReady}">
-    <v-link :to="{name: 'works'}" class="link" ref="link"><span>All cases</span> <span>here</span></v-link>
+    <v-link :to="{name: 'works'}" ref="link"><span>All cases</span> <span>here</span></v-link>
   </div>
 </template>
 
@@ -31,11 +31,9 @@ export default {
         this.w = w
         this.h = h
       }
-      if(this.isPhone) return
       this.offset = offset(this.$el).top - this.h
     },
     tick(scrollTop, ease) {
-      if(this.isPhone) return
       let coef = 0
       if(ease>=this.offset) coef = (ease-this.offset) / this.h * 1.5
       coef = Math.min(1, coef)

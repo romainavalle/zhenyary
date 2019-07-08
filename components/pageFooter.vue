@@ -4,7 +4,7 @@
    <div class="content">
      <div class="img">
       <no-ssr>
-        <img :data-src="`/images/${$route.name}.jpg`" alt="zhenya" width="766" height="966">
+        <img :data-src="`/images/${$route.name}.jpg`" alt="zhenya" width="766" height="966" :class="{'js-fs-on-mobile': isPhone}">
       </no-ssr>
       <v-link :to="{name:'contact'}" class="link">Contact Me</v-link>
      </div>
@@ -24,7 +24,7 @@ import { easeOutQuad } from '~/assets/js/utils/easings'
 import transform from 'dom-transform'
 import anime from 'animejs'
 import vLink from '~/components/common/link.vue'
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -36,7 +36,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(['datas'])
+    ...mapState(['datas']),
+    ...mapGetters(['isPhone'])
   },
   components: {
     vLink
@@ -67,6 +68,13 @@ export default {
       this.isShown = true
       const duration = 1500
       if(this.mainAnim)this.mainAnim.pause()
+      if(this.bigAnim)this.bigAnim.pause()
+      this.bigAnim = anime({
+        targets: this.$refs.big,
+        translateX: '0%',
+        duration: 2000,
+        easing: 'easeOutQuad'
+      })
       this.mainAnim = anime({
         targets: this.lines,
         opacity: [0, 1],
@@ -107,6 +115,13 @@ export default {
       this.isShown = false
       clearTimeout(this.wordsTimer)
       if(this.mainAnim)this.mainAnim.pause()
+      if(this.bigAnim)this.bigAnim.pause()
+      this.bigAnim = anime({
+        targets: this.$refs.big,
+        translateX: '100%',
+        duration: 1000,
+        easing: 'easeInQuad'
+      })
       anime({
         targets: this.lines,
         opacity: 0,
@@ -133,7 +148,6 @@ export default {
     if(this.wordsTimer) clearTimeout(this.wordsTimer)
   },
   mounted() {
-    //transform(this.$refs.big, {translateX: 100  +'%'})
     this.lines = [].slice.call(this.$el.querySelectorAll('.line'))
     this.spacers = [].slice.call(this.$el.querySelectorAll('.spacer'))
     this.rights = [].slice.call(this.$el.querySelectorAll('.right'))
@@ -141,6 +155,7 @@ export default {
     this.link = this.$el.querySelector('.link')
     anime.set(this.lines, {opacity: 0})
     anime.set(this.link, {opacity: 0})
+    anime.set(this.$refs.big, {translateX: '100%'})
   }
 }
 </script>
@@ -164,11 +179,6 @@ footer
   right 0
   top -1.3vw
   z-index 1
-  transform translate3d(100%, 0, 0)
-  transition transform 1s ease-in-quad
-  &.show
-    transform translate3d(0%, 0, 0)
-    transition transform 2s ease-out-quad
 .content
   background #EAE9E5
   position relative
@@ -241,7 +251,7 @@ footer
       .top
         display none
       .img
-        width 92%
+        width 90%
   +below('s')
     height 93vh
     .content

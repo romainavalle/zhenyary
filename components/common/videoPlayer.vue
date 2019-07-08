@@ -1,7 +1,7 @@
 <template>
   <div class="video" >
     <button @click="setVideo(false)" ref="close" aria-label="close"><v-svg-close /></button>
-    <video src="https://preprod.zhenyary.com/videos/video.mp4" playsinline loop v-bind="controls" ref="video" type='video/mp4' preload="auto"></video>
+    <video src="https://preprod.zhenyary.com/videos/video.mp4" v-bind="controls" ref="video" type='video/mp4' preload="auto"></video>
     <no-ssr>
       <div class="circle" ref="circle" v-if="!isDevice">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"  ref="circle-inner">
@@ -28,6 +28,7 @@
 
 <script>
 
+import Emitter from '~/assets/js/events/EventsEmitter'
 import { easeInOutQuint } from '~/assets/js/utils/easings'
 import MouseHelper from '~/assets/js/utils/MouseHelper'
 import anime from'animejs'
@@ -50,7 +51,7 @@ export default {
     ...mapState(['showVideo']),
     ...mapGetters(['isDevice', 'isSafari']),
     controls() {
-      return this.isDevice ? {'controls': 'controls'} : null
+      return this.isDevice ? {'controls': 'controls', 'playsinline': 'false'} : { 'playsinline': 'playsinline'}
     }
   },
   methods: {
@@ -98,10 +99,9 @@ export default {
       return Math.sqrt(dx * dx + dy * dy);
     },
     show() {
-      this.$el.style.display = 'block'
+      this.$el.style.visibility = 'visible'
       this.$refs.video.addEventListener('ended',this._onEnd)
       window.addEventListener('keydown',this._onKeyPress)
-      if(this.isSafari) this.play()
       anime({
         targets:this.$el,
         opacity: 1,
@@ -123,7 +123,7 @@ export default {
         easing: 'easeInQuad',
         complete: ()=>{
           this.$refs.video.currentTime = 0
-          this.$el.style.display = 'none'
+          this.$el.style.visibility = 'hidden'
         }
       })
     },
@@ -160,11 +160,16 @@ export default {
   beforeDestroy() {
     this.$refs.video.removeEventListener('ended',this._onEnd)
     window.removeEventListener('keydown',this._onKeyPress)
+    if(this.isSafari) Emitter.removeListener('VIDEO_BUTTON_CLICKED', this._play)
   },
   mounted() {
+    console.log(this.controls);
+
     this._onEnd = this.onEnd.bind(this)
     this._onKeyPress = this.onKeyPress.bind(this)
-    this.$el.style.display = 'none'
+    this._play = this.play.bind('this')
+    if(this.isSafari) Emitter.on('VIDEO_BUTTON_CLICKED', this._play)
+    this.$el.style.visibility = 'hidden'
     anime.set(this.$el, {opacity: 0})
     if(!this.isDevice) {
       this.$nextTick(()=>{

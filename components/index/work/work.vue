@@ -3,7 +3,7 @@
     <div class="inner">
       <div class="left">
         <div class="img" ref="leftImgContainer">
-          <img :data-src="`${path}${work.cover}`" :alt="work.title" ref="img" width="484" height="536">
+          <img :data-src="`${path}${work.cover}`" :alt="work.title" ref="img" width="484" height="536"  :class="{'js-fs-on-mobile': isPhone}">
         </div>
         <div class="text">
           <h3 class="h3 mobile-anime"  v-html="work.title"></h3>
@@ -17,22 +17,24 @@
             <li v-for="(skill, index) in work.skills" :key="`skill-${index}`" v-text="index === 0 ? skill : ` / ${skill}`" class="strong"></li>
           </ul>
           <p v-html="work.intro" class="intro mobile-anime"></p>
-          <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}"  @mouseenter.native="onMouseEnter" @mouseleave.native="onMouseLeave" :class="{'mobile-anime': isPhone, 'ready': isBlurReady, 'hover': isHover}" class="mobile-anime link blur blur-sml">Check full case +
-            <no-ssr>
-              <span v-if="isBlurReady">
-                  <span class="inner-blur" data-text="Check full case +"></span>
-                  <span class="inner-blur" data-text="Check full case +"></span>
-                  <span class="inner-blur" data-text="Check full case +"></span>
-                  <span class="inner-blur" data-text="Check full case +"></span>
-                  <span class="inner-blur" data-text="Check full case +"></span>
-                  <span class="inner-blur" data-text="Check full case +"></span>
-                  <span class="inner-blur" data-text="Check full case +"></span>
-                  <span class="inner-blur" data-text="Check full case +"></span>
-                  <span class="inner-blur" data-text="Check full case +"></span>
-                  <span class="inner-blur" data-text="Check full case +"></span>
-              </span>
-            </no-ssr>
-          </nuxt-link>
+          <div class="mobile-anime">
+            <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}"  @mouseenter.native="onMouseEnter" @mouseleave.native="onMouseLeave" :class="{'mobile-anime': isPhone, 'ready': isBlurReady, 'hover': isHover}" class="link blur blur-sml">Check full case +
+              <no-ssr>
+                <span v-if="isBlurReady">
+                    <span class="inner-blur" data-text="Check full case +"></span>
+                    <span class="inner-blur" data-text="Check full case +"></span>
+                    <span class="inner-blur" data-text="Check full case +"></span>
+                    <span class="inner-blur" data-text="Check full case +"></span>
+                    <span class="inner-blur" data-text="Check full case +"></span>
+                    <span class="inner-blur" data-text="Check full case +"></span>
+                    <span class="inner-blur" data-text="Check full case +"></span>
+                    <span class="inner-blur" data-text="Check full case +"></span>
+                    <span class="inner-blur" data-text="Check full case +"></span>
+                    <span class="inner-blur" data-text="Check full case +"></span>
+                </span>
+              </no-ssr>
+            </nuxt-link>
+          </div>
         </div>
         <no-ssr>
           <div class="img" v-if="!isPhone">

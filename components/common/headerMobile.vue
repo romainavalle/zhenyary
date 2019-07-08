@@ -38,7 +38,7 @@ header
   position fixed
   z-index 4
   width 100%
-  padding 20px 4% 0
+  padding 20px 5% 0
   display flex
   justify-content space-between
   align-items center

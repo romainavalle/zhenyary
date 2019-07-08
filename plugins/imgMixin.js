@@ -6,14 +6,17 @@ Vue.mixin({
     ...mapGetters(['isWebP'])
   },
   methods: {
-    getSrcSet(url) {
+    getSrcSet(url, isBigOnMobile) {
+
       let size = ''
-      if(ResizeHelper.width() < 300 ) {
-        size = '@mx'
-      }else if(ResizeHelper.width() < 768 ) {
-        size = '@.5x'
-      }else if(ResizeHelper.width() < 1280 ) {
-        size = '@1x'
+      if(!isBigOnMobile) {
+        if(ResizeHelper.width() < 300 ) {
+          size = '@mx'
+        }else if(ResizeHelper.width() < 768 ) {
+          size = '@.5x'
+        }else if(ResizeHelper.width() < 1280 ) {
+          size = '@1x'
+        }
       }
       let img = url.replace('.jpg', size + '.jpg').replace('.png', size + '.png')
       if(this.isWebP)img = img.replace('.jpg', '.webp').replace('.png', '.webp')

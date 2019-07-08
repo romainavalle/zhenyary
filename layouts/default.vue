@@ -67,7 +67,7 @@ export default {
     resize(){
       const w = ResizeHelper.width()
       const h = ResizeHelper.height()
-      const pageHeight = this.$refs.scroll.clientHeight
+      const pageHeight = this.$route.name === 'works' ? h * 3 :  this.$refs.scroll.clientHeight
       if(this.$refs.page && this.$refs.page.$children[0])this.$refs.page.$children[0].resize && this.$refs.page.$children[0].resize(w, h, pageHeight)
       this.$refs.nav.resize(w, h, pageHeight)
       if(this.$refs.progress) this.$refs.progress.resize(w, h, pageHeight)
@@ -89,7 +89,11 @@ export default {
       if(this.$refs.progress) this.$refs.progress.tick(scrollTop, scrollTopEase)
       if(!this.isDevice) {
         MouseHelper.tick()
-        transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
+        if(this.$route.name !== 'works') {
+          transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
+        } else{
+          transform(this.$refs.scroll, {translate3d: [0, 0, 0]})
+        }
         if(this.$refs.video)this.$refs.video.tick()
       }
     },
@@ -147,7 +151,7 @@ export default {
       imgs.forEach(img => {
         if(img.dataset.src){
           img.addEventListener('load', this.onLoaded.bind(this))
-          img.src = this.getSrcSet(img.dataset.src)
+          img.src = this.getSrcSet(img.dataset.src, classie.has(img, 'js-fs-on-mobile'))
           this.imgs.push(img)
         }
       });

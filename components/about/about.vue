@@ -111,7 +111,7 @@ section.about .about
       display none
     article
       width 100%
-      padding 0 4vw
+      padding 0 5vw
     h1
       font-size 140px
     h2

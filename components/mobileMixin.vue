@@ -4,6 +4,7 @@
 if(process.browser) {
   var classie = require('desandro-classie')
 }
+import anime from 'animejs'
 import offset from '~/assets/js/utils/offset'
 export default {
   data() {
@@ -27,21 +28,25 @@ export default {
 
           if(!anim.shown) {
             anim.shown = true
-            classie.remove(anim.el, 'mobile-anime')
-            classie.remove(anim.el, 'mobile-anime-top')
+            //classie.add(anim.el, 'mobile-show')
+            anim.anime = anime({targets: anim.el, translateY: 0, opacity: 1, duration:900, easing: 'easeOutQuad', delay: 100})
           }
         }
         if(anim.offset + anim.height < scrollTop  - this.h) {
           if(anim.shown) {
             anim.shown = false
-            classie.add(anim.el, 'mobile-anime')
-            classie.add(anim.el, 'mobile-anime-top')
+            //classie.add(anim.el, 'mobile-anime-top')
+            //classie.remove(anim.el, 'mobile-show')
+            anim.anime.pause()
+            anime.set(anim.el, {translateY: -50, opacity: 0})
           }
         }
         if(anim.offset > scrollTop ) {
           if(anim.shown) {
             anim.shown = false
-            classie.add(anim.el, 'mobile-anime')
+            anim.anime.pause()
+            anime.set(anim.el, {translateY: 50, opacity: 0})
+            //classie.remove(anim.el, 'mobile-show')
           }
         }
       })
@@ -51,8 +56,8 @@ export default {
       const anims = [].slice.call(this.$el.querySelectorAll('.mobile-anime'))
 
       anims.forEach((el)=>{
-        classie.add(el, 'mobile-trans')
         this.anims.push({el})
+        anime.set(el, {translateY: 50, opacity: 0})
       })
     }
   }

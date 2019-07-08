@@ -168,7 +168,7 @@ article
     display block
     .text-content
       width 100%
-      padding 10vh 4vw
+      padding 10vh 5vw
       display block
     header
       padding-bottom 5vh

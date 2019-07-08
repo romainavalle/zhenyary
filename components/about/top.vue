@@ -3,7 +3,7 @@
     <div class="img" ref="imgContainer">
       <div class="show-outer" ref="showOuter">
         <div class="show-inner" ref="showInner">
-            <img data-src="/images/zhenya.jpg" alt="zhenya rynzhuk" ref="img" width="801" height="887">
+            <img data-src="/images/zhenya.jpg" alt="zhenya rynzhuk" ref="img" width="801" height="887"  :class="{'js-fs-on-mobile': isPhone}">
         </div>
       </div>
     </div>
@@ -110,10 +110,10 @@ export default {
     article
       width 45%
   +below('s')
-    padding 0 4vw
+    padding 0 5vw
     .img
       padding 0
-      margin 0 0 0 -4vw
+      margin 0 0 0 -5vw
       width 100%
     article
       width 100%

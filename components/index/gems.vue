@@ -1,6 +1,7 @@
 <template>
   <article class="gems">
-    <strong class="strong" :class="{'mobile-anime': isPhone}">My main services</strong>
+
+    <strong class="strong"><span  :class="{'mobile-anime': isPhone}">My main services</span></strong>
     <ul>
       <li :class="{'mobile-anime': isPhone}"><v-svg-star class="star"/></li>
       <li :class="{'mobile-anime': isPhone}">Art direction</li>

@@ -99,7 +99,7 @@ p
     p
       width 100%
   +below('s')
-    padding 2vh 4vw 10vh
+    padding 2vh 5vw 10vh
     display block
     .spacer
       display none

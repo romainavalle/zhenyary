@@ -1,6 +1,8 @@
 <template>
   <section class="works">
+    <div class="container" ref="container">
       <v-screen v-for="(lines, index) in datas.works" :key="`screen-${index}`" :id="index" :lines="lines" :previousLines="getWorksBefore(index)" ref="screens"/>
+    </div>
       <no-ssr>
         <v-work-img ref="img" :id="showId" v-if="!isDevice"></v-work-img>
       </no-ssr>
@@ -48,16 +50,12 @@ export default {
         this.h = h
       }
       if(this.isDevice)return
-      this.screens.forEach((screen, i) => {
-        //transform(screen.el, {translateY:  i * this.h *.2})
-      });
       if(this.$refs.img)this.$refs.img.resize(this.w, this.h)
       if(this.$refs.work)this.$refs.work.resize(this.w, this.h)
     },
     tick(scrollTop, easeScrollTop) {
       if(this.isDevice) return
-      transform(this.$el, {translateY: scrollTop})
-        //this.workScreenId = (Math.floor(.5 + scrollTop/this.h))
+      //transform(this.$el, {translate3d: [0, scrollTop,0]})
     },
     getWorksBefore(id) {
       let count = 0
@@ -163,6 +161,7 @@ export default {
     }
   },
   mounted() {
+
     if(this.isDevice){
       this.$nextTick(()=>{
         Emitter.emit('PAGE:MOUNTED')
@@ -208,9 +207,11 @@ export default {
   background $pink
   position relative
   width 100vw
-  height 300vh
+  height 100vh
   font-family $schnyder
   font-weight $demi
+  .device &
+    position relative
   .strong
     position absolute
     top 95vh

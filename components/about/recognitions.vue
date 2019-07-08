@@ -3,7 +3,7 @@
   <div class="spacer"><button class="showreel" aria-label="showreel" v-show="!isPhone" @click="setVideo(true)"><span>showreel</span></button></div>
   <article class="regognitions">
     <div class="title">
-      <h3 class="mobile-anime">Regognitions</h3>
+      <h3 class="mobile-anime">Recognitions</h3>
       <button class="showreel mobile-anime" aria-label="showreel" v-show="isPhone" @click="setVideo(true)">showreel</button>
     </div>
     <div>

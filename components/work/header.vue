@@ -197,7 +197,7 @@ header
       padding-top 5px
   +below('s')
     height auto
-    padding 15vh 4vw 0
+    padding 15vh 5vw 0
     .back
       position relative
       top auto

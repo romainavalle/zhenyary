@@ -98,5 +98,5 @@ export default {
       &:after
         height 2px
   +below('s')
-    padding-top 0
+    padding 0 0 10vh
 </style>
