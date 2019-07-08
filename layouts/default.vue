@@ -17,9 +17,7 @@
     <no-ssr>
       <v-nav-mobile v-if="isPhone" ref="navMobile"/>
     </no-ssr>
-    <no-ssr>
-      <v-video-player ref="video"/>
-    </no-ssr>
+    <v-video-player ref="video"/>
     <v-nav ref="nav"/>
     <div class="scroll" ref="scroll">
       <nuxt :key="route.params.slug || route.name"  ref="page" class="page"/>
