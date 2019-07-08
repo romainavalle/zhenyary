@@ -3,92 +3,92 @@
   "title": "Uruoi",
   "menuNumberUnderline": false,
   "menuItalic": false,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Uruoi",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Uruoiskincare.com",
+    "url": "https://uruoiskincare.com"
   },
-  "type": "Ecommerce Website",
-  "skills": ["Art direction", "interface design", "photography"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
+  "skills": ["Art direction", "interface design"],
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "Uruoi is a blessing of water for every skin relieving dryness with a gentle touch since 1989. It is made in Japan."
   ],
   "cover": "uruoi/uruoi.jpg",
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
-      "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
-      ]
-    },
-    {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
-      "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
-      ]
-    },
-    {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
+      "url": "uruoi/img-0.jpg",
+      "alt": "uruoi"
     },
     {
       "type": "vImage",
       "width": 60,
-      "background": "#D4D1CB",
-      "shadow": "shadow-rafal",
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
+      "url": "uruoi/img-1.jpg",
+      "alt": "uruoi"
+    },
+    {
+      "type": "vText",
+      "header": "Uruoi concentrates on the core elements of skincare to combine an authentically Japanese minimalist philosophy and powerful ingredients backed by science.",
+      "paragraphs": [
+        "This project was all about minimalism.",
+        "My main objective was to come up with a design to support brand’s philosophy as well as bring it to the digital world in the best shape."
+      ]
+    },
+    {
+      "type": "vImage",
+      "width": 60,
+      "url": "uruoi/img-2.jpg",
+      "alt": "uruoi"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
+      "url": "uruoi/img-3.jpg",
+      "alt": "uruoi"
     },
     {
-      "type": "vImages",
-      "images":[
-        {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
-        },
-        {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
-        }
+      "type": "vImageText",
+      "url": "uruoi/img-4.jpg",
+      "alt": "uruoi",
+      "header": "To develop this website a unique stack of technologies was used to enable custom animations.",
+      "paragraphs": [
+        "A lot of attention was paid to such tiny little things like cute hovers, button animations, smooth transitions between pages and other interaction elements. This way we aimed at creating a very pleasant and memorable online experience for the brand’s customers."
       ]
+    },
+    {
+      "type": "vImage",
+      "width": 60,
+      "url": "uruoi/img-5.jpg",
+      "alt": "uruoi"
+    },
+    {
+      "type": "vImage",
+      "width": 60,
+      "url": "uruoi/img-6.jpg",
+      "alt": "uruoi"
+    },
+    {
+      "type": "vImage",
+      "width": 40,
+      "background": "#6E787D",
+      "shadow": "uruoi/shadow.png",
+      "url": "uruoi/img-7.jpg",
+      "alt": "uruoi"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "uruoi/img-8.jpg",
+      "alt": "uruoi"
+    },
+    {
+      "type": "vImage",
+      "width": 30,
+      "background": "#CAD0D5",
+      "url": "uruoi/img-9.jpg",
+      "alt": "uruoi"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "uruoi/img-10.jpg",
+      "alt": "uruoi"
     }
   ]
 }

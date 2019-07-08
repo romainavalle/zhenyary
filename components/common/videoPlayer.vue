@@ -163,8 +163,6 @@ export default {
     if(this.isSafari) Emitter.removeListener('VIDEO_BUTTON_CLICKED', this._play)
   },
   mounted() {
-    console.log(this.controls);
-
     this._onEnd = this.onEnd.bind(this)
     this._onKeyPress = this.onKeyPress.bind(this)
     this._play = this.play.bind('this')

@@ -3,54 +3,50 @@
   "title": "Adobe XD kit",
   "menuNumberUnderline": false,
   "menuItalic": true,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Adobe XD editorial kit",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Behance case",
+    "url": "https://www.behance.net/gallery/65315257/Fashion-Editorial-UI-Kit-for-Adobe-XD"
   },
-  "type": "Ecommerce Website",
-  "skills": ["Art direction", "interface design", "photography"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
+  "skills": ["mobile app design", "interaction design", "photography direction"],
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "I was invited to participate in the release of Adobe series of free UI Kits and resources for the design community created by prominent designers around the globe. ",
+    "Being extremely excited about this opportunity, I decided to create something fresh and unique to make sure all Adobe XD users will benefit from this UI Kit."
   ],
   "cover": "adobe-xd/adobe-xd.jpg",
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "adobe-xd/img-0.jpg",
+      "alt": "adobe xd"
     },
     {
       "type": "vImage",
       "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "url": "adobe-xd/img-1.jpg",
+      "alt": "adobe xd"
     },
     {
       "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "This editorial and e-commerce UI kit features 18 different design pages and more than 120 various components.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "What makes this UI Kit particularly unique and different from many others is the content. We all know that content is king. I decided to further capitalize on this."
       ]
     },
     {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "type": "vImageBackground",
+      "url": "adobe-xd/img-2.jpg",
+      "alt": "adobe xd"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
+      "url": "adobe-xd/img-3.jpg",
+      "alt": "adobe xd"
     },
     {
       "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
+      "url": "adobe-xd/img-4.jpg",
+      "alt": "adobe xd",
       "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
       "paragraphs": [
         "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
@@ -58,37 +54,30 @@
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
+      "width": 40,
+      "background": "#272727",
+      "top": 60,
+      "url": "adobe-xd/img-5.jpg",
+      "alt": "adobe xd"
     },
     {
       "type": "vImage",
-      "width": 60,
-      "background": "#D4D1CB",
-      "shadow": "shadow-rafal",
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
+      "width": 40,
+      "background": "#272727",
+      "top": 40,
+      "url": "adobe-xd/img-6.jpg",
+      "alt": "adobe xd"
+    },
+    {
+      "type": "vImage",
+      "width": 22,
+      "url": "adobe-xd/img-7.jpg",
+      "alt": "adobe xd"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImages",
-      "images":[
-        {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
-        },
-        {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
-        }
-      ]
+      "url": "adobe-xd/img-8.jpg",
+      "alt": "adobe xd"
     }
   ]
 }

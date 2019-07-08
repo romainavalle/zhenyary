@@ -1,22 +1,18 @@
 {
   "slug": "m-shkret",
-  "title": "M. Shkret",
+  "title": "Max Shkret",
   "menuNumberUnderline": false,
   "menuItalic": false,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Max Shkret",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Shkret.com",
+    "url": "https://shkret.com/"
   },
   "awwwards": "Site of the day, Mobile excellence, Devaward",
   "FWA": "FWA of the day",
-  "type": "Ecommerce Website",
   "skills": ["Art Direction","Interface Design"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "This is a portfolio website of an award-winning digital artist, who creates one of a kind digital models that have a strong meaning and symbolism behind them like a Melting Panda that embodies the disappearance of rare beauty or a Double-Natured Unicorn that symbolizes the earthy heaven and hell."
   ],
   "cover": "m-shkret/m-shkret.jpg",
   "content": [
@@ -33,9 +29,9 @@
     },
     {
       "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "This website got Site of the Day on Awwwards and FWA as well as Honorable Mention, Mobile Excellence and Development awards.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "The goal of this website is to raise money to potentiate the creation of physical sculptures that will be brought to life by means of advanced industrial production technologies and professional machinery: 3D printing and 5-axis CNC machining center."
       ]
     },
     {

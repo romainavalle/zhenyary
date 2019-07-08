@@ -5,7 +5,9 @@
         <header v-html="content.header" class="demi" :class="{'mobile-anime': isPhone}"></header>
       </div>
       <div class="paragraphs">
-        <p v-for="(paragraph, index) in content.paragraphs" :key="`paragraph-${index}`" v-html="paragraph" :class="{'mobile-anime': isPhone}"></p>
+        <div>
+          <p v-for="(paragraph, index) in content.paragraphs" :key="`paragraph-${index}`" v-html="paragraph" :class="{'mobile-anime': isPhone}"></p>
+        </div>
       </div>
     </div>
   </article>
@@ -60,11 +62,15 @@ export default {
         this.$el.style.opacity = 0
         this.$nextTick(()=>{
           const header = this.$el.querySelector('header')
-          const p = this.$el.querySelector('p')
+          const paragraphs = this.$el.querySelector('.paragraphs')
+          const ps = [].slice.call(this.$el.querySelectorAll('p'))
           splitLines(header)
-          splitLines(p)
+
+          ps.forEach((p)=>{
+            splitLines(p)
+          })
           this.headerLines = [].slice.call(header.querySelectorAll('.line'))
-          this.pLines = [].slice.call(p.querySelectorAll('.line'))
+          this.pLines = [].slice.call(paragraphs.querySelectorAll('.line'))
           this.headerLines.forEach((line, i) => {
             const start = 50 + i * 50
             transform(line, {translate3d: [0, start, 0]})
@@ -95,11 +101,14 @@ article.text
 .header, .paragraphs
   width 50%
   display flex
+.header
   justify-content flex-end
+.paragraphs
+  justify-content center
 header
   width 30%
   font-size 20px
-p
+.paragraphs>div
   width 45%
 
 article.text
@@ -115,7 +124,7 @@ article.text
       width 35%
     .paragraphs
       width 50%
-    header, p
+    header, .paragraphs>div
       width 100%
   +below('s')
     padding 10vh 5vw

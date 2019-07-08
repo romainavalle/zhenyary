@@ -1,92 +1,84 @@
 {
   "slug": "il-makiage",
   "title": "IL Makiage",
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "IL Makiage",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Ilmakiage.com",
+    "url": "https://ilmakiage.com/"
   },
-  "type": "Ecommerce Website",
-  "skills": ["Art direction", "interface design", "photography"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
+  "skills": ["Interface Design"],
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "Makeup for women who don’t apologize for their high standards.",
+    "Working on this project was challenging but also lots of fun! The ultimate goal was to make sure the website is both visually attractive as well as high performing in terms of visitors/customers conversion."
   ],
   "cover": "il-makiage/il-makiage.jpg",
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "il-makiage/img-0.jpg",
+      "alt": "Il makiage"
     },
     {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "type": "vImageBackground",
+      "url": "il-makiage/img-1.jpg",
+      "alt": "Il makiage"
     },
     {
       "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "If you share the view that minimalism is dead, this is definitely the right brand for you!",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "To achieve the best results and learn more about the brand and its bold identity I even was invited to visit the headquarters and production facilities. This really helped to understand what the brand stands for — which is the uncompromising attention to detail, designed to capture the spirit of confident women everywhere."
       ]
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "il-makiage/img-3.jpg",
+      "alt": "Il makiage"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
+      "url": "il-makiage/img-4.jpg",
+      "alt": "Il makiage"
     },
     {
       "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "url": "il-makiage/img-5.jpg",
+      "alt": "Il makiage",
+      "header": "I really enjoyed working in close collaboration with the co-founder of the brand.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "We teamed up to create a few different variations of the homepage that were further tested during the soft launch of the project to find the right balance of the aesthetics and performance. After the soft launch, we continued our collaboration on the design of inner pages.  "
       ]
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "il-makiage/img-6.jpg",
+      "alt": "Il makiage"
     },
     {
       "type": "vImage",
-      "width": 60,
-      "background": "#D4D1CB",
-      "shadow": "shadow-rafal",
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "il-makiage/img-7.jpg",
+      "alt": "Il makiage"
     },
     {
       "type": "vImages",
       "images":[
         {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
+          "url": "il-makiage/img-8.jpg",
+          "alt": "Il makiage"
         },
         {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
+          "url": "il-makiage/img-9.jpg",
+          "alt": "Il makiage"
         }
       ]
+    },
+    {
+      "type": "vImageBackground",
+      "url": "il-makiage/img-10.jpg",
+      "alt": "Il makiage"
     }
   ]
 }

@@ -3,92 +3,81 @@
   "title": "Aeditor <span class=\"slash\">/</span> <span>APP</span></span>",
   "menuNumberUnderline": false,
   "menuItalic": false,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Aeditor",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "IOS App",
+    "url": "https://apps.apple.com/us/app/the-aeditor/id1322246202"
   },
-  "type": "Ecommerce Website",
-  "skills": ["Art direction", "interface design", "photography"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
+  "skills": ["mobile app design", "interaction design"],
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "Welcome to the future of beauty! ",
+    "Aedit app lets you to find the best providers in your area, get an insider’s perspective on all beauty procedure options, and instantly book your consultation."
   ],
   "cover": "aeditor/aeditor.jpg",
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "aeditor/img-0.jpg",
+      "alt": "Aeditor"
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "width": 22,
+      "url": "aeditor/img-1.jpg",
+      "alt": "Aeditor"
     },
     {
       "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "Aeditor is taking the stigma out of plastic surgery, cosmetic procedures and injectables.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "With Aeditor you can do a lot of great things – just take a picture and apply a cosmetic treatment of your choice to a selected area (nose, lips or brows). You can refresh your face with just a few taps and swipes, compare your before & after, save your AEDITs and share them with your friend."
       ]
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "width": 22,
+      "background": "#A5A29D",
+      "url": "aeditor/img-2.jpg",
+      "alt": "Aeditor"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
+      "url": "aeditor/img-3.jpg",
+      "alt": "Aeditor"
     },
     {
       "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "url": "aeditor/img-4.jpg",
+      "alt": "Aeditor",
+      "header": "Aeditor is the only medically approved app that gives you a realistic idea of what you would look like after cosmetic treatments.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "Working with the AEDIT team has been a great experience as these guys are really pushing the cosmetics surgery industry forward by creating seamless and aesthetically appealing mobile experience utilizing the latest technological advancements."
       ]
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImage",
-      "width": 60,
-      "background": "#D4D1CB",
-      "shadow": "shadow-rafal",
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
+      "width": 22,
+      "url": "aeditor/img-5.jpg",
+      "background": "#DBD5C9",
+      "alt": "Aeditor"
     },
     {
       "type": "vImages",
       "images":[
         {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
+          "url": "aeditor/img-6.jpg",
+          "alt": "Aeditor"
         },
         {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
+          "url": "aeditor/img-7.jpg",
+          "alt": "Aeditor"
         }
       ]
+    },
+    {
+      "type": "vImageBackground",
+      "url": "aeditor/img-8.jpg",
+      "alt": "Aeditor"
     }
   ]
 }

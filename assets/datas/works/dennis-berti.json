@@ -3,20 +3,16 @@
   "title": "Dennis Berti",
   "menuNumberUnderline": true,
   "menuItalic": true,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Denis Berti",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Dennisberti.com",
+    "url": "https://dennisberti.com/"
   },
   "awwwards": "Site of the day, Mobile excellence, Devaward",
   "FWA": "FWA of the day",
-  "type": "Ecommerce Website",
   "skills": ["Art direction", "interface design", "photography"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "This is a portfolio website of a music dependent life form, washed up sportsman, especially gifted food guzzler, very good friend, and passionate visual storyteller."
   ],
   "cover": "dennis-berti/dennis-berti.jpg",
   "content": [
@@ -33,9 +29,9 @@
     },
     {
       "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "This website got Site of the Day on Awwwards and FWA!",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "I was tasked to showcase Dennis’ unique approach to wedding photography and his stunning works: “The elegance of honesty needs no adornment”  The blogging feature of the website allows Dennis to share his knowledge and tips collected throughout his long-long career."
       ]
     },
     {
@@ -54,9 +50,9 @@
       "type": "vImageText",
       "url": "dennis-berti/dennis-5.jpg",
       "alt": "Dennis Berti",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "Some other recognitions that we got include Honorable Mention, Mobile Excellence and Development awards.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "The goal of the project was to create a photographer website that will be different to all the folios out there. With all the hard work we’ve managed to achieve this ambitious goal."
       ]
     },
     {

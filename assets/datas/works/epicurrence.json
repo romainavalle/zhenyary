@@ -3,20 +3,16 @@
   "title": "Epicurrence",
   "menuNumberUnderline": false,
   "menuItalic": false,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Epicurrence",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Epicurrence.com",
+    "url": "https://epicurrence.com/"
   },
   "awwwards": "Site of the day, Mobile excellence, Devaward",
   "FWA": "FWA of the day",
-  "type": "Ecommerce Website",
-  "skills": ["Art direction", "interface design", "photography"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
+  "skills": ["interface design"],
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "Epicurrence is the original activity-focused non-conference for creatives that focuses on community and unforgettable experiences."
   ],
   "cover": "epicurrence/epicurrence.jpg",
   "content": [
@@ -34,9 +30,9 @@
     },
     {
       "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "This website picked up Site of the Day on Awwwards and FWA.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "I was extremely fortunate to work on this amazing project together with an awesome team to ensure that creatives from all over the world come celebrate the revival with a week of kayaking, rock climbing, moto, mountain biking, hiking, fishing, late night discussions, and so much more!"
       ]
     },
     {
@@ -45,6 +41,15 @@
       "fitHeight": true,
       "url": "epicurrence/epicurrence-3.jpg",
       "alt": "epicurrence"
+    },
+    {
+      "type": "vImageText",
+      "url": "epicurrence/epicurrence-img-text.jpg",
+      "alt": "epicurrence",
+      "header": "Some other recognitions that we got include Honorable Mention, Mobile Excellence and Development awards.",
+      "paragraphs": [
+        "This project is a great example of how illustrations, animations and typography blend together to create an amazing online experience."
+      ]
     },
     {
       "type": "vImageBackground",

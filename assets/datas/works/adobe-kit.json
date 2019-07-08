@@ -3,90 +3,107 @@
   "title": "Adobe editorial kit",
   "menuNumberUnderline": false,
   "menuItalic": true,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Adobe XD influencer kit",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Behance case",
+    "url": "https://www.behance.net/gallery/75193163/Fashion-Influencer-UI-Kit-for-Adobe-XD"
   },
-  "type": "Ecommerce Website",
-  "skills": ["Art direction", "interface design", "photography"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
+  "skills": ["Art direction", "interface design", "Photography Direction"],
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "This is the 2nd time Adobe XD team invited me to participate in the release of their series of free UI kits and resources for the design community created by prominent designers around the globe."
   ],
   "cover": "adobe-kit/adobe-kit.jpg",
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
-      "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
-      ]
-    },
-    {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "url": "adobe-kit/kit-1.jpg",
+      "alt": "Adobe editorial kit"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
+      "url": "adobe-kit/kit-2.jpg",
+      "alt": "Adobe editorial kit"
     },
     {
-      "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "type": "vText",
+      "header": "This influencer UI kit features 10+ different design pages and more than 50 components.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "You can take advantage of this UI kit to build a lot of great projects starting from your personal influencer blog to boutique e-commerce website. ",
+        "Since animations play an integral part in humanizing the UI and supporting the overall design direction make sure to think of them in advance when creating your next digital project."
       ]
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "adobe-kit/kit-3.jpg",
+      "alt": "Adobe editorial kit"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "adobe-kit/kit-4.jpg",
+      "alt": "Adobe editorial kit"
     },
     {
       "type": "vImage",
       "width": 60,
-      "background": "#D4D1CB",
-      "shadow": "shadow-rafal",
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
+      "top": 60,
+      "url": "adobe-kit/kit-5.jpg",
+      "alt": "Adobe editorial kit"
     },
     {
-      "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
+      "type": "vImage",
+      "width": 60,
+      "top": 40,
+      "url": "adobe-kit/kit-6.jpg",
+      "alt": "Adobe editorial kit"
+    },
+    {
+      "type": "vImage",
+      "width": 40,
+      "top": 60,
+      "background": "#C9C9C9",
+      "shadow": "adobe-kit/shadow-kit.png",
+      "url": "adobe-kit/kit-7.jpg",
+      "alt": "Adobe editorial kit"
+    },
+    {
+      "type": "vImage",
+      "width": 40,
+      "top": 40,
+      "background": "#C9C9C9",
+      "shadow": "adobe-kit/shadow-kit.png",
+      "url": "adobe-kit/kit-8.jpg",
+      "alt": "Adobe editorial kit"
     },
     {
       "type": "vImages",
       "images":[
         {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
+          "url": "adobe-kit/kit-9.jpg",
+          "alt": "Adobe editorial kit"
         },
         {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
+          "url": "adobe-kit/kit-10.jpg",
+          "alt": "Adobe editorial kit"
+        }
+      ]
+    },
+    {
+      "type": "vImage",
+      "width": 60,
+      "url": "adobe-kit/kit-11.jpg",
+      "alt": "Adobe editorial kit"
+    },
+    {
+      "type": "vImages",
+      "images":[
+        {
+          "url": "adobe-kit/kit-12.jpg",
+          "alt": "Adobe editorial kit"
+        },
+        {
+          "url": "adobe-kit/kit-13.jpg",
+          "alt": "Adobe editorial kit"
         }
       ]
     }

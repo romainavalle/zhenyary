@@ -226,3 +226,9 @@ header
       padding-top 80px
 
 </style>
+<style lang="stylus">
+.works-slug header h1
+  span span
+    display none
+</style>
+

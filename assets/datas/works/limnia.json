@@ -3,92 +3,100 @@
   "title": "Limnia",
   "menuNumberUnderline": false,
   "menuItalic": false,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Limnia Jewellery",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Linmia.com",
+    "url": "https://linmia.com/"
   },
-  "type": "Ecommerce Website",
-  "skills": ["Art direction", "interface design", "photography"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
+  "skills": ["Art direction", "interface design"],
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "Built on the idea that life is yours for the making, LIMNIAis a modular fine jewelry brand that, in its modularity, empowers you to live exactly as you are in a world of limitless possibilities."
   ],
   "cover": "limnia/limnia.jpg",
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "limnia/limnia-1.jpg",
+      "alt": "linmia"
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "limnia/limnia-2.jpg",
+      "alt": "linmia"
     },
     {
       "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "The key feature of the website is its modular jewelry builder created to address customers’ evolving needs.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "With LIMNIA, we’ve built a clever, customizable jewelry line that morphs with you. A necklace becomes a pair of anklets; an earring turns into a ring. Crafted from the finest materials and precious stones (think 14k gold, white or black diamonds), LIMNIA'S contemporary fine jewelry can be modified to match your mood, no matter where you are."
       ]
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "limnia/limnia-3.jpg",
+      "alt": "linmia"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
+      "url": "limnia/limnia-4.jpg",
+      "alt": "linmia"
     },
     {
       "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "url": "limnia/limnia-5.jpg",
+      "alt": "linmia",
+      "header": "The website is built using a unique stack of technologies to enable custom animations and transitions between the pages.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "This project was both challenging and fun as we were aiming at creating a unique digital experience that is also focused on maximizing e-commerce efficiency and revenue."
       ]
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImage",
-      "width": 60,
-      "background": "#D4D1CB",
-      "shadow": "shadow-rafal",
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "limnia/limnia-6.jpg",
+      "alt": "linmia"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
+      "url": "limnia/limnia-7.jpg",
+      "alt": "linmia"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "limnia/limnia-8.jpg",
+      "alt": "linmia"
+    },
+    {
+      "type": "vImage",
+      "width": 90,
+      "url": "limnia/limnia-9.jpg",
+      "alt": "linmia"
     },
     {
       "type": "vImages",
       "images":[
         {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
+          "url": "limnia/limnia-10.jpg",
+          "alt": "linmia"
         },
         {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
+          "url": "limnia/limnia-11.jpg",
+          "alt": "linmia"
         }
       ]
+    },
+    {
+      "type": "vImage",
+      "width": 60,
+      "url": "limnia/limnia-12.jpg",
+      "alt": "linmia"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "limnia/limnia-13.jpg",
+      "alt": "linmia"
     }
   ]
 }

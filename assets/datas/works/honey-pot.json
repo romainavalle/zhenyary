@@ -3,18 +3,15 @@
   "title": "Honey Pot",
   "menuNumberUnderline": false,
   "menuItalic": true,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Honey Pot",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Behance case",
+    "url": "https://www.behance.net/gallery/73488605/Honey-Pot"
   },
-  "type": "Ecommerce Website",
   "skills": ["Art direction", "interface design", "photography"],
-  "intro": "My Experience, Awards & Pulications, and own vibes dor sure!",
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "This is a plant-based feminine care e-commerce website.",
+    "The Honey Pot is more than just a feminine care company. They are strong advocates for women's health around the world. Each dollar spend with them can impact a greater good. I really lucked out to work on this meaningful project."
   ],
   "cover": "honey-pot/honey-pot.jpg",
   "content": [
@@ -30,9 +27,9 @@
     },
     {
       "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "The first complete feminine care system, powered by herbs",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "In addition to unique and creative products photography, the website also features custom illustrations of different plants to better convey the spirit of 100% natural products and appeal to the customers."
       ]
     },
     {
@@ -50,9 +47,9 @@
       "type": "vImageText",
       "url": "honey-pot/honey-5.jpg",
       "alt": "Honey Pot",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "Set design for promo campaigns is inspired by the Honey Pot products’ ingredients.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "While working on the website design, I paid particular attention to the product details pages aiming at prominently showing the product itself as well as highlighting all the natural components it is made of in a funny and memorable manner."
       ]
     },
     {
