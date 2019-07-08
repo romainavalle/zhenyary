@@ -3,88 +3,71 @@
   "title": "Glo <span class=\"slash\">/</span> <span>APP</span></span>",
   "menuNumberUnderline": false,
   "menuItalic": false,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Glo",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Ios app",
+    "url": "https://apps.apple.com/us/app/glo/id1233003605"
   },
-  "skills": ["Art direction", "interface design", "photography"],
+  "skills": ["Art direction", "web design", "mobile app design"],
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "Glo is the one and only place for true cosmetics and beauty fans.",
+    "Share your looks with great selfies, discover the products your friends and the best influencers use, leave ratings and reviews, find out what similar people do with the best brands all in one app!"
   ],
   "cover": "glo/glo.jpg",
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "glo/glo-0.jpg",
+      "alt": "glo"
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "width": 22,
+      "url": "glo/glo-1.jpg",
+      "alt": "glo"
     },
     {
       "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "Mobile app that strives to be the one and only place for true beauty fans.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "I was tasked with creating the entire UI/UX of this amazing product focused on millennials, who are obsessed with the way they look."
       ]
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
+      "width": 22,
+      "url": "glo/glo-2.jpg",
+      "alt": "glo"
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
+      "url": "glo/glo-3.jpg",
+      "alt": "glo"
     },
     {
       "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "url": "glo/glo-4.jpg",
+      "alt": "glo",
+      "header": "Instagram like photo editing mode allows you to modify your photo before you post.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "Interface interactions were a big part of the project. The goal was to make them both seamless and fun for the audience to play with and stay engaged."
       ]
     },
     {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImage",
-      "width": 60,
-      "background": "#D4D1CB",
-      "shadow": "shadow-rafal",
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
-    },
-    {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
+      "url": "glo/glo-5.jpg",
+      "alt": "glo"
     },
     {
       "type": "vImages",
       "images":[
         {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
+          "url": "glo/glo-6.jpg",
+          "alt": "glo"
         },
         {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
+          "url": "glo/glo-7.jpg",
+          "alt": "glo"
         }
       ]
     }

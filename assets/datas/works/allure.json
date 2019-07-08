@@ -3,90 +3,64 @@
   "title": "Allure",
   "menuNumberUnderline": false,
   "menuItalic": false,
-  "subtitle": "Rafal Bojar Photographer",
+  "subtitle": "Allure",
   "link": {
-    "label": "Rafalbojar.com",
-    "url": "https://rafalbojar.com/"
+    "label": "Allure.com",
+    "url": "https://allure.com/"
   },
-  "skills": ["Art direction", "interface design", "photography"],
+  "skills": ["Art direction", "interface design"],
   "header": [
-    "Cure is a unique nail and wax boutique.",
-    "It’is curated a build-your-own style menu by creating its own natural and organic skincare products that are used in services.",
-    "Cure was founded in 2018 in El Paso, Texas. At Cure we focus on customer experience, health and happiness."
+    "The landing page design and animation for a meaningful project campaign \"See Yourself See Each Other\" produced by Allure with Ulta Beauty. "
   ],
   "cover": "allure/allure.jpg",
   "content": [
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-0.jpg",
-      "alt": "alternative text"
+      "url": "allure/img-0.jpg",
+      "alt": "allure"
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-1.jpg",
-      "alt": "alternative text"
+      "width": 70,
+      "url": "allure/img-1.jpg",
+      "alt": "allure"
     },
     {
       "type": "vText",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
+      "header": "A project breaking down beauty standards through open and honest conversations.",
       "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
+        "In See Yourself, See Each Other, the brand-new series produced by Allure with Ulta Beauty, the campaign kicks off important conversations on the topics including representation, skin acceptance, hair acceptance, gender identity, and body positivity."
       ]
-    },
-    {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-2.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImageBackground",
-      "url": "rafal-bojar/img-3.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImageText",
-      "url": "rafal-bojar/img-4.jpg",
-      "alt": "alternative text",
-      "header": "My Experience, Awards & Pulications, and own vibes dor sure!",
-      "paragraphs": [
-        "In March 2016, we launched our TV channel, VICELAND with all original content made by VICE. The network was a way for us to understand our world across a broad range of subjects, tones, and high and low cultures. Together with Gretel, we created a brand identity system with a functional aesthetic completely counter to any TV channel to date."
-      ]
-    },
-    {
-      "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/img-5.jpg",
-      "alt": "alternative text"
     },
     {
       "type": "vImage",
       "width": 60,
-      "background": "#D4D1CB",
-      "shadow": "shadow-rafal",
-      "url": "rafal-bojar/img-6.jpg",
-      "alt": "alternative text"
+      "top" :60,
+      "background": "#1D1D1D",
+      "url": "allure/img-2.jpg",
+      "alt": "allure"
+    },
+    {
+      "type": "vImage",
+      "width": 60,
+      "top" :40,
+      "background": "#1D1D1D",
+      "url": "allure/img-3.jpg",
+      "alt": "allure"
+    },
+    {
+      "type": "vImageText",
+      "url": "allure/img-4.jpg",
+      "alt": "allure",
+      "header": "No matter where you come from, who you love, or how you look, one thing is certain: Everyone deserves to be seen, heard, and respected.",
+      "paragraphs": [
+        "Together with Allure and Ulta Beauty, I had a chance to get the dialogue rolling that beauty is for everyone to partake in as a source of enjoyment, an art form, a form of self-care, and an empowering tool that helps you be your best self."
+      ]
     },
     {
       "type": "vImageBackground",
-      "url": "rafal-bojar/img-7.jpg",
-      "alt": "alternative text"
-    },
-    {
-      "type": "vImages",
-      "images":[
-        {
-          "url": "rafal-bojar/img-8.jpg",
-          "alt": "alternative text"
-        },
-        {
-          "url": "rafal-bojar/img-9.jpg",
-          "background": "#CECAC7",
-          "width": 60,
-          "alt": "alternative text"
-        }
-      ]
+      "url": "allure/img-5.jpg",
+      "alt": "allure"
     }
   ]
 }
