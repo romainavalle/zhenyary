@@ -11,12 +11,17 @@
 </template>
 
 <script>
-import transform from 'dom-transform'
+import anime from 'animejs'
 import offset from '~/assets/js/utils/offset'
 import splitLines from '~/assets/js/utils/splitLines'
-import { easeInOutCubic, easeInOutQuad } from '~/assets/js/utils/easings'
 import { mapGetters } from 'vuex';
 export default {
+  data() {
+    return {
+      isAnimatedIn: false,
+      isTextAnimatedIn: false
+    }
+  },
   props: ['content', 'path', 'title'],
   computed:{
     ...mapGetters(['isPhone', 'isDevice']),
@@ -40,71 +45,67 @@ export default {
       if(this.textContent)this.offsetText = offset(this.textContent).top - this.h
     },
     tick(scrollTop, ease){
-      if(ease > this.offset && ease <this.offset + this.h) {
-        const coef = easeInOutCubic((ease - this.offset) / this.h)
-        if(this.isPhone) {
-          transform(this.$refs.img, {scale3d: [1.5 - coef * .5, 1.5 - coef * .5, 1]})
-        }else{
-          transform(this.$refs.img, {scale3d: [2.1 - coef * 1.1, 2.1 - coef * 1.1, 1]})
+      if(ease > this.offset + this.h *.3 ) {
+        if(!this.isAnimatedIn)this.animateIn()
+      }
+      if(ease < this.offset  ) {
+        if(this.isAnimatedIn)this.reset()
+      }
+      if(!this.isPhone){
+        if(ease > this.offsetText + this.h *.3 ) {
+          if(!this.isTextAnimatedIn)this.animateTextIn()
+        }
+        if(ease < this.offsetText  ) {
+          if(this.isTextAnimatedIn)this.resetText()
         }
       }
+    },
+    animateIn() {
+      this.isAnimatedIn = true
+      anime({targets: this.$refs.img, scaleX: 1, scaleY:1, easing: 'easeOutQuad', duration: 1000})
+    },
+    reset() {
+      this.isAnimatedIn = false
+      if(this.isPhone) {
+        anime.set(this.$refs.img, {scaleX: 1.5, scaleY:1.5, scaleZ:1})
+      }else{
+        anime.set(this.$refs.img, {scaleX: 2.1, scaleY: 2.1, scaleZ:1})
+      }
+    },
+    animateTextIn() {
 
-      if(ease > this.offsetText && ease <this.offsetText + this.h) {
-        const coefQuad = easeInOutQuad((ease - this.offsetText) / this.h)
-        if(this.isPhone) {
-        }else{
-          this.textContent.style.opacity = coefQuad
-          if(this.isDevice) {
-            transform(this.textContent, {translate3d: [0,-200 + 200 * coefQuad, 0 ]})
-            this.headerLines.forEach((line, i) => {
-              const start = 50 + i * 50
-              transform(line, {translate3d: [0, start -  start * coefQuad, 0]})
-            });
-            this.pLines.forEach((line, i) => {
-              const start = 50 + i * 50
-              transform(line, {translate3d: [0, start -  start * coefQuad, 0]})
-            });
-          }else{
-            this.lines.forEach((line, i) => {
-              const start = 50 + i * 50
-              transform(line, {translate3d: [start - coefQuad * start, 0, 0]})
-            });
-          }
-        }
+      this.isTextAnimatedIn = true
+      if(this.isDevice) {
+        anime({targets: this.headerLines, translateY: 0, opacity:  1, easing: 'easeOutQuad', duration: 500, delay: anime.stagger(100,{easing: 'easeInQuad'})})
+        anime({targets: this.pLines, translateY: 0, opacity:  1, easing: 'easeOutQuad', duration: 500, delay: anime.stagger(100,{start: 200, easing: 'easeInQuad'})})
+      }else{
+        anime({targets: this.lines, translateX: 0, opacity:  1, easing: 'easeOutQuad', duration: 500, delay: anime.stagger(100,{start: 500, easing: 'easeInQuad'})})
+      }
+    },
+    resetText() {
+      this.isTextAnimatedIn = false
+      if(this.isDevice) {
+        anime.set(this.headerLines, {translateY: 50, opacity:  0})
+        anime.set(this.pLines, {translateY: 50, opacity:  0})
+      }else{
+        anime.set(this.lines, {translateX: 100, opacity:  0})
       }
     }
   },
   mounted() {
-    if(this.isPhone) {
-      transform(this.$refs.img, {scale3d: [1.5,1.5, 1 ]})
-    }else{
-    transform(this.$refs.img, {scale3d: [2.1, 2.1, 1 ]})
+    this.reset()
+    if(!this.isPhone) {
       this.$nextTick(()=>{
         splitLines(this.$el.querySelector('header'))
         splitLines(this.$el.querySelector('p'))
-
-
-          this.textContent = this.$el.querySelector('.text-content')
-          this.textContent.style.opacity = 0
+        this.textContent = this.$el.querySelector('.text-content')
         if(this.isDevice) {
-          transform(this.textContent, {translate3d: [0,-200, 0 ]})
           this.headerLines = [].slice.call(this.$el.querySelectorAll('header .line'))
           this.pLines = [].slice.call(this.$el.querySelectorAll('p .line'))
-          this.headerLines.forEach((line, i) => {
-            const start = 50 + i * 50
-            transform(line, {translate3d: [0, start, 0]})
-          });
-          this.pLines.forEach((line, i) => {
-            const start = 50 + i * 50
-            transform(line, {translate3d: [0, start, 0]})
-          });
         }else{
           this.lines = [].slice.call(this.$el.querySelectorAll('.line'))
-          this.lines.forEach((line, i) => {
-            const start = 50 + i * 50
-            transform(line, {translate3d: [start , 0, 0]})
-          });
         }
+        this.resetText()
       })
     }
   }
@@ -140,7 +141,7 @@ header, p
 header
   font-size 20px
   padding-bottom 50px
-  padding-right 25%
+  padding-right 15%
 article
   +below('l')
     overflow auto
@@ -160,7 +161,6 @@ article
       flex-direction row
       align-items flex-start
     header
-      width 35%
       padding 0
     p
       width 50%

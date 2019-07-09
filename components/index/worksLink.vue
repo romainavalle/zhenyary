@@ -1,6 +1,6 @@
 <template>
   <div class="worksLink" :class="{'ready': isReady}">
-    <v-link :to="{name: 'works'}" ref="link"><span>All cases</span> <span>here</span></v-link>
+    <v-link :to="{name: 'work'}" ref="link"><span>All cases</span> <span>here</span></v-link>
   </div>
 </template>
 

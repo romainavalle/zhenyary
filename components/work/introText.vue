@@ -16,6 +16,11 @@ import anime from 'animejs'
 import { easeInOutQuad } from '~/assets/js/utils/easings'
 import { mapGetters } from 'vuex';
 export default {
+  data() {
+    return {
+      isAnimatedIn: false
+    }
+  },
   props: ['work'],
   computed: {
     ...mapGetters(['isPhone'])
@@ -33,45 +38,40 @@ export default {
 
       }else{
         if(this.w >1024) {
-          if(ease > this.offset && ease <this.offset + this.h * .4) {
-            const coef = easeInOutQuad(Math.min(1, (ease - this.offset) / (this.h * .4)))
-            this.$el.style.opacity = coef
-            this.lines.forEach((line, i) => {
-              const start = 50 + i * 50
-              transform(line, {translate3d: [0, start -  start * coef, 0]})
-            });
+          if(ease > this.offset + this.h * .3) {
+            if(!this.isAnimatedIn) this.show()
+          }
+          if(ease < this.offset + this.h * .05) {
+            if(this.isAnimatedIn) this.reset()
           }
         }
       }
     },
-    show(){
-      this.$el.style.opacity = 1
-       this.lines.forEach((line, i) => {
-          transform(line, {translate3d: [0, 0, 0]})
-        });
+    show(start = 0){
+      if(this.isAnimatedIn) return
+      this.isAnimatedIn = true
       anime({
         targets: this.lines,
-        opacity: [0,1],
-        translateY: [40,0],
+        opacity: 1,
+        translateY: 0,
         easing: 'easeOutQuad',
-        duration: 400,
-        delay: anime.stagger(50, {start: 500, easing: 'easeOutQuad'})
+        duration: 600,
+        delay: anime.stagger(100, {start, easing: 'easeInQuad'})
       })
+    },
+    reset() {
+      this.isAnimatedIn = false
+      anime.set(this.lines, {opacity:0, translateY: 50})
     }
   },
   mounted() {
-      this.$el.style.opacity = 0
       this.$nextTick(()=>{
         const paragraphs = [].slice.call(this.$el.querySelectorAll('p'))
         paragraphs.forEach(paragraph => {
           splitLines(paragraph)
         });
         this.lines = [].slice.call(this.$el.querySelectorAll('.line'))
-
-        this.lines.forEach((line, i) => {
-          const start = 50 + i * 50
-          transform(line, {translate3d: [0, start, 0]})
-        });
+        this.reset()
       })
   },
 }
@@ -79,7 +79,7 @@ export default {
 <style lang="stylus" scoped>
 .intro
   width 100%
-  padding 0 6vw 6vw
+  padding 6vw
   position relative
   display flex
   align-items flex-start
@@ -92,8 +92,8 @@ export default {
 p
   width 70%
 .intro
-  padding 10vh 7vw
   +below('l')
+    padding 10vh 7vw
     .text
       padding-left 0
     p

@@ -74,7 +74,7 @@ export default {
 
       anime({targets: this.$refs.content, opacity:1, translateY: 0, easing: 'easeOutQuad', duration : 700, delay:1200})
       this.$refs.header.show()
-      if(this.w <= 1024)this.$refs.intro.show()
+      if(this.w <= 1024)this.$refs.intro.show(500)
     }
   },
   beforeDestroy() {
@@ -94,7 +94,8 @@ export default {
         //img.src = element.src
         this.imgs.push(img)
       });
-      setTimeout(this.show.bind(this), this.isFirstTime ? 2500 : 450)
+      //setTimeout(this.show.bind(this), this.isFirstTime ? 2500 : 450)
+      setTimeout(this.show.bind(this), this.isFirstTime ? 1500 : 450)
       if(this.isPhone){
         this.setupMobile()
         this.isShown = true

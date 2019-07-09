@@ -14,14 +14,14 @@
 </template>
 
 <script>
-import { easeInOutCubic } from '~/assets/js/utils/easings'
-import transform from 'dom-transform'
+import anime from 'animejs'
 import offset from '~/assets/js/utils/offset'
 import { mapGetters } from 'vuex';
 export default {
   props: ['content', 'path', 'title'],
   data() {
     return {
+      isAnimatedIn: false
     }
   },
   computed: {
@@ -55,16 +55,26 @@ export default {
       this.offset = offset(this.$el).top - this.h
     },
     tick(scrollTop, ease){
-      if(ease > this.offset && ease <this.offset + this.h) {
-        const coef = easeInOutCubic((ease - this.offset) / this.h)
-        transform(this.$refs.img, {scale3d: [1.5 - coef * .5, 1.5 - coef * .5, 1]})
-        transform(this.$refs.container, {scale3d: [.7 + coef * .3, .7 + coef * .3, 1]})
+      if(ease > this.offset + this.h * .3) {
+        if(!this.isAnimatedIn) this.animateIn()
       }
+      if(ease < this.offset) {
+        if(this.isAnimatedIn) this.reset()
+      }
+    },
+    animateIn() {
+      this.isAnimatedIn = true
+      anime({targets: this.$refs.img, scaleX: 1, scaleY:1, scaleZ:1, duration: 800, easing: 'easeInOutQuad'})
+      anime({targets: this.$refs.container, scaleX: 1, scaleY:1, scaleZ:1, duration: 800, easing: 'easeInOutQuad'})
+    },
+    reset(){
+      this.isAnimatedIn = false
+      anime.set(this.$refs.img, {scaleX: 1.5, scaleY:1.5, scaleZ:1})
+      anime.set(this.$refs.container, {scaleX: .7, scaleY:.7, scaleZ:1})
     }
   },
   mounted() {
-        transform(this.$refs.img, {scale3d: [1.5, 1.8, 1]})
-        transform(this.$refs.container, {scale3d: [.7, .7, 1]})
+    this.reset()
   }
 }
 </script>

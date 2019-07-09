@@ -1,7 +1,7 @@
 <template>
   <div class="work-link">
     <span class="number" v-text="getId"  :class="{'wide': work.menuNumberUnderline}"></span>
-    <nuxt-link :to="{name: 'works-slug', params: {slug: workId}}" v-html="work.title" class="label" :class="{'italic': work.menuItalic}" @mouseover.native="onMouseEnter(id)" @mouseleave.native="onMouseLeave"></nuxt-link>
+    <nuxt-link :to="{name: 'work-slug', params: {slug: workId}}" v-html="work.title" class="label" :class="{'italic': work.menuItalic}" @mouseover.native="onMouseEnter(id)" @mouseleave.native="onMouseLeave"></nuxt-link>
   </div>
 </template>
 

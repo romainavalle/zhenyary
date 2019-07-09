@@ -66,7 +66,8 @@ export default {
       Emitter.emit('PAGE:MOUNTED')
       setTimeout(() => {
         this.$refs.home.show()
-      }, this.isFirstTime ? 2500 : 450)
+      //}, this.isFirstTime ? 2500 : 450)
+      }, this.isFirstTime ? 1500 : 450)
     })
   }
 }

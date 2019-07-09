@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nuxt-link :to="{name: 'works'}" class="strong back" ref="link"><span>Back To All Projects</span></nuxt-link>
+    <nuxt-link :to="{name: 'work'}" class="strong back" ref="link"><span>Back To All Projects</span></nuxt-link>
     <h1 ref="title"><span v-html="work.title"></span></h1>
     <div class="text">
       <no-ssr>
@@ -20,7 +20,7 @@
             </ul>
           </div>
           <div>
-            <a :href="work.link.url" rel="noopener" target="_blank" class="link demi" v-text="work.link.label"></a>
+            <v-link :to="work.link.url" ref="link" class="demi">{{ work.link.label }}</v-link>
           </div>
         </div>
       </div>
@@ -34,11 +34,12 @@ import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import anime from 'animejs'
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
+import vLink from '~/components/common/link.vue'
 import { mapGetters } from 'vuex';
 export default {
   props: { 'work': Object },
   components: {
-    vSvgArrow
+    vSvgArrow, vLink
   },
   computed: {
     letterStr() {
@@ -57,13 +58,13 @@ export default {
     tick(scrollTop, ease){
       if(ease < this.h) {
         if(this.w > 1024 && !this.isPhone)transform(this.$refs.arrow, {translate3d:[0, Math.min(ease,this.h ), 0]})
-        if(this.w > 1024)transform(this.$refs.link.$el, {translate3d:[0, scrollTop, 0]})
+        //if(this.w > 1024)transform(this.$refs.link.$el, {translate3d:[0, scrollTop, 0]})
         if(this.w > 1024)transform(this.$refs.title, {translate3d:[0, ease / 3, 0]})
         if(!this.isDevice) transform(this.$refs.letter, {translate3d:[0, -scrollTop / this.h * this.w * .1, 0]})
         if(!this.isDevice) transform(this.$refs.dot, {translate3d:[0, -scrollTop / this.h * this.w * .1, 0]})
         if(!this.isDevice) this.$refs.dot.style.opacity = (this.h - ease * 2) / this.h
         this.$refs.title.style.opacity = (this.h - ease * 2) / this.h
-        this.$refs.link.$el.style.opacity = (this.h - ease * 2) / this.h
+        //this.$refs.link.$el.style.opacity = (this.h - ease * 2) / this.h
       }
     },
     scrollTo(scrollTop) {
@@ -139,6 +140,7 @@ h2
   width 15vw
   display block
   font-weight $light
+  flex-shrink 0
 .dot
   display inline-block
 .text
@@ -153,6 +155,8 @@ h2
 .details
   width 50%
   display flex
+ul
+  width 70%
 li
   display inline
 .details-text
@@ -175,6 +179,8 @@ header
   +below('l')
     overflow hidden
     height auto
+    ul
+      width 100%
     .back
       top 100px
       left 50%
@@ -227,7 +233,7 @@ header
 
 </style>
 <style lang="stylus">
-.works-slug header h1
+.work-slug header h1
   span span
     display none
 </style>

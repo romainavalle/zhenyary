@@ -3,7 +3,7 @@ if(process.browser) {
 }
 function splitLines(el) {
   classie.add(el, 'splitted')
-  el.innerHTML = el.innerText.split(/\s/).map(function(word) {
+  el.innerHTML = el.innerHTML.split(/\s/).map(function(word) {
     return '<span>' + word + '</span>'
   }).join(' ');
 

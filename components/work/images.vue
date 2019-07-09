@@ -7,11 +7,14 @@
 </template>
 
 <script>
-import transform from 'dom-transform'
+import anime from 'animejs'
 import offset from '~/assets/js/utils/offset'
-
-import { easeInOutCubic } from '~/assets/js/utils/easings'
 export default {
+  data() {
+    return {
+      isAnimatedIn: false
+    }
+  },
   props: ['content', 'path', 'title'],
   computed:{
     background() {
@@ -31,18 +34,28 @@ export default {
       this.offset = offset(this.$el).top - this.h
     },
     tick(scrollTop, ease){
-      if(ease > this.offset && ease <this.offset + this.h) {
-        const coef = easeInOutCubic((ease - this.offset) / this.h)
-        transform(this.$refs.imgs[0], {scale3d: [1.3 - coef * .3, 1.3 - coef * .3, 1]})
-        transform(this.$refs.imgs[1], {scale3d: [1.3 - coef * .3, 1.3 - coef * .3, 1]})
+      if(ease > this.offset + this.h * .1) {
+        if(!this.isAnimatedIn) this.animateIn()
       }
+      if(ease < this.offset) {
+        if(this.isAnimatedIn) this.reset()
+      }
+    },
+    animateIn() {
+      this.isAnimatedIn = true
+      anime({targets: this.$refs.imgs[0], scaleX: 1, scaleY:1, scaleZ:1, duration: 1500, easing: 'easeOutQuad'})
+      anime({targets: this.$refs.imgs[1], scaleX: 1, scaleY:1, scaleZ:1, duration: 1500, easing: 'easeOutQuad'})
+    },
+    reset(){
+      this.isAnimatedIn = false
+      anime.set(this.$refs.imgs[0], {scaleX: 1.3, scaleY:1.3, scaleZ:1})
+      anime.set(this.$refs.imgs[1], {scaleX: 1.3, scaleY:1.3, scaleZ:1})
     }
   },
   mounted() {
     this.$refs.imgs[0].style.transformOrigin = "0% 50%"
     this.$refs.imgs[1].style.transformOrigin = "100% 50%"
-    transform(this.$refs.imgs[0], {scale3d: [1.3, 1.3]})
-    transform(this.$refs.imgs[1], {scale3d: [1.3, 1.3]})
+    this.reset()
   }
 }
 </script>

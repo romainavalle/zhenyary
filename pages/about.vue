@@ -52,7 +52,8 @@ export default {
     this.$nextTick(()=>{
       this.setupMobile()
       Emitter.emit('PAGE:MOUNTED')
-      setTimeout(this.show.bind(this), this.isFirstTime ? 2500 : 600)
+      //setTimeout(this.show.bind(this), this.isFirstTime ? 2500 : 600)
+      setTimeout(this.show.bind(this), this.isFirstTime ? 1500 : 600)
     })
   },
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="Loader">
-    <div class="bg" v-show="!isFirstTime" ref="bg"></div>
+    <div class="bg" ref="bg"></div>
     <div class="circle red" ref="red">
       <svg viewBox="0 0 40 40">
         <circle cx="20" cy="20" r="20"/>
@@ -15,6 +15,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import anime from 'animejs'
 export default {
     data(){
@@ -29,6 +30,7 @@ export default {
   computed: {
   },
   methods:{
+    ...mapActions(['setFirstTime']),
     resize(w, h) {
       if(w && h) {
         this.w = w
@@ -63,7 +65,10 @@ export default {
           translateX: [posX, posX],
           translateY: [this.h * 1.2,posY],
           duration: 500,
-          easing: 'easeOutCubic'
+          easing: 'easeOutCubic',
+          complete: ()=> {
+            setTimeout(this.hide.bind(this), 300)
+          }
         })
       }else{
         anime({
@@ -79,44 +84,45 @@ export default {
     hide() {
 
       if(this.isFirstTime) {
-        anime({
-          targets: this.$el,
+         anime({
+          targets: this.$refs.span,
           opacity: 0,
           duration: 500,
-          delay: 700,
-          easing: 'easeOutQuad',
+          easing: 'easeInCubic',
           complete: ()=>{
             this.isFirstTime = false
             this.$el.style.display = 'none'
-          }
-        })
+            this.setFirstTime()
+          }})
 
-      }else{
-        anime({
-          targets: this.$refs.bg,
-          opacity: 0,
-          duration: 300,
-          delay: 200,
-          easing: 'easeInCubic',
-          complete: () => {
-            this.$el.style.display = 'none'
-          }
-        })
-        anime({
-          targets: this.$refs.red,
-          translateX: this.w *.5 + 180,
-          translateY: -this.h * .2,
-          duration: 500,
-          easing: 'easeInCubic'
-        })
-        anime({
-          targets: this.$refs.pink,
-          translateX: this.w * .5 - 350,
-          translateY: -this.h * .2,
-          duration: 500,
-          easing: 'easeInQuad'
-        })
       }
+
+
+      anime({
+        targets: this.$refs.bg,
+        opacity: 0,
+        duration: 500,
+        delay: 200,
+        easing: 'easeInCubic',
+        complete: () => {
+          this.$el.style.display = 'none'
+        }
+      })
+      anime({
+        targets: this.$refs.red,
+        translateX: this.w *.5 + 180,
+        translateY: -this.h * .2,
+        duration: 500,
+        easing: 'easeInCubic'
+      })
+      anime({
+        targets: this.$refs.pink,
+        translateX: this.w * .5 - 350,
+        translateY: -this.h * .2,
+        duration: 500,
+        easing: 'easeInQuad'
+      })
+
     }
   },
   watch: {
@@ -125,7 +131,7 @@ export default {
   },
   mounted() {
     this.resize(window.innerWidth, window.innerHeight)
-    this.show()
+    setTimeout(this.show.bind(this), 300)
   }
 }
 

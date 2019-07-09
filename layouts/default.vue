@@ -4,10 +4,8 @@
     <no-ssr>
       <v-progress ref="progress" v-if="!isDevice" />
     </no-ssr>
-    <v-loader ref="loader"/>
-    <no-ssr>
+    <!--v-loader ref="loader"/ -->
     <v-loader-top ref="loaderTop"/>
-    </no-ssr>
     <no-ssr>
       <v-turn v-if="isDevice" />
     </no-ssr>
@@ -33,7 +31,7 @@ import MouseHelper from '~/assets/js/utils/MouseHelper'
 import vTurn from '~/components/common/turn.vue'
 import vNavMobile from '~/components/common/navMobile.vue'
 import vHeaderMobile from '~/components/common/headerMobile.vue'
-import vLoader from '~/components/common/loader.vue'
+//import vLoader from '~/components/common/loader.vue'
 import vLoaderTop from '~/components/common/loaderTop.vue'
 import vFooter from '~/components/common/footer.vue'
 import vVideoPlayer from '~/components/common/videoPlayer.vue'
@@ -56,11 +54,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['route']),
+    ...mapState(['route', 'isFirstTime']),
     ...mapGetters(['isDevice', 'isPhone', 'isTablet', 'isSafari'])
   },
   components: {
-    vLoader, vLoaderTop, vTurn, vNav, vFooter,vProgress, vNavMobile, vHeaderMobile, vVideoPlayer
+    /*vLoader,*/ vLoaderTop, vTurn, vNav, vFooter,vProgress, vNavMobile, vHeaderMobile, vVideoPlayer
   },
   methods:{
     ...mapActions(['setNavMobile']),
@@ -72,7 +70,7 @@ export default {
       this.$refs.nav.resize(w, h, pageHeight)
       if(this.$refs.progress) this.$refs.progress.resize(w, h, pageHeight)
       if(this.$refs.navMobile) this.$refs.navMobile.resize(w, h, pageHeight)
-      this.$refs.loader.resize(w, h)
+      //this.$refs.loader.resize(w, h)
       this.$refs.loaderTop.resize(w, h)
       this.$refs.footer.resize(w, h, pageHeight)
       if(this.$refs.video)this.$refs.video.resize(w, h)
@@ -137,7 +135,8 @@ export default {
         this.checkImg()
       }, 100)
       //this.pageFadeIn(0)
-      this.$refs.loaderTop.hide()
+
+      if(!this.isFirstTime)this.$refs.loaderTop.hide()
 
     },
     onLoaded() {
@@ -166,9 +165,7 @@ export default {
     const engine = loop(this.tick.bind(this)).start()
     this.setRouterHooks()
     this.isTouch = this.isDevice
-    setTimeout(()=>{
-      this.$refs.loaderTop.hide()
-    },1000)
+
     setTimeout(()=>{
       this.canScroll = true
       this.resize()

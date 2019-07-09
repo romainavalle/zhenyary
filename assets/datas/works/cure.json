@@ -33,7 +33,7 @@
     },
     {
       "type": "vText",
-      "header": "Great news!<br>We've got Site of the day on Awwwards for this website!",
+      "header": "Great news! <br> We've got Site of the day on Awwwards for this website!",
       "paragraphs": [
         "Cure’s goal is to provide El Paso a different type of nail & wax experience that I was aimed at demonstrating via the website, branding and content created. "
       ]
@@ -89,7 +89,7 @@
       "alt": "Cure Beauty"
     },
     {
-      "type": "vImageVideo",
+      "type": "vImages",
       "images":[
         {
           "url": "cure/cure-10.jpg",

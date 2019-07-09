@@ -10,7 +10,7 @@
         </span>
       </transition>
       <nuxt-link :to="{name: 'about'}" class="z"><span class="title">Z.</span><span class="label">about me</span></nuxt-link>
-      <nuxt-link :to="{name: 'works'}"><span class="title">Work</span><span class="label">some cases</span></nuxt-link>
+      <nuxt-link :to="{name: 'work'}"><span class="title">Work</span><span class="label">some cases</span></nuxt-link>
       <no-ssr>
         <div class="spacer" v-if="!isTablet"></div>
       </no-ssr>

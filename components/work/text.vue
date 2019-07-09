@@ -14,13 +14,17 @@
 </template>
 
 <script>
-import transform from 'dom-transform'
+import anime from 'animejs'
 import offset from '~/assets/js/utils/offset'
 import splitLines from '~/assets/js/utils/splitLines'
 
-import { easeInOutQuad, easeInOutCubic } from '~/assets/js/utils/easings'
 import { mapGetters } from 'vuex';
 export default {
+  data() {
+    return {
+      isAnimatedIn: false
+    }
+  },
   props: ['content', 'path', 'title'],
   computed: {
     ...mapGetters(['isPhone'])
@@ -37,29 +41,32 @@ export default {
       if(this.isPhone) {
 
       }else{
-        if(ease > this.offset && ease <this.offset + this.h) {
-          const coefCubic = easeInOutCubic(Math.min(1, (ease - this.offset) / this.h * 2))
-          const coefQuad = easeInOutQuad(Math.min(1, (ease - this.offset) / this.h * 2))
-          this.$el.style.opacity = coefCubic
-          transform(this.$el, {translate3d: [0,200 - 200 * coefCubic, 0 ]})
-          this.headerLines.forEach((line, i) => {
-            const start = 50 + i * 50
-            transform(line, {translate3d: [0, start -  start * coefQuad, 0]})
-          });
-          this.pLines.forEach((line, i) => {
-            const start = 50 + i * 50
-            transform(line, {translate3d: [0, start -  start * coefQuad, 0]})
-          });
+        if(ease > this.offset + this.h * .1) {
+          if(!this.isAnimatedIn) this.animateIn()
+        }
+        if(ease < this.offset) {
+          if(this.isAnimatedIn) this.reset()
         }
       }
     },
+    animateIn() {
+      this.isAnimatedIn = true
+      anime({targets: this.$el, translateY: 0, duration: 2000, easing: 'easeOutQuad'})
+      anime({targets: this.headerLines, translateY: 0, opacity:1, duration: 600, easing: 'easeOutQuad', delay: anime.stagger(100, {easing: 'easeInQuad'})})
+      anime({targets: this.pLines, translateY: 0, opacity:1, duration: 600, easing: 'easeOutQuad', delay: anime.stagger(100, {start: 300, easing: 'easeInQuad'})})
+    },
+    reset(){
+      this.isAnimatedIn = false
+      anime.set(this.$el, {translateY: 200})
+      anime.set(this.headerLines, {translateY: 50, opacity:0})
+      anime.set(this.pLines, {translateY: 50, opacity:0})
+    }
   },
   mounted() {
       if(this.isPhone) {
 
       }else{
-        transform(this.$el, {translate3d: [0,200, 0 ]})
-        this.$el.style.opacity = 0
+
         this.$nextTick(()=>{
           const header = this.$el.querySelector('header')
           const paragraphs = this.$el.querySelector('.paragraphs')
@@ -71,14 +78,7 @@ export default {
           })
           this.headerLines = [].slice.call(header.querySelectorAll('.line'))
           this.pLines = [].slice.call(paragraphs.querySelectorAll('.line'))
-          this.headerLines.forEach((line, i) => {
-            const start = 50 + i * 50
-            transform(line, {translate3d: [0, start, 0]})
-          });
-          this.pLines.forEach((line, i) => {
-            const start = 50 + i * 50
-            transform(line, {translate3d: [0, start, 0]})
-          });
+          this.reset()
         })
       }
   },
@@ -109,7 +109,7 @@ header
   width 30%
   font-size 20px
 .paragraphs>div
-  width 45%
+  width 50%
 
 article.text
   +below('l')

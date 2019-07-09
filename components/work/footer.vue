@@ -1,12 +1,12 @@
 <template>
   <footer>
-    <nuxt-link :to="{name: 'works'}" class="strong back">Back To All Projects</nuxt-link>
+    <nuxt-link :to="{name: 'work'}" class="strong back">Back To All Projects</nuxt-link>
     <div class="next">
       <span class="strong">next</span>
       <span class="letter" ref="letter">{{letter}}<span class="dot" ref="dot">.</span></span>
     </div>
     <div class="right">
-      <nuxt-link :to="{name: 'works-slug', params: {slug: nextWork.slug}}" :aria-label="nextWork.title">
+      <nuxt-link :to="{name: 'work-slug', params: {slug: nextWork.slug}}" :aria-label="nextWork.title">
         <h3 v-html="nextWork.title"></h3>
         <ul>
           <li v-for="(skill, index) in nextWork.skills" :key="`skill-${index}`" v-text="index === 0 ? skill : ` / ${skill}`" class="strong"></li>
@@ -87,7 +87,7 @@ footer
   >*
     flex 1
 .letter
-  padding-top 5vh
+  padding-top 4vw
   font-size 10.5vw
   line-height .68
   display block
@@ -102,14 +102,17 @@ li
 h3
   font-size 36px
   margin-bottom 10px
+.right
+  display flex
+  justify-content flex-end
+  margin-top -.5vw
 .right>a
   display block
-  padding 0 20%
   transition color .6s ease-in-out-cubic
 .arrow
-  width 158px
-  height 106px
-  margin-top 40px
+  width 8vw
+  height 5vw
+  margin-top 3vw
   position relative
   svg
     display block

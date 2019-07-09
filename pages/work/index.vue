@@ -191,7 +191,8 @@ export default {
       this.addWheel()
       this.$nextTick(()=>{
         Emitter.emit('PAGE:MOUNTED')
-        setTimeout(this.showScreen.bind(this, this.workScreenId), this.isFirstTime ? 2500 : 450)
+        //setTimeout(this.showScreen.bind(this, this.workScreenId), this.isFirstTime ? 2500 : 450)
+        setTimeout(this.showScreen.bind(this, this.workScreenId), this.isFirstTime ? 1500 : 450)
         if(!this.isDevice && this.workScreenId){
           ScrollHelper.scrollTo(window.innerHeight * this.workScreenId)
           this.hideScrollIndication()

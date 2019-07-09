@@ -18,7 +18,7 @@
           </ul>
           <p v-html="work.intro" class="intro mobile-anime"></p>
           <div class="mobile-anime">
-            <nuxt-link :to="{name: 'works-slug', params: {slug: work.slug}}"  @mouseenter.native="onMouseEnter" @mouseleave.native="onMouseLeave" :class="{'mobile-anime': isPhone, 'ready': isBlurReady, 'hover': isHover}" class="link blur blur-sml">Check full case +
+            <nuxt-link :to="{name: 'work-slug', params: {slug: work.slug}}"  @mouseenter.native="onMouseEnter" @mouseleave.native="onMouseLeave" :class="{'mobile-anime': isPhone, 'ready': isBlurReady, 'hover': isHover}" class="link blur blur-sml">Check full case +
               <no-ssr>
                 <span v-if="isBlurReady">
                     <span class="inner-blur" data-text="Check full case +"></span>

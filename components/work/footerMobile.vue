@@ -1,17 +1,17 @@
 <template>
   <footer>
     <div>
-      <nuxt-link :to="{name: 'works'}" class="strong back mobile-anime">Back To All Projects</nuxt-link>
+      <nuxt-link :to="{name: 'work'}" class="strong back mobile-anime">Back To All Projects</nuxt-link>
       <span class="letter mobile-anime" ref="letter">{{letter}}<span class="dot" ref="dot">.</span></span>
     </div>
     <div>
-      <nuxt-link :to="{name: 'works-slug', params: {slug: nextWork.slug}}" :aria-label="nextWork.title" class="next mobile-anime">
+      <nuxt-link :to="{name: 'work-slug', params: {slug: nextWork.slug}}" :aria-label="nextWork.title" class="next mobile-anime">
         <span class="strong">next</span>
         <div class="arrow" ref="arrow">
           <v-svg-arrow />
         </div>
       </nuxt-link>
-      <nuxt-link :to="{name: 'works-slug', params: {slug: nextWork.slug}}" :aria-label="nextWork.title" class="nextLink">
+      <nuxt-link :to="{name: 'work-slug', params: {slug: nextWork.slug}}" :aria-label="nextWork.title" class="nextLink">
         <h3 v-html="nextWork.title" class="mobile-anime"></h3>
         <ul class="mobile-anime">
           <li v-for="(skill, index) in nextWork.skills" :key="`skill-${index}`" v-text="index === 0 ? skill : ` / ${skill}`" class="strong"></li>

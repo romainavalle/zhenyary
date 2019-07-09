@@ -108,7 +108,7 @@ module.exports = {
       datas.works.forEach(screen => {
         screen.forEach(line => {
           line.forEach(work => {
-            routes.push('/works/' + work)
+            routes.push('/work/' + work)
           })
         })
       })
