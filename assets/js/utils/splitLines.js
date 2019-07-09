@@ -1,4 +1,8 @@
+if(process.browser) {
+  var classie = require('desandro-classie')
+}
 function splitLines(el) {
+  classie.add(el, 'splitted')
   el.innerHTML = el.innerText.split(/\s/).map(function(word) {
     return '<span>' + word + '</span>'
   }).join(' ');

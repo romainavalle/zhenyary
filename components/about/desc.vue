@@ -126,8 +126,6 @@ export default {
 </style>
 <style lang="stylus" >
 .about .desc
-  .line
-    display block
   +below('s')
     p
       br

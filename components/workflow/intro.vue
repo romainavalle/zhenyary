@@ -13,8 +13,10 @@
     <no-ssr>
       <div class="desktop" v-if="!isPhone">
         <div class="d-f">
-          <p ref="te">
-            <v-svg-smiley class="smiley"/>
+          <p>
+            <span class="smiley-container">
+              <v-svg-smiley class="smiley"/>
+            </span>
             <span class="line"><span>It's all about my</span> <v-svg-arrow class="arrow"/><span class="italic">design</span></span>
             <span class="line"><span class="italic">process</span><small>*how<br>the magic happens</small><ul><li><em>A.</em><span :class="{'red': words[0]}">Learn</span></li><li><em>B.</em><span :class="{'red': words[1]}">Think</span></li><li><em>C.</em><span :class="{'red': words[2]}">Create</span></li></ul></span>
           </p>
@@ -65,12 +67,12 @@ export default {
         if(!this.active)this.activateWords()
       }
       if(scrollTop > this.h) return
-      const op = 1 - scrollTop / (this.h  /2)
+      /*const op = 1 - scrollTop / (this.h  /2)
       this.lines.forEach((line, i)=>{
         transform(line, {translate3d:[0, .1 * (i - 2) * scrollTop, 0]})
         line.style.opacity = op
       })
-      this.smiley.style.opacity = op
+      this.smiley.style.opacity = op*/
     },
     scrollTo() {
       this.buttonClicked = true
@@ -80,6 +82,7 @@ export default {
         targets: this.$refs.button,
         opacity: 0,
         translateY: 0,
+        translateX: ['-50%', '-50%'],
         duration: 300,
         easing: 'easeOutQuad'
       })
@@ -92,6 +95,12 @@ export default {
       });
     },
     show() {
+      anime({
+        targets: this.smiley,
+        opacity: 1,
+        duraction: 700,
+        easing: 'easeOutQuad'
+      })
       anime({
         targets: this.lines,
         opacity: 1,
@@ -136,7 +145,7 @@ export default {
     this.$el.querySelector('.mobile').style.display = "none"
     this.$nextTick(()=>{
       this.lines = [].slice.call(this.$el.querySelectorAll('.line'))
-      this.smiley = this.$el.querySelector('.smiley')
+      this.smiley = this.$el.querySelector('.smiley-container')
       anime.set(this.lines, {
         opacity: 0,
         translateY: 200,
@@ -221,13 +230,18 @@ em
   color $red
   font-style normal
   padding-right .5vw
-.smiley
+.smiley-container
   width 8vw
   height 8vw
   display block
   position absolute
   top -5vw
   left 15vw
+  display block
+  .smiley
+    width 100%
+    height 100px
+    display block
 .mobile
   padding-top 15vh
   height 100vh
@@ -255,5 +269,7 @@ em
     width 20vw
     height 20vw
     left 17vw
+    display block
+    position absolute
 
 </style>

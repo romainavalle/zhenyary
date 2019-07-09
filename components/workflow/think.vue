@@ -45,13 +45,17 @@ import vSvgIdea from "~/assets/svgs/idea.svg?inline";
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
 import vSvgStar from "~/assets/svgs/star.svg?inline";
 import transform from 'dom-transform'
+import anime from 'animejs'
 import offset from '~/assets/js/utils/offset'
+import splitLines from '~/assets/js/utils/splitLines'
 import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
       w: 0,
-      h:0
+      h:0,
+      isAnimatedIn: false,
+      isAnimatedBottomIn: false
     }
   },
   components:{
@@ -68,8 +72,8 @@ export default {
       }
       if(this.isPhone) return
       this.animHeight = this.h * .5
-      this.offset = offset(this.$el).top - this.h * .8
-      this.bottomOffset = offset(this.$refs.bottom).top - this.h * .8
+      this.offset = offset(this.$el).top - this.h
+      this.bottomOffset = offset(this.$refs.bottom).top - this.h
     },
     tick(scrollTop, ease) {
       if(this.isPhone) return
@@ -80,7 +84,7 @@ export default {
         }
       }
 
-      if(ease > this.offset && ease < this.offset + this.animHeight){
+      /*if(ease > this.offset && ease < this.offset + this.animHeight){
         const coef = (ease - this.offset) / this.animHeight
         this.$el.style.opacity = coef
         if(!this.isDevice)this.arrow.style.opacity = coef
@@ -96,7 +100,43 @@ export default {
         const coefBottom = (ease - this.bottomOffset) / this.animHeight
         this.$refs.bottom.style.opacity = coefBottom
         transform(this.$refs.bottom, {translate3d:[0, 200 - coefBottom * 200, 0]})
+      }*/
+      if(ease > this.offset + this.h * .3) {
+        if(!this.isAnimatedIn)this.animateIn()
       }
+      if(ease < this.offset) {
+        if(this.isAnimatedIn)this.reset()
+      }
+      if(ease > this.bottomOffset + this.h * .3) {
+        if(!this.isAnimatedBottomIn)this.animateInBottom()
+      }
+      if(ease < this.bottomOffset) {
+        if(this.isAnimatedBottomIn)this.resetBottom()
+      }
+    },
+    animateIn() {
+      this.isAnimatedIn = true
+      anime({targets: this.$el, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad'})
+      anime({targets: this.$refs.title, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: 100})
+      anime({targets: this.$refs.process, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: 100})
+      anime({targets: this.$refs.number, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: 200})
+      anime({targets: this.lines, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: anime.stagger(50, {start: 400, easing: 'easeInQuad'})})
+    },
+    animateInBottom() {
+      this.isAnimatedBottomIn = true
+      anime({targets: this.$refs.bottom, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad'})
+    },
+    reset() {
+      this.isAnimatedIn = false
+      anime.set(this.$el, {opacity: 0, translateZ:0, translateY: 200})
+      anime.set(this.$refs.title, {opacity: 0, translateZ:0, translateY: 200})
+      anime.set(this.$refs.process, {opacity: 0, translateZ:0, translateY: 200})
+      anime.set(this.$refs.number, {opacity: 0, translateZ:0, translateY: 200})
+      anime.set(this.lines, {opacity: 0, translateZ:0, translateY: 50})
+    },
+    resetBottom() {
+      this.isAnimatedBottomIn = false
+      anime.set(this.$refs.bottom, {opacity: 0, translateZ:0, translateY: 200})
     }
   },
   mounted() {
@@ -105,12 +145,15 @@ export default {
         this.circleBottom = this.$el.querySelector('.circle-bottom')
         this.circleTop = this.$el.querySelector('.circle-top')
         this.arrow = this.$el.querySelector('.svg-arrow')
+        splitLines(this.$refs.text1)
+        splitLines(this.$refs.text2)
+        this.lines = [].slice.call(this.$el.querySelectorAll('.text .line'))
       })
     }
     if(!this.isPhone) {
-      this.$el.style.opacity = 0
       this.$nextTick(()=>{
-        this.$refs.bottom.style.opacity = 0
+        this.reset()
+        this.resetBottom()
       })
     }
   }
@@ -217,7 +260,6 @@ h5
       font-size 14px
   p
     font-size 14px
-    width 85%
 article
   +below('s')
     padding-top 10vh
@@ -249,7 +291,6 @@ article
             margin 5vh auto
       p
         margin 3vh auto
-        width 90%
     .bottom
       padding 0 6vw
       .svg-arrow

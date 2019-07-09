@@ -27,7 +27,8 @@
 <script>
 import vSvgBlur from "~/assets/svgs/blur.svg?inline";
 import vSvgStar from "~/assets/svgs/star.svg?inline";
-import transform from 'dom-transform'
+import anime from 'animejs'
+import splitLines from '~/assets/js/utils/splitLines'
 import offset from '~/assets/js/utils/offset'
 import { mapGetters } from 'vuex';
 export default {
@@ -35,7 +36,9 @@ export default {
     return {
       w: 0,
       h:0,
-      isBlurReady: false
+      isBlurReady: false,
+      isAnimatedIn: false,
+      isAnimatedBottomIn: false
     }
   },
   components: {
@@ -52,12 +55,12 @@ export default {
       }
       if(this.isPhone) return
       this.animHeight = this.h * .5
-      this.offset = offset(this.$el).top - this.h * .9
-      this.bottomOffset = offset(this.$refs.bottom).top - this.h * .9
+      this.offset = offset(this.$el).top - this.h
+      this.bottomOffset = offset(this.$refs.bottom).top - this.h
     },
     tick(scrollTop, ease) {
       if(this.isPhone) return
-      if(ease > this.offset && ease < this.offset + this.animHeight){
+      /*if(ease > this.offset && ease < this.offset + this.animHeight){
         const coef = (ease - this.offset) / this.animHeight
         this.$el.style.opacity = coef
         transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
@@ -73,21 +76,58 @@ export default {
           const pos = 100 + i * 100
           transform(li, {translate3d:[0, pos - coefBottom * pos, 0]})
         });
-      }
+      }*/
       if(ease > this.bottomOffset && ease < this.bottomOffset + this.animHeight + this.h * .6){
         if(!this.isBlurReady) this.isBlurReady = true
       }else{
         if(this.isBlurReady) this.isBlurReady = false
       }
+      if(ease > this.offset + this.h * .3) {
+        if(!this.isAnimatedIn)this.animateIn()
+      }
+      if(ease < this.offset) {
+        if(this.isAnimatedIn)this.reset()
+      }
+      if(ease > this.bottomOffset + this.h * .3) {
+        if(!this.isAnimatedBottomIn)this.animateInBottom()
+      }
+      if(ease < this.bottomOffset) {
+        if(this.isAnimatedBottomIn)this.resetBottom()
+      }
+    },
+    animateIn() {
+      this.isAnimatedIn = true
+      anime({targets: this.$el, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad'})
+      anime({targets: this.$refs.bar, scaleX: 1, duration: 400, easing: 'easeOutQuad', delay: 100})
+      anime({targets: this.$refs.number, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: 100})
+      anime({targets: this.lines, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: anime.stagger(50, {start: 200, easing: 'easeInQuad'})})
+    },
+    animateInBottom() {
+      this.isAnimatedBottomIn = true
+      anime({targets: this.lis, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: anime.stagger(50, {easing: 'easeInQuad'})})
+    },
+    reset() {
+      this.isAnimatedIn = false
+      anime.set(this.$el, {opacity: 0, translateZ:0, translateY: 200})
+      anime.set(this.$refs.bar, {scaleX: 0})
+      anime.set(this.$refs.process, {opacity: 0, translateZ:0, translateY: 200})
+      anime.set(this.lines, {opacity: 0, translateZ:0, translateY: 50})
+      anime.set(this.$refs.number, {opacity: 0, translateZ:0, translateY: 200})
+    },
+    resetBottom() {
+      this.isAnimatedBottomIn = false
+      anime.set(this.lis, {opacity: 0, translateZ:0, translateY: 200})
     }
   },
   mounted() {
     if(this.isPhone) {
       this.isBlurReady = true
     }else{
-      this.$el.style.opacity = 0
-      this.$refs.bottom.style.opacity = 0
       this.lis = [].slice.call(this.$refs.bottom.querySelectorAll('li'))
+      splitLines(this.$refs.text)
+      this.lines = [].slice.call(this.$refs.text.querySelectorAll('.line'))
+      this.reset()
+      this.resetBottom()
     }
   }
 }

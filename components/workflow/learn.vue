@@ -17,7 +17,7 @@
           <li :class="{'mobile-anime': isPhone}">Content Requirements</li>
         </ul>
         <no-ssr>
-          <v-svg-arrow class="arrow" aria-hidden="true" v-if="!isPhone"/>
+          <v-svg-arrow class="arrow" aria-hidden="true" v-if="!isPhone" ref="arrow"/>
         </no-ssr>
       </div>
     </div>
@@ -37,7 +37,7 @@
 <script>
 import vSvgArrow from "~/assets/svgs/arrow.svg?inline";
 import vSvgBlur from "~/assets/svgs/blur.svg?inline";
-import transform from 'dom-transform'
+import anime from 'animejs'
 import offset from '~/assets/js/utils/offset'
 import { mapGetters } from 'vuex';
 export default {
@@ -45,7 +45,8 @@ export default {
     return {
       w: 0,
       h:0,
-      isBlurReady: false
+      isBlurReady: false,
+      isAnimatedIn: false
     }
   },
   components: {
@@ -62,11 +63,12 @@ export default {
       }
       if(this.isPhone) return
       this.animHeight = this.h * .5
-      this.offset = offset(this.$el).top - this.h * .9
+      this.offset = offset(this.$el).top - this.h
     },
     tick(scrollTop, ease) {
       if(this.isPhone) return
-      if(ease > this.offset && ease < this.offset + this.animHeight){
+     /* if(ease > this.offset && ease < this.offset + this.animHeight){
+
         const coef = (ease - this.offset) / this.animHeight
         this.$el.style.opacity = coef
         transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
@@ -76,18 +78,44 @@ export default {
         this.lis.forEach((li, i) => {
           transform(li, {translate3d:[0, (i+1) * 50 - coef * (i+1) * 50, 0]})
         })
+      }*/
+      if(ease > this.offset + this.h * .3) {
+        if(!this.isAnimatedIn) this.animateIn()
+      }
+      if(ease<this.offset + this.h * .05) {
+        if(this.isAnimatedIn) this.reset()
       }
       if(ease > this.offset + this.animHeight - this.h * .1 && ease < this.offset + this.h * 1.5) {
         if(!this.isBlurReady) this.isBlurReady = true
       }else{
         if(this.isBlurReady) this.isBlurReady = false
       }
+    },
+    animateIn() {
+      this.isAnimatedIn = true
+      anime({targets: this.$el, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad'})
+      anime({targets: this.$refs.title, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: 100})
+      anime({targets: this.$refs.number, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: 200})
+      anime({targets: this.$refs.problem, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: 500})
+      anime({targets: this.lis, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: anime.stagger(100, {start: 400, easing: 'easeInQuad'})})
+      anime({targets: this.$refs.arrow, opacity: 1, translateY: 0, duration: 1000, easing: 'easeOutQuad', delay: 600})
+    },
+    reset() {
+      this.isAnimatedIn = false
+      anime.set(this.$el, {opacity: 0, translateZ:0, translateY: 200})
+      anime.set(this.$refs.title, {opacity: 0, translateZ:0, translateY: 200})
+      anime.set(this.$refs.number, {opacity: 0, translateZ:0, translateY: 200})
+      anime.set(this.$refs.problem, {opacity: 0, translateZ:0, translateY: 200})
+      anime.set(this.lis, {opacity: 0, translateZ:0, translateY: 50})
+      anime.set(this.$refs.arrow, {opacity: 0, translateZ:0, translateY: 50})
+
     }
   },
   mounted() {
     if(!this.isPhone){
       this.$el.style.opacity = 0
       this.lis = [].slice.call(this.$el.querySelectorAll('li'))
+      this.reset()
     }else{
       this.isBlurReady = true
     }
