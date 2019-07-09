@@ -42,7 +42,7 @@ export default {
   bottom 0
   z-index 20
   display none
-  background #000000
+  background $grey
   .content
     position absolute
     top 0
@@ -55,11 +55,15 @@ export default {
     align-items center
     flex-direction column
     .svg
-      width 200px
-      height 135px
+      width 230px
+      height 230px
       svg
-        fill white
         display block
   @media (orientation: landscape)
     display block
+    .svg
+      animation-name star
+      animation-duration 8s
+      animation-timing-function linear
+      animation-iteration-count infinite
 </style>

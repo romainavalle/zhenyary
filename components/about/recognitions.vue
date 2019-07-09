@@ -1,4 +1,6 @@
 <template>
+<div>
+
 <div class="d-f">
   <div class="spacer"><button class="showreel" aria-label="showreel" v-show="!isPhone" @click="setVideo(true)"><span>showreel</span></button></div>
   <article class="regognitions">
@@ -32,17 +34,19 @@
     </div>
     <div>
       <h4 class="mobile-anime">Collaborations</h4>
-      <div class="collabs mobile-anime">
-        <ul class="collaborations" ref="collabs" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
-          <li v-for="(collab, index) in about.collaborations" :key="`collab-${index}`" v-text="collab"></li>
-          <no-ssr>
-          <li v-for="(collab, index) in about.collaborations" :key="`collab-${index+about.collaborations.length}`" v-text="collab"></li>
-          <li v-for="(collab, index) in about.collaborations" :key="`collab-${index+about.collaborations.length * 2}`" v-text="collab"></li>
-          </no-ssr>
-        </ul>
-      </div>
     </div>
   </article>
+</div>
+  <div class="collabs mobile-anime">
+
+    <ul class="collaborations" ref="collabs" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+      <li v-for="(collab, index) in about.collaborations" :key="`collab-${index}`" v-text="collab"></li>
+      <no-ssr>
+      <li v-for="(collab, index) in about.collaborations" :key="`collab-${index+about.collaborations.length}`" v-text="collab"></li>
+      <li v-for="(collab, index) in about.collaborations" :key="`collab-${index+about.collaborations.length * 2}`" v-text="collab"></li>
+      </no-ssr>
+    </ul>
+</div>
 </div>
 </template>
 
@@ -85,6 +89,7 @@ export default {
 
       this.translateX = this.lastItem.offsetLeft
 
+
     },
     tick(scrollTop, ease) {
      /* if(!this.isPhone) {
@@ -95,8 +100,8 @@ export default {
         }
       }*/
       this.count += 3 * this.multiplier
-      if(this.count > this.translateX)this.count = 0
-      transform(this.$refs.collabs, {translate3d: [  -this.count , 0,0]})
+      if(this.count >= this.translateX)this.count = 0
+      transform(this.$refs.collabs, {translate3d: [  -this.count, 0,0]})
       if(!this.isDevice) {
         const x = MouseHelper.x
         const y = MouseHelper.y + scrollTop
@@ -182,9 +187,9 @@ ul
 .behance li + li
   padding-top .3vw
 .collaborations
+  will-change transform
   font-size 1.5vw
   display flex
-  margin-left -50vw
   li
     display inline-block
     white-space nowrap

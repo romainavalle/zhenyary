@@ -22,7 +22,7 @@
     },
     {
       "type": "vImage",
-      "width": 22,
+      "width": 20,
       "url": "aeditor/img-1.jpg",
       "alt": "Aeditor"
     },
@@ -43,7 +43,12 @@
     {
       "type": "vImageBackground",
       "url": "aeditor/img-3.jpg",
-      "alt": "Aeditor"
+      "alt": "Aeditor",
+      "top": {
+        "type": "video",
+        "width": 22,
+        "url": "aeditor/aeditor_1.mp4"
+      }
     },
     {
       "type": "vImageText",

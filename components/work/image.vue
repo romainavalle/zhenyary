@@ -64,8 +64,8 @@ export default {
     },
     animateIn() {
       this.isAnimatedIn = true
-      anime({targets: this.$refs.img, scaleX: 1, scaleY:1, scaleZ:1, duration: 800, easing: 'easeInOutQuad'})
-      anime({targets: this.$refs.container, scaleX: 1, scaleY:1, scaleZ:1, duration: 800, easing: 'easeInOutQuad'})
+      anime({targets: this.$refs.img, scaleX: 1, scaleY:1, scaleZ:1, duration: 800, easing: 'easeOutQuad'})
+      anime({targets: this.$refs.container, scaleX: 1, scaleY:1, scaleZ:1, duration: 800, easing: 'easeOutQuad'})
     },
     reset(){
       this.isAnimatedIn = false

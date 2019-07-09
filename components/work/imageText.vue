@@ -1,7 +1,9 @@
 <template>
   <article :style="{'background': background }" class="img-text">
     <div class="img">
-      <img :data-src="`${path}${content.url}`" :alt="content.alt || title" ref="img">
+      <no-ssr>
+        <div class="bg-img" :style="{'background-image': `url(${getSrcSet(path+content.url)})`}" ref="img" v-if="isBrowser"></div>
+      </no-ssr>
     </div>
     <div class="text-content" ref="textContent">
       <header v-html="content.header" class="demi" ref="header" :class="{'mobile-anime': isPhone}"></header>
@@ -25,6 +27,9 @@ export default {
   props: ['content', 'path', 'title'],
   computed:{
     ...mapGetters(['isPhone', 'isDevice']),
+    isBrowser() {
+      return process.browser
+    },
     width() {
       return this.isPhone ? '90%' : this.content.width ? `${this.content.width}%`: '100%'
     },
@@ -66,11 +71,7 @@ export default {
     },
     reset() {
       this.isAnimatedIn = false
-      if(this.isPhone) {
-        anime.set(this.$refs.img, {scaleX: 1.5, scaleY:1.5, scaleZ:1})
-      }else{
-        anime.set(this.$refs.img, {scaleX: 2.1, scaleY: 2.1, scaleZ:1})
-      }
+      anime.set(this.$refs.img, {scaleX: 1.3, scaleY:1.3})
     },
     animateTextIn() {
 
@@ -116,15 +117,14 @@ export default {
 <style lang="stylus" scoped>
 article
   display flex
-  overflow hidden
   width 100%
   height 100vh
-  img
-    transform-origin 0% 50%
-    display block
+  .bg-img
     height 100%
-    object-fit cover
-    object-position 50% 50%
+    background-size cover
+    background-position 50% 50%
+    display block
+    position absolute
     width 100%
 .img, .text-content
   width 50%
@@ -136,6 +136,8 @@ article
   flex-direction column
 .img
   z-index 1
+  position relative
+  overflow hidden
 header, p
   width 50%
 header
