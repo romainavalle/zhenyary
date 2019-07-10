@@ -2,11 +2,11 @@
 <div>
 
 <div class="d-f">
-  <div class="spacer"><button class="showreel" aria-label="showreel" v-show="!isPhone" @click="setVideo(true)"><span>showreel</span></button></div>
+  <div class="spacer"><button class="showreel" aria-label="showreel" v-show="!isPhone" @click="showVideo"><span>showreel</span></button></div>
   <article class="regognitions">
     <div class="title">
       <h3 class="mobile-anime">Recognitions</h3>
-      <button class="showreel mobile-anime" aria-label="showreel" v-show="isPhone" @click="setVideo(true)">showreel</button>
+      <button class="showreel mobile-anime" aria-label="showreel" v-show="isPhone" @click="showVideo">showreel</button>
     </div>
     <div>
       <h4 class="mobile-anime">Awwwards <sup>x{{about.awwwards.length}}</sup></h4>
@@ -56,6 +56,7 @@ import MouseHelper from '~/assets/js/utils/MouseHelper'
 import transform from 'dom-transform'
 import offset from '~/assets/js/utils/offset'
 import anime from 'animejs'
+import Emitter from '~/assets/js/events/EventsEmitter'
 import { easeInOutQuad } from '~/assets/js/utils/easings'
 import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
@@ -88,8 +89,6 @@ export default {
       this.offsetCollabs = offset(this.$refs.collabs).top - this.h
 
       this.translateX = this.lastItem.offsetLeft
-
-
     },
     tick(scrollTop, ease) {
      /* if(!this.isPhone) {
@@ -121,6 +120,10 @@ export default {
         transform(this.buttonReel, {translate3d: [  newPosX , newPosY,0]})
         transform(this.buttonReelSpan, {translate3d: [  (x-posX -newPosX) * pourc , (y-posY - newPosY) * pourc,0]})
       }
+    },
+    showVideo() {
+      this.setVideo(true)
+      Emitter.emit('VIDEO_BUTTON_CLICKED')
     },
     distance(x1, y1, x2, y2) {
       const dx = x1 - x2;
