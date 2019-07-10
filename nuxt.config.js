@@ -6,7 +6,7 @@ module.exports = {
     title: 'Zhenya Rynzhuk',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
       { hid: 'description', name: 'description', content: 'Portfolio of Zhenya Rynzhuk, award-winning art director. Areas of expertise include Product & Visual design, Mobile & Web projects, Branding, Typography, and Animations.' },
       { hid: 'og:description', property: 'og:description', content: 'Portfolio of Zhenya Rynzhuk, award-winning art director. Areas of expertise include Product & Visual design, Mobile & Web projects, Branding, Typography, and Animations.' },
       { hid: 'twitter:description', property: 'twitter:description', content: 'Portfolio of Zhenya Rynzhuk, award-winning art director. Areas of expertise include Product & Visual design, Mobile & Web projects, Branding, Typography, and Animations.' },

@@ -38,8 +38,8 @@ export default {
   position fixed
   top 0
   left 0
-  right 0
-  bottom 0
+  width 100vw
+  height 100vh
   z-index 20
   display none
   background $grey
@@ -62,8 +62,14 @@ export default {
   @media (orientation: landscape)
     display block
     .svg
-      animation-name star
+      animation-name turn
       animation-duration 8s
       animation-timing-function linear
       animation-iteration-count infinite
+
+@keyframes turn
+  0%
+    transform rotate(0turn)
+  100%
+    transform rotate(1turn)
 </style>

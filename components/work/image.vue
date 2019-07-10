@@ -3,11 +3,11 @@
     <figure :style="{width, top}">
       <div class="img">
         <no-ssr>
-          <img :data-src="`${path}${content.shadow}`" alt="shadow" class="shadow" aria-hidden="true" v-if="content.shadow">
+          <img src="" :data-src="`${path}${content.shadow}`" alt="shadow" class="shadow" aria-hidden="true" v-if="content.shadow">
         </no-ssr>
         <div class="img-container" ref="container">
-            <img  v-if="content.url.indexOf('.mp4') === - 1" :data-src="`${path}${content.url}`" :alt="content.alt || title"  ref="img" class="main">
-            <video v-else :src="`${path}${content.url}`" autoplay playsinline loop muted type='video/mp4' preload="auto"   ref="img" class="main"/>
+            <img  v-if="content.url.indexOf('.mp4') === - 1" src="" :data-src="`${path}${content.url}`" :alt="content.alt || title"  ref="img" class="main">
+            <video v-else :src="`${path}${content.url}`" autoplay playsinline loop muted preload="auto"   ref="img" class="main"/>
         </div>
       </div>
     </figure>
@@ -40,7 +40,7 @@ export default {
       return this.content.shadow ? 'shadow' : ''
     },
     background() {
-      return this.content.background ? this.content.background : 'none'
+      return this.content.background ? this.content.background : 'transparent'
     },
 
     alt() {

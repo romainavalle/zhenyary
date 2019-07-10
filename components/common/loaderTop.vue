@@ -87,7 +87,7 @@ export default {
          anime({
           targets: this.$refs.span,
           opacity: 0,
-          duration: 500,
+          duration: 400,
           easing: 'easeInCubic',
           complete: ()=>{
             this.isFirstTime = false
@@ -103,7 +103,7 @@ export default {
         opacity: 0,
         duration: 500,
         delay: 200,
-        easing: 'easeInCubic',
+        easing: 'easeOutCubic',
         complete: () => {
           this.$el.style.display = 'none'
         }

@@ -1,8 +1,8 @@
 <template>
   <article>
     <div class="img" v-for="(image, index) in content.images" :key="`image-${index}`" :style="{'background': background(content.images[index]) }">
-      <img  v-if="content.images[index].url.indexOf('.mp4') === - 1" :data-src="`${path}${content.images[index].url}`" :alt="content.alt || title" ref="imgs" :style="{width: width(content.images[index])}">
-      <video v-else :src="`${path}${content.images[index].url}`" autoplay playsinline loop muted type='video/mp4' preload="auto"  ref="imgs" :style="{width: width(content.images[index])}"/>
+      <img src="" v-if="content.images[index].url.indexOf('.mp4') === - 1" :data-src="`${path}${content.images[index].url}`" :alt="content.alt || title" ref="imgs" :style="{width: width(content.images[index])}">
+      <video v-else :src="`${path}${content.images[index].url}`" autoplay playsinline loop muted preload="auto"  ref="imgs" :style="{width: width(content.images[index])}"/>
     </div>
   </article>
 </template>
@@ -25,7 +25,7 @@ export default {
       return this.isPhone ? '80%' : content.width ? content.width+"%" : 'none'
     },
     background(content) {
-      return content.background ? content.background : 'none'
+      return content.background ? content.background : 'transparent'
     },
     alt(id) {
       return this.content.images[id].alt ? this.content.images[id].alt : this.title

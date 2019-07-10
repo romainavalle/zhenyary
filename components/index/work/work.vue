@@ -3,7 +3,7 @@
     <div class="inner">
       <div class="left">
         <div class="img" ref="leftImgContainer">
-          <img :data-src="`${path}${work.cover}`" :alt="work.title" ref="img" width="484" height="536"  :class="{'js-fs-on-mobile': isPhone}">
+          <img src="" :data-src="`${path}${work.cover}`" :alt="work.title" ref="img" width="484" height="536"  :class="{'js-fs-on-mobile': isPhone}">
         </div>
         <div class="text">
           <h3 class="h3 mobile-anime"  v-html="work.title"></h3>
@@ -38,7 +38,7 @@
         </div>
         <no-ssr>
           <div class="img" v-if="!isPhone">
-            <img :data-src="`${path}${work.homeMenu}`" :alt="work.title" ref="rightImg" width="960" height="377">
+            <img src="" :data-src="`${path}${work.homeMenu}`" :alt="work.title" ref="rightImg" width="960" height="377">
           </div>
         </no-ssr>
       </div>

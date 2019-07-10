@@ -4,7 +4,7 @@
    <div class="content">
      <div class="img">
       <no-ssr>
-        <img :data-src="`/images/${$route.name}.jpg`" alt="zhenya" width="766" height="966" :class="{'js-fs-on-mobile': isPhone}">
+        <img src="" :data-src="`/images/${$route.name}.jpg`" alt="zhenya" width="766" height="966" :class="{'js-fs-on-mobile': isPhone}">
       </no-ssr>
       <v-link :to="{name:'contact'}" class="link">Contact Me</v-link>
      </div>
