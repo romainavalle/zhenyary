@@ -41,7 +41,7 @@
     {
       "type": "vImage",
       "width": 70,
-      "url": "cure/cure-3.jpg",
+      "url": "cure/cure_1.mp4",
       "alt": "Cure Beauty"
     },
     {
@@ -76,7 +76,7 @@
       "background": "#6E787D",
       "top": "60",
       "shadow": "cure/shadow-cure.png",
-      "url": "cure/cure-8.jpg",
+      "url": "cure/cure_2.mp4",
       "alt": "Cure Beauty"
     },
     {
@@ -85,7 +85,7 @@
       "background": "#6E787D",
       "shadow": "cure/shadow-cure.png",
       "top": "40",
-      "url": "cure/cure-9.jpg",
+      "url": "cure/cure_3.mp4",
       "alt": "Cure Beauty"
     },
     {

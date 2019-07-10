@@ -1,7 +1,8 @@
 <template>
-  <article :style="{'background': background }">
-    <div class="img" v-for="(image, index) in content.images" :key="`image-${index}`">
-      <img :data-src="`${path}${content.images[index].url}`" :alt="alt(index) || title" ref="imgs">
+  <article>
+    <div class="img" v-for="(image, index) in content.images" :key="`image-${index}`" :style="{'background': background(content.images[index]) }">
+      <img  v-if="content.images[index].url.indexOf('.mp4') === - 1" :data-src="`${path}${content.images[index].url}`" :alt="content.alt || title" ref="imgs" :style="{width: width(content.images[index])}">
+      <video v-else :src="`${path}${content.images[index].url}`" autoplay playsinline loop muted type='video/mp4' preload="auto"  ref="imgs" :style="{width: width(content.images[index])}"/>
     </div>
   </article>
 </template>
@@ -17,12 +18,15 @@ export default {
   },
   props: ['content', 'path', 'title'],
   computed:{
-    background() {
-      return this.content.background ? this.content.background : 'none'
-    }
-  },
+    },
   methods: {
 
+    width(content) {
+      return this.isPhone ? '80%' : content.width ? content.width+"%" : 'none'
+    },
+    background(content) {
+      return content.background ? content.background : 'none'
+    },
     alt(id) {
       return this.content.images[id].alt ? this.content.images[id].alt : this.title
     },

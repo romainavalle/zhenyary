@@ -56,7 +56,7 @@ export default {
 .work-link
   display flex
   align-items center
-  font-size 8.8vw
+  font-size 8.7vw
   line-height 1
   color $red
   .number

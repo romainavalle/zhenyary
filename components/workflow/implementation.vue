@@ -44,7 +44,7 @@
 <script>
 import vSvgArrow from '~/assets/svgs/arrow.svg?inline';
 import vSvgBar from '~/assets/svgs/bar.svg?inline'
-import transform from 'dom-transform'
+import anime from 'animejs'
 import offset from '~/assets/js/utils/offset'
 import { mapGetters } from 'vuex';
 export default {
@@ -52,7 +52,10 @@ export default {
     return {
       w: 0,
       h:0,
-      isLineReady: false
+      isLineReady: false,
+      isAnimatedIn: false,
+      isAnimatedBottomIn: false,
+      isAnimatedBottomIn2: false
     }
   },
   components:{
@@ -67,43 +70,72 @@ export default {
         this.w = w
         this.h = h
       }
-      this.bottomOffset = offset(this.$refs.bottom).top - this.h * .8
+      this.bottomOffset = offset(this.$refs.bottom).top - this.h
       this.animHeight = this.h * .5
       if(this.isPhone) return
       this.offset = offset(this.$el).top - this.h * .9
-      this.bottomOffset2 = offset(this.$refs.h3).top - this.h * .8
+      this.bottomOffset2 = offset(this.$refs.h3).top - this.h
     },
     tick(scrollTop, ease) {
       if(this.isPhone) {
       }else{
-        if(ease > this.offset && ease < this.offset + this.animHeight){
-          const coef = (ease - this.offset) / this.animHeight
-          this.$el.style.opacity = coef
-          transform(this.$el, {translate3d:[0, 200 - coef * 200, 0]})
-          transform(this.$refs.title, {scale:[1+.2*(1-coef),1+.2*(1-coef)]})
-          if(this.$refs.skills)transform(this.$refs.skills, {translate3d:[0, 200 - coef * 200, 0]})
-        }
-        if(ease > this.bottomOffset && ease < this.bottomOffset + this.animHeight){
-          const coefBottom = (ease - this.bottomOffset) / this.animHeight
-          this.$refs.bottom.style.opacity = coefBottom
-          transform(this.$refs.bottom, {translate3d:[0, 200 - coefBottom * 200, 0]})
-          this.arrows.forEach((arrow,i) => {
-            transform(arrow, {translate3d:[0, -50 -100 * (i+1) + coefBottom * 100 * (i+2) + '%', 0]})
-          });
-        }
-        if(ease > this.bottomOffset2 && ease < this.bottomOffset2 + this.animHeight){
-          const coefBottom2 = (ease - this.bottomOffset2) / this.animHeight
-          transform(this.$refs.h3, {translate3d:[0, 100 - coefBottom2 * 100, 0]})
-          transform(this.$refs.h4, {translate3d:[0, 200 - coefBottom2 * 200, 0]})
-          transform(this.$refs.text1, {translate3d:[0, 300 - coefBottom2 * 300, 0]})
-          transform(this.$refs.text2, {translate3d:[0, 400 - coefBottom2 * 400, 0]})
-        }
-      }
+
       if(ease > this.bottomOffset + this.h *.1 && ease < this.bottomOffset + this.animHeight + this.h *.6){
         if(!this.isLineReady) this.isLineReady = true
       }else{
         if(this.isLineReady) this.isLineReady = false
       }
+      if(ease > this.offset + this.h * .3) {
+        if(!this.isAnimatedIn)this.animateIn()
+      }
+      if(ease < this.offset) {
+        if(this.isAnimatedIn)this.reset()
+      }
+      if(ease > this.bottomOffset + this.h * .3) {
+        if(!this.isAnimatedBottomIn)this.animateInBottom()
+      }
+      if(ease < this.bottomOffset) {
+        if(this.isAnimatedBottomIn)this.resetBottom()
+      }
+      if(ease > this.bottomOffset2 + this.h * .3) {
+        if(!this.isAnimatedBottomIn2)this.animateInBottom2()
+      }
+      if(ease < this.bottomOffset2) {
+        if(this.isAnimatedBottomIn2)this.resetBottom2()
+      }
+      }
+    },
+    animateIn() {
+      this.isAnimatedIn = true
+      anime({targets: this.$el, translateY: 0, opacity: 1, duration: 1000, easing: 'easeOutQuad'})
+      anime({targets: this.$refs.title, scaleX: 1, scaleY:1, duration: 2000, easing: 'easeOutQuad'})
+      if(this.$refs.skills)anime({targets: this.lis, translateY: 0, opacity: 1, duration: 500, easing: 'easeOutQuad', delay: anime.stagger(100, {start: 500, easing: 'easeInQuad'})})
+    },
+    animateInBottom() {
+      this.isAnimatedBottomIn = true
+      anime({targets: this.$refs.bottom, opacity: 1,  translateY: 0, duration: 1000, easing: 'easeOutQuad'})
+      anime({targets: this.arrows, translateY: '50%', opacity: 1, duration: 500, easing: 'easeOutQuad', delay: anime.stagger(100, {easing: 'easeInQuad'})})
+    },
+    animateInBottom2() {
+      this.isAnimatedBottomIn2 = true
+      const array = [this.$refs.h3,this.$refs.h4, this.$refs.text1, this.$refs.text2]
+      anime({targets:array, translateY: 0, opacity: 1, duration: 1000, easing: 'easeOutQuad', delay: anime.stagger(250, { easing: 'easeInQuad'})})
+    },
+    reset() {
+      this.isAnimatedIn = false
+      anime.set(this.$el, {translateY: 200, opacity: 0})
+      anime.set(this.$refs.title, {scaleX: 1.2, scaleY:1.2})
+      if(this.$refs.skills)anime.set(this.lis, {translateY: 50, opacity: 0})
+    },
+    resetBottom() {
+      this.isAnimatedBottomIn = false
+      anime.set(this.$refs.bottom, {opacity: 0,  translateY: 200})
+      anime.set(this.arrows, {translateY: '-150%', opacity: 0})
+    },
+    resetBottom2() {
+      this.isAnimatedBottomIn2 = false
+      const array = [this.$refs.h3,this.$refs.h4, this.$refs.text1, this.$refs.text2]
+      anime.set(array, {translateY: 200, opacity: 0})
     }
   },
   mounted() {
@@ -112,10 +144,13 @@ export default {
       this.$el.style.opacity = 0
       this.$refs.bottom.style.opacity = 0
       this.arrows = [].slice.call(this.$el.querySelectorAll('.arrows li'))
-      transform(this.$refs.h3, {translate3d:[0, 100 - 0 * 100, 0]})
-      transform(this.$refs.h4, {translate3d:[0, 200 - 0 * 200, 0]})
-      transform(this.$refs.text1, {translate3d:[0, 300 - 0 * 300, 0]})
-      transform(this.$refs.text2, {translate3d:[0, 400 - 0 * 400, 0]})
+
+      this.$nextTick(()=>{
+        if(this.$refs.skills) this.lis = [].slice.call(this.$refs.skills.querySelectorAll('li'))
+        this.reset()
+        this.resetBottom()
+        this.resetBottom2()
+      })
     }
   }
 }

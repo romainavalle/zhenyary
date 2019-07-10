@@ -23,7 +23,7 @@
     {
       "type": "vImage",
       "width": 80,
-      "url": "adobe-xd/img-1.jpg",
+      "url": "adobe-xd/adobe_xd_kit_1.mp4",
       "alt": "adobe xd"
     },
     {
@@ -36,7 +36,12 @@
     {
       "type": "vImageBackground",
       "url": "adobe-xd/img-2.jpg",
-      "alt": "adobe xd"
+      "alt": "adobe xd",
+      "top": {
+        "type": "img",
+        "width": 22,
+        "url": "adobe-xd/img-2-bis.jpg"
+      }
     },
     {
       "type": "vImageBackground",
@@ -65,7 +70,7 @@
       "width": 40,
       "background": "#272727",
       "top": 40,
-      "url": "adobe-xd/img-6.jpg",
+      "url": "adobe-xd/adobe_xd_kit_2.mp4",
       "alt": "adobe xd"
     },
     {

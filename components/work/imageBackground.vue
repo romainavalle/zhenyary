@@ -1,8 +1,9 @@
 <template>
   <article>
-    <img :data-src="`${path}${content.url}`" :alt="content.alt || title" ref="img">
+    <img  v-if="content.url.indexOf('.mp4') === - 1" :data-src="`${path}${content.url}`" :alt="content.alt || title" ref="img">
+    <video v-else :src="`${path}${content.url}`" autoplay playsinline loop muted type='video/mp4' preload="auto"  ref="img"/>
     <no-ssr>
-      <div class="top-container" v-if="content.top" :style="{width: this.content.top.width}">
+      <div class="top-container" v-if="content.top" :style="{width: this.content.top.width+'%'}">
         <div class="top" ref="outer">
           <video v-if="content.top.type === 'video'" :src="`${path}${content.top.url}`" autoplay playsinline loop muted type='video/mp4' preload="auto"  ref="inner"/>
           <img   v-if="content.top.type === 'img'" :data-src="`${path}${content.top.url}`"  ref="inner">

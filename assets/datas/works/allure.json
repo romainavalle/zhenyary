@@ -17,12 +17,17 @@
     {
       "type": "vImageBackground",
       "url": "allure/img-0.jpg",
-      "alt": "allure"
+      "alt": "allure",
+      "top": {
+        "type": "img",
+        "width": 22,
+        "url": "allure/img-0-bis.jpg"
+      }
     },
     {
       "type": "vImage",
       "width": 70,
-      "url": "allure/img-1.jpg",
+      "url": "allure/allure.mp4",
       "alt": "allure"
     },
     {
@@ -60,7 +65,12 @@
     {
       "type": "vImageBackground",
       "url": "allure/img-5.jpg",
-      "alt": "allure"
+      "alt": "allure",
+      "top": {
+        "type": "img",
+        "width": 22,
+        "url": "allure/img-5-bis.jpg"
+      }
     }
   ]
 }

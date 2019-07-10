@@ -1,7 +1,7 @@
 <template>
   <div class="video" >
     <button @click="setVideo(false)" ref="close" aria-label="close"><v-svg-close /></button>
-    <video src="https://preprod.zhenyary.com/videos/video.mp4" v-bind="controls" ref="video" type='video/mp4' preload="auto"></video>
+    <video src="https://preprod.zhenyary.com/videos/video.mp4" v-bind="controls" playsinline ref="video" type='video/mp4'></video>
     <no-ssr>
       <div class="circle" ref="circle" v-if="!isDevice">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"  ref="circle-inner">
@@ -40,7 +40,7 @@ import vSvgPause from "~/assets/svgs/pause.svg?inline";
 export default {
   data() {
     return {
-      isPlaying: true,
+      isPlaying: false,
       isCloseAttracted: false
     }
   },
@@ -51,7 +51,7 @@ export default {
     ...mapState(['showVideo']),
     ...mapGetters(['isDevice', 'isSafari']),
     controls() {
-      return this.isDevice ? {'controls': 'controls', 'playsinline': 'false'} : { 'playsinline': 'playsinline'}
+      return this.isDevice ? {'controls': 'controls'} : { }
     }
   },
   methods: {
@@ -108,7 +108,7 @@ export default {
         duration: 1000,
         easing: 'easeOutQuad',
         complete: ()=>{
-          if(!this.isSafari) this.play()
+          this.play()
         }
       })
     },

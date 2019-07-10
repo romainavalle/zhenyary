@@ -33,7 +33,7 @@
     {
       "type": "vImage",
       "width": 70,
-      "url": "il-makiage/img-3.jpg",
+      "url": "il-makiage/il_makiage_1.mp4",
       "alt": "Il makiage"
     },
     {
@@ -53,20 +53,22 @@
     {
       "type": "vImage",
       "width": 70,
-      "url": "il-makiage/img-6.jpg",
+      "url": "il-makiage/il_makiage_2.mp4",
       "alt": "Il makiage"
     },
     {
       "type": "vImage",
       "width": 70,
-      "url": "il-makiage/img-7.jpg",
+      "url": "il-makiage/il_makiage_3.mp4",
       "alt": "Il makiage"
     },
     {
       "type": "vImages",
       "images":[
         {
-          "url": "il-makiage/img-8.jpg",
+          "url": "il-makiage/il_makiage_4.mp4",
+          "width": 70,
+          "background": "#1A1413",
           "alt": "Il makiage"
         },
         {

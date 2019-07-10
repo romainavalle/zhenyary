@@ -35,7 +35,7 @@
     {
       "type": "vImage",
       "width": 70,
-      "url": "adobe-kit/kit-3.jpg",
+      "url": "adobe-kit/adobe_editorial_kit_1.mp4",
       "alt": "Adobe editorial kit"
     },
     {
@@ -47,14 +47,14 @@
       "type": "vImage",
       "width": 60,
       "top": 60,
-      "url": "adobe-kit/kit-5.jpg",
+      "url": "adobe-kit/adobe_editorial_kit_2.mp4",
       "alt": "Adobe editorial kit"
     },
     {
       "type": "vImage",
       "width": 60,
       "top": 40,
-      "url": "adobe-kit/kit-6.jpg",
+      "url": "adobe-kit/adobe_editorial_kit_3.mp4",
       "alt": "Adobe editorial kit"
     },
     {
@@ -91,7 +91,7 @@
     {
       "type": "vImage",
       "width": 60,
-      "url": "adobe-kit/kit-11.jpg",
+      "url": "adobe-kit/adobe_editorial_kit_4.mp4",
       "alt": "Adobe editorial kit"
     },
     {

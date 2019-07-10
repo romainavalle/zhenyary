@@ -155,8 +155,6 @@ h2
 .details
   width 50%
   display flex
-ul
-  width 70%
 li
   display inline
 .details-text

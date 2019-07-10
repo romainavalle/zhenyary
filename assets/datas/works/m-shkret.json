@@ -63,7 +63,7 @@
     {
       "type": "vImage",
       "width": 70,
-      "url": "m-shkret/max-8.jpg",
+      "url": "m-shkret/maxim_shkert_1.mp4",
       "alt": "M Shkret"
     },
     {
@@ -71,8 +71,7 @@
       "width": 50,
       "top": 60,
       "background": "#292929",
-      "shadow": "m-shkret/shadow-max.png",
-      "url": "m-shkret/max-9.jpg",
+      "url": "m-shkret/maxim_shkert_2.mp4",
       "alt": "M Shkret"
     },
     {
@@ -101,7 +100,7 @@
     {
       "type": "vImage",
       "width": 70,
-      "url": "m-shkret/max-13.jpg",
+      "url": "m-shkret/maxim_shkert_3.mp4",
       "alt": "M Shkret"
     },
     {

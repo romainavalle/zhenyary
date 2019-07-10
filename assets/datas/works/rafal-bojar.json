@@ -26,8 +26,8 @@
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/rafal-2.jpg",
+      "width": 70,
+      "url": "rafal-bojar/rafal_bojar_1.mp4",
       "alt": "Rafal Bojar Photographer"
     },
     {
@@ -39,8 +39,8 @@
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/rafal-3.jpg",
+      "width": 70,
+      "url": "rafal-bojar/rafal_bojar_2.mp4",
       "alt": "Rafal Bojar Photographer"
     },
     {
@@ -59,8 +59,8 @@
     },
     {
       "type": "vImage",
-      "width": 80,
-      "url": "rafal-bojar/rafal-6.jpg",
+      "width": 70,
+      "url": "rafal-bojar/rafal_bojar_3.mp4",
       "alt": "Rafal Bojar Photographer"
     },
     {
@@ -77,14 +77,14 @@
       "alt": "Rafal Bojar Photographer"
     },
     {
-      "type": "vImageVideo",
+      "type": "vImages",
       "images":[
         {
           "url": "rafal-bojar/rafal-9.jpg",
           "alt": "Rafal Bojar Photographer"
         },
         {
-          "url": "rafal-bojar/rafal-10.jpg",
+          "url": "rafal-bojar/rafal_bojar_4.mp4",
           "background": "#CECAC7",
           "width": 60,
           "alt": "Rafal Bojar Photographer"

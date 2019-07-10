@@ -25,7 +25,7 @@
       "type": "vImage",
       "width": 80,
       "background": "#000",
-      "url": "epicurrence/epicurrence-2.jpg",
+      "url": "epicurrence/epicurrence_1.mp4",
       "alt": "epicurrence"
     },
     {
@@ -53,7 +53,7 @@
     },
     {
       "type": "vImageBackground",
-      "url": "epicurrence/epicurrence-4.jpg",
+      "url": "epicurrence/epicurrence_2.mp4",
       "alt": "epicurrence"
     },
     {
@@ -62,7 +62,7 @@
       "top": 60,
       "background": "#453949",
       "shadow": "epicurrence/shadow-epicurrence.png",
-      "url": "epicurrence/epicurrence-5.jpg",
+      "url": "epicurrence/epicurrence_3.mp4",
       "alt": "epicurrence"
     },
     {
@@ -71,7 +71,7 @@
       "top": 40,
       "background": "#453949",
       "shadow": "epicurrence/shadow-epicurrence.png",
-      "url": "epicurrence/epicurrence-6.jpg",
+      "url": "epicurrence/epicurrence_4.mp4",
       "alt": "epicurrence"
     },
     {

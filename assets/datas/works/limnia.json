@@ -5,8 +5,8 @@
   "menuItalic": false,
   "subtitle": "Limnia Jewellery",
   "link": {
-    "label": "Linmia.com",
-    "url": "https://linmia.com/"
+    "label": "limnia.com",
+    "url": "https://limnia.com/"
   },
   "skills": ["Art direction", "interface design"],
   "header": [
@@ -17,13 +17,13 @@
     {
       "type": "vImageBackground",
       "url": "limnia/limnia-1.jpg",
-      "alt": "linmia"
+      "alt": "limnia"
     },
     {
       "type": "vImage",
       "width": 70,
-      "url": "limnia/limnia-2.jpg",
-      "alt": "linmia"
+      "url": "limnia/limnia_1.mp4",
+      "alt": "limnia"
     },
     {
       "type": "vText",
@@ -35,18 +35,23 @@
     {
       "type": "vImage",
       "width": 70,
-      "url": "limnia/limnia-3.jpg",
-      "alt": "linmia"
+      "url": "limnia/limnia_2.mp4",
+      "alt": "limnia"
     },
     {
       "type": "vImageBackground",
       "url": "limnia/limnia-4.jpg",
-      "alt": "linmia"
+      "alt": "limnia",
+      "top": {
+        "type": "img",
+        "width": 40,
+        "url": "limnia/limnia-4-bis.jpg"
+      }
     },
     {
       "type": "vImageText",
       "url": "limnia/limnia-5.jpg",
-      "alt": "linmia",
+      "alt": "limnia",
       "header": "The website is built using a unique stack of technologies to enable custom animations and transitions between the pages.",
       "paragraphs": [
         "This project was both challenging and fun as we were aiming at creating a unique digital experience that is also focused on maximizing e-commerce efficiency and revenue."
@@ -56,34 +61,34 @@
       "type": "vImage",
       "width": 70,
       "url": "limnia/limnia-6.jpg",
-      "alt": "linmia"
+      "alt": "limnia"
     },
     {
       "type": "vImageBackground",
       "url": "limnia/limnia-7.jpg",
-      "alt": "linmia"
+      "alt": "limnia"
     },
     {
       "type": "vImageBackground",
       "url": "limnia/limnia-8.jpg",
-      "alt": "linmia"
+      "alt": "limnia"
     },
     {
       "type": "vImage",
-      "width": 90,
-      "url": "limnia/limnia-9.jpg",
-      "alt": "linmia"
+      "width": 70,
+      "url": "limnia/limnia_3.mp4",
+      "alt": "limnia"
     },
     {
       "type": "vImages",
       "images":[
         {
           "url": "limnia/limnia-10.jpg",
-          "alt": "linmia"
+          "alt": "limnia"
         },
         {
           "url": "limnia/limnia-11.jpg",
-          "alt": "linmia"
+          "alt": "limnia"
         }
       ]
     },
@@ -91,12 +96,12 @@
       "type": "vImage",
       "width": 60,
       "url": "limnia/limnia-12.jpg",
-      "alt": "linmia"
+      "alt": "limnia"
     },
     {
       "type": "vImageBackground",
       "url": "limnia/limnia-13.jpg",
-      "alt": "linmia"
+      "alt": "limnia"
     }
   ]
 }

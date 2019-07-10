@@ -6,7 +6,8 @@
           <img :data-src="`${path}${content.shadow}`" alt="shadow" class="shadow" aria-hidden="true" v-if="content.shadow">
         </no-ssr>
         <div class="img-container" ref="container">
-          <img :data-src="`${path}${content.url}`" :alt="content.alt || title" ref="img" class="main">
+            <img  v-if="content.url.indexOf('.mp4') === - 1" :data-src="`${path}${content.url}`" :alt="content.alt || title"  ref="img" class="main">
+            <video v-else :src="`${path}${content.url}`" autoplay playsinline loop muted type='video/mp4' preload="auto"   ref="img" class="main"/>
         </div>
       </div>
     </figure>
@@ -65,12 +66,12 @@ export default {
     animateIn() {
       this.isAnimatedIn = true
       anime({targets: this.$refs.img, scaleX: 1, scaleY:1, scaleZ:1, duration: 800, easing: 'easeOutQuad'})
-      anime({targets: this.$refs.container, scaleX: 1, scaleY:1, scaleZ:1, duration: 800, easing: 'easeOutQuad'})
+      if(!this.isPhone) anime({targets: this.$refs.container, scaleX: 1, scaleY:1, scaleZ:1, duration: 800, easing: 'easeOutQuad'})
     },
     reset(){
       this.isAnimatedIn = false
       anime.set(this.$refs.img, {scaleX: 1.5, scaleY:1.5, scaleZ:1})
-      anime.set(this.$refs.container, {scaleX: .7, scaleY:.7, scaleZ:1})
+      if(!this.isPhone) anime.set(this.$refs.container, {scaleX: .7, scaleY:.7, scaleZ:1})
     }
   },
   mounted() {

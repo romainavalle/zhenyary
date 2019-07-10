@@ -165,6 +165,12 @@ export default {
     if(this.isDevice){
       this.$nextTick(()=>{
         Emitter.emit('PAGE:MOUNTED')
+        const array = [].slice.call(this.$el.querySelectorAll('.work-link'))
+        anime.set(array, {opacity: 0, translateY: 50})
+        setTimeout(() => {
+        anime({targets: array, opacity: 1, translateY: 0, duration: 500, easing: 'easeOutQuad', delay: anime.stagger(100, {start: 500, easing: 'easeInQuad'})})
+
+        }, this.isFirstTime ? 1500 : 450)
       })
     }else{
       this.worksEl = [].slice.call(this.$el.querySelectorAll('.screen .work-link'))

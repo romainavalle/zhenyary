@@ -60,7 +60,7 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   modules: [
-    '@nuxtjs/pwa',
+    ['@nuxtjs/pwa',{workbox: { offline: false}}],
     ['@nuxtjs/google-analytics', {
       id: 'UA-90480178-1'
     }],
