@@ -61,11 +61,14 @@ export default {
         display block
   @media (orientation: landscape)
     display block
-    .svg
+    .svg .turn
+      transform-origin 115px 115px
       animation-name turn
       animation-duration 8s
       animation-timing-function linear
       animation-iteration-count infinite
+      &--fast
+        animation-duration 4s
 
 @keyframes turn
   0%

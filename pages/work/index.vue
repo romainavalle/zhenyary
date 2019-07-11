@@ -132,11 +132,14 @@ export default {
       if(id<0)return
       if(id>this.$refs.screens.length-1)return
       this.setWorkScreenId(id)
+
+      //ScrollHelper.scrollTo(this.h*id)
       this.removeWheel()
       this.wheelTimer = setTimeout(this.addWheel.bind(this), 1200)
+      return null
     },
     addWheel() {
-      this.$el.addEventListener('wheel', this._onWheel, {passive: true})
+      this.$el.addEventListener('wheel', this._onWheel)
     },
     removeWheel() {
       this.$el.removeEventListener('wheel', this._onWheel)
@@ -214,9 +217,13 @@ export default {
   background $pink
   position relative
   width 100vw
-  height 100vh
+  height 300vh
   font-family $schnyder
   font-weight $demi
+  .container
+    position fixed
+    width 100vw
+    height 100vh
   .device &
     position relative
   .strong
@@ -231,6 +238,8 @@ export default {
     width 100vw
     height auto
     padding 10vh 0 15vh
+    .container
+      position relative
 </style>
 
 

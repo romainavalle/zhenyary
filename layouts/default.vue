@@ -87,10 +87,10 @@ export default {
       if(this.$refs.progress) this.$refs.progress.tick(scrollTop, scrollTopEase)
       if(!this.isDevice) {
         MouseHelper.tick()
-        if(this.$route.name !== 'works') {
+        if(this.$route.name !== 'work') {
           transform(this.$refs.scroll, {translate3d: [0, -scrollTop, 0]})
         } else{
-          transform(this.$refs.scroll, {translate3d: [0, 0, 0]})
+          transform(this.$refs.scroll, {translateY: 0})
         }
         if(this.$refs.video)this.$refs.video.tick()
       }

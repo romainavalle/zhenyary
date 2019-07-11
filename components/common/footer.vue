@@ -56,6 +56,12 @@ footer
   display flex
   justify-content center
   padding 50px 0
+  .work &
+    bottom auto
+    top calc(100vh - 100px)
   +below('l')
     padding 0 0 5vh
+    .work &
+      bottom 0
+      top auto
 </style>
