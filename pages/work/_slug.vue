@@ -67,7 +67,7 @@ export default {
     },
     onLoad() {
       this.imgLoaded++
-      if(this.imgLoaded % 3 === 0) Emitter.emit('GLOBAL:RESIZE')
+      if(this.imgLoaded % 6 === 0) Emitter.emit('GLOBAL:RESIZE')
       if(this.imgLoaded === this.imgs.length) Emitter.emit('GLOBAL:RESIZE')
     },
     show() {

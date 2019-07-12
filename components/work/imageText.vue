@@ -141,9 +141,11 @@ article
 header, p
   width 50%
 header
-  font-size 20px
+  font-size 16px
   padding-bottom 50px
   padding-right 15%
+p
+  font-size 10px
 article
   +below('l')
     overflow auto
