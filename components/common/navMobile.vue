@@ -42,6 +42,8 @@ export default {
     },
     show() {
       this.$el.style.display = 'block'
+
+      this.$refs.container.style.opacity = 1
       anime.set(this.$refs.container,{translateY: '0%'})
       anime.set(this.$refs.close,{translateY: 0})
       //anime.set(this.letters,{translateY: ()=>{return anime.random(-30,30)}})
@@ -73,20 +75,22 @@ export default {
         targets: this.$refs.close,
         opacity: 0,
         duration: 450,
-        translateY: this.h,
+        translateY:  {value: this.h, duration: 450, delay: 400},
         easing: 'easeInQuad',
       })
       anime({
         targets: this.$refs.container,
-        translateY: '75%',
+        translateY: -40,
         duration: 450,
-        easing: 'easeInQuad',
+        opacity: 0,
+        easing: 'easeOutQuad',
       })
       anime({
         targets: this.$el,
         translateY: '-100%',
         duration: 450,
-        easing: 'easeInQuad',
+        delay: 400,
+        easing: 'easeOutQuad',
         complete: ()=>{
           this.$el.style.display = 'none'
         }

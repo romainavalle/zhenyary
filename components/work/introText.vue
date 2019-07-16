@@ -79,7 +79,7 @@ export default {
 <style lang="stylus" scoped>
 .intro
   width 100%
-  padding 6vw
+  padding-bottom 6vw
   position relative
   display flex
   align-items flex-start
@@ -91,10 +91,10 @@ export default {
   padding-left 15vw
 p
   width 70%
-  font-size 10px
+  font-size 12px
 .intro
   +below('l')
-    padding 10vh 7vw
+    padding 0vh 7vw 10vh
     .text
       padding-left 0
     p

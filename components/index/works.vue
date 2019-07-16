@@ -78,7 +78,7 @@ export default {
   position absolute
   display block
   left 75%
-  z-index 10
+  z-index 1
   top 3vw
   +below('l')
     left 57%

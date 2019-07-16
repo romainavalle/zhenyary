@@ -92,7 +92,6 @@ export default {
           complete: ()=>{
             this.isFirstTime = false
             this.$el.style.display = 'none'
-            this.setFirstTime()
           }})
 
       }
