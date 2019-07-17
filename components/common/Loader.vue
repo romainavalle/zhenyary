@@ -77,7 +77,7 @@ export default {
     this.ctx = null
   },
   mounted() {
-    setTimeout(this.setupCanvas.bind(this), 1000)
+    setTimeout(this.setupCanvas.bind(this), 1500)
   }
 }
 </script>

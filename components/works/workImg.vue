@@ -81,7 +81,6 @@ export default {
     position absolute
     width 100%
     transform-origin 50% 100%
-    will-change opacity, transform
   img
     display block
     height auto

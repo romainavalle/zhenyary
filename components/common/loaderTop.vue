@@ -15,7 +15,6 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
 import anime from 'animejs'
 export default {
     data(){
@@ -30,7 +29,6 @@ export default {
   computed: {
   },
   methods:{
-    ...mapActions(['setFirstTime']),
     resize(w, h) {
       if(w && h) {
         this.w = w
@@ -84,15 +82,15 @@ export default {
     hide() {
 
       if(this.isFirstTime) {
-         anime({
+        this.isFirstTime = false
+        anime({
           targets: this.$refs.span,
           opacity: 0,
           duration: 400,
           easing: 'easeInCubic',
           complete: ()=>{
-            this.isFirstTime = false
             this.$el.style.display = 'none'
-          }})
+        }})
 
       }
 
@@ -130,7 +128,7 @@ export default {
   },
   mounted() {
     this.resize(window.innerWidth, window.innerHeight)
-    setTimeout(this.show.bind(this), 300)
+    setTimeout(this.show.bind(this), 1000)
   }
 }
 
@@ -150,7 +148,6 @@ export default {
     left 0
     right 0
     bottom 0
-    will-change opacity
     background #000000
   span, .circle
     transform translateX(-20000px)
@@ -166,7 +163,6 @@ export default {
     +below('m')
       font-size 50px
   .circle
-    will-change opacity
     position absolute
     top 0
     left 0

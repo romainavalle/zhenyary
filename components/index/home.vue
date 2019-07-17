@@ -227,7 +227,6 @@ h1
     width 70%
     span
       transition transform 2s ease-out-quad
-      will-change transform, opacity
   .left
     left -20%
     span
