@@ -108,10 +108,10 @@ article.text
 header
   width 30%
   font-size 16px
-p
-  font-size 10px
+
 .paragraphs>div
   width 50%
+
 article.text
   +below('l')
     padding 10vh 7vw

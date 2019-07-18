@@ -91,7 +91,6 @@ export default {
   padding-left 15vw
 p
   width 70%
-  font-size 12px
 .intro
   +below('l')
     padding 0vh 7vw 10vh

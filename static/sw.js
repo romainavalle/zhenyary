@@ -23,9 +23,22 @@ workbox.precaching.cleanupOutdatedCaches()
 
 // Precache assets
 
+// -- Start of cachingExtensions --
+workbox.routing.registerRoute(
+  /.*\.(mp4|webm)/,
+  workbox.strategies.cacheFirst({
+    plugins: [
+      new workbox.rangeRequests.Plugin(),
+    ],
+  }),
+  'GET'
+);
+// -- End of cachingExtensions --
+
 // --------------------------------------------------
 // Runtime Caching
 // --------------------------------------------------
 
 // Register route handlers for runtimeCaching
 workbox.routing.registerRoute(new RegExp('/_nuxt/'), new workbox.strategies.CacheFirst ({}), 'GET')
+workbox.routing.registerRoute(new RegExp('/'), new workbox.strategies.NetworkFirst ({}), 'GET')
