@@ -76,6 +76,85 @@
       "background": "#ECE5E0",
       "url": "archieve/archieve_5.mp4",
       "alt": "zhenya rynzhuk"
+    },
+    {
+      "type": "vImages",
+      "images":[
+        {
+          "url": "archieve/img-9.jpg",
+          "alt": "zhenya rynzhuk"
+        },
+        {
+          "url": "archieve/img-10.jpg",
+          "alt": "zhenya rynzhuk"
+        }
+      ]
+    },
+    {
+      "type": "vImageBackground",
+      "url": "archieve/img-11.jpg",
+      "alt": "zhenya rynzhuk"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "archieve/img-12.jpg",
+      "alt": "zhenya rynzhuk"
+    },
+    {
+      "type": "vImage",
+      "width": 50,
+      "background": "#FFFFFF",
+      "url": "archieve/archieve_6.mp4",
+      "alt": "zhenya rynzhuk"
+    },
+    {
+      "type": "vImages",
+      "images":[
+        {
+          "url": "archieve/img-14.jpg",
+          "alt": "zhenya rynzhuk"
+        },
+        {
+          "url": "archieve/img-15.jpg",
+          "alt": "zhenya rynzhuk"
+        }
+      ]
+    },
+    {
+      "type": "vImage",
+      "width": 30,
+      "background": "#000000",
+      "url": "archieve/img-16.jpg",
+      "alt": "zhenya rynzhuk"
+    },
+    {
+      "type": "vImageBackground",
+      "url": "archieve/img-17.jpg",
+      "alt": "zhenya rynzhuk"
+    },
+    {
+      "type": "vImage",
+      "width": 50,
+      "url": "archieve/img-18.jpg",
+      "alt": "zhenya rynzhuk"
+    },
+    {
+      "type": "vImages",
+      "images":[
+        {
+          "url": "archieve/img-19.jpg",
+          "alt": "zhenya rynzhuk"
+        },
+        {
+          "url": "archieve/img-20.jpg",
+          "alt": "zhenya rynzhuk"
+        }
+      ]
+    },
+    {
+      "type": "vImageBackground",
+      "url": "archieve/img-21.jpg",
+      "alt": "zhenya rynzhuk"
     }
   ]
 }
