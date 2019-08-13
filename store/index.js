@@ -100,6 +100,7 @@ export const getters = {
   nextWork: (state)=>{
     const worksSlugs = state.works.map(w => w.slug)
     let id = worksSlugs.indexOf(state.route.params.slug) + 1
+
     if(id === state.works.length) id = 0
     return state.works[id]
   },

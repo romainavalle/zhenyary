@@ -20,7 +20,7 @@
             </ul>
           </div>
           <div>
-            <v-link :to="work.link.url" ref="link" class="demi">{{ work.link.label }}</v-link>
+            <v-link v-if="work.link" :to="work.link.url" class="demi">{{ work.link.label }}</v-link>
           </div>
         </div>
       </div>
@@ -58,13 +58,11 @@ export default {
     tick(scrollTop, ease){
       if(ease < this.h) {
         if(this.w > 1024 && !this.isPhone)transform(this.$refs.arrow, {translate3d:[0, Math.min(ease,this.h ), 0]})
-        //if(this.w > 1024)transform(this.$refs.link.$el, {translate3d:[0, scrollTop, 0]})
         if(this.w > 1024)transform(this.$refs.title, {translate3d:[0, ease / 3, 0]})
         if(!this.isDevice) transform(this.$refs.letter, {translate3d:[0, -scrollTop / this.h * this.w * .1, 0]})
         if(!this.isDevice) transform(this.$refs.dot, {translate3d:[0, -scrollTop / this.h * this.w * .1, 0]})
         if(!this.isDevice) this.$refs.dot.style.opacity = (this.h - ease * 2) / this.h
         this.$refs.title.style.opacity = (this.h - ease * 2) / this.h
-        //this.$refs.link.$el.style.opacity = (this.h - ease * 2) / this.h
       }
     },
     scrollTo(scrollTop) {
@@ -81,14 +79,16 @@ export default {
   mounted() {
     this.$nextTick(()=>{
       this.back = this.$refs.link.$el.querySelector('span')
+      console.log(this.back);
+
       this.title = this.$refs.title.querySelector('span')
       if(!this.isPhone) this.arrow = this.$refs.arrow.querySelector('.arrow')
       if(!this.isDevice) this.letter = this.$el.querySelector('.letter-container')
       this.text_array = [
         this.$el.querySelector('h2'),
-        this.$el.querySelector('ul'),
-        this.$el.querySelector('.link')
+        this.$el.querySelector('ul')
       ]
+      if(this.$el.querySelector('.link')) this.text_array.push(this.$el.querySelector('.link'))
       anime.set(this.back, { opacity: 0})
       if(!this.isPhone) anime.set(this.arrow, { opacity: 0, translateY: -50})
       anime.set(this.title, { opacity: 0, translateY: 100})

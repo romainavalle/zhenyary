@@ -4,10 +4,7 @@
   "menuNumberUnderline": false,
   "menuItalic": false,
   "subtitle": "Work pieces archieve",
-  "link": {
-    "label": "something personal"
-  },
-  "skills": ["Art direction", "interface design", "photography"],
+  "skills": ["something personal"],
   "header": [
     "Woooho!",
     "You’ve made it until here. You should have really enjoyed browsing my website ☺",
@@ -19,7 +16,7 @@
       "type": "vImage",
       "width": 50,
       "background": "#B4AAA7",
-      "url": "archieve/img-0.jpg",
+      "url": "archieve/archieve_1.mp4",
       "alt": "zhenya rynzhuk"
     },
     {
@@ -38,7 +35,9 @@
       "type": "vImages",
       "images":[
         {
-          "url": "archieve/img-3.jpg",
+          "url": "archieve/archieve_2.mp4",
+          "width": 80,
+          "background": "#474747",
           "alt": "zhenya rynzhuk"
         },
         {
@@ -61,8 +60,21 @@
       ]
     },
     {
+      "type": "vImage",
+      "url": "archieve/archieve_3.mp4",
+      "width": 50,
+      "alt": "zhenya rynzhuk"
+    },
+    {
       "type": "vImageBackground",
-      "url": "archieve/img-7.jpg",
+      "url": "archieve/img-8.jpg",
+      "alt": "zhenya rynzhuk"
+    },
+    {
+      "type": "vImage",
+      "width": 50,
+      "background": "#ECE5E0",
+      "url": "archieve/archieve_5.mp4",
       "alt": "zhenya rynzhuk"
     }
   ]

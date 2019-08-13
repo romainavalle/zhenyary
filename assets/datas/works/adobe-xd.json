@@ -80,9 +80,17 @@
       "alt": "adobe xd"
     },
     {
-      "type": "vImageBackground",
-      "url": "adobe-xd/img-8.jpg",
-      "alt": "adobe xd"
+      "type": "vImages",
+      "images":[
+        {
+          "url": "adobe-xd/img-8.jpg",
+          "alt": "adobe xd"
+        },
+        {
+          "url": "adobe-xd/img-9.jpg",
+          "alt": "adobe xd"
+        }
+      ]
     }
   ]
 }

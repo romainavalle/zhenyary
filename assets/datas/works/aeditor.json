@@ -16,9 +16,17 @@
   "cover": "aeditor/aeditor.jpg",
   "content": [
     {
-      "type": "vImageBackground",
-      "url": "aeditor/img-0.jpg",
-      "alt": "Aeditor"
+      "type": "vImages",
+      "images":[
+        {
+          "url": "aeditor/img-0.jpg",
+          "alt": "Aeditor"
+        },
+        {
+          "url": "aeditor/img-0-bis.jpg",
+          "alt": "Aeditor"
+        }
+      ]
     },
     {
       "type": "vImage",
@@ -37,7 +45,7 @@
       "type": "vImage",
       "width": 22,
       "background": "#A5A29D",
-      "url": "aeditor/img-2.jpg",
+      "url": "aeditor/aeditor_1.mp4",
       "alt": "Aeditor"
     },
     {
@@ -45,9 +53,9 @@
       "url": "aeditor/img-3.jpg",
       "alt": "Aeditor",
       "top": {
-        "type": "video",
+        "type": "img",
         "width": 22,
-        "url": "aeditor/aeditor_1.mp4"
+        "url": "aeditor/img-2.jpg"
       }
     },
     {

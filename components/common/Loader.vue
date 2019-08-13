@@ -45,7 +45,7 @@ export default {
       this.canvas = this.$el
       this.ctx = this.canvas.getContext('2d');
       const maxSize = this.w > this.h
-      const radius = Math.max(this.w, this.h )/ 7
+      const radius = Math.max(this.w, this.h ) / 7
       const num = 5
       for (let index = 0; index < num * num; index++) {
         const endX = (this.w ) / num * (index % num) + radius / 2
@@ -55,7 +55,7 @@ export default {
           posY:this.h * Math.random(),
           endX,
           endY,
-          radius,
+          radius: radius + Math.random() * radius * .4,
           scale: 0
         }
         this.particles.push(particle)
@@ -84,7 +84,7 @@ export default {
 
 <style lang="stylus" scoped>
 canvas
-  position absolute
+  position fixed
   top 0
   left 0
   right 0

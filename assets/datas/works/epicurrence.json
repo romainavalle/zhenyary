@@ -23,7 +23,7 @@
     },
     {
       "type": "vImage",
-      "width": 80,
+      "width": 60,
       "background": "#000",
       "url": "epicurrence/epicurrence_1.mp4",
       "alt": "epicurrence"
@@ -37,7 +37,7 @@
     },
     {
       "type": "vImage",
-      "width": 70,
+      "width": 60,
       "fitHeight": true,
       "url": "epicurrence/epicurrence-3.jpg",
       "alt": "epicurrence"
@@ -51,8 +51,9 @@
         "This project is a great example of how illustrations, animations and typography blend together to create an amazing online experience."
       ]
     },
-    {
-      "type": "vImageBackground",
+    { "type": "vImage",
+      "width": 60,
+      "background": "#000000",
       "url": "epicurrence/epicurrence_2.mp4",
       "alt": "epicurrence"
     },
