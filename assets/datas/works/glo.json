@@ -23,6 +23,7 @@
     {
       "type": "vImage",
       "width": 22,
+      "background": "#D8D8D8",
       "url": "glo/glo_1.mp4",
       "alt": "glo"
     },

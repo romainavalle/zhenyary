@@ -61,7 +61,7 @@ export default {
         this.$refs.arrow.style.opacity = coefLetter
       }
       if(ease > this.offsetDot) {
-        const coefDot = (ease - this.offsetDot) / (this.h * .2)
+        const coefDot = Math.min((ease - this.offsetDot) / (this.h * .18), 1)
         this.$refs.dot.style.opacity = coefDot
         transform(this.$refs.dot, {translate3d:[0, -this.w * .1 + this.w * .1 * coefDot, 0]})
       }
@@ -91,7 +91,7 @@ footer
   font-size 10.5vw
   line-height .68
   display block
-  padding-left 6.2vw
+  padding-left 6.4vw
   font-weight $light
 .dot
   display inline-block

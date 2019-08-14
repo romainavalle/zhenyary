@@ -7,7 +7,9 @@
         </no-ssr>
         <div class="img-container" ref="container">
             <img  v-if="content.url.indexOf('.mp4') === - 1" src="" :data-src="`${path}${content.url}`" :alt="content.alt || title"  ref="img" class="main">
-            <video v-else :src="`${path}${content.url}`" autoplay playsinline loop muted preload="auto"   ref="img" class="main"/>
+            <no-ssr v-else>
+              <video :src="`${path}${content.url}`" autoplay playsinline loop muted ref="img" class="main"/>
+            </no-ssr>
         </div>
       </div>
     </figure>
@@ -75,7 +77,7 @@ export default {
     }
   },
   mounted() {
-    this.reset()
+    this.$nextTick(this.reset.bind(this))
   }
 }
 </script>

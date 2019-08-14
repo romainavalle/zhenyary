@@ -79,7 +79,6 @@ export default {
   mounted() {
     this.$nextTick(()=>{
       this.back = this.$refs.link.$el.querySelector('span')
-      console.log(this.back);
 
       this.title = this.$refs.title.querySelector('span')
       if(!this.isPhone) this.arrow = this.$refs.arrow.querySelector('.arrow')

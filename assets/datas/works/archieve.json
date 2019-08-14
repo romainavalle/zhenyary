@@ -134,8 +134,9 @@
     },
     {
       "type": "vImage",
-      "width": 50,
+      "width": 40,
       "url": "archieve/img-18.jpg",
+      "background": "#E4E3E6",
       "alt": "zhenya rynzhuk"
     },
     {
