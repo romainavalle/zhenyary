@@ -1,7 +1,7 @@
 <template>
   <div class="video" >
     <button @click="setVideo(false)" ref="close" aria-label="close"><v-svg-close /></button>
-    <video src="https://preprod.zhenyary.com/videos/video.mp4" v-bind="controls" playsinline ref="video"></video>
+    <video src="https://preprod.zhenyary.com/videos/video.mp4" v-bind="controls" playsinline ref="video" v-if="videoIncluded"></video>
     <no-ssr>
       <div class="circle" ref="circle" v-if="!isDevice">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"  ref="circle-inner">
@@ -41,7 +41,8 @@ export default {
   data() {
     return {
       isPlaying: false,
-      isCloseAttracted: false
+      isCloseAttracted: false,
+      videoIncluded: false
     }
   },
   components: {
@@ -99,8 +100,8 @@ export default {
       return Math.sqrt(dx * dx + dy * dy);
     },
     show() {
+      this.videoIncluded = true
       this.$el.style.visibility = 'visible'
-      this.$refs.video.addEventListener('ended',this._onEnd)
       window.addEventListener('keydown',this._onKeyPress)
       anime({
         targets:this.$el,
@@ -109,6 +110,7 @@ export default {
         easing: 'easeOutQuad',
         complete: ()=>{
           this.play()
+          this.$refs.video.addEventListener('ended',this._onEnd)
         }
       })
     },
@@ -124,6 +126,7 @@ export default {
         complete: ()=>{
           this.$refs.video.currentTime = 0
           this.$el.style.visibility = 'hidden'
+          this.videoIncluded = false
         }
       })
     },
@@ -158,7 +161,7 @@ export default {
     }
   },
   beforeDestroy() {
-    this.$refs.video.removeEventListener('ended',this._onEnd)
+    if( this.$refs.video) this.$refs.video.removeEventListener('ended',this._onEnd)
     window.removeEventListener('keydown',this._onKeyPress)
     if(this.isSafari) Emitter.removeListener('VIDEO_BUTTON_CLICKED', this._play)
   },

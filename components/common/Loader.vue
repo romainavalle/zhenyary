@@ -21,29 +21,33 @@ export default {
       if(this.canvas) {
         this.canvas.width = this.w
         this.canvas.height = this.h
+        this.offScreenCanvas.width = this.w
+        this.offScreenCanvas.height = this.h
       }
     },
     tick() {
-      if(!this.ctx) return
-      this.ctx.clearRect(0, 0, this.w, this.h);
-      this.ctx.globalCompositeOperation = 'source-over';
-      this.ctx.fillStyle = "black";
-      this.ctx.fillRect(0, 0, this.w, this.h);
-      this.ctx.globalCompositeOperation = 'destination-out';
+      if(!this.offScreenCtx) return
+      this.offScreenCtx.globalCompositeOperation = 'source-over';
+      this.offScreenCtx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      this.offScreenCtx.globalCompositeOperation = 'destination-out';
       this.particles.forEach(particle => {
         this.drawParticle(particle)
       });
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
+      this.context.drawImage(this.offScreenCanvas, 0, 0);
     },
     drawParticle(particle) {
-      this.ctx.beginPath();
-      this.ctx.fillStyle = "black";
-      this.ctx.arc(particle.posX, particle.posY, particle.radius * particle.scale, 0, Math.PI*2, true);
-      this.ctx.closePath();
-      this.ctx.fill();
+      this.offScreenCtx.beginPath();
+      this.offScreenCtx.arc(particle.posX, particle.posY, particle.radius * particle.scale, 0, Math.PI*2, true);
+      this.offScreenCtx.closePath();
+      this.offScreenCtx.fill();
     },
     setupCanvas() {
       this.canvas = this.$el
-      this.ctx = this.canvas.getContext('2d');
+      this.context = this.canvas.getContext('2d');
+      this.offScreenCanvas = document.createElement('canvas')
+      this.offScreenCtx = this.offScreenCanvas.getContext('2d');
+      this.offScreenCtx.fillStyle = "black";
       const maxSize = this.w > this.h
       const radius = Math.max(this.w, this.h ) / 7
       const num = 5
@@ -74,6 +78,7 @@ export default {
     }
   },
   beforeDestroy() {
+    this.offScreenCtx = null
     this.ctx = null
   },
   mounted() {

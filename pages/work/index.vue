@@ -240,6 +240,7 @@ export default {
     padding 10vh 0 15vh
     .container
       position relative
+      height auto
 </style>
 
 

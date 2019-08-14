@@ -45,6 +45,7 @@ export default {
         targets: this.$refs.red,
         translateX: [this.w *.5-100,this.w *.5+ 80 * this.w / 1920],
         translateY: [this.h * 1.2,this.h * .5 + 20 * this.w / 1920],
+        translateZ: 0,
         duration: 500,
         easing: 'easeOutCubic'
       })
@@ -52,6 +53,7 @@ export default {
         targets: this.$refs.pink,
         translateX: [this.w *.5 + 300,this.w * .5 - 50 * this.w / 1920],
         translateY: [this.h * 1.2,this.h *.5 - 100 * this.w / 1920],
+        translateZ: 0,
         duration: 500,
         easing: 'easeOutQuad'
       })
@@ -91,7 +93,6 @@ export default {
           complete: ()=>{
             this.$el.style.display = 'none'
         }})
-
       }
 
 
@@ -109,6 +110,7 @@ export default {
         targets: this.$refs.red,
         translateX: this.w *.5 + 180,
         translateY: -this.h * .2,
+        translateZ: 0,
         duration: 500,
         easing: 'easeInCubic'
       })
@@ -116,6 +118,7 @@ export default {
         targets: this.$refs.pink,
         translateX: this.w * .5 - 350,
         translateY: -this.h * .2,
+        translateZ: 0,
         duration: 500,
         easing: 'easeInQuad'
       })

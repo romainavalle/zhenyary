@@ -91,7 +91,7 @@ footer
   font-size 10.5vw
   line-height .68
   display block
-  padding-left 50px
+  padding-left 6.2vw
   font-weight $light
 .dot
   display inline-block
