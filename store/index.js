@@ -14,8 +14,8 @@ export const state = () => ({
   workScreenId: 0,
   isFirstTime: true,
   navMobile: false,
-  path: process.env.NODE_ENV === 'production' ? '/images/' : '/images/',
-  vPath: process.env.NODE_ENV === 'production' ? '/images/' : '/images/'
+  path: process.env.NODE_ENV === 'production' ? 'https://preprod.zhenyary.com/images/' : '/images/',
+  vPath: process.env.NODE_ENV === 'production' ? 'https://preprod.zhenyary.com/videos/' : '/videos/'
 })
 export const mutations = {
   SET_WORKS (state, works) {

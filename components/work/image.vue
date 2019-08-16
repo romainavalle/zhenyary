@@ -7,9 +7,7 @@
         </no-ssr>
         <div class="img-container" ref="container">
             <img  v-if="content.url.indexOf('.mp4') === - 1" src="" :data-src="`${path}${content.url}`" :alt="content.alt || title"  ref="img" class="main">
-            <no-ssr v-else>
-              <video :src="`${path}${content.url}`" autoplay playsinline loop muted ref="img" class="main"/>
-            </no-ssr>
+            <video v-else :src="videoUrl" autoplay playsinline loop muted ref="img" class="main" crossOrigin="anonymous" type="video/mp4"/>
         </div>
       </div>
     </figure>
@@ -28,7 +26,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isPhone']),
+    ...mapGetters(['isPhone', 'isDevice']),
+    videoUrl() {
+      const file = this.isDevice ? this.content.url.replace('.mp4', '_720.mp4') : this.content.url
+      return `${this.path}${file}`
+    },
     width() {
       return this.isPhone ? '80%' : this.content.width ? `${this.content.width}%`: '100%'
     },

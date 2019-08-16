@@ -16,8 +16,9 @@
   "header": [
     "This is a portfolio website of a polish photographer and videographer, who loves to create visual stories. Everyone regardless of their origin falls in love."
   ],
-  "cover": "rafal-bojar/rafal-bojar-home-1.jpg",
-  "homeMenu": "rafal-bojar/rafal-bojar-home-2.jpg",
+  "cover": "rafal-bojar/rafal-bojar.jpg",
+  "homeMenuNarrow": "rafal-bojar/rafal-bojar-home-1.jpg",
+  "homeMenuLarge": "rafal-bojar/rafal-bojar-home-2.jpg",
   "content": [
     {
       "type": "vImageBackground",

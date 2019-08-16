@@ -1,7 +1,7 @@
 <template>
   <div class="video" >
     <button @click="setVideo(false)" ref="close" aria-label="close"><v-svg-close /></button>
-    <video src="https://preprod.zhenyary.com/videos/video.mp4" v-bind="controls" playsinline ref="video" v-if="videoIncluded"></video>
+    <video :src="`${vPath}video.mp4`" v-bind="controls" playsinline crossOrigin="anonymous" ref="video" v-if="videoIncluded"></video>
     <no-ssr>
       <div class="circle" ref="circle" v-if="!isDevice">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"  ref="circle-inner">
@@ -49,7 +49,7 @@ export default {
     vSvgClose, vSvgPlay, vSvgPause
   },
   computed: {
-    ...mapState(['showVideo']),
+    ...mapState(['showVideo', 'vPath']),
     ...mapGetters(['isDevice', 'isSafari']),
     controls() {
       return this.isDevice ? {'controls': 'controls'} : { }
