@@ -4,11 +4,7 @@
   "menuNumberUnderline": false,
   "menuItalic": false,
   "subtitle": "ESPN",
-  "link": {
-    "label": "ShowReel",
-    "url": ""
-  },
-  "skills": [],
+  "skills": ["ShowReel"],
   "header": [
     "A showreel of ESPN projects showcasing the mobile experience. This was such a great opportunity to collaborate with a big brand that creates truly unique content."
   ],
