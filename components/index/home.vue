@@ -9,8 +9,11 @@
     <no-ssr>
       <v-bottom-layer ref="bottomLayer" aria-hidden="true"/>
     </no-ssr>
-    <div class="img-container">
-      <img src="" data-src="/images/home/zhenya-bg.jpg" alt="Zhenya Rynzhuk" ref="imgBack" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
+    <div class="img-container" ref="imgBack">
+      <img src="" data-src="/images/home/zhenya-bg.jpg" alt="Zhenya Rynzhuk" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
+      <div class="hover">
+        <img v-for="(n, i) in totalHover" v-show="isHover && currentHover === i" :key="i" :data-src="`/images/home/${i}.jpg`" alt="Zhenya Rynzhuk" width="1070" height="1184" :class="[`mom-${i}`, {'js-fs-on-mobile': isPhone}]">
+      </div>
     </div>
     <no-ssr>
       <v-circles :circles="homeCircles[1]" :id="1"  ref="circles-1"  aria-hidden="true"/>
@@ -28,8 +31,8 @@
         </div>
       </no-ssr>
     </h1>
-    <div class="img-container">
-      <img src="" data-src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" ref="imgFront" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
+    <div class="img-container" ref="imgFront" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+      <img src="" data-src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
     </div>
     <no-ssr>
       <v-top-layer ref="topLayer"  aria-hidden="true"/>
@@ -67,11 +70,14 @@ import { mapState, mapActions, mapGetters } from 'vuex';
 export default {
   data() {
     return {
+      totalHover: 11,
       isReady: false,
+      isHover: false,
       w:0,
       h:0,
       homeCircles,
-      circlesShown: false
+      circlesShown: false,
+      currentHover: 0
     }
   },
   computed: {
@@ -127,6 +133,20 @@ export default {
         transform(this.$refs.play, {translate3d: [newPosX , newPosY,0]})
       }
     },
+    onMouseEnter() {
+      this.isHover = true
+      this.hoverTimeout = setTimeout(this.incrementHover.bind(this), 120)
+      this.$refs.imgFront.style.opacity = 0
+    },
+    onMouseLeave() {
+      this.isHover = false
+      clearTimeout(this.hoverTimeout)
+    },
+    incrementHover() {
+      this.currentHover++
+      if(this.currentHover === this.totalHover)this.currentHover = 0
+      this.hoverTimeout = setTimeout(this.incrementHover.bind(this), 120)
+    },
     onPlayBtClicked() {
       this.setVideo(true)
       Emitter.emit('VIDEO_BUTTON_CLICKED')
@@ -153,7 +173,10 @@ export default {
         opacity: 1,
         easing: 'easeOutQuad',
         duration: 700,
-        delay: anime.stagger(400, {start: 1000})
+        delay: anime.stagger(400, {start: 1000}),
+        complete: () => {
+          this.$refs.imgFront.style.opacity = 0
+        }
       })
       anime({
         targets: this.skills,
@@ -174,8 +197,6 @@ export default {
     anime.set(this.$refs.play,{opacity: 0})
     anime.set(this.$refs.click,{opacity: 0})
     anime.set(this.skills,{opacity: 0, translateY: '100%'})
-
-
   }
 }
 </script>
@@ -189,12 +210,13 @@ export default {
   overflow hidden
 .img-container
   position absolute
+  width 30vw
   top 50%
   left 50%
-  transform translate(-50%, -50%)
-  width 30vw
   img
     display block
+    position absolute
+    transform translate(-50%, -50%)
     max-width 100%
   +below('l')
     width 50vw

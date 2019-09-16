@@ -33,8 +33,8 @@ export default {
   },
   methods:{
      resize(){
-      this.w = ResizeHelper.width()
-      this.h = ResizeHelper.height()
+      const w = ResizeHelper.width()
+      const h = ResizeHelper.height()
       this.$refs.bg.resize(w,h)
     },
   },
@@ -51,7 +51,7 @@ main
   position relative
   height 100%
   width 100%
-  background #000000
+  background #ff0400
   a,span
     font-size 4vw
     text-align center

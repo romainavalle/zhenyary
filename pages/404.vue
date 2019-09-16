@@ -53,8 +53,9 @@ export default {
 section
   position relative
   overflow hidden
-  background $red
   height 100vh
+  pointer-events none
+  z-index 2
   .svg.bottom
     position absolute
     bottom 0

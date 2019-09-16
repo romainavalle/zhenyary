@@ -37,8 +37,6 @@ export default {
           restitution: .5,
           mass:6,
           render: {
-            fillStyle: 'purple',
-            strokeStyle: 'red',
             visible: true,
             sprite: {
               texture: '/images/smiley.png',
@@ -75,7 +73,7 @@ export default {
         height: this.h,
         wireframes: false,
         showAngleIndicator: false,
-        background: 'transparent',
+        background: '#ff0400',
         pixelRatio: window.devicePixelRatio
       }
     });
@@ -89,19 +87,16 @@ export default {
 
     Matter.World.add(this.world, [
       // walls
-      Matter.Bodies.rectangle(this.w / 2, this.h , this.w, 300, { isStatic: true, render:{visible: false} }),
-      Matter.Bodies.rectangle(-50, this.h/2, 100, this.h, { isStatic: true, render:{visible: false} }),
-      Matter.Bodies.rectangle(this.w+50, this.h/2, 100, this.w, { isStatic: true, render:{visible: false} }),
-      Matter.Bodies.rectangle(this.w/2, this.h/2, this.w*.3, this.w*.1, { isStatic: true, render:{visible: false} })
+      Matter.Bodies.rectangle(this.w / 2, this.h , this.w, 300, { isStatic: true, render:{visible: false, fillStyle: '#ff0400'} }),
+      Matter.Bodies.rectangle(-50, this.h/2, 100, this.h, { isStatic: true, render:{visible: false, fillStyle: '#ff0400'} }),
+      Matter.Bodies.rectangle(this.w+50, this.h/2, 100, this.w, { isStatic: true, render:{visible: false, fillStyle: '#ff0400'} }),
+      Matter.Bodies.rectangle(this.w/2, this.h/2, this.w*.3, this.w*.1, { isStatic: true, render:{visible: false, fillStyle: '#ff0400'} })
     ]);
     var attractiveBody = Matter.Bodies.circle(
       this.render.options.width / 2,
       this.render.options.height / 2,
       200, {
         render: {
-          fillStyle: `rgb(240,240,240)`,
-          strokeStyle: `rgb(240,240,240)`,
-          lineWidth: 0,
             visible: false,
             sprite: {
               texture: '/images/smiley.png',
@@ -146,6 +141,7 @@ export default {
 <style lang="stylus" scoped>
 div
   height 100%
+  background #ff0400
   width 100%
   position absolute
   z-index 1
