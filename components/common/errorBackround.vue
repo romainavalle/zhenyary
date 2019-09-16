@@ -87,19 +87,18 @@ export default {
 
     Matter.World.add(this.world, [
       // walls
-      Matter.Bodies.rectangle(this.w / 2, this.h , this.w, 300, { isStatic: true, render:{visible: false, fillStyle: '#ff0400'} }),
-      Matter.Bodies.rectangle(-50, this.h/2, 100, this.h, { isStatic: true, render:{visible: false, fillStyle: '#ff0400'} }),
-      Matter.Bodies.rectangle(this.w+50, this.h/2, 100, this.w, { isStatic: true, render:{visible: false, fillStyle: '#ff0400'} }),
-      Matter.Bodies.rectangle(this.w/2, this.h/2, this.w*.3, this.w*.1, { isStatic: true, render:{visible: false, fillStyle: '#ff0400'} })
+      Matter.Bodies.rectangle(this.w / 2, this.h , this.w, this.w*.15, { isStatic: true, render:{visible: false, fillStyle: 'blue'} }),
+      Matter.Bodies.rectangle(-50, this.h/2, 100, this.h, { isStatic: true, render:{visible: false, fillStyle: 'yellow'} }),
+      Matter.Bodies.rectangle(this.w+50, this.h/2, 100, this.w, { isStatic: true, render:{visible: false, fillStyle: 'pink'} }),
+      Matter.Bodies.rectangle(this.w/2, this.h/2, this.w*.3, this.w*.1, { isStatic: true, render:{visible: false, fillStyle: 'green'} })
     ]);
     var attractiveBody = Matter.Bodies.circle(
       this.render.options.width / 2,
       this.render.options.height / 2,
-      200, {
+      this.w*.15, {
         render: {
             visible: false,
             sprite: {
-              texture: '/images/smiley.png',
               xScale: 0.6,
               yScale: 0.6
             }

@@ -31,7 +31,7 @@
         </div>
       </no-ssr>
     </h1>
-    <div class="img-container" ref="imgFront" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+    <div class="img-container img-front" ref="imgFront" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @touchstart="onMouseEnter" @touchend="onMouseLeave">
       <img src="" data-src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
     </div>
     <no-ssr>
@@ -213,11 +213,31 @@ export default {
   width 30vw
   top 50%
   left 50%
+  &.img-front
+    z-index 5
+    user-select none
+    &:after
+      position absolute
+      top 0
+      left 0
+      right 0
+      bottom 0
+      transform translate(-50%, -50%)
+      display block
+      content ''
   img
     display block
-    position absolute
+    position relative
     transform translate(-50%, -50%)
     max-width 100%
+  .hover
+    position absolute
+    top 0
+    left 0
+    bottom 0
+    right 0
+    img
+      position absolute
   +below('l')
     width 50vw
   +below('s')
@@ -231,6 +251,7 @@ h1
   position absolute
   top 50%
   transform translate(-50%, -50%)
+  user-select none
   white-space nowrap
   .title-container
     position absolute

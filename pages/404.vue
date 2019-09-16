@@ -53,7 +53,7 @@ export default {
 section
   position relative
   overflow hidden
-  height 100vh
+  height 100%
   pointer-events none
   z-index 2
   .svg.bottom
