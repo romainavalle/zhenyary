@@ -79,8 +79,8 @@ export default {
       if(this.isPhone) return
       if(!this.isDevice) {
         if(scrollTop > this.offset  && scrollTop < this.offset + this.h * 1.5){
-          transform(this.circleBottom, {rotate:(ease % this.h) / this.h * 360})
-          transform(this.circleTop, {rotate:(scrollTop % this.h) / this.h * 360})
+          transform(this.circleBottom, {rotate:(scrollTop) / this.h * 360})
+          transform(this.circleTop, {rotate:(scrollTop) / this.h * 360})
         }
       }
 
@@ -202,6 +202,8 @@ svg
   &.circle-bottom
     position absolute
     opacity 0.3
+    transition transform .2s  ease-out
+    backface-visibility hidden
 
 h4
   font-size 3.4vw
