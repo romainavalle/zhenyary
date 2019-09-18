@@ -4,7 +4,8 @@
    <div class="content">
      <div class="img">
       <no-ssr>
-        <video :src="`/videos/${$route.name}.mp4`" autoplay playsinline loop muted preload="auto"  width="766" height="966" :class="{'js-fs-on-mobile': isPhone}"/>
+        <img :src="`/images/${$route.name}-poster.jpg`" alt="zhenya" width="766" height="966" :class="{'js-fs-on-mobile': isPhone}">
+        <video :src="`/videos/${$route.name}.mp4`" :poster="`/images/${$route.name}-poster.jpg`" autoplay playsinline loop muted preload="auto" :class="{'js-fs-on-mobile': isPhone}" crossOrigin="anonymous" type="video/mp4"/>
       </no-ssr>
       <v-link :to="{name:'contact'}" class="link">Contact Me</v-link>
      </div>
@@ -208,6 +209,9 @@ footer
     position relative
     margin 0 auto
     width 35%
+    video
+      position absolute
+      top 0
 .top
   pointer-events none
   width 100%

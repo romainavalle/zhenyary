@@ -177,7 +177,7 @@ export default {
         duration: 700,
         delay: anime.stagger(400, {start: 1000}),
         complete: () => {
-          this.$refs.imgFront.style.opacity = 0
+          if(this.$refs.imgFront) this.$refs.imgFront.style.opacity = 0
         }
       })
       anime({

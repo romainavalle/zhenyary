@@ -134,10 +134,13 @@ export default {
       setTimeout(()=>{
         this.resize()
         this.checkImg()
+        if(!this.isFirstTime)this.$refs.loaderTop.hide()
       }, 100)
+      setTimeout(()=>{
+        this.resize()
+      }, 200)
       //this.pageFadeIn(0)
 
-      if(!this.isFirstTime)this.$refs.loaderTop.hide()
 
     },
     onLoaded() {
