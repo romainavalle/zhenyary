@@ -31,8 +31,10 @@
         </div>
       </no-ssr>
     </h1>
-    <div class="img-container img-front" ref="imgFront" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @touchstart="onMouseEnter" @touchend="onMouseLeave">
-      <img src="" data-src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
+    <div class="img-container img-front" ref="imgFront">
+      <div @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @touchstart="onMouseEnter" @touchend="onMouseLeave">
+        <img src="" data-src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
+      </div>
     </div>
     <no-ssr>
       <v-top-layer ref="topLayer"  aria-hidden="true"/>
@@ -215,16 +217,14 @@ export default {
   left 50%
   &.img-front
     z-index 5
-    user-select none
-    &:after
+    div
+      user-select none
       position absolute
-      top 0
-      left 0
-      right 0
-      bottom 0
       transform translate(-50%, -50%)
       display block
-      content ''
+      img
+        transform none
+
   img
     display block
     position relative
@@ -275,7 +275,7 @@ h1
     span
       transform translateX(100%)
   .right
-    right -20%
+    right -25%
     text-align right
     span
       transform translateX(-100%)
