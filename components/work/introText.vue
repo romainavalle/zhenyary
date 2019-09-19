@@ -50,6 +50,7 @@ export default {
     show(start = 0){
       if(this.isAnimatedIn) return
       this.isAnimatedIn = true
+
       anime({
         targets: this.lines,
         opacity: 1,

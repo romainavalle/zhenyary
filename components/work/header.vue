@@ -20,7 +20,8 @@
             </ul>
           </div>
           <div>
-            <v-link v-if="work.link" :to="work.link.url" class="demi">{{ work.link.label }}</v-link>
+            <v-link v-if="work.link && work.link.url" :to="work.link.url" class="demi">{{ work.link.label }}</v-link>
+            <span v-if="work.link && !work.link.url" class="demi">{{ work.link.label }}</span>
           </div>
         </div>
       </div>
@@ -73,7 +74,7 @@ export default {
       anime({targets: this.back, opacity: 1, duration: 600, delay: 600, easing: 'easeOutQuad'})
       anime({targets: this.arrow, opacity: 1, translateY: 0, duration: 800, delay: 400, easing: 'easeOutQuad'})
       if(!this.isDevice) anime({targets: this.letter, opacity: 1, translateY: 0, duration: 1000, delay: 500,  easing: 'easeOutQuad'})
-      anime({targets: this.text_array, opacity: 1, translateX: 0, duration: 1200, delay: anime.stagger(50, {start: 600}),  easing: 'easeOutQuad'})
+      anime({targets: this.text_array, opacity: 1, translateX: 0, translateY: 0, duration: 1200, delay: anime.stagger(50, {start: 600}),  easing: 'easeOutQuad'})
     }
   },
   mounted() {
@@ -92,7 +93,11 @@ export default {
       if(!this.isPhone) anime.set(this.arrow, { opacity: 0, translateY: -50})
       anime.set(this.title, { opacity: 0, translateY: 100})
       if(!this.isDevice) anime.set(this.letter, { opacity: 0, translateY: 50})
-      anime.set(this.text_array , { opacity: 0, translateX: 30})
+      if(this.isPhone) {
+        anime.set(this.text_array , { opacity: 0, translateY: 50})
+      }else{
+        anime.set(this.text_array , { opacity: 0, translateX: 30})
+      }
     })
   }
 }

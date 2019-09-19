@@ -74,7 +74,7 @@ export default {
 
       anime({targets: this.$refs.content, opacity:1, translateY: 0, easing: 'easeOutQuad', duration : 700, delay:1200})
       this.$refs.header.show()
-      if(this.w <= 1024)this.$refs.intro.show(500)
+      if(this.w <= 1024)this.$refs.intro.show(1200)
     }
   },
   beforeDestroy() {
