@@ -13,7 +13,7 @@ export default {
   methods: {
     show(){
 
-      anime({
+      this.circleAnim = anime({
         targets: this.$refs.circle,
         scaleX: 1,
         scaleY: 1,
@@ -22,7 +22,7 @@ export default {
         delay: 500,
         duration: 1500
       })
-      anime({
+      this.barAnim = anime({
         targets: this.$refs.bar,
         scaleX: 1,
         easing: 'easeOutQuad',
@@ -30,6 +30,10 @@ export default {
         delay: 700,
       })
     }
+  },
+  beforeDestroy() {
+    if(this.barAnim)this.barAnim.pause()
+    if(this.circleAnim)this.circleAnim.pause()
   },
   mounted() {
     anime.set(

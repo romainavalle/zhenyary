@@ -24,7 +24,7 @@ export default {
     ...mapActions(['setColor']),
     show() {
       this.$refs.socials.show(1000)
-      anime({
+      this.showAnim = anime({
         targets: [this.$refs.buttonRed, this.$refs.buttonNude],
         translateX: '0%',
         duration: 700,
@@ -32,6 +32,9 @@ export default {
         delay: anime.stagger(900, {start:500})
       })
     }
+  },
+  beforeDestroy() {
+    if(this.showAnim) this.showAnim.pause()
   },
   mounted() {
     anime.set(

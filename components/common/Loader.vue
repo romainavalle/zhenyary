@@ -12,7 +12,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setFirstTime']),
+    ...mapActions(['setFirstTime', 'setFirstLoaderDone']),
     resize(w, h) {
       if(w && h) {
         this.w = w
@@ -73,8 +73,11 @@ export default {
         delay: anime.stagger(300, {grid: [num, num], from: 'center'}),
         duration: 2000,
         easing: 'easeOutQuad',
-        complete: () => {this.setFirstTime()}
+        complete: () => {this.setFirstLoaderDone()}
       })
+      setTimeout(()=>{
+        this.setFirstTime()
+      },100)
     }
   },
   beforeDestroy() {

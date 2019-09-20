@@ -37,11 +37,15 @@ export default {
 
     },
     show() {
+      if(this.anim1) this.anim1.pause()
+      if(this.anim2) this.anim2.pause()
+      if(this.anim3) this.anim3.pause()
+      if(this.anim4) this.anim4.pause()
       this.$el.style.display = 'block'
       anime.set(this.$refs.pink, {opacity: 1})
       anime.set(this.$refs.red, {opacity: 1})
       this.$el.style.opacity = 1
-      anime({
+      this.anim3 = anime({
         targets: this.$refs.red,
         translateX: [this.w *.5-100,this.w *.5+ 80 * this.w / 1920],
         translateY: [this.h * 1.2,this.h * .5 + 20 * this.w / 1920],
@@ -49,7 +53,7 @@ export default {
         duration: 500,
         easing: 'easeOutCubic'
       })
-      anime({
+      this.anim4 = anime({
         targets: this.$refs.pink,
         translateX: [this.w *.5 + 300,this.w * .5 - 50 * this.w / 1920],
         translateY: [this.h * 1.2,this.h *.5 - 100 * this.w / 1920],
@@ -60,7 +64,7 @@ export default {
       if(this.isFirstTime) {
         const posX = this.w >=  1024 ? -270 : -100
         const posY = this.w >=  1024 ? this.h *.5 - 100 : this.h *.5 -20
-        anime({
+        this.anim1 = anime({
           targets: this.$refs.span,
           translateX: [posX, posX],
           translateY: [this.h * 1.2,posY],
@@ -71,7 +75,7 @@ export default {
           }
         })
       }else{
-        anime({
+        this.anim2 = anime({
           targets: this.$refs.bg,
           opacity: [0, 1],
           duration: 300,
@@ -83,9 +87,13 @@ export default {
     },
     hide() {
 
+      if(this.anim1) this.anim1.pause()
+      if(this.anim2) this.anim2.pause()
+      if(this.anim3) this.anim3.pause()
+      if(this.anim4) this.anim4.pause()
       if(this.isFirstTime) {
         this.isFirstTime = false
-        anime({
+        this.anim1 = anime({
           targets: this.$refs.span,
           opacity: 0,
           duration: 400,
@@ -96,7 +104,7 @@ export default {
       }
 
 
-      anime({
+      this.anim2 = anime({
         targets: this.$refs.bg,
         opacity: 0,
         duration: 500,
@@ -106,7 +114,7 @@ export default {
           this.$el.style.display = 'none'
         }
       })
-      anime({
+      this.anim3 = anime({
         targets: this.$refs.red,
         translateX: this.w *.5 + 180,
         translateY: -this.h * .2,
@@ -114,7 +122,7 @@ export default {
         duration: 500,
         easing: 'easeInCubic'
       })
-      anime({
+      this.anim4 = anime({
         targets: this.$refs.pink,
         translateX: this.w * .5 - 350,
         translateY: -this.h * .2,
@@ -122,7 +130,6 @@ export default {
         duration: 500,
         easing: 'easeInQuad'
       })
-
     }
   },
   watch: {
@@ -132,6 +139,7 @@ export default {
   mounted() {
     this.resize(window.innerWidth, window.innerHeight)
     setTimeout(this.show.bind(this), 1000)
+    this.anims = []
   }
 }
 

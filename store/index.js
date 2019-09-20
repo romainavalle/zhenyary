@@ -13,9 +13,10 @@ export const state = () => ({
   showVideo: false,
   workScreenId: 0,
   isFirstTime: true,
+  firstLoaderDone: true,
   navMobile: false,
-  path: process.env.NODE_ENV === 'production' ? 'https://preprod.zhenyary.com/images/' : '/images/',
-  vPath: process.env.NODE_ENV === 'production' ? 'https://preprod.zhenyary.com/videos/' : '/videos/'
+  path: process.env.NODE_ENV === 'production' ? 'https://zhenyary.com/images/' : '/images/',
+  vPath: process.env.NODE_ENV === 'production' ? 'https://zhenyary.com/videos/' : '/videos/'
 })
 export const mutations = {
   SET_WORKS (state, works) {
@@ -38,6 +39,9 @@ export const mutations = {
   },
   SET_FIRST_TIME (state) {
     state.isFirstTime = false
+  },
+  SET_FIRST_LOADER_DONE (state) {
+    state.firstLoaderDone = false
   }
 }
 export const actions = {
@@ -76,6 +80,9 @@ export const actions = {
   },
   setFirstTime({commit}) {
     commit('SET_FIRST_TIME')
+  },
+  setFirstLoaderDone({commit}) {
+    commit('SET_FIRST_LOADER_DONE')
   },
   setVideo({commit}, showVideo) {
     commit('SET_VIDEO', showVideo)

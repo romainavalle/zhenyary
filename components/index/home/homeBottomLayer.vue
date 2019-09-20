@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     show(){
-      anime({
+      this.numberAnim = anime({
         targets: this.$refs.numbers,
         translateY: 0,
         opacity: 1,
@@ -23,13 +23,13 @@ export default {
         duration: 500,
         delay: anime.stagger(200, {easing: 'easeOutIn'})
       })
-      anime({
+      this.barAnim = anime({
         targets: this.$refs.bar,
         scaleY: 1,
         easing: 'easeOutQuad',
         duration: 2000
       })
-       anime({
+       this.barHAnim = anime({
         targets: this.$refs.barH,
         scaleX: 1,
         easing: 'easeOutQuad',
@@ -37,6 +37,11 @@ export default {
         delay: 700,
       })
     }
+  },
+  beforeDestroy() {
+    if(this.numberAnim)this.numberAnim.pause()
+    if(this.barAnim)this.barAnim.pause()
+    if(this.barHAnim)this.barHAnim.pause()
   },
   mounted() {
     anime.set(

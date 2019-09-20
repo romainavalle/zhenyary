@@ -4,7 +4,7 @@
     <no-ssr>
       <v-progress ref="progress" v-if="!isDevice" />
     </no-ssr>
-    <v-loader ref="loader" v-if="isFirstTime"/>
+    <v-loader ref="loader" v-if="firstLoaderDone"/>
     <v-loader-top ref="loaderTop"/>
     <no-ssr>
       <v-turn v-if="isDevice" />
@@ -54,7 +54,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['route', 'isFirstTime']),
+    ...mapState(['route', 'isFirstTime', 'firstLoaderDone']),
     ...mapGetters(['isDevice', 'isPhone', 'isTablet', 'isSafari'])
   },
   components: {

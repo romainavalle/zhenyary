@@ -11,7 +11,7 @@
      </div>
      <div class="top">
        <div>
-         <p class="line"><span class="left">let's make</span> <span class="spacer"></span><span class="right">a wonderfull</span></p>
+         <p class="line"><span class="left">let's make</span> <span class="spacer"></span><span class="right">a wonderful</span></p>
          <p class="line"><span class="left red" v-text="words[currentWord]"></span> <span class="spacer"></span><span class="right">together</span></p>
        </div>
      </div>
@@ -258,6 +258,7 @@ footer
         width 90%
   +below('s')
     height 93vh
+    max-height 620px
     .content
       padding 10vh 0 15vh
 </style>

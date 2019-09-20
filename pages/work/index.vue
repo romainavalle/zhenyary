@@ -123,6 +123,10 @@ export default {
       if(id !== this.workScreenId) this.hideScreen(id)
     },
     onWheel(e) {
+      e.preventDefault()
+      if(! this.isListening) {
+        return false
+      }
       let id = this.workScreenId
       if(e.deltaY > 0){
         id++
@@ -133,16 +137,22 @@ export default {
       if(id>this.$refs.screens.length-1)return
       this.setWorkScreenId(id)
 
-      //ScrollHelper.scrollTo(this.h*id)
-      this.removeWheel()
-      this.wheelTimer = setTimeout(this.addWheel.bind(this), 1200)
-      return null
+      window.scrollTo(0, this.h * id)
+      this.stopListen()
+      this.wheelTimer = setTimeout(this.listen.bind(this), 1200)
+      return false
+    },
+    listen() {
+      this.isListening = true
+    },
+    stopListen() {
+      this.isListening = false
     },
     addWheel() {
-      this.$el.addEventListener('wheel', this._onWheel)
+      this.$el.addEventListener('wheel', this._onWheel, {passive: false})
     },
     removeWheel() {
-      this.$el.removeEventListener('wheel', this._onWheel)
+      this.$el.removeEventListener('wheel', this._onWheel, {passive: false})
     }
   },
   watch: {
@@ -164,6 +174,7 @@ export default {
     }
   },
   mounted() {
+    this.isListening = true
 
     if(this.isDevice){
       this.$nextTick(()=>{

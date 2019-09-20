@@ -11,9 +11,11 @@
     </no-ssr>
     <div class="img-container" ref="imgBack">
       <img src="" data-src="/images/home/zhenya-bg.jpg" alt="Zhenya Rynzhuk" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
-      <div class="hover">
-        <img v-for="(n, i) in totalHover" v-show="isHover && currentHover === i" :key="i" :data-src="`/images/home/${i}.jpg`" alt="Zhenya Rynzhuk" width="1070" height="1184" :class="[`mom-${i}`, {'js-fs-on-mobile': isPhone}]">
-      </div>
+      <no-ssr>
+        <div class="hover" v-if="!isPhone">
+          <img v-for="(n, i) in totalHover" v-show="isHover && currentHover === i" :key="i" :data-src="`/images/home/${i}.jpg`" alt="Zhenya Rynzhuk" width="1070" height="1184" :class="[`mom-${i}`, {'js-fs-on-mobile': isPhone}]">
+        </div>
+      </no-ssr>
     </div>
     <no-ssr>
       <v-circles :circles="homeCircles[1]" :id="1"  ref="circles-1"  aria-hidden="true"/>
@@ -32,7 +34,7 @@
       </no-ssr>
     </h1>
     <div class="img-container img-front" ref="imgFront">
-      <div @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @touchstart="onMouseEnter" @touchend="onMouseLeave">
+      <div @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
         <img src="" data-src="/images/home/zhenya-front.png" alt="Zhenya Rynzhuk" width="1070" height="1184" :class="{'js-fs-on-mobile': isPhone}">
       </div>
     </div>
@@ -136,11 +138,13 @@ export default {
       }
     },
     onMouseEnter() {
+      if(this.isPhone) return
       this.isHover = true
       this.hoverTimeout = setTimeout(this.incrementHover.bind(this), 120)
       this.$refs.imgFront.style.opacity = 0
     },
     onMouseLeave() {
+      if(this.isPhone) return
       this.isHover = false
       clearTimeout(this.hoverTimeout)
     },
@@ -170,17 +174,17 @@ export default {
       this.$refs.topLayer.show()
       this.$refs.bottomLayer.show()
       this.$refs.footer.show()
-      anime({
+      this.showAnim = anime({
         targets: [this.$refs.play, this.$refs.click],
         opacity: 1,
         easing: 'easeOutQuad',
         duration: 700,
         delay: anime.stagger(400, {start: 1000}),
         complete: () => {
-          if(this.$refs.imgFront) this.$refs.imgFront.style.opacity = 0
+          this.$refs.imgFront.style.opacity = 0
         }
       })
-      anime({
+      this.skillsAnim = anime({
         targets: this.skills,
         opacity: 1,
         translateY: '0%',
@@ -189,6 +193,10 @@ export default {
         delay: anime.stagger(100, {start: 1300})
       })
     }
+  },
+  beforeDestroy() {
+    if(this.showAnim) this.showAnim.pause()
+    if(this.skillsAnim) this.skillsAnim.pause()
   },
   mounted() {
     this.$el.querySelector('.label').style.opacity = 0

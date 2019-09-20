@@ -50,7 +50,7 @@ module.exports = {
       {
         hid: 'twitter:image',
         property: 'twitter:image',
-        content: 'https://www.zhenyary.com/images/share.jpg'
+        content: 'https://www.zhenyary.com/images/share-twitter.jpg'
       }
     ]
 

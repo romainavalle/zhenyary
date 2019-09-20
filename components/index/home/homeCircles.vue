@@ -67,6 +67,9 @@ export default {
       })
     }
   },
+  beforeDestroy() {
+    if(this.anime) this.anime.pause()
+  },
   mounted() {
     anime.set(this.$refs.circles, {
       scale: .4,
