@@ -16,7 +16,6 @@
     "animejs": "^3.0.1",
     "desandro-classie": "^1.0.1",
     "dom-transform": "^2.1.0",
-    "lottie-web": "^5.5.5",
     "matter-js": "^0.14.2",
     "nuxt": "^2.0.0",
     "raf-loop": "^1.1.3",

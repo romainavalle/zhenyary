@@ -7,7 +7,7 @@
     </div>
     <div class="brief">
       <div class="inner">
-        <h4 :class="{'mobile-anime': isPhone}"><span class="red">Briefing</span>Reseach</h4>
+        <h4 :class="{'mobile-anime': isPhone}"><span class="red">Briefing</span>Research</h4>
         <ul>
           <li class="opacity" :class="{'mobile-anime': isPhone}">Project Goals</li>
           <li class="opacity" :class="{'mobile-anime': isPhone}">Target Audience</li>
