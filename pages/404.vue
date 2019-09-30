@@ -11,7 +11,7 @@
     <text fill="#FFF" font-family="SchnyderL-DemiItalic, Schnyder L" font-size="147" font-style="italic" font-weight="500" letter-spacing="2" transform="translate(-25 -29)">
       <tspan x="496" y="141">ERROR</tspan>
     </text>
-    <text fill="#FFF" font-family="Helvetica" font-size="147" letter-spacing="2" transform="translate(-25 -29)">
+    <text fill="#FFF" font-family="SchnyderL-Demi, Schnyder L" font-weight="500" font-size="147" letter-spacing="2" transform="translate(-25 -29)">
       <tspan x="1527" y="142">ERROR</tspan>
     </text>
     <path fill="#DBD5C9" d="M1464.569 46.273L1468.137 34l4.392 12.273 10.98-6.137-5.764 11.591L1489 55.273l-11.255 4.09 5.765 11.182L1471.43 64l-3.294 12-3.568-12-11.53 6.545 5.216-11.181L1447 55l11.255-3.273-4.392-11.59 10.706 6.136z"/>
@@ -28,10 +28,10 @@
         <text fill="#FFF" font-family="SchnyderL-DemiItalic, Schnyder L" font-size="147" font-style="italic" font-weight="500" letter-spacing="2" transform="translate(-46 -29)">
           <tspan x="0" y="141">ERROR</tspan>
         </text>
-        <text fill="#FFF" font-family="Helvetica" font-size="147" letter-spacing="2" transform="translate(-46 -29)">
+        <text fill="#FFF" font-family="SchnyderL-DemiItalic, Schnyder L" font-size="147" letter-spacing="2" font-style="italic" font-weight="500" transform="translate(-46 -29)">
           <tspan x="519" y="142">4000004</tspan>
         </text>
-        <text fill="#FFF" font-family="Helvetica" font-size="147" letter-spacing="2" transform="translate(-46 -29)">
+        <text fill="#FFF" font-family="SchnyderL-Demi, Schnyder L" font-size="147" letter-spacing="2"   font-style="italic" font-weight="500" transform="translate(-46 -29)">
           <tspan x="1400" y="142">PAGE</tspan>
         </text>
         <path stroke="#FFF" stroke-width="3" d="M1132 95.5l210.5-80"/>

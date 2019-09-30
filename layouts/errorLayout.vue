@@ -57,9 +57,6 @@ main
     text-align center
     color $black
     position absolute
-    font-family $schnyder
-    font-weight $demi
-    font-style italic
     top 50%
     left 50%
     transform translate(-50%, -50%)
