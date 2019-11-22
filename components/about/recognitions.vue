@@ -9,8 +9,12 @@
       <button class="showreel mobile-anime" aria-label="showreel" v-show="isPhone" @click="showVideo">showreel</button>
     </div>
     <div>
-      <h4 class="mobile-anime">Awwwards <sup>x{{about.awwwards.length}}</sup></h4>
+      <h4 class="mobile-anime">Awwwards <sup>x{{about.awwwards.length + 1}}</sup></h4>
       <ul class="awards" v-if="about.awwwards">
+        <li class="mobile-anime">
+          <strong>Zhenya Rynzhuk Folio</strong>
+          <span>Site of the day, Mobile excellence, Devaward</span>
+        </li>
         <li v-for="(awwward, index) in about.awwwards" :key="`awwward-${index}`" class="mobile-anime">
           <strong v-text="awwward.title"></strong>
           <span v-text="awwward.award"></span>
@@ -18,8 +22,12 @@
       </ul>
     </div>
     <div>
-      <h4 class="mobile-anime">FWA <sup>x{{about.FWA.length}}</sup></h4>
+      <h4 class="mobile-anime">FWA <sup>x{{about.FWA.length + 1}}</sup></h4>
       <ul class="awards" v-if="about.FWA">
+        <li class="mobile-anime">
+          <strong>Zhenya Rynzhuk Folio</strong>
+          <span>FWA of the day</span>
+        </li>
         <li v-for="(fwa, index) in about.FWA" :key="`fwa-${index}`" class="mobile-anime">
           <strong v-text="fwa.title"></strong>
           <span v-text="fwa.award"></span>
