@@ -4,6 +4,7 @@
   "menuNumberUnderline": false,
   "menuItalic": false,
   "subtitle": "Limnia Jewelry",
+  "awwwards": "Site of the day",
   "link": {
     "label": "Limnia.com",
     "url": "https://limnia.com/"
@@ -86,7 +87,7 @@
     },
     {
       "type": "vImages",
-      "images":[
+      "images": [
         {
           "url": "limnia/limnia-10.jpg",
           "alt": "limnia"
