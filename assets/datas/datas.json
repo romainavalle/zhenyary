@@ -2,7 +2,7 @@
   "socials": [
     {
       "label": "Dribbble",
-      "link": "https://dribbble.com/Zhenya_Artem"
+      "link": "https://dribbble.com/zhenyary"
     },
     {
       "label": "Behance",
@@ -17,18 +17,18 @@
   "homeWorks": ["cure", "rafal-bojar"],
   "works": [
     [
-      [ "limnia", "dennis-berti"],
-      [ "epicurrence", "m-shkret"],
-      [ "adobe-kit", "cure"]
+      ["limnia", "dennis-berti"],
+      ["epicurrence", "m-shkret"],
+      ["adobe-kit", "cure"]
     ],
     [
-      [ "aeditor", "rafal-bojar"],
-      [ "il-makiage", "honey-pot"],
-      [ "adobe-xd", "uruoi"]
+      ["aeditor", "rafal-bojar"],
+      ["il-makiage", "honey-pot"],
+      ["adobe-xd", "uruoi"]
     ],
     [
-      [ "allure", "huckleberry"],
-      [ "glo", "espn", "archieve"]
+      ["allure", "huckleberry"],
+      ["glo", "espn", "archieve"]
     ]
   ]
 }
